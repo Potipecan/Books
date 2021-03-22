@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database
+namespace Database.TableClasses
 {
-    public class Class1
+    class BookCopy
     {
     }
 }

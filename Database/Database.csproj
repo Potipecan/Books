@@ -67,8 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableClasses\Author.cs" />
+    <Compile Include="TableClasses\AuthorBook.cs" />
+    <Compile Include="TableClasses\Book.cs" />
+    <Compile Include="TableClasses\BookCopy.cs" />
+    <Compile Include="TableClasses\BookRent.cs" />
+    <Compile Include="TableClasses\Section.cs" />
+    <Compile Include="TableClasses\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
