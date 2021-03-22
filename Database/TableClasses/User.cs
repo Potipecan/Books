@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Database.TableClasses
 {
@@ -28,6 +29,9 @@ namespace Database.TableClasses
         public string Password { get; set; }
         [Column("notes")]
         public string Notes { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
+        public List<BookRent> BookRents { get; set; }
 
     }
 }

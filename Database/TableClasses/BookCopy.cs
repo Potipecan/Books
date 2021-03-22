@@ -26,7 +26,7 @@ namespace Database.TableClasses
 
         [Column("book_id"), NotNull, ForeignKey(typeof(Book))]
         public int BookID { get; set; }
-        [ManyToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public Book Book { get; set; }
     }
 }

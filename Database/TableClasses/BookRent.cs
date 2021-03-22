@@ -20,7 +20,7 @@ namespace Database.TableClasses
 
         [Column("book_copy_id"), NotNull, ForeignKey(typeof(BookCopy))]
         public int BookCopyID { get; set; }
-        [ManyToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public BookCopy BookCopy { get; set; }
 
         [Column("user_id"), ForeignKey(typeof(User))]
