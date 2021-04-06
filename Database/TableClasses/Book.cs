@@ -11,7 +11,7 @@ using SQLitePCL;
 namespace Database.TableClasses
 {
     [Table("books")]
-    class Book
+    public class Book
     {
         [PrimaryKey, AutoIncrement, Column("id")]
         public int ID { get; set; }
@@ -24,6 +24,9 @@ namespace Database.TableClasses
         public int SectionID { get; set; }
         [ManyToOne]
         public Section Section { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.CascadeInsert)]
+        public List<BookCopy> BookCopies { get; set; }
 
         [ManyToMany(typeof(AuthorBook))]
         public List<Author> Authors { get; set; }

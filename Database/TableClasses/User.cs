@@ -9,7 +9,7 @@ using SQLiteNetExtensions.Attributes;
 namespace Database.TableClasses
 {
     [Table("users")]
-    class User
+    public class User
     {
         [Column("id"), AutoIncrement, PrimaryKey]
         public int ID { get; set; }
