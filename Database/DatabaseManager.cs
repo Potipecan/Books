@@ -110,7 +110,54 @@ namespace Database
 
         #endregion
 
-        #region
+        #region Update functions
+
+        public static async Task<bool> UpdateAuthor(Author author)
+        {
+            return await conn.UpdateAsync(author) == 1;
+        }
+
+        public static async Task<bool> UpdateUser(User user)
+        {
+            return await conn.UpdateAsync(user) == 1;
+        }
+
+        public static async Task<bool> UpdateBook(Book book)
+        {
+            if (book.Authors.Count < 1 || book.BookCopies.Count < 1 || book.Section == null) return false;
+
+            await conn.UpdateWithChildrenAsync(book);
+
+            return true;
+        }
+
+        public static async Task<bool> UpdateBookCopy(BookCopy bookcopy)
+        {
+            return await conn.UpdateAsync(bookcopy) == 1;
+        }
+
+        public static async Task<bool> UpdatePublisher(Publisher publisher)
+        {
+            return await conn.UpdateAsync(publisher) == 1;
+        }
+
+        #endregion
+
+        #region Deletion functions
+
+        public static async Task<bool> DeleteUser(User user)
+        {
+            await conn.DeleteAsync(user, true);
+            return true;
+        }
+
+        public static async Task<bool> DeleteBook(Book book)
+        {
+            await conn.DeleteAsync(book, true);
+            return true;
+        }
+
+
 
         #endregion
     }
