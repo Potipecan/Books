@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Database;
 
 namespace Books
 {
     public partial class Form1 : Form
     {
+        DatabaseManager db;
+
         public Form1()
         {
             InitializeComponent();
+            db = new DatabaseManager();
         }
     }
 }
