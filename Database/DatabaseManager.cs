@@ -35,6 +35,8 @@ namespace Database
                 await conn.CreateTableAsync<BookRent>();
                 await conn.CreateTableAsync<BookRentRecord>();
             }).Wait();
+
+
         }
     }
 }
