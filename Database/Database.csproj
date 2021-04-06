@@ -92,6 +92,7 @@
     <Compile Include="TableClasses\BookCopy.cs" />
     <Compile Include="TableClasses\BookRent.cs" />
     <Compile Include="TableClasses\BookRentRecord.cs" />
+    <Compile Include="TableClasses\Publisher.cs" />
     <Compile Include="TableClasses\Section.cs" />
     <Compile Include="TableClasses\User.cs" />
   </ItemGroup>
