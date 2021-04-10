@@ -109,38 +109,23 @@ namespace Books
             this.OneMemberLabel = new System.Windows.Forms.Label();
             this.MailOneMemberTextBox = new System.Windows.Forms.TextBox();
             this.NameSurnameOneMemberTextBox = new System.Windows.Forms.TextBox();
-            this.InsertTabControl = new System.Windows.Forms.TabPage();
+            this.InsertBookTabePage = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.MemverInsertGroupBox = new System.Windows.Forms.GroupBox();
-            this.AddressMemberInsertTextBox = new System.Windows.Forms.TextBox();
-            this.PhoneMemberInsertTextBox = new System.Windows.Forms.TextBox();
-            this.InsertMemberButton = new System.Windows.Forms.Button();
-            this.PhoneMemberInsertLabel = new System.Windows.Forms.Label();
-            this.AddressMemberInsertLabel = new System.Windows.Forms.Label();
-            this.NameSurnameMemberInsertLabel = new System.Windows.Forms.Label();
-            this.MailMemberInsertLabel = new System.Windows.Forms.Label();
-            this.MemberInsertLabel = new System.Windows.Forms.Label();
-            this.MailMemberInsertTextBox = new System.Windows.Forms.TextBox();
-            this.NameSurnameMemberInsertTextBox = new System.Windows.Forms.TextBox();
             this.BookInsertGroupBox = new System.Windows.Forms.GroupBox();
-            this.TypeBookInsertButton = new System.Windows.Forms.Button();
             this.PublisherBookInsertButton = new System.Windows.Forms.Button();
             this.AquireBookInsertComboBox = new System.Windows.Forms.ComboBox();
-            this.TypeBookInsertComboBox = new System.Windows.Forms.ComboBox();
             this.PublisherBookInsertComboBox = new System.Windows.Forms.ComboBox();
             this.InsertBookButton = new System.Windows.Forms.Button();
             this.AquireBookInsertLabel = new System.Windows.Forms.Label();
             this.PublisherBookInsertLabel = new System.Windows.Forms.Label();
-            this.TypeBookInsertLabel = new System.Windows.Forms.Label();
-            this.AuthorBookInsertLabel = new System.Windows.Forms.Label();
+            this.ChooseBooksInsertLabel = new System.Windows.Forms.Label();
             this.IdNumberBookInsertLabel = new System.Windows.Forms.Label();
             this.BookInsertLabel = new System.Windows.Forms.Label();
             this.IdNumberBookInsertTextBox = new System.Windows.Forms.TextBox();
-            this.AuthorBookInsertTextBox = new System.Windows.Forms.TextBox();
             this.BooksOutputTabPage = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ExcelButton = new System.Windows.Forms.Button();
@@ -221,6 +206,37 @@ namespace Books
             this.NameRegisterTextBox = new System.Windows.Forms.TextBox();
             this.NameRegisterLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.InsertMemberTabPage = new System.Windows.Forms.TabPage();
+            this.MemverInsertGroupBox = new System.Windows.Forms.GroupBox();
+            this.AddressMemberInsertTextBox = new System.Windows.Forms.TextBox();
+            this.PhoneMemberInsertTextBox = new System.Windows.Forms.TextBox();
+            this.InsertMemberButton = new System.Windows.Forms.Button();
+            this.PhoneMemberInsertLabel = new System.Windows.Forms.Label();
+            this.AddressMemberInsertLabel = new System.Windows.Forms.Label();
+            this.NameSurnameMemberInsertLabel = new System.Windows.Forms.Label();
+            this.MailMemberInsertLabel = new System.Windows.Forms.Label();
+            this.MemberInsertLabel = new System.Windows.Forms.Label();
+            this.MailMemberInsertTextBox = new System.Windows.Forms.TextBox();
+            this.NameSurnameMemberInsertTextBox = new System.Windows.Forms.TextBox();
+            this.InsertBooksGroupBox = new System.Windows.Forms.GroupBox();
+            this.NumberOfBooksInsertBooksNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.NumberOfBooksInsertBooksLabel = new System.Windows.Forms.Label();
+            this.InsertBooksButton = new System.Windows.Forms.Button();
+            this.DescriptionInsertBooksRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.TitleInserBooksTextBox = new System.Windows.Forms.TextBox();
+            this.DescriptionInsertBooksLabel = new System.Windows.Forms.Label();
+            this.TitleInsertBooksLabel = new System.Windows.Forms.Label();
+            this.AuthorInsertBooksLabel = new System.Windows.Forms.Label();
+            this.AuthorInsertBooksComboBox = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.TypeInsertBooksLabel = new System.Windows.Forms.Label();
+            this.TypeInsertBooksComboBox = new System.Windows.Forms.ComboBox();
+            this.AddSearchTypeBookInsertComboBox = new System.Windows.Forms.ComboBox();
+            this.AddBooksInserComboBox = new System.Windows.Forms.ComboBox();
+            this.AddSearchTypeBookInsertLabel = new System.Windows.Forms.Label();
+            this.AddBooksInsertLabel = new System.Windows.Forms.Label();
+            this.MoveToInsertBooksButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MainTab.SuspendLayout();
             this.SearchMemberGroupBox.SuspendLayout();
@@ -234,9 +250,8 @@ namespace Books
             this.MemberTabPage.SuspendLayout();
             this.BorrowedBookOneMemberGroupBox.SuspendLayout();
             this.MemberGroupBox.SuspendLayout();
-            this.InsertTabControl.SuspendLayout();
+            this.InsertBookTabePage.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.MemverInsertGroupBox.SuspendLayout();
             this.BookInsertGroupBox.SuspendLayout();
             this.BooksOutputTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -249,6 +264,10 @@ namespace Books
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.InsertMemberTabPage.SuspendLayout();
+            this.MemverInsertGroupBox.SuspendLayout();
+            this.InsertBooksGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfBooksInsertBooksNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -256,7 +275,8 @@ namespace Books
             this.tabControl1.Controls.Add(this.MainTab);
             this.tabControl1.Controls.Add(this.BookTab);
             this.tabControl1.Controls.Add(this.MemberTabPage);
-            this.tabControl1.Controls.Add(this.InsertTabControl);
+            this.tabControl1.Controls.Add(this.InsertBookTabePage);
+            this.tabControl1.Controls.Add(this.InsertMemberTabPage);
             this.tabControl1.Controls.Add(this.BooksOutputTabPage);
             this.tabControl1.Controls.Add(this.SettingsTabPage);
             this.tabControl1.Controls.Add(this.LoginTabPage);
@@ -1003,18 +1023,18 @@ namespace Books
             this.NameSurnameOneMemberTextBox.Size = new System.Drawing.Size(255, 26);
             this.NameSurnameOneMemberTextBox.TabIndex = 0;
             // 
-            // InsertTabControl
+            // InsertBookTabePage
             // 
-            this.InsertTabControl.Controls.Add(this.groupBox3);
-            this.InsertTabControl.Controls.Add(this.MemverInsertGroupBox);
-            this.InsertTabControl.Controls.Add(this.BookInsertGroupBox);
-            this.InsertTabControl.Location = new System.Drawing.Point(4, 29);
-            this.InsertTabControl.Name = "InsertTabControl";
-            this.InsertTabControl.Padding = new System.Windows.Forms.Padding(3);
-            this.InsertTabControl.Size = new System.Drawing.Size(1215, 951);
-            this.InsertTabControl.TabIndex = 3;
-            this.InsertTabControl.Text = "Vnos Gradiva ali člana";
-            this.InsertTabControl.UseVisualStyleBackColor = true;
+            this.InsertBookTabePage.Controls.Add(this.InsertBooksGroupBox);
+            this.InsertBookTabePage.Controls.Add(this.groupBox3);
+            this.InsertBookTabePage.Controls.Add(this.BookInsertGroupBox);
+            this.InsertBookTabePage.Location = new System.Drawing.Point(4, 29);
+            this.InsertBookTabePage.Name = "InsertBookTabePage";
+            this.InsertBookTabePage.Padding = new System.Windows.Forms.Padding(3);
+            this.InsertBookTabePage.Size = new System.Drawing.Size(1215, 951);
+            this.InsertBookTabePage.TabIndex = 3;
+            this.InsertBookTabePage.Text = "Vnos Gradiva";
+            this.InsertBookTabePage.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -1022,7 +1042,7 @@ namespace Books
             this.groupBox3.Controls.Add(this.textBox7);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Location = new System.Drawing.Point(506, 510);
+            this.groupBox3.Location = new System.Drawing.Point(585, 469);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(467, 209);
             this.groupBox3.TabIndex = 3;
@@ -1064,124 +1084,23 @@ namespace Books
             this.label13.TabIndex = 1;
             this.label13.Text = "label1";
             // 
-            // MemverInsertGroupBox
-            // 
-            this.MemverInsertGroupBox.Controls.Add(this.AddressMemberInsertTextBox);
-            this.MemverInsertGroupBox.Controls.Add(this.PhoneMemberInsertTextBox);
-            this.MemverInsertGroupBox.Controls.Add(this.InsertMemberButton);
-            this.MemverInsertGroupBox.Controls.Add(this.PhoneMemberInsertLabel);
-            this.MemverInsertGroupBox.Controls.Add(this.AddressMemberInsertLabel);
-            this.MemverInsertGroupBox.Controls.Add(this.NameSurnameMemberInsertLabel);
-            this.MemverInsertGroupBox.Controls.Add(this.MailMemberInsertLabel);
-            this.MemverInsertGroupBox.Controls.Add(this.MemberInsertLabel);
-            this.MemverInsertGroupBox.Controls.Add(this.MailMemberInsertTextBox);
-            this.MemverInsertGroupBox.Controls.Add(this.NameSurnameMemberInsertTextBox);
-            this.MemverInsertGroupBox.Location = new System.Drawing.Point(487, 27);
-            this.MemverInsertGroupBox.Name = "MemverInsertGroupBox";
-            this.MemverInsertGroupBox.Size = new System.Drawing.Size(369, 480);
-            this.MemverInsertGroupBox.TabIndex = 2;
-            this.MemverInsertGroupBox.TabStop = false;
-            this.MemverInsertGroupBox.Text = "Član";
-            // 
-            // AddressMemberInsertTextBox
-            // 
-            this.AddressMemberInsertTextBox.Location = new System.Drawing.Point(47, 276);
-            this.AddressMemberInsertTextBox.Name = "AddressMemberInsertTextBox";
-            this.AddressMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
-            this.AddressMemberInsertTextBox.TabIndex = 17;
-            // 
-            // PhoneMemberInsertTextBox
-            // 
-            this.PhoneMemberInsertTextBox.Location = new System.Drawing.Point(47, 199);
-            this.PhoneMemberInsertTextBox.Name = "PhoneMemberInsertTextBox";
-            this.PhoneMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
-            this.PhoneMemberInsertTextBox.TabIndex = 16;
-            // 
-            // InsertMemberButton
-            // 
-            this.InsertMemberButton.Location = new System.Drawing.Point(133, 425);
-            this.InsertMemberButton.Name = "InsertMemberButton";
-            this.InsertMemberButton.Size = new System.Drawing.Size(105, 36);
-            this.InsertMemberButton.TabIndex = 11;
-            this.InsertMemberButton.Text = "Spremeni";
-            this.InsertMemberButton.UseVisualStyleBackColor = true;
-            // 
-            // PhoneMemberInsertLabel
-            // 
-            this.PhoneMemberInsertLabel.AutoSize = true;
-            this.PhoneMemberInsertLabel.Location = new System.Drawing.Point(147, 157);
-            this.PhoneMemberInsertLabel.Name = "PhoneMemberInsertLabel";
-            this.PhoneMemberInsertLabel.Size = new System.Drawing.Size(62, 20);
-            this.PhoneMemberInsertLabel.TabIndex = 9;
-            this.PhoneMemberInsertLabel.Text = "Telefon";
-            // 
-            // AddressMemberInsertLabel
-            // 
-            this.AddressMemberInsertLabel.AutoSize = true;
-            this.AddressMemberInsertLabel.Location = new System.Drawing.Point(147, 241);
-            this.AddressMemberInsertLabel.Name = "AddressMemberInsertLabel";
-            this.AddressMemberInsertLabel.Size = new System.Drawing.Size(56, 20);
-            this.AddressMemberInsertLabel.TabIndex = 8;
-            this.AddressMemberInsertLabel.Text = "Naslov";
-            // 
-            // NameSurnameMemberInsertLabel
-            // 
-            this.NameSurnameMemberInsertLabel.AutoSize = true;
-            this.NameSurnameMemberInsertLabel.Location = new System.Drawing.Point(131, 75);
-            this.NameSurnameMemberInsertLabel.Name = "NameSurnameMemberInsertLabel";
-            this.NameSurnameMemberInsertLabel.Size = new System.Drawing.Size(107, 20);
-            this.NameSurnameMemberInsertLabel.TabIndex = 6;
-            this.NameSurnameMemberInsertLabel.Text = "Ime in Priimek";
-            // 
-            // MailMemberInsertLabel
-            // 
-            this.MailMemberInsertLabel.AutoSize = true;
-            this.MailMemberInsertLabel.Location = new System.Drawing.Point(156, 322);
-            this.MailMemberInsertLabel.Name = "MailMemberInsertLabel";
-            this.MailMemberInsertLabel.Size = new System.Drawing.Size(37, 20);
-            this.MailMemberInsertLabel.TabIndex = 7;
-            this.MailMemberInsertLabel.Text = "Mail";
-            // 
-            // MemberInsertLabel
-            // 
-            this.MemberInsertLabel.AutoSize = true;
-            this.MemberInsertLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.MemberInsertLabel.Location = new System.Drawing.Point(124, 22);
-            this.MemberInsertLabel.Name = "MemberInsertLabel";
-            this.MemberInsertLabel.Size = new System.Drawing.Size(114, 25);
-            this.MemberInsertLabel.TabIndex = 5;
-            this.MemberInsertLabel.Text = "Vnesi člana";
-            // 
-            // MailMemberInsertTextBox
-            // 
-            this.MailMemberInsertTextBox.Location = new System.Drawing.Point(47, 357);
-            this.MailMemberInsertTextBox.Name = "MailMemberInsertTextBox";
-            this.MailMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
-            this.MailMemberInsertTextBox.TabIndex = 3;
-            // 
-            // NameSurnameMemberInsertTextBox
-            // 
-            this.NameSurnameMemberInsertTextBox.Location = new System.Drawing.Point(47, 113);
-            this.NameSurnameMemberInsertTextBox.Name = "NameSurnameMemberInsertTextBox";
-            this.NameSurnameMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
-            this.NameSurnameMemberInsertTextBox.TabIndex = 0;
-            // 
             // BookInsertGroupBox
             // 
-            this.BookInsertGroupBox.Controls.Add(this.TypeBookInsertButton);
+            this.BookInsertGroupBox.Controls.Add(this.MoveToInsertBooksButton);
+            this.BookInsertGroupBox.Controls.Add(this.AddBooksInsertLabel);
+            this.BookInsertGroupBox.Controls.Add(this.AddSearchTypeBookInsertLabel);
+            this.BookInsertGroupBox.Controls.Add(this.AddBooksInserComboBox);
+            this.BookInsertGroupBox.Controls.Add(this.AddSearchTypeBookInsertComboBox);
             this.BookInsertGroupBox.Controls.Add(this.PublisherBookInsertButton);
             this.BookInsertGroupBox.Controls.Add(this.AquireBookInsertComboBox);
-            this.BookInsertGroupBox.Controls.Add(this.TypeBookInsertComboBox);
             this.BookInsertGroupBox.Controls.Add(this.PublisherBookInsertComboBox);
             this.BookInsertGroupBox.Controls.Add(this.InsertBookButton);
             this.BookInsertGroupBox.Controls.Add(this.AquireBookInsertLabel);
             this.BookInsertGroupBox.Controls.Add(this.PublisherBookInsertLabel);
-            this.BookInsertGroupBox.Controls.Add(this.TypeBookInsertLabel);
-            this.BookInsertGroupBox.Controls.Add(this.AuthorBookInsertLabel);
+            this.BookInsertGroupBox.Controls.Add(this.ChooseBooksInsertLabel);
             this.BookInsertGroupBox.Controls.Add(this.IdNumberBookInsertLabel);
             this.BookInsertGroupBox.Controls.Add(this.BookInsertLabel);
             this.BookInsertGroupBox.Controls.Add(this.IdNumberBookInsertTextBox);
-            this.BookInsertGroupBox.Controls.Add(this.AuthorBookInsertTextBox);
             this.BookInsertGroupBox.Location = new System.Drawing.Point(29, 18);
             this.BookInsertGroupBox.Name = "BookInsertGroupBox";
             this.BookInsertGroupBox.Size = new System.Drawing.Size(439, 574);
@@ -1189,18 +1108,9 @@ namespace Books
             this.BookInsertGroupBox.TabStop = false;
             this.BookInsertGroupBox.Text = "Knjiga";
             // 
-            // TypeBookInsertButton
-            // 
-            this.TypeBookInsertButton.Location = new System.Drawing.Point(331, 276);
-            this.TypeBookInsertButton.Name = "TypeBookInsertButton";
-            this.TypeBookInsertButton.Size = new System.Drawing.Size(84, 34);
-            this.TypeBookInsertButton.TabIndex = 15;
-            this.TypeBookInsertButton.Text = "Dodaj";
-            this.TypeBookInsertButton.UseVisualStyleBackColor = true;
-            // 
             // PublisherBookInsertButton
             // 
-            this.PublisherBookInsertButton.Location = new System.Drawing.Point(331, 195);
+            this.PublisherBookInsertButton.Location = new System.Drawing.Point(355, 296);
             this.PublisherBookInsertButton.Name = "PublisherBookInsertButton";
             this.PublisherBookInsertButton.Size = new System.Drawing.Size(84, 34);
             this.PublisherBookInsertButton.TabIndex = 0;
@@ -1210,25 +1120,17 @@ namespace Books
             // AquireBookInsertComboBox
             // 
             this.AquireBookInsertComboBox.FormattingEnabled = true;
-            this.AquireBookInsertComboBox.Location = new System.Drawing.Point(47, 440);
+            this.AquireBookInsertComboBox.Location = new System.Drawing.Point(178, 398);
             this.AquireBookInsertComboBox.Name = "AquireBookInsertComboBox";
             this.AquireBookInsertComboBox.Size = new System.Drawing.Size(255, 28);
             this.AquireBookInsertComboBox.TabIndex = 14;
             // 
-            // TypeBookInsertComboBox
-            // 
-            this.TypeBookInsertComboBox.FormattingEnabled = true;
-            this.TypeBookInsertComboBox.Location = new System.Drawing.Point(47, 276);
-            this.TypeBookInsertComboBox.Name = "TypeBookInsertComboBox";
-            this.TypeBookInsertComboBox.Size = new System.Drawing.Size(255, 28);
-            this.TypeBookInsertComboBox.TabIndex = 13;
-            // 
             // PublisherBookInsertComboBox
             // 
             this.PublisherBookInsertComboBox.FormattingEnabled = true;
-            this.PublisherBookInsertComboBox.Location = new System.Drawing.Point(47, 193);
+            this.PublisherBookInsertComboBox.Location = new System.Drawing.Point(117, 302);
             this.PublisherBookInsertComboBox.Name = "PublisherBookInsertComboBox";
-            this.PublisherBookInsertComboBox.Size = new System.Drawing.Size(255, 28);
+            this.PublisherBookInsertComboBox.Size = new System.Drawing.Size(224, 28);
             this.PublisherBookInsertComboBox.TabIndex = 12;
             // 
             // InsertBookButton
@@ -1243,7 +1145,7 @@ namespace Books
             // AquireBookInsertLabel
             // 
             this.AquireBookInsertLabel.AutoSize = true;
-            this.AquireBookInsertLabel.Location = new System.Drawing.Point(135, 406);
+            this.AquireBookInsertLabel.Location = new System.Drawing.Point(16, 398);
             this.AquireBookInsertLabel.Name = "AquireBookInsertLabel";
             this.AquireBookInsertLabel.Size = new System.Drawing.Size(78, 20);
             this.AquireBookInsertLabel.TabIndex = 10;
@@ -1252,34 +1154,25 @@ namespace Books
             // PublisherBookInsertLabel
             // 
             this.PublisherBookInsertLabel.AutoSize = true;
-            this.PublisherBookInsertLabel.Location = new System.Drawing.Point(147, 157);
+            this.PublisherBookInsertLabel.Location = new System.Drawing.Point(16, 310);
             this.PublisherBookInsertLabel.Name = "PublisherBookInsertLabel";
             this.PublisherBookInsertLabel.Size = new System.Drawing.Size(66, 20);
             this.PublisherBookInsertLabel.TabIndex = 9;
             this.PublisherBookInsertLabel.Text = "Založba";
             // 
-            // TypeBookInsertLabel
+            // ChooseBooksInsertLabel
             // 
-            this.TypeBookInsertLabel.AutoSize = true;
-            this.TypeBookInsertLabel.Location = new System.Drawing.Point(122, 240);
-            this.TypeBookInsertLabel.Name = "TypeBookInsertLabel";
-            this.TypeBookInsertLabel.Size = new System.Drawing.Size(116, 20);
-            this.TypeBookInsertLabel.TabIndex = 8;
-            this.TypeBookInsertLabel.Text = "Področje / Žanr";
-            // 
-            // AuthorBookInsertLabel
-            // 
-            this.AuthorBookInsertLabel.AutoSize = true;
-            this.AuthorBookInsertLabel.Location = new System.Drawing.Point(155, 78);
-            this.AuthorBookInsertLabel.Name = "AuthorBookInsertLabel";
-            this.AuthorBookInsertLabel.Size = new System.Drawing.Size(46, 20);
-            this.AuthorBookInsertLabel.TabIndex = 6;
-            this.AuthorBookInsertLabel.Text = "Avtor";
+            this.ChooseBooksInsertLabel.AutoSize = true;
+            this.ChooseBooksInsertLabel.Location = new System.Drawing.Point(155, 78);
+            this.ChooseBooksInsertLabel.Name = "ChooseBooksInsertLabel";
+            this.ChooseBooksInsertLabel.Size = new System.Drawing.Size(93, 20);
+            this.ChooseBooksInsertLabel.TabIndex = 6;
+            this.ChooseBooksInsertLabel.Text = "Izberi knjigo";
             // 
             // IdNumberBookInsertLabel
             // 
             this.IdNumberBookInsertLabel.AutoSize = true;
-            this.IdNumberBookInsertLabel.Location = new System.Drawing.Point(97, 323);
+            this.IdNumberBookInsertLabel.Location = new System.Drawing.Point(16, 359);
             this.IdNumberBookInsertLabel.Name = "IdNumberBookInsertLabel";
             this.IdNumberBookInsertLabel.Size = new System.Drawing.Size(141, 20);
             this.IdNumberBookInsertLabel.TabIndex = 7;
@@ -1297,17 +1190,10 @@ namespace Books
             // 
             // IdNumberBookInsertTextBox
             // 
-            this.IdNumberBookInsertTextBox.Location = new System.Drawing.Point(47, 357);
+            this.IdNumberBookInsertTextBox.Location = new System.Drawing.Point(178, 359);
             this.IdNumberBookInsertTextBox.Name = "IdNumberBookInsertTextBox";
             this.IdNumberBookInsertTextBox.Size = new System.Drawing.Size(255, 26);
             this.IdNumberBookInsertTextBox.TabIndex = 3;
-            // 
-            // AuthorBookInsertTextBox
-            // 
-            this.AuthorBookInsertTextBox.Location = new System.Drawing.Point(47, 113);
-            this.AuthorBookInsertTextBox.Name = "AuthorBookInsertTextBox";
-            this.AuthorBookInsertTextBox.Size = new System.Drawing.Size(255, 26);
-            this.AuthorBookInsertTextBox.TabIndex = 0;
             // 
             // BooksOutputTabPage
             // 
@@ -2045,6 +1931,299 @@ namespace Books
             this.NameRegisterLabel.TabIndex = 0;
             this.NameRegisterLabel.Text = "ime";
             // 
+            // InsertMemberTabPage
+            // 
+            this.InsertMemberTabPage.Controls.Add(this.MemverInsertGroupBox);
+            this.InsertMemberTabPage.Location = new System.Drawing.Point(4, 29);
+            this.InsertMemberTabPage.Name = "InsertMemberTabPage";
+            this.InsertMemberTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.InsertMemberTabPage.Size = new System.Drawing.Size(1215, 951);
+            this.InsertMemberTabPage.TabIndex = 7;
+            this.InsertMemberTabPage.Text = "Vnos člana";
+            this.InsertMemberTabPage.UseVisualStyleBackColor = true;
+            // 
+            // MemverInsertGroupBox
+            // 
+            this.MemverInsertGroupBox.Controls.Add(this.AddressMemberInsertTextBox);
+            this.MemverInsertGroupBox.Controls.Add(this.PhoneMemberInsertTextBox);
+            this.MemverInsertGroupBox.Controls.Add(this.InsertMemberButton);
+            this.MemverInsertGroupBox.Controls.Add(this.PhoneMemberInsertLabel);
+            this.MemverInsertGroupBox.Controls.Add(this.AddressMemberInsertLabel);
+            this.MemverInsertGroupBox.Controls.Add(this.NameSurnameMemberInsertLabel);
+            this.MemverInsertGroupBox.Controls.Add(this.MailMemberInsertLabel);
+            this.MemverInsertGroupBox.Controls.Add(this.MemberInsertLabel);
+            this.MemverInsertGroupBox.Controls.Add(this.MailMemberInsertTextBox);
+            this.MemverInsertGroupBox.Controls.Add(this.NameSurnameMemberInsertTextBox);
+            this.MemverInsertGroupBox.Location = new System.Drawing.Point(226, 67);
+            this.MemverInsertGroupBox.Name = "MemverInsertGroupBox";
+            this.MemverInsertGroupBox.Size = new System.Drawing.Size(369, 480);
+            this.MemverInsertGroupBox.TabIndex = 3;
+            this.MemverInsertGroupBox.TabStop = false;
+            this.MemverInsertGroupBox.Text = "Član";
+            // 
+            // AddressMemberInsertTextBox
+            // 
+            this.AddressMemberInsertTextBox.Location = new System.Drawing.Point(47, 276);
+            this.AddressMemberInsertTextBox.Name = "AddressMemberInsertTextBox";
+            this.AddressMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
+            this.AddressMemberInsertTextBox.TabIndex = 17;
+            // 
+            // PhoneMemberInsertTextBox
+            // 
+            this.PhoneMemberInsertTextBox.Location = new System.Drawing.Point(47, 199);
+            this.PhoneMemberInsertTextBox.Name = "PhoneMemberInsertTextBox";
+            this.PhoneMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
+            this.PhoneMemberInsertTextBox.TabIndex = 16;
+            // 
+            // InsertMemberButton
+            // 
+            this.InsertMemberButton.Location = new System.Drawing.Point(133, 425);
+            this.InsertMemberButton.Name = "InsertMemberButton";
+            this.InsertMemberButton.Size = new System.Drawing.Size(105, 36);
+            this.InsertMemberButton.TabIndex = 11;
+            this.InsertMemberButton.Text = "Spremeni";
+            this.InsertMemberButton.UseVisualStyleBackColor = true;
+            // 
+            // PhoneMemberInsertLabel
+            // 
+            this.PhoneMemberInsertLabel.AutoSize = true;
+            this.PhoneMemberInsertLabel.Location = new System.Drawing.Point(147, 157);
+            this.PhoneMemberInsertLabel.Name = "PhoneMemberInsertLabel";
+            this.PhoneMemberInsertLabel.Size = new System.Drawing.Size(62, 20);
+            this.PhoneMemberInsertLabel.TabIndex = 9;
+            this.PhoneMemberInsertLabel.Text = "Telefon";
+            // 
+            // AddressMemberInsertLabel
+            // 
+            this.AddressMemberInsertLabel.AutoSize = true;
+            this.AddressMemberInsertLabel.Location = new System.Drawing.Point(147, 241);
+            this.AddressMemberInsertLabel.Name = "AddressMemberInsertLabel";
+            this.AddressMemberInsertLabel.Size = new System.Drawing.Size(56, 20);
+            this.AddressMemberInsertLabel.TabIndex = 8;
+            this.AddressMemberInsertLabel.Text = "Naslov";
+            // 
+            // NameSurnameMemberInsertLabel
+            // 
+            this.NameSurnameMemberInsertLabel.AutoSize = true;
+            this.NameSurnameMemberInsertLabel.Location = new System.Drawing.Point(131, 75);
+            this.NameSurnameMemberInsertLabel.Name = "NameSurnameMemberInsertLabel";
+            this.NameSurnameMemberInsertLabel.Size = new System.Drawing.Size(107, 20);
+            this.NameSurnameMemberInsertLabel.TabIndex = 6;
+            this.NameSurnameMemberInsertLabel.Text = "Ime in Priimek";
+            // 
+            // MailMemberInsertLabel
+            // 
+            this.MailMemberInsertLabel.AutoSize = true;
+            this.MailMemberInsertLabel.Location = new System.Drawing.Point(156, 322);
+            this.MailMemberInsertLabel.Name = "MailMemberInsertLabel";
+            this.MailMemberInsertLabel.Size = new System.Drawing.Size(37, 20);
+            this.MailMemberInsertLabel.TabIndex = 7;
+            this.MailMemberInsertLabel.Text = "Mail";
+            // 
+            // MemberInsertLabel
+            // 
+            this.MemberInsertLabel.AutoSize = true;
+            this.MemberInsertLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.MemberInsertLabel.Location = new System.Drawing.Point(124, 22);
+            this.MemberInsertLabel.Name = "MemberInsertLabel";
+            this.MemberInsertLabel.Size = new System.Drawing.Size(114, 25);
+            this.MemberInsertLabel.TabIndex = 5;
+            this.MemberInsertLabel.Text = "Vnesi člana";
+            // 
+            // MailMemberInsertTextBox
+            // 
+            this.MailMemberInsertTextBox.Location = new System.Drawing.Point(47, 357);
+            this.MailMemberInsertTextBox.Name = "MailMemberInsertTextBox";
+            this.MailMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
+            this.MailMemberInsertTextBox.TabIndex = 3;
+            // 
+            // NameSurnameMemberInsertTextBox
+            // 
+            this.NameSurnameMemberInsertTextBox.Location = new System.Drawing.Point(47, 113);
+            this.NameSurnameMemberInsertTextBox.Name = "NameSurnameMemberInsertTextBox";
+            this.NameSurnameMemberInsertTextBox.Size = new System.Drawing.Size(255, 26);
+            this.NameSurnameMemberInsertTextBox.TabIndex = 0;
+            // 
+            // InsertBooksGroupBox
+            // 
+            this.InsertBooksGroupBox.Controls.Add(this.NumberOfBooksInsertBooksNumericUpDown);
+            this.InsertBooksGroupBox.Controls.Add(this.NumberOfBooksInsertBooksLabel);
+            this.InsertBooksGroupBox.Controls.Add(this.InsertBooksButton);
+            this.InsertBooksGroupBox.Controls.Add(this.DescriptionInsertBooksRichTextBox);
+            this.InsertBooksGroupBox.Controls.Add(this.TitleInserBooksTextBox);
+            this.InsertBooksGroupBox.Controls.Add(this.DescriptionInsertBooksLabel);
+            this.InsertBooksGroupBox.Controls.Add(this.TitleInsertBooksLabel);
+            this.InsertBooksGroupBox.Controls.Add(this.AuthorInsertBooksLabel);
+            this.InsertBooksGroupBox.Controls.Add(this.AuthorInsertBooksComboBox);
+            this.InsertBooksGroupBox.Controls.Add(this.button5);
+            this.InsertBooksGroupBox.Controls.Add(this.button7);
+            this.InsertBooksGroupBox.Controls.Add(this.TypeInsertBooksLabel);
+            this.InsertBooksGroupBox.Controls.Add(this.TypeInsertBooksComboBox);
+            this.InsertBooksGroupBox.Location = new System.Drawing.Point(559, 18);
+            this.InsertBooksGroupBox.Name = "InsertBooksGroupBox";
+            this.InsertBooksGroupBox.Size = new System.Drawing.Size(493, 407);
+            this.InsertBooksGroupBox.TabIndex = 4;
+            this.InsertBooksGroupBox.TabStop = false;
+            this.InsertBooksGroupBox.Text = "Knjige";
+            // 
+            // NumberOfBooksInsertBooksNumericUpDown
+            // 
+            this.NumberOfBooksInsertBooksNumericUpDown.Enabled = false;
+            this.NumberOfBooksInsertBooksNumericUpDown.Location = new System.Drawing.Point(137, 30);
+            this.NumberOfBooksInsertBooksNumericUpDown.Name = "NumberOfBooksInsertBooksNumericUpDown";
+            this.NumberOfBooksInsertBooksNumericUpDown.Size = new System.Drawing.Size(120, 26);
+            this.NumberOfBooksInsertBooksNumericUpDown.TabIndex = 24;
+            // 
+            // NumberOfBooksInsertBooksLabel
+            // 
+            this.NumberOfBooksInsertBooksLabel.AutoSize = true;
+            this.NumberOfBooksInsertBooksLabel.Location = new System.Drawing.Point(22, 36);
+            this.NumberOfBooksInsertBooksLabel.Name = "NumberOfBooksInsertBooksLabel";
+            this.NumberOfBooksInsertBooksLabel.Size = new System.Drawing.Size(92, 20);
+            this.NumberOfBooksInsertBooksLabel.TabIndex = 23;
+            this.NumberOfBooksInsertBooksLabel.Text = "Število knjig";
+            // 
+            // InsertBooksButton
+            // 
+            this.InsertBooksButton.Location = new System.Drawing.Point(200, 331);
+            this.InsertBooksButton.Name = "InsertBooksButton";
+            this.InsertBooksButton.Size = new System.Drawing.Size(105, 34);
+            this.InsertBooksButton.TabIndex = 22;
+            this.InsertBooksButton.Text = "Dodaj";
+            this.InsertBooksButton.UseVisualStyleBackColor = true;
+            // 
+            // DescriptionInsertBooksRichTextBox
+            // 
+            this.DescriptionInsertBooksRichTextBox.Location = new System.Drawing.Point(137, 228);
+            this.DescriptionInsertBooksRichTextBox.Name = "DescriptionInsertBooksRichTextBox";
+            this.DescriptionInsertBooksRichTextBox.Size = new System.Drawing.Size(333, 96);
+            this.DescriptionInsertBooksRichTextBox.TabIndex = 21;
+            this.DescriptionInsertBooksRichTextBox.Text = "";
+            // 
+            // TitleInserBooksTextBox
+            // 
+            this.TitleInserBooksTextBox.Location = new System.Drawing.Point(137, 78);
+            this.TitleInserBooksTextBox.Name = "TitleInserBooksTextBox";
+            this.TitleInserBooksTextBox.Size = new System.Drawing.Size(255, 26);
+            this.TitleInserBooksTextBox.TabIndex = 20;
+            // 
+            // DescriptionInsertBooksLabel
+            // 
+            this.DescriptionInsertBooksLabel.AutoSize = true;
+            this.DescriptionInsertBooksLabel.Location = new System.Drawing.Point(35, 266);
+            this.DescriptionInsertBooksLabel.Name = "DescriptionInsertBooksLabel";
+            this.DescriptionInsertBooksLabel.Size = new System.Drawing.Size(41, 20);
+            this.DescriptionInsertBooksLabel.TabIndex = 19;
+            this.DescriptionInsertBooksLabel.Text = "Opis";
+            // 
+            // TitleInsertBooksLabel
+            // 
+            this.TitleInsertBooksLabel.AutoSize = true;
+            this.TitleInsertBooksLabel.Location = new System.Drawing.Point(35, 78);
+            this.TitleInsertBooksLabel.Name = "TitleInsertBooksLabel";
+            this.TitleInsertBooksLabel.Size = new System.Drawing.Size(56, 20);
+            this.TitleInsertBooksLabel.TabIndex = 18;
+            this.TitleInsertBooksLabel.Text = "Naslov";
+            // 
+            // AuthorInsertBooksLabel
+            // 
+            this.AuthorInsertBooksLabel.AutoSize = true;
+            this.AuthorInsertBooksLabel.Location = new System.Drawing.Point(40, 138);
+            this.AuthorInsertBooksLabel.Name = "AuthorInsertBooksLabel";
+            this.AuthorInsertBooksLabel.Size = new System.Drawing.Size(46, 20);
+            this.AuthorInsertBooksLabel.TabIndex = 6;
+            this.AuthorInsertBooksLabel.Text = "Avtor";
+            // 
+            // AuthorInsertBooksComboBox
+            // 
+            this.AuthorInsertBooksComboBox.FormattingEnabled = true;
+            this.AuthorInsertBooksComboBox.Location = new System.Drawing.Point(137, 131);
+            this.AuthorInsertBooksComboBox.Name = "AuthorInsertBooksComboBox";
+            this.AuthorInsertBooksComboBox.Size = new System.Drawing.Size(255, 28);
+            this.AuthorInsertBooksComboBox.TabIndex = 16;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(394, 183);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(84, 34);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "Dodaj";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(394, 126);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(84, 35);
+            this.button7.TabIndex = 17;
+            this.button7.Text = "Dodaj";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // TypeInsertBooksLabel
+            // 
+            this.TypeInsertBooksLabel.AutoSize = true;
+            this.TypeInsertBooksLabel.Location = new System.Drawing.Point(4, 188);
+            this.TypeInsertBooksLabel.Name = "TypeInsertBooksLabel";
+            this.TypeInsertBooksLabel.Size = new System.Drawing.Size(116, 20);
+            this.TypeInsertBooksLabel.TabIndex = 8;
+            this.TypeInsertBooksLabel.Text = "Področje / Žanr";
+            // 
+            // TypeInsertBooksComboBox
+            // 
+            this.TypeInsertBooksComboBox.FormattingEnabled = true;
+            this.TypeInsertBooksComboBox.Location = new System.Drawing.Point(137, 188);
+            this.TypeInsertBooksComboBox.Name = "TypeInsertBooksComboBox";
+            this.TypeInsertBooksComboBox.Size = new System.Drawing.Size(255, 28);
+            this.TypeInsertBooksComboBox.TabIndex = 13;
+            // 
+            // AddSearchTypeBookInsertComboBox
+            // 
+            this.AddSearchTypeBookInsertComboBox.FormattingEnabled = true;
+            this.AddSearchTypeBookInsertComboBox.Items.AddRange(new object[] {
+            "Avtor",
+            "Naslov",
+            "Žanr"});
+            this.AddSearchTypeBookInsertComboBox.Location = new System.Drawing.Point(159, 113);
+            this.AddSearchTypeBookInsertComboBox.Name = "AddSearchTypeBookInsertComboBox";
+            this.AddSearchTypeBookInsertComboBox.Size = new System.Drawing.Size(274, 28);
+            this.AddSearchTypeBookInsertComboBox.TabIndex = 15;
+            // 
+            // AddBooksInserComboBox
+            // 
+            this.AddBooksInserComboBox.FormattingEnabled = true;
+            this.AddBooksInserComboBox.Location = new System.Drawing.Point(159, 147);
+            this.AddBooksInserComboBox.Name = "AddBooksInserComboBox";
+            this.AddBooksInserComboBox.Size = new System.Drawing.Size(274, 28);
+            this.AddBooksInserComboBox.TabIndex = 16;
+            // 
+            // AddSearchTypeBookInsertLabel
+            // 
+            this.AddSearchTypeBookInsertLabel.AutoSize = true;
+            this.AddSearchTypeBookInsertLabel.Location = new System.Drawing.Point(0, 116);
+            this.AddSearchTypeBookInsertLabel.Name = "AddSearchTypeBookInsertLabel";
+            this.AddSearchTypeBookInsertLabel.Size = new System.Drawing.Size(157, 20);
+            this.AddSearchTypeBookInsertLabel.TabIndex = 17;
+            this.AddSearchTypeBookInsertLabel.Text = "Izberite način iskanja";
+            // 
+            // AddBooksInsertLabel
+            // 
+            this.AddBooksInsertLabel.AutoSize = true;
+            this.AddBooksInsertLabel.Location = new System.Drawing.Point(20, 154);
+            this.AddBooksInsertLabel.Name = "AddBooksInsertLabel";
+            this.AddBooksInsertLabel.Size = new System.Drawing.Size(107, 20);
+            this.AddBooksInsertLabel.TabIndex = 18;
+            this.AddBooksInsertLabel.Text = "Izberite knjigo";
+            // 
+            // MoveToInsertBooksButton
+            // 
+            this.MoveToInsertBooksButton.Location = new System.Drawing.Point(323, 188);
+            this.MoveToInsertBooksButton.Name = "MoveToInsertBooksButton";
+            this.MoveToInsertBooksButton.Size = new System.Drawing.Size(110, 52);
+            this.MoveToInsertBooksButton.TabIndex = 20;
+            this.MoveToInsertBooksButton.Text = "Še nimate te knjige";
+            this.MoveToInsertBooksButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -2072,11 +2251,9 @@ namespace Books
             this.BorrowedBookOneMemberGroupBox.PerformLayout();
             this.MemberGroupBox.ResumeLayout(false);
             this.MemberGroupBox.PerformLayout();
-            this.InsertTabControl.ResumeLayout(false);
+            this.InsertBookTabePage.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.MemverInsertGroupBox.ResumeLayout(false);
-            this.MemverInsertGroupBox.PerformLayout();
             this.BookInsertGroupBox.ResumeLayout(false);
             this.BookInsertGroupBox.PerformLayout();
             this.BooksOutputTabPage.ResumeLayout(false);
@@ -2098,6 +2275,12 @@ namespace Books
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.InsertMemberTabPage.ResumeLayout(false);
+            this.MemverInsertGroupBox.ResumeLayout(false);
+            this.MemverInsertGroupBox.PerformLayout();
+            this.InsertBooksGroupBox.ResumeLayout(false);
+            this.InsertBooksGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfBooksInsertBooksNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2159,38 +2342,23 @@ namespace Books
         private System.Windows.Forms.Label OneMemberLabel;
         private System.Windows.Forms.TextBox MailOneMemberTextBox;
         private System.Windows.Forms.TextBox NameSurnameOneMemberTextBox;
-        private System.Windows.Forms.TabPage InsertTabControl;
+        private System.Windows.Forms.TabPage InsertBookTabePage;
         private System.Windows.Forms.GroupBox BookInsertGroupBox;
-        private System.Windows.Forms.Button TypeBookInsertButton;
         private System.Windows.Forms.Button PublisherBookInsertButton;
         private System.Windows.Forms.ComboBox AquireBookInsertComboBox;
-        private System.Windows.Forms.ComboBox TypeBookInsertComboBox;
         private System.Windows.Forms.ComboBox PublisherBookInsertComboBox;
         private System.Windows.Forms.Button InsertBookButton;
         private System.Windows.Forms.Label AquireBookInsertLabel;
         private System.Windows.Forms.Label PublisherBookInsertLabel;
-        private System.Windows.Forms.Label TypeBookInsertLabel;
-        private System.Windows.Forms.Label AuthorBookInsertLabel;
+        private System.Windows.Forms.Label ChooseBooksInsertLabel;
         private System.Windows.Forms.Label IdNumberBookInsertLabel;
         private System.Windows.Forms.Label BookInsertLabel;
         private System.Windows.Forms.TextBox IdNumberBookInsertTextBox;
-        private System.Windows.Forms.TextBox AuthorBookInsertTextBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.GroupBox MemverInsertGroupBox;
-        private System.Windows.Forms.TextBox AddressMemberInsertTextBox;
-        private System.Windows.Forms.TextBox PhoneMemberInsertTextBox;
-        private System.Windows.Forms.Button InsertMemberButton;
-        private System.Windows.Forms.Label PhoneMemberInsertLabel;
-        private System.Windows.Forms.Label AddressMemberInsertLabel;
-        private System.Windows.Forms.Label NameSurnameMemberInsertLabel;
-        private System.Windows.Forms.Label MailMemberInsertLabel;
-        private System.Windows.Forms.Label MemberInsertLabel;
-        private System.Windows.Forms.TextBox MailMemberInsertTextBox;
-        private System.Windows.Forms.TextBox NameSurnameMemberInsertTextBox;
         private System.Windows.Forms.TabPage BooksOutputTabPage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button ExcelButton;
@@ -2296,6 +2464,37 @@ namespace Books
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label AddingSomethingLabel;
+        private System.Windows.Forms.TabPage InsertMemberTabPage;
+        private System.Windows.Forms.GroupBox MemverInsertGroupBox;
+        private System.Windows.Forms.TextBox AddressMemberInsertTextBox;
+        private System.Windows.Forms.TextBox PhoneMemberInsertTextBox;
+        private System.Windows.Forms.Button InsertMemberButton;
+        private System.Windows.Forms.Label PhoneMemberInsertLabel;
+        private System.Windows.Forms.Label AddressMemberInsertLabel;
+        private System.Windows.Forms.Label NameSurnameMemberInsertLabel;
+        private System.Windows.Forms.Label MailMemberInsertLabel;
+        private System.Windows.Forms.Label MemberInsertLabel;
+        private System.Windows.Forms.TextBox MailMemberInsertTextBox;
+        private System.Windows.Forms.TextBox NameSurnameMemberInsertTextBox;
+        private System.Windows.Forms.GroupBox InsertBooksGroupBox;
+        private System.Windows.Forms.NumericUpDown NumberOfBooksInsertBooksNumericUpDown;
+        private System.Windows.Forms.Label NumberOfBooksInsertBooksLabel;
+        private System.Windows.Forms.Button InsertBooksButton;
+        private System.Windows.Forms.RichTextBox DescriptionInsertBooksRichTextBox;
+        private System.Windows.Forms.TextBox TitleInserBooksTextBox;
+        private System.Windows.Forms.Label DescriptionInsertBooksLabel;
+        private System.Windows.Forms.Label TitleInsertBooksLabel;
+        private System.Windows.Forms.Label AuthorInsertBooksLabel;
+        private System.Windows.Forms.ComboBox AuthorInsertBooksComboBox;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label TypeInsertBooksLabel;
+        private System.Windows.Forms.ComboBox TypeInsertBooksComboBox;
+        private System.Windows.Forms.Button MoveToInsertBooksButton;
+        private System.Windows.Forms.Label AddBooksInsertLabel;
+        private System.Windows.Forms.Label AddSearchTypeBookInsertLabel;
+        private System.Windows.Forms.ComboBox AddBooksInserComboBox;
+        private System.Windows.Forms.ComboBox AddSearchTypeBookInsertComboBox;
     }
 }
 
