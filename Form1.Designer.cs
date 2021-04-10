@@ -127,23 +127,18 @@ namespace Books
             this.BookInsertLabel = new System.Windows.Forms.Label();
             this.IdNumberBookInsertTextBox = new System.Windows.Forms.TextBox();
             this.BooksOutputTabPage = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ArchiveGroupBox = new System.Windows.Forms.GroupBox();
             this.ExcelButton = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SearchArchiveGroupBox = new System.Windows.Forms.GroupBox();
             this.SetDateButton = new System.Windows.Forms.Button();
             this.SetToDatelabel = new System.Windows.Forms.Label();
             this.SetFromDateLabel = new System.Windows.Forms.Label();
             this.SetToDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SetFromDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.WhichBookLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.OutputMemberOrBookLabel = new System.Windows.Forms.Label();
-            this.OutputMemberOrBookComboBox = new System.Windows.Forms.ComboBox();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -248,6 +243,12 @@ namespace Books
             this.InsertmemberLabel = new System.Windows.Forms.Label();
             this.MailInsertMemberTextBox = new System.Windows.Forms.TextBox();
             this.NameInsertMemberTextBox = new System.Windows.Forms.TextBox();
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AllArchiveButton = new System.Windows.Forms.Button();
+            this.OutputArchiveMemberButton = new System.Windows.Forms.Button();
+            this.OutputArchiveBookButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MainTab.SuspendLayout();
             this.SearchMemberGroupBox.SuspendLayout();
@@ -265,8 +266,8 @@ namespace Books
             this.groupBox3.SuspendLayout();
             this.BookInsertGroupBox.SuspendLayout();
             this.BooksOutputTabPage.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.ArchiveGroupBox.SuspendLayout();
+            this.SearchArchiveGroupBox.SuspendLayout();
             this.SettingsTabPage.SuspendLayout();
             this.ChangeUserPasswordGroupBox.SuspendLayout();
             this.UserDataGroupBox.SuspendLayout();
@@ -850,6 +851,7 @@ namespace Books
             // 
             // MemberTabPage
             // 
+            this.MemberTabPage.Controls.Add(this.OutputArchiveMemberButton);
             this.MemberTabPage.Controls.Add(this.BorrowedBookOneMemberGroupBox);
             this.MemberTabPage.Controls.Add(this.MemberGroupBox);
             this.MemberTabPage.Location = new System.Drawing.Point(4, 29);
@@ -1045,6 +1047,7 @@ namespace Books
             // 
             // InsertBookTabePage
             // 
+            this.InsertBookTabePage.Controls.Add(this.OutputArchiveBookButton);
             this.InsertBookTabePage.Controls.Add(this.InsertBooksGroupBox);
             this.InsertBookTabePage.Controls.Add(this.groupBox3);
             this.InsertBookTabePage.Controls.Add(this.BookInsertGroupBox);
@@ -1217,7 +1220,7 @@ namespace Books
             // 
             // BooksOutputTabPage
             // 
-            this.BooksOutputTabPage.Controls.Add(this.groupBox1);
+            this.BooksOutputTabPage.Controls.Add(this.ArchiveGroupBox);
             this.BooksOutputTabPage.Location = new System.Drawing.Point(4, 29);
             this.BooksOutputTabPage.Name = "BooksOutputTabPage";
             this.BooksOutputTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -1226,19 +1229,17 @@ namespace Books
             this.BooksOutputTabPage.Text = "Izpisi";
             this.BooksOutputTabPage.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // ArchiveGroupBox
             // 
-            this.groupBox1.Controls.Add(this.ExcelButton);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.OutputMemberOrBookLabel);
-            this.groupBox1.Controls.Add(this.OutputMemberOrBookComboBox);
-            this.groupBox1.Controls.Add(this.listView2);
-            this.groupBox1.Location = new System.Drawing.Point(8, 20);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1058, 670);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.ArchiveGroupBox.Controls.Add(this.ExcelButton);
+            this.ArchiveGroupBox.Controls.Add(this.SearchArchiveGroupBox);
+            this.ArchiveGroupBox.Controls.Add(this.listView2);
+            this.ArchiveGroupBox.Location = new System.Drawing.Point(8, 20);
+            this.ArchiveGroupBox.Name = "ArchiveGroupBox";
+            this.ArchiveGroupBox.Size = new System.Drawing.Size(1058, 670);
+            this.ArchiveGroupBox.TabIndex = 1;
+            this.ArchiveGroupBox.TabStop = false;
+            this.ArchiveGroupBox.Text = "Arhiv";
             // 
             // ExcelButton
             // 
@@ -1249,25 +1250,24 @@ namespace Books
             this.ExcelButton.Text = "izvozi v excel";
             this.ExcelButton.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // SearchArchiveGroupBox
             // 
-            this.groupBox2.Controls.Add(this.SetDateButton);
-            this.groupBox2.Controls.Add(this.SetToDatelabel);
-            this.groupBox2.Controls.Add(this.SetFromDateLabel);
-            this.groupBox2.Controls.Add(this.SetToDateTimePicker);
-            this.groupBox2.Controls.Add(this.SetFromDateTimePicker);
-            this.groupBox2.Controls.Add(this.WhichBookLabel);
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Location = new System.Drawing.Point(287, 25);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(765, 116);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.SearchArchiveGroupBox.Controls.Add(this.AllArchiveButton);
+            this.SearchArchiveGroupBox.Controls.Add(this.SetDateButton);
+            this.SearchArchiveGroupBox.Controls.Add(this.SetToDatelabel);
+            this.SearchArchiveGroupBox.Controls.Add(this.SetFromDateLabel);
+            this.SearchArchiveGroupBox.Controls.Add(this.SetToDateTimePicker);
+            this.SearchArchiveGroupBox.Controls.Add(this.SetFromDateTimePicker);
+            this.SearchArchiveGroupBox.Location = new System.Drawing.Point(254, 25);
+            this.SearchArchiveGroupBox.Name = "SearchArchiveGroupBox";
+            this.SearchArchiveGroupBox.Size = new System.Drawing.Size(632, 116);
+            this.SearchArchiveGroupBox.TabIndex = 5;
+            this.SearchArchiveGroupBox.TabStop = false;
+            this.SearchArchiveGroupBox.Text = "Poiščite po arhivu (brez posameznih uporabnikov ali knjig)";
             // 
             // SetDateButton
             // 
-            this.SetDateButton.Location = new System.Drawing.Point(684, 43);
+            this.SetDateButton.Location = new System.Drawing.Point(467, 47);
             this.SetDateButton.Name = "SetDateButton";
             this.SetDateButton.Size = new System.Drawing.Size(75, 52);
             this.SetDateButton.TabIndex = 9;
@@ -1277,7 +1277,7 @@ namespace Books
             // SetToDatelabel
             // 
             this.SetToDatelabel.AutoSize = true;
-            this.SetToDatelabel.Location = new System.Drawing.Point(542, 33);
+            this.SetToDatelabel.Location = new System.Drawing.Point(325, 37);
             this.SetToDatelabel.Name = "SetToDatelabel";
             this.SetToDatelabel.Size = new System.Drawing.Size(30, 20);
             this.SetToDatelabel.TabIndex = 8;
@@ -1286,7 +1286,7 @@ namespace Books
             // SetFromDateLabel
             // 
             this.SetFromDateLabel.AutoSize = true;
-            this.SetFromDateLabel.Location = new System.Drawing.Point(310, 33);
+            this.SetFromDateLabel.Location = new System.Drawing.Point(93, 37);
             this.SetFromDateLabel.Name = "SetFromDateLabel";
             this.SetFromDateLabel.Size = new System.Drawing.Size(30, 20);
             this.SetFromDateLabel.TabIndex = 7;
@@ -1294,58 +1294,17 @@ namespace Books
             // 
             // SetToDateTimePicker
             // 
-            this.SetToDateTimePicker.Location = new System.Drawing.Point(464, 69);
+            this.SetToDateTimePicker.Location = new System.Drawing.Point(247, 73);
             this.SetToDateTimePicker.Name = "SetToDateTimePicker";
             this.SetToDateTimePicker.Size = new System.Drawing.Size(200, 26);
             this.SetToDateTimePicker.TabIndex = 6;
             // 
             // SetFromDateTimePicker
             // 
-            this.SetFromDateTimePicker.Location = new System.Drawing.Point(235, 69);
+            this.SetFromDateTimePicker.Location = new System.Drawing.Point(18, 73);
             this.SetFromDateTimePicker.Name = "SetFromDateTimePicker";
             this.SetFromDateTimePicker.Size = new System.Drawing.Size(200, 26);
             this.SetFromDateTimePicker.TabIndex = 5;
-            // 
-            // WhichBookLabel
-            // 
-            this.WhichBookLabel.AutoSize = true;
-            this.WhichBookLabel.Location = new System.Drawing.Point(51, 33);
-            this.WhichBookLabel.Name = "WhichBookLabel";
-            this.WhichBookLabel.Size = new System.Drawing.Size(62, 20);
-            this.WhichBookLabel.TabIndex = 3;
-            this.WhichBookLabel.Text = "Izberite";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Vsa",
-            "Samo prosta",
-            "Samo izposojena"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 71);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(160, 28);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // OutputMemberOrBookLabel
-            // 
-            this.OutputMemberOrBookLabel.AutoSize = true;
-            this.OutputMemberOrBookLabel.Location = new System.Drawing.Point(136, 58);
-            this.OutputMemberOrBookLabel.Name = "OutputMemberOrBookLabel";
-            this.OutputMemberOrBookLabel.Size = new System.Drawing.Size(62, 20);
-            this.OutputMemberOrBookLabel.TabIndex = 2;
-            this.OutputMemberOrBookLabel.Text = "Izberite";
-            // 
-            // OutputMemberOrBookComboBox
-            // 
-            this.OutputMemberOrBookComboBox.FormattingEnabled = true;
-            this.OutputMemberOrBookComboBox.Items.AddRange(new object[] {
-            "Gradiva",
-            "Člani"});
-            this.OutputMemberOrBookComboBox.Location = new System.Drawing.Point(90, 96);
-            this.OutputMemberOrBookComboBox.Name = "OutputMemberOrBookComboBox";
-            this.OutputMemberOrBookComboBox.Size = new System.Drawing.Size(156, 28);
-            this.OutputMemberOrBookComboBox.TabIndex = 1;
             // 
             // listView2
             // 
@@ -1353,10 +1312,12 @@ namespace Books
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
-            this.columnHeader7});
+            this.columnHeader7,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16});
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(58, 177);
             this.listView2.Name = "listView2";
@@ -1380,11 +1341,6 @@ namespace Books
             this.columnHeader3.Text = "Področje";
             this.columnHeader3.Width = 176;
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Datum";
-            this.columnHeader4.Width = 151;
-            // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Inventarna št.";
@@ -1397,7 +1353,7 @@ namespace Books
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Status";
+            this.columnHeader7.Text = "Datum Izposoje";
             this.columnHeader7.Width = 90;
             // 
             // SettingsTabPage
@@ -2339,6 +2295,45 @@ namespace Books
             this.NameInsertMemberTextBox.Size = new System.Drawing.Size(257, 26);
             this.NameInsertMemberTextBox.TabIndex = 0;
             // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Datum vrnitve";
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "ime ";
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Priimek";
+            // 
+            // AllArchiveButton
+            // 
+            this.AllArchiveButton.Location = new System.Drawing.Point(549, 47);
+            this.AllArchiveButton.Name = "AllArchiveButton";
+            this.AllArchiveButton.Size = new System.Drawing.Size(75, 52);
+            this.AllArchiveButton.TabIndex = 10;
+            this.AllArchiveButton.Text = "Vse";
+            this.AllArchiveButton.UseVisualStyleBackColor = true;
+            // 
+            // OutputArchiveMemberButton
+            // 
+            this.OutputArchiveMemberButton.Location = new System.Drawing.Point(131, 502);
+            this.OutputArchiveMemberButton.Name = "OutputArchiveMemberButton";
+            this.OutputArchiveMemberButton.Size = new System.Drawing.Size(157, 75);
+            this.OutputArchiveMemberButton.TabIndex = 4;
+            this.OutputArchiveMemberButton.Text = "Izpiši njegov arhiv";
+            this.OutputArchiveMemberButton.UseVisualStyleBackColor = true;
+            // 
+            // OutputArchiveBookButton
+            // 
+            this.OutputArchiveBookButton.Location = new System.Drawing.Point(170, 622);
+            this.OutputArchiveBookButton.Name = "OutputArchiveBookButton";
+            this.OutputArchiveBookButton.Size = new System.Drawing.Size(136, 74);
+            this.OutputArchiveBookButton.TabIndex = 5;
+            this.OutputArchiveBookButton.Text = "Izpiši arhiv izposoje te knjige";
+            this.OutputArchiveBookButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -2372,10 +2367,9 @@ namespace Books
             this.BookInsertGroupBox.ResumeLayout(false);
             this.BookInsertGroupBox.PerformLayout();
             this.BooksOutputTabPage.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.ArchiveGroupBox.ResumeLayout(false);
+            this.SearchArchiveGroupBox.ResumeLayout(false);
+            this.SearchArchiveGroupBox.PerformLayout();
             this.SettingsTabPage.ResumeLayout(false);
             this.ChangeUserPasswordGroupBox.ResumeLayout(false);
             this.ChangeUserPasswordGroupBox.PerformLayout();
@@ -2475,23 +2469,18 @@ namespace Books
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage BooksOutputTabPage;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox ArchiveGroupBox;
         private System.Windows.Forms.Button ExcelButton;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox SearchArchiveGroupBox;
         private System.Windows.Forms.Button SetDateButton;
         private System.Windows.Forms.Label SetToDatelabel;
         private System.Windows.Forms.Label SetFromDateLabel;
         private System.Windows.Forms.DateTimePicker SetToDateTimePicker;
         private System.Windows.Forms.DateTimePicker SetFromDateTimePicker;
-        private System.Windows.Forms.Label WhichBookLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label OutputMemberOrBookLabel;
-        private System.Windows.Forms.ComboBox OutputMemberOrBookComboBox;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
@@ -2621,6 +2610,12 @@ namespace Books
         private System.Windows.Forms.Label InsertmemberLabel;
         private System.Windows.Forms.TextBox MailInsertMemberTextBox;
         private System.Windows.Forms.TextBox NameInsertMemberTextBox;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.Button OutputArchiveMemberButton;
+        private System.Windows.Forms.Button OutputArchiveBookButton;
+        private System.Windows.Forms.Button AllArchiveButton;
     }
 }
 
