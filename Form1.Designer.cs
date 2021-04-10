@@ -34,8 +34,8 @@ namespace Books
             this.SearchMemberGroupBox = new System.Windows.Forms.GroupBox();
             this.AddMemberButton = new System.Windows.Forms.Button();
             this.SearchMemberButton = new System.Windows.Forms.Button();
-            this.SearchMember2Label = new System.Windows.Forms.Label();
-            this.SearchMemberTextBox = new System.Windows.Forms.TextBox();
+            this.NameSearchMemberLabel = new System.Windows.Forms.Label();
+            this.NameSearchMemberTextBox = new System.Windows.Forms.TextBox();
             this.SerachMemberLabel = new System.Windows.Forms.Label();
             this.BookSearchGroupBox = new System.Windows.Forms.GroupBox();
             this.AddBookButton = new System.Windows.Forms.Button();
@@ -146,37 +146,33 @@ namespace Books
             this.ChangeUserPasswordGroupBox = new System.Windows.Forms.GroupBox();
             this.ChangeUserPasswordButton = new System.Windows.Forms.Button();
             this.SetVisiblePasswordChangeUserPasswordButton = new System.Windows.Forms.Button();
-            this.MailGhangeUserPasswordLabel = new System.Windows.Forms.Label();
+            this.UsernameGhangeUserPasswordLabel = new System.Windows.Forms.Label();
             this.Password2ChangeUserPasswordTextBox = new System.Windows.Forms.TextBox();
             this.Password2ChangeUserPasswordLabel = new System.Windows.Forms.Label();
             this.Password1ChangeUserPasswordTextBox = new System.Windows.Forms.TextBox();
             this.Password1ChangeUserPasswordLabel = new System.Windows.Forms.Label();
-            this.MailChangeUserPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameChangeUserPasswordTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.UserDataGroupBox = new System.Windows.Forms.GroupBox();
             this.ChangeUserdata = new System.Windows.Forms.Button();
-            this.MailUserTextBox = new System.Windows.Forms.TextBox();
-            this.MailUserLabel = new System.Windows.Forms.Label();
-            this.SurnameUserTextBox = new System.Windows.Forms.TextBox();
-            this.SurnameUserLabel = new System.Windows.Forms.Label();
-            this.NameUserTextBox = new System.Windows.Forms.TextBox();
-            this.NameUserLabel = new System.Windows.Forms.Label();
+            this.UsernameUserTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameUserLabel = new System.Windows.Forms.Label();
             this.LoginTabPage = new System.Windows.Forms.TabPage();
             this.LoginGroupBox = new System.Windows.Forms.GroupBox();
             this.LoginButton = new System.Windows.Forms.Button();
-            this.mailLoginLabel = new System.Windows.Forms.Label();
+            this.UsernameLoginLabel = new System.Windows.Forms.Label();
             this.PasswordLoginTextBox = new System.Windows.Forms.TextBox();
             this.PasswordLoginLabel = new System.Windows.Forms.Label();
-            this.MailLoginTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameLoginTextBox = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.ChangePasswordButton = new System.Windows.Forms.Button();
             this.VisiblePasswordChangePasswordButton = new System.Windows.Forms.Button();
-            this.ChangePasswordMailLabel = new System.Windows.Forms.Label();
+            this.ChangePasswordUsernameLabel = new System.Windows.Forms.Label();
             this.ChangePasswordPasswor2TextBox = new System.Windows.Forms.TextBox();
             this.ChangePasswordPassword2Label = new System.Windows.Forms.Label();
             this.ChangePasswordPassword1TextBox = new System.Windows.Forms.TextBox();
             this.ChangePasswordPassword1Label = new System.Windows.Forms.Label();
-            this.ChangePasswordmailTextBox = new System.Windows.Forms.TextBox();
+            this.ChangePasswordUsernameTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.Password2RegisterTextBox = new System.Windows.Forms.TextBox();
@@ -194,7 +190,6 @@ namespace Books
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.RegisterButton = new System.Windows.Forms.Button();
-            this.MailRegisterTextBox = new System.Windows.Forms.TextBox();
             this.MailRegisterLabel = new System.Windows.Forms.Label();
             this.SurnameRegisterTextBox = new System.Windows.Forms.TextBox();
             this.SurnameRegisterLabel = new System.Windows.Forms.Label();
@@ -249,6 +244,28 @@ namespace Books
             this.AllArchiveButton = new System.Windows.Forms.Button();
             this.OutputArchiveMemberButton = new System.Windows.Forms.Button();
             this.OutputArchiveBookButton = new System.Windows.Forms.Button();
+            this.SurnameSearchMemberLabel = new System.Windows.Forms.Label();
+            this.SurnameSearchMemberTextBox = new System.Windows.Forms.TextBox();
+            this.PhoneSearchMemberComboBox = new System.Windows.Forms.ComboBox();
+            this.PhoneSearchMemberLabel = new System.Windows.Forms.Label();
+            this.AddressRegisterTextBox = new System.Windows.Forms.TextBox();
+            this.PhoneRegisterTextBox = new System.Windows.Forms.TextBox();
+            this.PhoneRegisterLabel = new System.Windows.Forms.Label();
+            this.AddressRegisterLabel = new System.Windows.Forms.Label();
+            this.Mail1RegisterLabel = new System.Windows.Forms.Label();
+            this.Mail1RegisterTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameRegisterTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameRegisterLabel = new System.Windows.Forms.Label();
+            this.AddressUserTextBox = new System.Windows.Forms.TextBox();
+            this.PhoneUserTextBox = new System.Windows.Forms.TextBox();
+            this.PhoneUserLabel = new System.Windows.Forms.Label();
+            this.AddressUserLabel = new System.Windows.Forms.Label();
+            this.MailUserLabel = new System.Windows.Forms.Label();
+            this.MailUserTextBox = new System.Windows.Forms.TextBox();
+            this.SurnameUserTextBox = new System.Windows.Forms.TextBox();
+            this.SurnameUserLabel = new System.Windows.Forms.Label();
+            this.NameUserTextBox = new System.Windows.Forms.TextBox();
+            this.NameUserLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.MainTab.SuspendLayout();
             this.SearchMemberGroupBox.SuspendLayout();
@@ -313,10 +330,14 @@ namespace Books
             // 
             // SearchMemberGroupBox
             // 
+            this.SearchMemberGroupBox.Controls.Add(this.PhoneSearchMemberLabel);
+            this.SearchMemberGroupBox.Controls.Add(this.PhoneSearchMemberComboBox);
+            this.SearchMemberGroupBox.Controls.Add(this.SurnameSearchMemberLabel);
+            this.SearchMemberGroupBox.Controls.Add(this.SurnameSearchMemberTextBox);
             this.SearchMemberGroupBox.Controls.Add(this.AddMemberButton);
             this.SearchMemberGroupBox.Controls.Add(this.SearchMemberButton);
-            this.SearchMemberGroupBox.Controls.Add(this.SearchMember2Label);
-            this.SearchMemberGroupBox.Controls.Add(this.SearchMemberTextBox);
+            this.SearchMemberGroupBox.Controls.Add(this.NameSearchMemberLabel);
+            this.SearchMemberGroupBox.Controls.Add(this.NameSearchMemberTextBox);
             this.SearchMemberGroupBox.Controls.Add(this.SerachMemberLabel);
             this.SearchMemberGroupBox.Location = new System.Drawing.Point(599, 73);
             this.SearchMemberGroupBox.Name = "SearchMemberGroupBox";
@@ -343,22 +364,22 @@ namespace Books
             this.SearchMemberButton.Text = "Poišči";
             this.SearchMemberButton.UseVisualStyleBackColor = true;
             // 
-            // SearchMember2Label
+            // NameSearchMemberLabel
             // 
-            this.SearchMember2Label.AutoSize = true;
-            this.SearchMember2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SearchMember2Label.Location = new System.Drawing.Point(102, 109);
-            this.SearchMember2Label.Name = "SearchMember2Label";
-            this.SearchMember2Label.Size = new System.Drawing.Size(186, 22);
-            this.SearchMember2Label.TabIndex = 2;
-            this.SearchMember2Label.Text = "Vnesite Priimek in ime";
+            this.NameSearchMemberLabel.AutoSize = true;
+            this.NameSearchMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.NameSearchMemberLabel.Location = new System.Drawing.Point(6, 104);
+            this.NameSearchMemberLabel.Name = "NameSearchMemberLabel";
+            this.NameSearchMemberLabel.Size = new System.Drawing.Size(38, 22);
+            this.NameSearchMemberLabel.TabIndex = 2;
+            this.NameSearchMemberLabel.Text = "Ime";
             // 
-            // SearchMemberTextBox
+            // NameSearchMemberTextBox
             // 
-            this.SearchMemberTextBox.Location = new System.Drawing.Point(60, 164);
-            this.SearchMemberTextBox.Name = "SearchMemberTextBox";
-            this.SearchMemberTextBox.Size = new System.Drawing.Size(258, 26);
-            this.SearchMemberTextBox.TabIndex = 1;
+            this.NameSearchMemberTextBox.Location = new System.Drawing.Point(107, 105);
+            this.NameSearchMemberTextBox.Name = "NameSearchMemberTextBox";
+            this.NameSearchMemberTextBox.Size = new System.Drawing.Size(258, 26);
+            this.NameSearchMemberTextBox.TabIndex = 1;
             // 
             // SerachMemberLabel
             // 
@@ -1372,12 +1393,12 @@ namespace Books
             // 
             this.ChangeUserPasswordGroupBox.Controls.Add(this.ChangeUserPasswordButton);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.SetVisiblePasswordChangeUserPasswordButton);
-            this.ChangeUserPasswordGroupBox.Controls.Add(this.MailGhangeUserPasswordLabel);
+            this.ChangeUserPasswordGroupBox.Controls.Add(this.UsernameGhangeUserPasswordLabel);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.Password2ChangeUserPasswordTextBox);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.Password2ChangeUserPasswordLabel);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.Password1ChangeUserPasswordTextBox);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.Password1ChangeUserPasswordLabel);
-            this.ChangeUserPasswordGroupBox.Controls.Add(this.MailChangeUserPasswordTextBox);
+            this.ChangeUserPasswordGroupBox.Controls.Add(this.UsernameChangeUserPasswordTextBox);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.label3);
             this.ChangeUserPasswordGroupBox.Location = new System.Drawing.Point(518, 28);
             this.ChangeUserPasswordGroupBox.Name = "ChangeUserPasswordGroupBox";
@@ -1404,14 +1425,14 @@ namespace Books
             this.SetVisiblePasswordChangeUserPasswordButton.Text = "pokaži";
             this.SetVisiblePasswordChangeUserPasswordButton.UseVisualStyleBackColor = true;
             // 
-            // MailGhangeUserPasswordLabel
+            // UsernameGhangeUserPasswordLabel
             // 
-            this.MailGhangeUserPasswordLabel.AutoSize = true;
-            this.MailGhangeUserPasswordLabel.Location = new System.Drawing.Point(170, 42);
-            this.MailGhangeUserPasswordLabel.Name = "MailGhangeUserPasswordLabel";
-            this.MailGhangeUserPasswordLabel.Size = new System.Drawing.Size(51, 20);
-            this.MailGhangeUserPasswordLabel.TabIndex = 12;
-            this.MailGhangeUserPasswordLabel.Text = "e-mail";
+            this.UsernameGhangeUserPasswordLabel.AutoSize = true;
+            this.UsernameGhangeUserPasswordLabel.Location = new System.Drawing.Point(145, 42);
+            this.UsernameGhangeUserPasswordLabel.Name = "UsernameGhangeUserPasswordLabel";
+            this.UsernameGhangeUserPasswordLabel.Size = new System.Drawing.Size(128, 20);
+            this.UsernameGhangeUserPasswordLabel.TabIndex = 12;
+            this.UsernameGhangeUserPasswordLabel.Text = "Uporabniško ime";
             // 
             // Password2ChangeUserPasswordTextBox
             // 
@@ -1447,12 +1468,12 @@ namespace Books
             this.Password1ChangeUserPasswordLabel.TabIndex = 8;
             this.Password1ChangeUserPasswordLabel.Text = "Vnesite geslo";
             // 
-            // MailChangeUserPasswordTextBox
+            // UsernameChangeUserPasswordTextBox
             // 
-            this.MailChangeUserPasswordTextBox.Location = new System.Drawing.Point(30, 84);
-            this.MailChangeUserPasswordTextBox.Name = "MailChangeUserPasswordTextBox";
-            this.MailChangeUserPasswordTextBox.Size = new System.Drawing.Size(325, 26);
-            this.MailChangeUserPasswordTextBox.TabIndex = 7;
+            this.UsernameChangeUserPasswordTextBox.Location = new System.Drawing.Point(30, 84);
+            this.UsernameChangeUserPasswordTextBox.Name = "UsernameChangeUserPasswordTextBox";
+            this.UsernameChangeUserPasswordTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameChangeUserPasswordTextBox.TabIndex = 7;
             // 
             // label3
             // 
@@ -1465,13 +1486,19 @@ namespace Books
             // 
             // UserDataGroupBox
             // 
-            this.UserDataGroupBox.Controls.Add(this.ChangeUserdata);
-            this.UserDataGroupBox.Controls.Add(this.MailUserTextBox);
+            this.UserDataGroupBox.Controls.Add(this.AddressUserTextBox);
+            this.UserDataGroupBox.Controls.Add(this.PhoneUserTextBox);
+            this.UserDataGroupBox.Controls.Add(this.PhoneUserLabel);
+            this.UserDataGroupBox.Controls.Add(this.AddressUserLabel);
             this.UserDataGroupBox.Controls.Add(this.MailUserLabel);
+            this.UserDataGroupBox.Controls.Add(this.MailUserTextBox);
             this.UserDataGroupBox.Controls.Add(this.SurnameUserTextBox);
             this.UserDataGroupBox.Controls.Add(this.SurnameUserLabel);
             this.UserDataGroupBox.Controls.Add(this.NameUserTextBox);
             this.UserDataGroupBox.Controls.Add(this.NameUserLabel);
+            this.UserDataGroupBox.Controls.Add(this.ChangeUserdata);
+            this.UserDataGroupBox.Controls.Add(this.UsernameUserTextBox);
+            this.UserDataGroupBox.Controls.Add(this.UsernameUserLabel);
             this.UserDataGroupBox.Location = new System.Drawing.Point(18, 15);
             this.UserDataGroupBox.Name = "UserDataGroupBox";
             this.UserDataGroupBox.Size = new System.Drawing.Size(432, 553);
@@ -1488,53 +1515,21 @@ namespace Books
             this.ChangeUserdata.Text = "Spremeni";
             this.ChangeUserdata.UseVisualStyleBackColor = true;
             // 
-            // MailUserTextBox
+            // UsernameUserTextBox
             // 
-            this.MailUserTextBox.Location = new System.Drawing.Point(41, 331);
-            this.MailUserTextBox.Name = "MailUserTextBox";
-            this.MailUserTextBox.Size = new System.Drawing.Size(325, 26);
-            this.MailUserTextBox.TabIndex = 5;
+            this.UsernameUserTextBox.Location = new System.Drawing.Point(41, 331);
+            this.UsernameUserTextBox.Name = "UsernameUserTextBox";
+            this.UsernameUserTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameUserTextBox.TabIndex = 5;
             // 
-            // MailUserLabel
+            // UsernameUserLabel
             // 
-            this.MailUserLabel.AutoSize = true;
-            this.MailUserLabel.Location = new System.Drawing.Point(173, 294);
-            this.MailUserLabel.Name = "MailUserLabel";
-            this.MailUserLabel.Size = new System.Drawing.Size(51, 20);
-            this.MailUserLabel.TabIndex = 4;
-            this.MailUserLabel.Text = "e-mail";
-            // 
-            // SurnameUserTextBox
-            // 
-            this.SurnameUserTextBox.Location = new System.Drawing.Point(41, 163);
-            this.SurnameUserTextBox.Name = "SurnameUserTextBox";
-            this.SurnameUserTextBox.Size = new System.Drawing.Size(325, 26);
-            this.SurnameUserTextBox.TabIndex = 3;
-            // 
-            // SurnameUserLabel
-            // 
-            this.SurnameUserLabel.AutoSize = true;
-            this.SurnameUserLabel.Location = new System.Drawing.Point(163, 127);
-            this.SurnameUserLabel.Name = "SurnameUserLabel";
-            this.SurnameUserLabel.Size = new System.Drawing.Size(60, 20);
-            this.SurnameUserLabel.TabIndex = 2;
-            this.SurnameUserLabel.Text = "Priimek";
-            // 
-            // NameUserTextBox
-            // 
-            this.NameUserTextBox.Location = new System.Drawing.Point(41, 75);
-            this.NameUserTextBox.Name = "NameUserTextBox";
-            this.NameUserTextBox.Size = new System.Drawing.Size(325, 26);
-            this.NameUserTextBox.TabIndex = 1;
-            // 
-            // NameUserLabel
-            // 
-            this.NameUserLabel.AutoSize = true;
-            this.NameUserLabel.Location = new System.Drawing.Point(176, 39);
-            this.NameUserLabel.Name = "NameUserLabel";
-            this.NameUserLabel.Size = new System.Drawing.Size(34, 20);
-            this.NameUserLabel.TabIndex = 0;
-            this.NameUserLabel.Text = "ime";
+            this.UsernameUserLabel.AutoSize = true;
+            this.UsernameUserLabel.Location = new System.Drawing.Point(145, 295);
+            this.UsernameUserLabel.Name = "UsernameUserLabel";
+            this.UsernameUserLabel.Size = new System.Drawing.Size(125, 20);
+            this.UsernameUserLabel.TabIndex = 4;
+            this.UsernameUserLabel.Text = "uporabniško ime";
             // 
             // LoginTabPage
             // 
@@ -1552,10 +1547,10 @@ namespace Books
             // LoginGroupBox
             // 
             this.LoginGroupBox.Controls.Add(this.LoginButton);
-            this.LoginGroupBox.Controls.Add(this.mailLoginLabel);
+            this.LoginGroupBox.Controls.Add(this.UsernameLoginLabel);
             this.LoginGroupBox.Controls.Add(this.PasswordLoginTextBox);
             this.LoginGroupBox.Controls.Add(this.PasswordLoginLabel);
-            this.LoginGroupBox.Controls.Add(this.MailLoginTextBox);
+            this.LoginGroupBox.Controls.Add(this.UsernameLoginTextBox);
             this.LoginGroupBox.Location = new System.Drawing.Point(9, 7);
             this.LoginGroupBox.Name = "LoginGroupBox";
             this.LoginGroupBox.Size = new System.Drawing.Size(333, 403);
@@ -1572,14 +1567,14 @@ namespace Books
             this.LoginButton.Text = "Prijavi se";
             this.LoginButton.UseVisualStyleBackColor = true;
             // 
-            // mailLoginLabel
+            // UsernameLoginLabel
             // 
-            this.mailLoginLabel.AutoSize = true;
-            this.mailLoginLabel.Location = new System.Drawing.Point(119, 53);
-            this.mailLoginLabel.Name = "mailLoginLabel";
-            this.mailLoginLabel.Size = new System.Drawing.Size(95, 20);
-            this.mailLoginLabel.TabIndex = 16;
-            this.mailLoginLabel.Text = "Vnesite mail";
+            this.UsernameLoginLabel.AutoSize = true;
+            this.UsernameLoginLabel.Location = new System.Drawing.Point(86, 53);
+            this.UsernameLoginLabel.Name = "UsernameLoginLabel";
+            this.UsernameLoginLabel.Size = new System.Drawing.Size(183, 20);
+            this.UsernameLoginLabel.TabIndex = 16;
+            this.UsernameLoginLabel.Text = "Vnesite uporabniško ime";
             // 
             // PasswordLoginTextBox
             // 
@@ -1598,23 +1593,23 @@ namespace Books
             this.PasswordLoginLabel.TabIndex = 14;
             this.PasswordLoginLabel.Text = "Vnesite geslo";
             // 
-            // MailLoginTextBox
+            // UsernameLoginTextBox
             // 
-            this.MailLoginTextBox.Location = new System.Drawing.Point(1, 84);
-            this.MailLoginTextBox.Name = "MailLoginTextBox";
-            this.MailLoginTextBox.Size = new System.Drawing.Size(325, 26);
-            this.MailLoginTextBox.TabIndex = 13;
+            this.UsernameLoginTextBox.Location = new System.Drawing.Point(1, 84);
+            this.UsernameLoginTextBox.Name = "UsernameLoginTextBox";
+            this.UsernameLoginTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameLoginTextBox.TabIndex = 13;
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.ChangePasswordButton);
             this.groupBox6.Controls.Add(this.VisiblePasswordChangePasswordButton);
-            this.groupBox6.Controls.Add(this.ChangePasswordMailLabel);
+            this.groupBox6.Controls.Add(this.ChangePasswordUsernameLabel);
             this.groupBox6.Controls.Add(this.ChangePasswordPasswor2TextBox);
             this.groupBox6.Controls.Add(this.ChangePasswordPassword2Label);
             this.groupBox6.Controls.Add(this.ChangePasswordPassword1TextBox);
             this.groupBox6.Controls.Add(this.ChangePasswordPassword1Label);
-            this.groupBox6.Controls.Add(this.ChangePasswordmailTextBox);
+            this.groupBox6.Controls.Add(this.ChangePasswordUsernameTextBox);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Location = new System.Drawing.Point(722, 7);
             this.groupBox6.Name = "groupBox6";
@@ -1641,14 +1636,14 @@ namespace Books
             this.VisiblePasswordChangePasswordButton.Text = "pokaži";
             this.VisiblePasswordChangePasswordButton.UseVisualStyleBackColor = true;
             // 
-            // ChangePasswordMailLabel
+            // ChangePasswordUsernameLabel
             // 
-            this.ChangePasswordMailLabel.AutoSize = true;
-            this.ChangePasswordMailLabel.Location = new System.Drawing.Point(170, 42);
-            this.ChangePasswordMailLabel.Name = "ChangePasswordMailLabel";
-            this.ChangePasswordMailLabel.Size = new System.Drawing.Size(51, 20);
-            this.ChangePasswordMailLabel.TabIndex = 12;
-            this.ChangePasswordMailLabel.Text = "e-mail";
+            this.ChangePasswordUsernameLabel.AutoSize = true;
+            this.ChangePasswordUsernameLabel.Location = new System.Drawing.Point(134, 42);
+            this.ChangePasswordUsernameLabel.Name = "ChangePasswordUsernameLabel";
+            this.ChangePasswordUsernameLabel.Size = new System.Drawing.Size(128, 20);
+            this.ChangePasswordUsernameLabel.TabIndex = 12;
+            this.ChangePasswordUsernameLabel.Text = "Uporabniško ime";
             // 
             // ChangePasswordPasswor2TextBox
             // 
@@ -1684,12 +1679,12 @@ namespace Books
             this.ChangePasswordPassword1Label.TabIndex = 8;
             this.ChangePasswordPassword1Label.Text = "Vnesite geslo";
             // 
-            // ChangePasswordmailTextBox
+            // ChangePasswordUsernameTextBox
             // 
-            this.ChangePasswordmailTextBox.Location = new System.Drawing.Point(30, 84);
-            this.ChangePasswordmailTextBox.Name = "ChangePasswordmailTextBox";
-            this.ChangePasswordmailTextBox.Size = new System.Drawing.Size(325, 26);
-            this.ChangePasswordmailTextBox.TabIndex = 7;
+            this.ChangePasswordUsernameTextBox.Location = new System.Drawing.Point(30, 84);
+            this.ChangePasswordUsernameTextBox.Name = "ChangePasswordUsernameTextBox";
+            this.ChangePasswordUsernameTextBox.Size = new System.Drawing.Size(325, 26);
+            this.ChangePasswordUsernameTextBox.TabIndex = 7;
             // 
             // label14
             // 
@@ -1702,13 +1697,20 @@ namespace Books
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.UsernameRegisterTextBox);
+            this.groupBox4.Controls.Add(this.UsernameRegisterLabel);
+            this.groupBox4.Controls.Add(this.AddressRegisterTextBox);
+            this.groupBox4.Controls.Add(this.PhoneRegisterTextBox);
+            this.groupBox4.Controls.Add(this.PhoneRegisterLabel);
+            this.groupBox4.Controls.Add(this.AddressRegisterLabel);
+            this.groupBox4.Controls.Add(this.Mail1RegisterLabel);
+            this.groupBox4.Controls.Add(this.Mail1RegisterTextBox);
             this.groupBox4.Controls.Add(this.Password2RegisterTextBox);
             this.groupBox4.Controls.Add(this.Password2RegisterLabel);
             this.groupBox4.Controls.Add(this.Password1RegisterTextBox);
             this.groupBox4.Controls.Add(this.Password1RegisterLabel);
             this.groupBox4.Controls.Add(this.groupBox5);
             this.groupBox4.Controls.Add(this.RegisterButton);
-            this.groupBox4.Controls.Add(this.MailRegisterTextBox);
             this.groupBox4.Controls.Add(this.MailRegisterLabel);
             this.groupBox4.Controls.Add(this.SurnameRegisterTextBox);
             this.groupBox4.Controls.Add(this.SurnameRegisterLabel);
@@ -1716,14 +1718,14 @@ namespace Books
             this.groupBox4.Controls.Add(this.NameRegisterLabel);
             this.groupBox4.Location = new System.Drawing.Point(348, 7);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(368, 570);
+            this.groupBox4.Size = new System.Drawing.Size(368, 634);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Podatki o uporabniku";
             // 
             // Password2RegisterTextBox
             // 
-            this.Password2RegisterTextBox.Location = new System.Drawing.Point(13, 461);
+            this.Password2RegisterTextBox.Location = new System.Drawing.Point(13, 488);
             this.Password2RegisterTextBox.Name = "Password2RegisterTextBox";
             this.Password2RegisterTextBox.PasswordChar = '*';
             this.Password2RegisterTextBox.Size = new System.Drawing.Size(325, 26);
@@ -1732,7 +1734,7 @@ namespace Books
             // Password2RegisterLabel
             // 
             this.Password2RegisterLabel.AutoSize = true;
-            this.Password2RegisterLabel.Location = new System.Drawing.Point(105, 425);
+            this.Password2RegisterLabel.Location = new System.Drawing.Point(105, 452);
             this.Password2RegisterLabel.Name = "Password2RegisterLabel";
             this.Password2RegisterLabel.Size = new System.Drawing.Size(167, 20);
             this.Password2RegisterLabel.TabIndex = 14;
@@ -1740,7 +1742,7 @@ namespace Books
             // 
             // Password1RegisterTextBox
             // 
-            this.Password1RegisterTextBox.Location = new System.Drawing.Point(13, 377);
+            this.Password1RegisterTextBox.Location = new System.Drawing.Point(13, 404);
             this.Password1RegisterTextBox.Name = "Password1RegisterTextBox";
             this.Password1RegisterTextBox.PasswordChar = '*';
             this.Password1RegisterTextBox.Size = new System.Drawing.Size(325, 26);
@@ -1749,7 +1751,7 @@ namespace Books
             // Password1RegisterLabel
             // 
             this.Password1RegisterLabel.AutoSize = true;
-            this.Password1RegisterLabel.Location = new System.Drawing.Point(131, 341);
+            this.Password1RegisterLabel.Location = new System.Drawing.Point(131, 368);
             this.Password1RegisterLabel.Name = "Password1RegisterLabel";
             this.Password1RegisterLabel.Size = new System.Drawing.Size(105, 20);
             this.Password1RegisterLabel.TabIndex = 12;
@@ -1852,24 +1854,17 @@ namespace Books
             // 
             // RegisterButton
             // 
-            this.RegisterButton.Location = new System.Drawing.Point(135, 507);
+            this.RegisterButton.Location = new System.Drawing.Point(135, 534);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(114, 40);
             this.RegisterButton.TabIndex = 6;
             this.RegisterButton.Text = "Registriraj se";
             this.RegisterButton.UseVisualStyleBackColor = true;
             // 
-            // MailRegisterTextBox
-            // 
-            this.MailRegisterTextBox.Location = new System.Drawing.Point(17, 298);
-            this.MailRegisterTextBox.Name = "MailRegisterTextBox";
-            this.MailRegisterTextBox.Size = new System.Drawing.Size(325, 26);
-            this.MailRegisterTextBox.TabIndex = 5;
-            // 
             // MailRegisterLabel
             // 
             this.MailRegisterLabel.AutoSize = true;
-            this.MailRegisterLabel.Location = new System.Drawing.Point(149, 261);
+            this.MailRegisterLabel.Location = new System.Drawing.Point(149, 211);
             this.MailRegisterLabel.Name = "MailRegisterLabel";
             this.MailRegisterLabel.Size = new System.Drawing.Size(51, 20);
             this.MailRegisterLabel.TabIndex = 4;
@@ -1877,15 +1872,15 @@ namespace Books
             // 
             // SurnameRegisterTextBox
             // 
-            this.SurnameRegisterTextBox.Location = new System.Drawing.Point(27, 164);
+            this.SurnameRegisterTextBox.Location = new System.Drawing.Point(109, 84);
             this.SurnameRegisterTextBox.Name = "SurnameRegisterTextBox";
-            this.SurnameRegisterTextBox.Size = new System.Drawing.Size(325, 26);
+            this.SurnameRegisterTextBox.Size = new System.Drawing.Size(255, 26);
             this.SurnameRegisterTextBox.TabIndex = 3;
             // 
             // SurnameRegisterLabel
             // 
             this.SurnameRegisterLabel.AutoSize = true;
-            this.SurnameRegisterLabel.Location = new System.Drawing.Point(149, 128);
+            this.SurnameRegisterLabel.Location = new System.Drawing.Point(6, 87);
             this.SurnameRegisterLabel.Name = "SurnameRegisterLabel";
             this.SurnameRegisterLabel.Size = new System.Drawing.Size(60, 20);
             this.SurnameRegisterLabel.TabIndex = 2;
@@ -1893,15 +1888,15 @@ namespace Books
             // 
             // NameRegisterTextBox
             // 
-            this.NameRegisterTextBox.Location = new System.Drawing.Point(27, 76);
+            this.NameRegisterTextBox.Location = new System.Drawing.Point(107, 39);
             this.NameRegisterTextBox.Name = "NameRegisterTextBox";
-            this.NameRegisterTextBox.Size = new System.Drawing.Size(325, 26);
+            this.NameRegisterTextBox.Size = new System.Drawing.Size(255, 26);
             this.NameRegisterTextBox.TabIndex = 1;
             // 
             // NameRegisterLabel
             // 
             this.NameRegisterLabel.AutoSize = true;
-            this.NameRegisterLabel.Location = new System.Drawing.Point(162, 40);
+            this.NameRegisterLabel.Location = new System.Drawing.Point(9, 45);
             this.NameRegisterLabel.Name = "NameRegisterLabel";
             this.NameRegisterLabel.Size = new System.Drawing.Size(34, 20);
             this.NameRegisterLabel.TabIndex = 0;
@@ -2334,6 +2329,186 @@ namespace Books
             this.OutputArchiveBookButton.Text = "Izpiši arhiv izposoje te knjige";
             this.OutputArchiveBookButton.UseVisualStyleBackColor = true;
             // 
+            // SurnameSearchMemberLabel
+            // 
+            this.SurnameSearchMemberLabel.AutoSize = true;
+            this.SurnameSearchMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SurnameSearchMemberLabel.Location = new System.Drawing.Point(6, 138);
+            this.SurnameSearchMemberLabel.Name = "SurnameSearchMemberLabel";
+            this.SurnameSearchMemberLabel.Size = new System.Drawing.Size(69, 22);
+            this.SurnameSearchMemberLabel.TabIndex = 7;
+            this.SurnameSearchMemberLabel.Text = "Priimek";
+            // 
+            // SurnameSearchMemberTextBox
+            // 
+            this.SurnameSearchMemberTextBox.Location = new System.Drawing.Point(107, 139);
+            this.SurnameSearchMemberTextBox.Name = "SurnameSearchMemberTextBox";
+            this.SurnameSearchMemberTextBox.Size = new System.Drawing.Size(258, 26);
+            this.SurnameSearchMemberTextBox.TabIndex = 6;
+            // 
+            // PhoneSearchMemberComboBox
+            // 
+            this.PhoneSearchMemberComboBox.FormattingEnabled = true;
+            this.PhoneSearchMemberComboBox.Location = new System.Drawing.Point(107, 171);
+            this.PhoneSearchMemberComboBox.Name = "PhoneSearchMemberComboBox";
+            this.PhoneSearchMemberComboBox.Size = new System.Drawing.Size(258, 28);
+            this.PhoneSearchMemberComboBox.TabIndex = 8;
+            // 
+            // PhoneSearchMemberLabel
+            // 
+            this.PhoneSearchMemberLabel.AutoSize = true;
+            this.PhoneSearchMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.PhoneSearchMemberLabel.Location = new System.Drawing.Point(6, 172);
+            this.PhoneSearchMemberLabel.Name = "PhoneSearchMemberLabel";
+            this.PhoneSearchMemberLabel.Size = new System.Drawing.Size(71, 22);
+            this.PhoneSearchMemberLabel.TabIndex = 9;
+            this.PhoneSearchMemberLabel.Text = "Telefon";
+            // 
+            // AddressRegisterTextBox
+            // 
+            this.AddressRegisterTextBox.Location = new System.Drawing.Point(109, 167);
+            this.AddressRegisterTextBox.Name = "AddressRegisterTextBox";
+            this.AddressRegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.AddressRegisterTextBox.TabIndex = 23;
+            // 
+            // PhoneRegisterTextBox
+            // 
+            this.PhoneRegisterTextBox.Location = new System.Drawing.Point(109, 122);
+            this.PhoneRegisterTextBox.Name = "PhoneRegisterTextBox";
+            this.PhoneRegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.PhoneRegisterTextBox.TabIndex = 22;
+            // 
+            // PhoneRegisterLabel
+            // 
+            this.PhoneRegisterLabel.AutoSize = true;
+            this.PhoneRegisterLabel.Location = new System.Drawing.Point(9, 128);
+            this.PhoneRegisterLabel.Name = "PhoneRegisterLabel";
+            this.PhoneRegisterLabel.Size = new System.Drawing.Size(62, 20);
+            this.PhoneRegisterLabel.TabIndex = 21;
+            this.PhoneRegisterLabel.Text = "Telefon";
+            // 
+            // AddressRegisterLabel
+            // 
+            this.AddressRegisterLabel.AutoSize = true;
+            this.AddressRegisterLabel.Location = new System.Drawing.Point(9, 173);
+            this.AddressRegisterLabel.Name = "AddressRegisterLabel";
+            this.AddressRegisterLabel.Size = new System.Drawing.Size(56, 20);
+            this.AddressRegisterLabel.TabIndex = 20;
+            this.AddressRegisterLabel.Text = "Naslov";
+            // 
+            // Mail1RegisterLabel
+            // 
+            this.Mail1RegisterLabel.AutoSize = true;
+            this.Mail1RegisterLabel.Location = new System.Drawing.Point(9, 215);
+            this.Mail1RegisterLabel.Name = "Mail1RegisterLabel";
+            this.Mail1RegisterLabel.Size = new System.Drawing.Size(37, 20);
+            this.Mail1RegisterLabel.TabIndex = 19;
+            this.Mail1RegisterLabel.Text = "Mail";
+            // 
+            // Mail1RegisterTextBox
+            // 
+            this.Mail1RegisterTextBox.Location = new System.Drawing.Point(109, 212);
+            this.Mail1RegisterTextBox.Name = "Mail1RegisterTextBox";
+            this.Mail1RegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.Mail1RegisterTextBox.TabIndex = 18;
+            // 
+            // UsernameRegisterTextBox
+            // 
+            this.UsernameRegisterTextBox.Location = new System.Drawing.Point(26, 325);
+            this.UsernameRegisterTextBox.Name = "UsernameRegisterTextBox";
+            this.UsernameRegisterTextBox.PasswordChar = '*';
+            this.UsernameRegisterTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameRegisterTextBox.TabIndex = 25;
+            // 
+            // UsernameRegisterLabel
+            // 
+            this.UsernameRegisterLabel.AutoSize = true;
+            this.UsernameRegisterLabel.Location = new System.Drawing.Point(103, 283);
+            this.UsernameRegisterLabel.Name = "UsernameRegisterLabel";
+            this.UsernameRegisterLabel.Size = new System.Drawing.Size(183, 20);
+            this.UsernameRegisterLabel.TabIndex = 24;
+            this.UsernameRegisterLabel.Text = "Vnesite uporabniško ime";
+            // 
+            // AddressUserTextBox
+            // 
+            this.AddressUserTextBox.Location = new System.Drawing.Point(133, 177);
+            this.AddressUserTextBox.Name = "AddressUserTextBox";
+            this.AddressUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.AddressUserTextBox.TabIndex = 34;
+            // 
+            // PhoneUserTextBox
+            // 
+            this.PhoneUserTextBox.Location = new System.Drawing.Point(133, 132);
+            this.PhoneUserTextBox.Name = "PhoneUserTextBox";
+            this.PhoneUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.PhoneUserTextBox.TabIndex = 33;
+            // 
+            // PhoneUserLabel
+            // 
+            this.PhoneUserLabel.AutoSize = true;
+            this.PhoneUserLabel.Location = new System.Drawing.Point(33, 138);
+            this.PhoneUserLabel.Name = "PhoneUserLabel";
+            this.PhoneUserLabel.Size = new System.Drawing.Size(62, 20);
+            this.PhoneUserLabel.TabIndex = 32;
+            this.PhoneUserLabel.Text = "Telefon";
+            // 
+            // AddressUserLabel
+            // 
+            this.AddressUserLabel.AutoSize = true;
+            this.AddressUserLabel.Location = new System.Drawing.Point(33, 183);
+            this.AddressUserLabel.Name = "AddressUserLabel";
+            this.AddressUserLabel.Size = new System.Drawing.Size(56, 20);
+            this.AddressUserLabel.TabIndex = 31;
+            this.AddressUserLabel.Text = "Naslov";
+            // 
+            // MailUserLabel
+            // 
+            this.MailUserLabel.AutoSize = true;
+            this.MailUserLabel.Location = new System.Drawing.Point(33, 225);
+            this.MailUserLabel.Name = "MailUserLabel";
+            this.MailUserLabel.Size = new System.Drawing.Size(37, 20);
+            this.MailUserLabel.TabIndex = 30;
+            this.MailUserLabel.Text = "Mail";
+            // 
+            // MailUserTextBox
+            // 
+            this.MailUserTextBox.Location = new System.Drawing.Point(133, 225);
+            this.MailUserTextBox.Name = "MailUserTextBox";
+            this.MailUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.MailUserTextBox.TabIndex = 29;
+            // 
+            // SurnameUserTextBox
+            // 
+            this.SurnameUserTextBox.Location = new System.Drawing.Point(133, 94);
+            this.SurnameUserTextBox.Name = "SurnameUserTextBox";
+            this.SurnameUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.SurnameUserTextBox.TabIndex = 27;
+            // 
+            // SurnameUserLabel
+            // 
+            this.SurnameUserLabel.AutoSize = true;
+            this.SurnameUserLabel.Location = new System.Drawing.Point(30, 97);
+            this.SurnameUserLabel.Name = "SurnameUserLabel";
+            this.SurnameUserLabel.Size = new System.Drawing.Size(60, 20);
+            this.SurnameUserLabel.TabIndex = 26;
+            this.SurnameUserLabel.Text = "Priimek";
+            // 
+            // NameUserTextBox
+            // 
+            this.NameUserTextBox.Location = new System.Drawing.Point(131, 49);
+            this.NameUserTextBox.Name = "NameUserTextBox";
+            this.NameUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.NameUserTextBox.TabIndex = 25;
+            // 
+            // NameUserLabel
+            // 
+            this.NameUserLabel.AutoSize = true;
+            this.NameUserLabel.Location = new System.Drawing.Point(33, 55);
+            this.NameUserLabel.Name = "NameUserLabel";
+            this.NameUserLabel.Size = new System.Drawing.Size(34, 20);
+            this.NameUserLabel.TabIndex = 24;
+            this.NameUserLabel.Text = "ime";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -2406,8 +2581,8 @@ namespace Books
         private System.Windows.Forms.Button SearchBookButton;
         private System.Windows.Forms.Label SearchBookLabel;
         private System.Windows.Forms.Button SearchMemberButton;
-        private System.Windows.Forms.Label SearchMember2Label;
-        private System.Windows.Forms.TextBox SearchMemberTextBox;
+        private System.Windows.Forms.Label NameSearchMemberLabel;
+        private System.Windows.Forms.TextBox NameSearchMemberTextBox;
         private System.Windows.Forms.Label SerachMemberLabel;
         private System.Windows.Forms.Button AddMemberButton;
         private System.Windows.Forms.Button AddBookButton;
@@ -2486,23 +2661,19 @@ namespace Books
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.TabPage SettingsTabPage;
         private System.Windows.Forms.GroupBox UserDataGroupBox;
-        private System.Windows.Forms.Label NameUserLabel;
-        private System.Windows.Forms.TextBox NameUserTextBox;
         private System.Windows.Forms.GroupBox ChangeUserPasswordGroupBox;
         private System.Windows.Forms.Button ChangeUserPasswordButton;
         private System.Windows.Forms.Button SetVisiblePasswordChangeUserPasswordButton;
-        private System.Windows.Forms.Label MailGhangeUserPasswordLabel;
+        private System.Windows.Forms.Label UsernameGhangeUserPasswordLabel;
         private System.Windows.Forms.TextBox Password2ChangeUserPasswordTextBox;
         private System.Windows.Forms.Label Password2ChangeUserPasswordLabel;
         private System.Windows.Forms.TextBox Password1ChangeUserPasswordTextBox;
         private System.Windows.Forms.Label Password1ChangeUserPasswordLabel;
-        private System.Windows.Forms.TextBox MailChangeUserPasswordTextBox;
+        private System.Windows.Forms.TextBox UsernameChangeUserPasswordTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button ChangeUserdata;
-        private System.Windows.Forms.TextBox MailUserTextBox;
-        private System.Windows.Forms.Label MailUserLabel;
-        private System.Windows.Forms.TextBox SurnameUserTextBox;
-        private System.Windows.Forms.Label SurnameUserLabel;
+        private System.Windows.Forms.TextBox UsernameUserTextBox;
+        private System.Windows.Forms.Label UsernameUserLabel;
         private System.Windows.Forms.TabPage LoginTabPage;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -2516,7 +2687,6 @@ namespace Books
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button RegisterButton;
-        private System.Windows.Forms.TextBox MailRegisterTextBox;
         private System.Windows.Forms.Label MailRegisterLabel;
         private System.Windows.Forms.TextBox SurnameRegisterTextBox;
         private System.Windows.Forms.Label SurnameRegisterLabel;
@@ -2526,12 +2696,12 @@ namespace Books
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button ChangePasswordButton;
         private System.Windows.Forms.Button VisiblePasswordChangePasswordButton;
-        private System.Windows.Forms.Label ChangePasswordMailLabel;
+        private System.Windows.Forms.Label ChangePasswordUsernameLabel;
         private System.Windows.Forms.TextBox ChangePasswordPasswor2TextBox;
         private System.Windows.Forms.Label ChangePasswordPassword2Label;
         private System.Windows.Forms.TextBox ChangePasswordPassword1TextBox;
         private System.Windows.Forms.Label ChangePasswordPassword1Label;
-        private System.Windows.Forms.TextBox ChangePasswordmailTextBox;
+        private System.Windows.Forms.TextBox ChangePasswordUsernameTextBox;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox Password2RegisterTextBox;
         private System.Windows.Forms.Label Password2RegisterLabel;
@@ -2539,10 +2709,10 @@ namespace Books
         private System.Windows.Forms.Label Password1RegisterLabel;
         private System.Windows.Forms.GroupBox LoginGroupBox;
         private System.Windows.Forms.Button LoginButton;
-        private System.Windows.Forms.Label mailLoginLabel;
+        private System.Windows.Forms.Label UsernameLoginLabel;
         private System.Windows.Forms.TextBox PasswordLoginTextBox;
         private System.Windows.Forms.Label PasswordLoginLabel;
-        private System.Windows.Forms.TextBox MailLoginTextBox;
+        private System.Windows.Forms.TextBox UsernameLoginTextBox;
         private System.Windows.Forms.GroupBox BooksGroupBox;
         private System.Windows.Forms.NumericUpDown NumberOfBooksNumericUpDown;
         private System.Windows.Forms.Label NumberOfBooksLabel;
@@ -2616,6 +2786,28 @@ namespace Books
         private System.Windows.Forms.Button OutputArchiveMemberButton;
         private System.Windows.Forms.Button OutputArchiveBookButton;
         private System.Windows.Forms.Button AllArchiveButton;
+        private System.Windows.Forms.Label PhoneSearchMemberLabel;
+        private System.Windows.Forms.ComboBox PhoneSearchMemberComboBox;
+        private System.Windows.Forms.Label SurnameSearchMemberLabel;
+        private System.Windows.Forms.TextBox SurnameSearchMemberTextBox;
+        private System.Windows.Forms.TextBox UsernameRegisterTextBox;
+        private System.Windows.Forms.Label UsernameRegisterLabel;
+        private System.Windows.Forms.TextBox AddressRegisterTextBox;
+        private System.Windows.Forms.TextBox PhoneRegisterTextBox;
+        private System.Windows.Forms.Label PhoneRegisterLabel;
+        private System.Windows.Forms.Label AddressRegisterLabel;
+        private System.Windows.Forms.Label Mail1RegisterLabel;
+        private System.Windows.Forms.TextBox Mail1RegisterTextBox;
+        private System.Windows.Forms.TextBox AddressUserTextBox;
+        private System.Windows.Forms.TextBox PhoneUserTextBox;
+        private System.Windows.Forms.Label PhoneUserLabel;
+        private System.Windows.Forms.Label AddressUserLabel;
+        private System.Windows.Forms.Label MailUserLabel;
+        private System.Windows.Forms.TextBox MailUserTextBox;
+        private System.Windows.Forms.TextBox SurnameUserTextBox;
+        private System.Windows.Forms.Label SurnameUserLabel;
+        private System.Windows.Forms.TextBox NameUserTextBox;
+        private System.Windows.Forms.Label NameUserLabel;
     }
 }
 
