@@ -149,6 +149,7 @@ namespace Database
         {
             await conn.DeleteAsync(user, true);
             return true;
+
         }
 
         public static async Task<bool> DeleteBook(Book book)
