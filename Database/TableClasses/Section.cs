@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Database.TableClasses
 {
     [Table("sections")]
-    class Section
+    public class Section
     {
         [Column("id"), PrimaryKey, AutoIncrement]
         public int ID { get; set; }

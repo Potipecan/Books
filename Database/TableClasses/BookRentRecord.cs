@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Database.TableClasses
 {
     [Table("book_rent_record")]
-    class BookRentRecord
+    public class BookRentRecord
     {
         [Column("id"), PrimaryKey, AutoIncrement]
         public int ID { get; set; }
