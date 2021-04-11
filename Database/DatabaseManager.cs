@@ -157,7 +157,38 @@ namespace Database
             return true;
         }
 
+        public static async Task<bool> DeleteAuthor(Author author)
+        {
+            await conn.DeleteAsync(author, true);
+            return true;
+        }
 
+        public static async Task<bool> DeletePublisher(Publisher publisher)
+        {
+            await conn.DeleteAsync(publisher, true);
+            return true;
+        }
+
+        public static async Task<bool> DeleteBookCopy(BookCopy bookcopy)
+        {
+            return await conn.DeleteAsync(bookcopy) == 1;
+        }
+
+        #endregion
+
+        #region Get functions
+
+        public static async Task<List<Book>> GetBooks(Section section = null, Author author = null)
+        {
+            List<Book> res = null;
+
+            res = (await conn.GetAllWithChildrenAsync<Book>()).FindAll(b => 
+            (section == null || b.SectionID == section.ID) && 
+            (author == null || b.Authors.Contains(author)
+            ));
+
+            return res;
+        }
 
         #endregion
     }
