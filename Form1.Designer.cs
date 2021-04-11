@@ -1725,7 +1725,7 @@ namespace Books
             // 
             // Password2RegisterTextBox
             // 
-            this.Password2RegisterTextBox.Location = new System.Drawing.Point(13, 488);
+            this.Password2RegisterTextBox.Location = new System.Drawing.Point(26, 478);
             this.Password2RegisterTextBox.Name = "Password2RegisterTextBox";
             this.Password2RegisterTextBox.PasswordChar = '*';
             this.Password2RegisterTextBox.Size = new System.Drawing.Size(325, 26);
@@ -1742,7 +1742,7 @@ namespace Books
             // 
             // Password1RegisterTextBox
             // 
-            this.Password1RegisterTextBox.Location = new System.Drawing.Point(13, 404);
+            this.Password1RegisterTextBox.Location = new System.Drawing.Point(26, 405);
             this.Password1RegisterTextBox.Name = "Password1RegisterTextBox";
             this.Password1RegisterTextBox.PasswordChar = '*';
             this.Password1RegisterTextBox.Size = new System.Drawing.Size(325, 26);
