@@ -191,6 +191,22 @@ namespace Database
             return res;
         }
 
+        public static async Task<List<Book>> GetBooks(string author)
+        {
+            //Task.Run(async () => { })
+
+            List<Book> res = null;
+
+            var authors = await conn.Table<Author>().Where(a => a.Name.ToLower().Contains(author)).ToListAsync();
+
+
+            res = (await conn.GetAllWithChildrenAsync<Book>()).FindAll(b =>
+            b.Authors.Any(a => authors.Contains(a)
+            ));
+
+            return res;
+        }
+
         #endregion
     }
 }
