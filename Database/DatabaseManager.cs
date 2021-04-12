@@ -13,11 +13,11 @@ namespace Database
 {
     public static class DatabaseManager
     {
-        private static string _databaseFilename = "library.sqlite";
-        private static string _directory = "LibraryApp";
-        private static string _path;
+        private static readonly string _databaseFilename = "library.sqlite";
+        private static readonly string _directory = "LibraryApp";
+        private static readonly string _path;
 
-        private static SQLiteAsyncConnection conn;
+        private static readonly SQLiteAsyncConnection conn;
         
 
         static DatabaseManager()
@@ -43,6 +43,9 @@ namespace Database
                 await conn.CreateTableAsync<BookRentRecord>();
             }).Wait();
 
+           
+
+=========
            
         }
 
@@ -149,7 +152,6 @@ namespace Database
         {
             await conn.DeleteAsync(user, true);
             return true;
-
         }
 
         public static async Task<bool> DeleteBook(Book book)
@@ -179,6 +181,12 @@ namespace Database
 
         #region Get functions
 
+        /// <summary>
+        /// Retrieves a list of books by section and author.
+        /// </summary>
+        /// <param name="section">Section to look by. Leave null to ignore search parameter.</param>
+        /// <param name="author">Author to look by. Leave null to ignore search parameter.</param>
+        /// <returns>A list of books that match the search parameters.</returns>
         public static async Task<List<Book>> GetBooks(Section section = null, Author author = null)
         {
             List<Book> res = null;
@@ -191,21 +199,44 @@ namespace Database
             return res;
         }
 
-        public static async Task<List<Book>> GetBooks(string author)
+        /// <summary>
+        /// Retrieves a list of books by title.
+        /// </summary>
+        /// <param name="title">Book title to search by.</param>
+        /// <returns>A list of books with connected properties.</returns>
+        public static async Task<List<Book>> GetBooks(string title)
         {
-            //Task.Run(async () => { })
+            title = title.ToLower();
+            return await conn.GetAllWithChildrenAsync<Book>(b => b.Title.ToLower().Contains(title));
+        }
 
-            List<Book> res = null;
+        /// <summary>
+        /// Gets a book and its connected properties.
+        /// </summary>
+        /// <param name="book">Book to retrieve.</param>
+        /// <returns>A book object with all its connected properties.</returns>
+        public static async Task<Book> GetBook(Book book)
+        {
+            return await conn.GetWithChildrenAsync<Book>(book);
+        }
 
-            var authors = await conn.Table<Author>().Where(a => a.Name.ToLower().Contains(author)).ToListAsync();
+        /// <summary>
+        /// Gets a book copy by code.
+        /// </summary>
+        /// <param name="code">Code search parameter.</param>
+        /// <returns>A book copy that matches the search parameters with all its connected properties.</returns>
+        public static async Task<BookCopy> GetBookCopy(string code)
+        {
+            return (await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code == code))[0];
+        }
 
-
-            res = (await conn.GetAllWithChildrenAsync<Book>()).FindAll(b =>
-            b.Authors.Any(a => authors.Contains(a)
-            ));
-
+        public static async Task<List<Author>> GetAuthors(string name = "")
+        {
+            name = name.ToLower();
+            var res = await conn.Table<Author>().Where(a => a.Name.ToLower().Contains(name)).ToListAsync();
             return res;
         }
+
 
         #endregion
     }
