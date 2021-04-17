@@ -84,6 +84,8 @@ namespace Books
             this.AddingSomethingLabel = new System.Windows.Forms.Label();
             this.AddingLabel = new System.Windows.Forms.Label();
             this.UserTabPage = new System.Windows.Forms.TabPage();
+            this.UserTabControl = new System.Windows.Forms.TabControl();
+            this.UserInfoTabPage = new System.Windows.Forms.TabPage();
             this.OutputArchiveMemberButton = new System.Windows.Forms.Button();
             this.BorrowedBookOneMemberGroupBox = new System.Windows.Forms.GroupBox();
             this.DeadlineLoanBookLabel = new System.Windows.Forms.Label();
@@ -115,6 +117,7 @@ namespace Books
             this.OneMemberLabel = new System.Windows.Forms.Label();
             this.UserEmailTB = new System.Windows.Forms.TextBox();
             this.UserNameTB = new System.Windows.Forms.TextBox();
+            this.UserBookLoanTabPage = new System.Windows.Forms.TabPage();
             this.InsertBookTabePage = new System.Windows.Forms.TabPage();
             this.OutputArchiveBookButton = new System.Windows.Forms.Button();
             this.InsertBooksGroupBox = new System.Windows.Forms.GroupBox();
@@ -268,6 +271,8 @@ namespace Books
             ((System.ComponentModel.ISupportInitialize)(this.StatusOneBookPictureBox)).BeginInit();
             this.AddDataGroupBox.SuspendLayout();
             this.UserTabPage.SuspendLayout();
+            this.UserTabControl.SuspendLayout();
+            this.UserInfoTabPage.SuspendLayout();
             this.BorrowedBookOneMemberGroupBox.SuspendLayout();
             this.MemberGroupBox.SuspendLayout();
             this.InsertBookTabePage.SuspendLayout();
@@ -319,7 +324,7 @@ namespace Books
             this.SearchTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SearchTab.Size = new System.Drawing.Size(1079, 758);
             this.SearchTab.TabIndex = 0;
-            this.SearchTab.Text = "Osnovno";
+            this.SearchTab.Text = "Iskanje";
             this.SearchTab.UseVisualStyleBackColor = true;
             // 
             // SearchResultLW
@@ -850,9 +855,7 @@ namespace Books
             // 
             // UserTabPage
             // 
-            this.UserTabPage.Controls.Add(this.OutputArchiveMemberButton);
-            this.UserTabPage.Controls.Add(this.BorrowedBookOneMemberGroupBox);
-            this.UserTabPage.Controls.Add(this.MemberGroupBox);
+            this.UserTabPage.Controls.Add(this.UserTabControl);
             this.UserTabPage.Location = new System.Drawing.Point(4, 25);
             this.UserTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserTabPage.Name = "UserTabPage";
@@ -862,14 +865,38 @@ namespace Books
             this.UserTabPage.Text = "Člani";
             this.UserTabPage.UseVisualStyleBackColor = true;
             // 
+            // UserTabControl
+            // 
+            this.UserTabControl.Controls.Add(this.UserInfoTabPage);
+            this.UserTabControl.Controls.Add(this.UserBookLoanTabPage);
+            this.UserTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserTabControl.Location = new System.Drawing.Point(3, 2);
+            this.UserTabControl.Name = "UserTabControl";
+            this.UserTabControl.SelectedIndex = 0;
+            this.UserTabControl.Size = new System.Drawing.Size(1073, 754);
+            this.UserTabControl.TabIndex = 0;
+            // 
+            // UserInfoTabPage
+            // 
+            this.UserInfoTabPage.Controls.Add(this.OutputArchiveMemberButton);
+            this.UserInfoTabPage.Controls.Add(this.BorrowedBookOneMemberGroupBox);
+            this.UserInfoTabPage.Controls.Add(this.MemberGroupBox);
+            this.UserInfoTabPage.Location = new System.Drawing.Point(4, 25);
+            this.UserInfoTabPage.Name = "UserInfoTabPage";
+            this.UserInfoTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.UserInfoTabPage.Size = new System.Drawing.Size(1065, 725);
+            this.UserInfoTabPage.TabIndex = 0;
+            this.UserInfoTabPage.Text = "Uporabnik";
+            this.UserInfoTabPage.UseVisualStyleBackColor = true;
+            // 
             // OutputArchiveMemberButton
             // 
-            this.OutputArchiveMemberButton.Location = new System.Drawing.Point(110, 438);
+            this.OutputArchiveMemberButton.Location = new System.Drawing.Point(85, 420);
             this.OutputArchiveMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OutputArchiveMemberButton.Name = "OutputArchiveMemberButton";
             this.OutputArchiveMemberButton.Size = new System.Drawing.Size(140, 60);
-            this.OutputArchiveMemberButton.TabIndex = 4;
-            this.OutputArchiveMemberButton.Text = "Izpiši njegov arhiv";
+            this.OutputArchiveMemberButton.TabIndex = 7;
+            this.OutputArchiveMemberButton.Text = "Izpiši arhiv";
             this.OutputArchiveMemberButton.UseVisualStyleBackColor = true;
             // 
             // BorrowedBookOneMemberGroupBox
@@ -882,12 +909,12 @@ namespace Books
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.AddIdLoanBookTextBox);
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.ReturnBookOneMemberButton);
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.BookRentsLW);
-            this.BorrowedBookOneMemberGroupBox.Location = new System.Drawing.Point(400, 23);
+            this.BorrowedBookOneMemberGroupBox.Location = new System.Drawing.Point(375, 5);
             this.BorrowedBookOneMemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BorrowedBookOneMemberGroupBox.Name = "BorrowedBookOneMemberGroupBox";
             this.BorrowedBookOneMemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BorrowedBookOneMemberGroupBox.Size = new System.Drawing.Size(673, 530);
-            this.BorrowedBookOneMemberGroupBox.TabIndex = 3;
+            this.BorrowedBookOneMemberGroupBox.TabIndex = 6;
             this.BorrowedBookOneMemberGroupBox.TabStop = false;
             this.BorrowedBookOneMemberGroupBox.Text = "Izposojene knjige";
             // 
@@ -1020,12 +1047,12 @@ namespace Books
             this.MemberGroupBox.Controls.Add(this.OneMemberLabel);
             this.MemberGroupBox.Controls.Add(this.UserEmailTB);
             this.MemberGroupBox.Controls.Add(this.UserNameTB);
-            this.MemberGroupBox.Location = new System.Drawing.Point(31, 23);
+            this.MemberGroupBox.Location = new System.Drawing.Point(6, 5);
             this.MemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MemberGroupBox.Name = "MemberGroupBox";
             this.MemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MemberGroupBox.Size = new System.Drawing.Size(334, 411);
-            this.MemberGroupBox.TabIndex = 1;
+            this.MemberGroupBox.TabIndex = 5;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "Član";
             // 
@@ -1055,7 +1082,6 @@ namespace Books
             this.CancelEditButton.Text = "Prekliči";
             this.CancelEditButton.UseVisualStyleBackColor = true;
             this.CancelEditButton.Visible = false;
-            this.CancelEditButton.Click += new System.EventHandler(this.CancelEditButton_Click);
             // 
             // SurnameOneMemberLabel
             // 
@@ -1161,11 +1187,21 @@ namespace Books
             // UserNameTB
             // 
             this.UserNameTB.Enabled = false;
-            this.UserNameTB.Location = new System.Drawing.Point(100, 78);
+            this.UserNameTB.Location = new System.Drawing.Point(102, 78);
             this.UserNameTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserNameTB.Name = "UserNameTB";
             this.UserNameTB.Size = new System.Drawing.Size(229, 22);
             this.UserNameTB.TabIndex = 0;
+            // 
+            // UserBookLoanTabPage
+            // 
+            this.UserBookLoanTabPage.Location = new System.Drawing.Point(4, 25);
+            this.UserBookLoanTabPage.Name = "UserBookLoanTabPage";
+            this.UserBookLoanTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.UserBookLoanTabPage.Size = new System.Drawing.Size(1065, 725);
+            this.UserBookLoanTabPage.TabIndex = 1;
+            this.UserBookLoanTabPage.Text = "Izposoja";
+            this.UserBookLoanTabPage.UseVisualStyleBackColor = true;
             // 
             // InsertBookTabePage
             // 
@@ -2605,6 +2641,8 @@ namespace Books
             this.AddDataGroupBox.ResumeLayout(false);
             this.AddDataGroupBox.PerformLayout();
             this.UserTabPage.ResumeLayout(false);
+            this.UserTabControl.ResumeLayout(false);
+            this.UserInfoTabPage.ResumeLayout(false);
             this.BorrowedBookOneMemberGroupBox.ResumeLayout(false);
             this.BorrowedBookOneMemberGroupBox.PerformLayout();
             this.MemberGroupBox.ResumeLayout(false);
@@ -2643,13 +2681,6 @@ namespace Books
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl MainTabControl;
-        private System.Windows.Forms.TabPage SearchTab;
-        private System.Windows.Forms.TabPage BookTab;
-        private System.Windows.Forms.GroupBox BookSearchGroupBox;
-        private System.Windows.Forms.ComboBox SearchBookComboBox;
-        private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.Button MainSearchButton;
         private System.Windows.Forms.Button AddBookButton;
         private System.Windows.Forms.GroupBox OneBookGroupBox;
@@ -2671,25 +2702,6 @@ namespace Books
         private System.Windows.Forms.Button AddSomethingButton;
         private System.Windows.Forms.TextBox AddingSomethingTextBox;
         private System.Windows.Forms.Label AddingLabel;
-        private System.Windows.Forms.TabPage UserTabPage;
-        private System.Windows.Forms.GroupBox BorrowedBookOneMemberGroupBox;
-        private System.Windows.Forms.Button ReturnBookOneMemberButton;
-        private System.Windows.Forms.ListView BookRentsLW;
-        private System.Windows.Forms.ColumnHeader IdNumberColumnHeader;
-        private System.Windows.Forms.ColumnHeader PublisherColumnHeader;
-        private System.Windows.Forms.ColumnHeader LoanDateColumnHeader;
-        private System.Windows.Forms.GroupBox MemberGroupBox;
-        private System.Windows.Forms.TextBox UserAddressTB;
-        private System.Windows.Forms.TextBox UserPhoneTB;
-        private System.Windows.Forms.Button EditUserButton;
-        private System.Windows.Forms.Label PhoneOneMemberLabel;
-        private System.Windows.Forms.Label AddressOneMemberLabel;
-        private System.Windows.Forms.Label NameOneMemberLabel;
-        private System.Windows.Forms.Label MailOneMemberLabel;
-        private System.Windows.Forms.Label OneMemberLabel;
-        private System.Windows.Forms.TextBox UserEmailTB;
-        private System.Windows.Forms.TextBox UserNameTB;
-        private System.Windows.Forms.TabPage InsertBookTabePage;
         private System.Windows.Forms.GroupBox BookInsertGroupBox;
         private System.Windows.Forms.Button PublisherBookInsertButton;
         private System.Windows.Forms.ComboBox AquireBookInsertComboBox;
@@ -2706,7 +2718,6 @@ namespace Books
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TabPage BooksOutputTabPage;
         private System.Windows.Forms.GroupBox ArchiveGroupBox;
         private System.Windows.Forms.Button ExcelButton;
         private System.Windows.Forms.GroupBox SearchArchiveGroupBox;
@@ -2722,7 +2733,6 @@ namespace Books
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.TabPage SettingsTabPage;
         private System.Windows.Forms.GroupBox UserDataGroupBox;
         private System.Windows.Forms.GroupBox ChangeUserPasswordGroupBox;
         private System.Windows.Forms.Button ChangeUserPasswordButton;
@@ -2737,7 +2747,6 @@ namespace Books
         private System.Windows.Forms.Button ChangeUserdata;
         private System.Windows.Forms.TextBox UsernameUserTextBox;
         private System.Windows.Forms.Label UsernameUserLabel;
-        private System.Windows.Forms.TabPage LoginTabPage;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button2;
@@ -2801,7 +2810,6 @@ namespace Books
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label AddingSomethingLabel;
-        private System.Windows.Forms.TabPage InsertMemberTabPage;
         private System.Windows.Forms.GroupBox InsertBooksGroupBox;
         private System.Windows.Forms.NumericUpDown NumberOfBooksInsertBooksNumericUpDown;
         private System.Windows.Forms.Label NumberOfBooksInsertBooksLabel;
@@ -2821,15 +2829,6 @@ namespace Books
         private System.Windows.Forms.Label AddSearchTypeBookInsertLabel;
         private System.Windows.Forms.ComboBox AddBooksInserComboBox;
         private System.Windows.Forms.ComboBox AddSearchTypeBookInsertComboBox;
-        private System.Windows.Forms.Label SurnameOneMemberLabel;
-        private System.Windows.Forms.TextBox UserSurnameTB;
-        private System.Windows.Forms.Label DeadlineLoanBookLabel;
-        private System.Windows.Forms.ComboBox DeadlineLoanBookComboBox;
-        private System.Windows.Forms.Button LoanBookButton;
-        private System.Windows.Forms.Label AddIdLoanBookLabel;
-        private System.Windows.Forms.Label RentBookToMemberLabel;
-        private System.Windows.Forms.TextBox AddIdLoanBookTextBox;
-        private System.Windows.Forms.ColumnHeader DeadlineColumnHeader;
         private System.Windows.Forms.GroupBox InsertMemberGroupBox;
         private System.Windows.Forms.Label SurnameInsertMemberLabel;
         private System.Windows.Forms.TextBox SurnameInsertMemberTextBox;
@@ -2846,7 +2845,6 @@ namespace Books
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.ColumnHeader columnHeader16;
-        private System.Windows.Forms.Button OutputArchiveMemberButton;
         private System.Windows.Forms.Button OutputArchiveBookButton;
         private System.Windows.Forms.Button AllArchiveButton;
         private System.Windows.Forms.TextBox UsernameRegisterTextBox;
@@ -2867,12 +2865,54 @@ namespace Books
         private System.Windows.Forms.Label SurnameUserLabel;
         private System.Windows.Forms.TextBox NameUserTextBox;
         private System.Windows.Forms.Label NameUserLabel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListView SearchResultLW;
-        private System.Windows.Forms.Button CancelEditButton;
-        private System.Windows.Forms.TextBox UserNotesTB;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabControl UserTabControl;
+        private System.Windows.Forms.TabPage UserInfoTabPage;
+        private System.Windows.Forms.GroupBox BorrowedBookOneMemberGroupBox;
+        private System.Windows.Forms.Label DeadlineLoanBookLabel;
+        private System.Windows.Forms.ComboBox DeadlineLoanBookComboBox;
+        private System.Windows.Forms.Button LoanBookButton;
+        private System.Windows.Forms.Label AddIdLoanBookLabel;
+        private System.Windows.Forms.Label RentBookToMemberLabel;
+        private System.Windows.Forms.TextBox AddIdLoanBookTextBox;
+        private System.Windows.Forms.Button ReturnBookOneMemberButton;
+        private System.Windows.Forms.ColumnHeader IdNumberColumnHeader;
         private System.Windows.Forms.ColumnHeader TitleColumnHeader;
+        private System.Windows.Forms.ColumnHeader PublisherColumnHeader;
+        private System.Windows.Forms.ColumnHeader LoanDateColumnHeader;
+        private System.Windows.Forms.ColumnHeader DeadlineColumnHeader;
+        private System.Windows.Forms.GroupBox MemberGroupBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label SurnameOneMemberLabel;
+        private System.Windows.Forms.Label PhoneOneMemberLabel;
+        private System.Windows.Forms.Label AddressOneMemberLabel;
+        private System.Windows.Forms.Label NameOneMemberLabel;
+        private System.Windows.Forms.Label MailOneMemberLabel;
+        private System.Windows.Forms.Label OneMemberLabel;
+        private System.Windows.Forms.TabPage UserBookLoanTabPage;
+        public System.Windows.Forms.GroupBox BookSearchGroupBox;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.ListView SearchResultLW;
+        public System.Windows.Forms.ComboBox SearchBookComboBox;
+        public System.Windows.Forms.TextBox SearchTextBox;
+        public System.Windows.Forms.Button OutputArchiveMemberButton;
+        public System.Windows.Forms.ListView BookRentsLW;
+        public System.Windows.Forms.TextBox UserNotesTB;
+        public System.Windows.Forms.Button CancelEditButton;
+        public System.Windows.Forms.TextBox UserSurnameTB;
+        public System.Windows.Forms.TextBox UserAddressTB;
+        public System.Windows.Forms.TextBox UserPhoneTB;
+        public System.Windows.Forms.Button EditUserButton;
+        public System.Windows.Forms.TextBox UserEmailTB;
+        public System.Windows.Forms.TextBox UserNameTB;
+        public System.Windows.Forms.TabControl MainTabControl;
+        public System.Windows.Forms.TabPage SearchTab;
+        public System.Windows.Forms.TabPage BookTab;
+        public System.Windows.Forms.TabPage UserTabPage;
+        public System.Windows.Forms.TabPage InsertBookTabePage;
+        public System.Windows.Forms.TabPage BooksOutputTabPage;
+        public System.Windows.Forms.TabPage SettingsTabPage;
+        public System.Windows.Forms.TabPage LoginTabPage;
+        public System.Windows.Forms.TabPage InsertMemberTabPage;
     }
 }
 

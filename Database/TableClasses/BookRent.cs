@@ -17,6 +17,8 @@ namespace Database.TableClasses
         public DateTime RentDate { get; set; }
         [Column("deadline"), NotNull]
         public DateTime DeadLine { get; set; }
+        [Column("is_extended"), NotNull]
+        public bool IsExtended { get; set; } = false;
 
         [Column("book_copy_id"), NotNull, ForeignKey(typeof(BookCopy))]
         public int BookCopyID { get; set; }
