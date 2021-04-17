@@ -236,6 +236,25 @@ namespace Database
             return res;
         }
 
+        public static async Task<List<User>> GetUsers(string search)
+        {
+            var res = new List<User>();
+
+            var lowerName = search.ToLower().Replace(" ", string.Empty);
+
+            res = await conn.Table<User>().Where(u =>
+            u.Name.ToLower().Replace(" ", string.Empty).Contains(lowerName) ||
+            u.Phone == search ||
+            u.Email.Contains(lowerName)
+            ).ToListAsync();
+
+            return res;
+        }
+
+        public static async Task<User> GetUser(User user)
+        {
+            return await conn.GetWithChildrenAsync<User>(user, true);
+        }
 
         #endregion
     }

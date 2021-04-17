@@ -17,14 +17,12 @@ namespace Database.TableClasses
         public string Name { get; set; }
         [Column("surname"), NotNull]
         public string Surname { get; set; }
-        [Column("phone"), NotNull]
+        [Column("phone"), Unique, NotNull]
         public string Phone { get; set; }
         [Column("address")]
         public string Address { get; set; }
-        [Column("email")]
+        [Column("email"), Unique]
         public string Email { get; set; }
-        [Column("username")]
-        public string Username { get; set; }
         [Column("password")]
         public string Password { get; set; }
         [Column("notes")]

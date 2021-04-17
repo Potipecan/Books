@@ -29,23 +29,14 @@ namespace Books
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.MainTab = new System.Windows.Forms.TabPage();
-            this.SearchMemberGroupBox = new System.Windows.Forms.GroupBox();
-            this.PhoneSearchMemberLabel = new System.Windows.Forms.Label();
-            this.PhoneSearchMemberComboBox = new System.Windows.Forms.ComboBox();
-            this.SurnameSearchMemberLabel = new System.Windows.Forms.Label();
-            this.SurnameSearchMemberTextBox = new System.Windows.Forms.TextBox();
-            this.AddMemberButton = new System.Windows.Forms.Button();
-            this.SearchMemberButton = new System.Windows.Forms.Button();
-            this.NameSearchMemberLabel = new System.Windows.Forms.Label();
-            this.NameSearchMemberTextBox = new System.Windows.Forms.TextBox();
-            this.SerachMemberLabel = new System.Windows.Forms.Label();
+            this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.SearchTab = new System.Windows.Forms.TabPage();
+            this.SearchResultLW = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
             this.BookSearchGroupBox = new System.Windows.Forms.GroupBox();
             this.AddBookButton = new System.Windows.Forms.Button();
-            this.SearchBookTextBox = new System.Windows.Forms.TextBox();
-            this.SearchBookButton = new System.Windows.Forms.Button();
-            this.SearchBookLabel = new System.Windows.Forms.Label();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.MainSearchButton = new System.Windows.Forms.Button();
             this.SearchBookComboBox = new System.Windows.Forms.ComboBox();
             this.BookTab = new System.Windows.Forms.TabPage();
             this.BooksGroupBox = new System.Windows.Forms.GroupBox();
@@ -92,7 +83,7 @@ namespace Books
             this.AddingSomethingTextBox = new System.Windows.Forms.TextBox();
             this.AddingSomethingLabel = new System.Windows.Forms.Label();
             this.AddingLabel = new System.Windows.Forms.Label();
-            this.MemberTabPage = new System.Windows.Forms.TabPage();
+            this.UserTabPage = new System.Windows.Forms.TabPage();
             this.OutputArchiveMemberButton = new System.Windows.Forms.Button();
             this.BorrowedBookOneMemberGroupBox = new System.Windows.Forms.GroupBox();
             this.DeadlineLoanBookLabel = new System.Windows.Forms.Label();
@@ -102,27 +93,28 @@ namespace Books
             this.RentBookToMemberLabel = new System.Windows.Forms.Label();
             this.AddIdLoanBookTextBox = new System.Windows.Forms.TextBox();
             this.ReturnBookOneMemberButton = new System.Windows.Forms.Button();
-            this.BorrowedBookOneMemberLabel = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.BookRentsLW = new System.Windows.Forms.ListView();
             this.IdNumberColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AuthorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TitleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PublisherColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LoanDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ReturnDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DeadlineColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.UserNotesTB = new System.Windows.Forms.TextBox();
+            this.CancelEditButton = new System.Windows.Forms.Button();
             this.SurnameOneMemberLabel = new System.Windows.Forms.Label();
-            this.SurnameOneMemberTextBox = new System.Windows.Forms.TextBox();
-            this.AddressOneMemberTextBox = new System.Windows.Forms.TextBox();
-            this.PhoneOneMemberTextBox = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.UserSurnameTB = new System.Windows.Forms.TextBox();
+            this.UserAddressTB = new System.Windows.Forms.TextBox();
+            this.UserPhoneTB = new System.Windows.Forms.TextBox();
+            this.EditUserButton = new System.Windows.Forms.Button();
             this.PhoneOneMemberLabel = new System.Windows.Forms.Label();
             this.AddressOneMemberLabel = new System.Windows.Forms.Label();
             this.NameOneMemberLabel = new System.Windows.Forms.Label();
             this.MailOneMemberLabel = new System.Windows.Forms.Label();
             this.OneMemberLabel = new System.Windows.Forms.Label();
-            this.MailOneMemberTextBox = new System.Windows.Forms.TextBox();
-            this.NameOneMemberTextBox = new System.Windows.Forms.TextBox();
+            this.UserEmailTB = new System.Windows.Forms.TextBox();
+            this.UserNameTB = new System.Windows.Forms.TextBox();
             this.InsertBookTabePage = new System.Windows.Forms.TabPage();
             this.OutputArchiveBookButton = new System.Windows.Forms.Button();
             this.InsertBooksGroupBox = new System.Windows.Forms.GroupBox();
@@ -266,10 +258,8 @@ namespace Books
             this.NameRegisterTextBox = new System.Windows.Forms.TextBox();
             this.NameRegisterLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
-            this.MainTab.SuspendLayout();
-            this.SearchMemberGroupBox.SuspendLayout();
+            this.MainTabControl.SuspendLayout();
+            this.SearchTab.SuspendLayout();
             this.BookSearchGroupBox.SuspendLayout();
             this.BookTab.SuspendLayout();
             this.BooksGroupBox.SuspendLayout();
@@ -277,7 +267,7 @@ namespace Books
             this.OneBookGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StatusOneBookPictureBox)).BeginInit();
             this.AddDataGroupBox.SuspendLayout();
-            this.MemberTabPage.SuspendLayout();
+            this.UserTabPage.SuspendLayout();
             this.BorrowedBookOneMemberGroupBox.SuspendLayout();
             this.MemberGroupBox.SuspendLayout();
             this.InsertBookTabePage.SuspendLayout();
@@ -300,182 +290,103 @@ namespace Books
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // MainTabControl
             // 
-            this.tabControl1.Controls.Add(this.MainTab);
-            this.tabControl1.Controls.Add(this.BookTab);
-            this.tabControl1.Controls.Add(this.MemberTabPage);
-            this.tabControl1.Controls.Add(this.InsertBookTabePage);
-            this.tabControl1.Controls.Add(this.InsertMemberTabPage);
-            this.tabControl1.Controls.Add(this.BooksOutputTabPage);
-            this.tabControl1.Controls.Add(this.SettingsTabPage);
-            this.tabControl1.Controls.Add(this.LoginTabPage);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1223, 984);
-            this.tabControl1.TabIndex = 0;
+            this.MainTabControl.Controls.Add(this.SearchTab);
+            this.MainTabControl.Controls.Add(this.BookTab);
+            this.MainTabControl.Controls.Add(this.UserTabPage);
+            this.MainTabControl.Controls.Add(this.InsertBookTabePage);
+            this.MainTabControl.Controls.Add(this.InsertMemberTabPage);
+            this.MainTabControl.Controls.Add(this.BooksOutputTabPage);
+            this.MainTabControl.Controls.Add(this.SettingsTabPage);
+            this.MainTabControl.Controls.Add(this.LoginTabPage);
+            this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTabControl.Location = new System.Drawing.Point(0, 0);
+            this.MainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 0;
+            this.MainTabControl.Size = new System.Drawing.Size(1087, 787);
+            this.MainTabControl.TabIndex = 0;
             // 
-            // MainTab
+            // SearchTab
             // 
-            this.MainTab.Controls.Add(this.button1);
-            this.MainTab.Controls.Add(this.SearchMemberGroupBox);
-            this.MainTab.Controls.Add(this.BookSearchGroupBox);
-            this.MainTab.Location = new System.Drawing.Point(4, 29);
-            this.MainTab.Name = "MainTab";
-            this.MainTab.Padding = new System.Windows.Forms.Padding(3);
-            this.MainTab.Size = new System.Drawing.Size(1215, 951);
-            this.MainTab.TabIndex = 0;
-            this.MainTab.Text = "Osnovno";
-            this.MainTab.UseVisualStyleBackColor = true;
+            this.SearchTab.Controls.Add(this.SearchResultLW);
+            this.SearchTab.Controls.Add(this.button1);
+            this.SearchTab.Controls.Add(this.BookSearchGroupBox);
+            this.SearchTab.Location = new System.Drawing.Point(4, 25);
+            this.SearchTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SearchTab.Name = "SearchTab";
+            this.SearchTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SearchTab.Size = new System.Drawing.Size(1079, 758);
+            this.SearchTab.TabIndex = 0;
+            this.SearchTab.Text = "Osnovno";
+            this.SearchTab.UseVisualStyleBackColor = true;
             // 
-            // SearchMemberGroupBox
+            // SearchResultLW
             // 
-            this.SearchMemberGroupBox.Controls.Add(this.PhoneSearchMemberLabel);
-            this.SearchMemberGroupBox.Controls.Add(this.PhoneSearchMemberComboBox);
-            this.SearchMemberGroupBox.Controls.Add(this.SurnameSearchMemberLabel);
-            this.SearchMemberGroupBox.Controls.Add(this.SurnameSearchMemberTextBox);
-            this.SearchMemberGroupBox.Controls.Add(this.AddMemberButton);
-            this.SearchMemberGroupBox.Controls.Add(this.SearchMemberButton);
-            this.SearchMemberGroupBox.Controls.Add(this.NameSearchMemberLabel);
-            this.SearchMemberGroupBox.Controls.Add(this.NameSearchMemberTextBox);
-            this.SearchMemberGroupBox.Controls.Add(this.SerachMemberLabel);
-            this.SearchMemberGroupBox.Location = new System.Drawing.Point(599, 73);
-            this.SearchMemberGroupBox.Name = "SearchMemberGroupBox";
-            this.SearchMemberGroupBox.Size = new System.Drawing.Size(371, 442);
-            this.SearchMemberGroupBox.TabIndex = 1;
-            this.SearchMemberGroupBox.TabStop = false;
-            this.SearchMemberGroupBox.Text = "Iskanje člana";
+            this.SearchResultLW.HideSelection = false;
+            this.SearchResultLW.Location = new System.Drawing.Point(7, 73);
+            this.SearchResultLW.Name = "SearchResultLW";
+            this.SearchResultLW.Size = new System.Drawing.Size(734, 441);
+            this.SearchResultLW.TabIndex = 3;
+            this.SearchResultLW.UseCompatibleStateImageBehavior = false;
+            this.SearchResultLW.View = System.Windows.Forms.View.Details;
+            this.SearchResultLW.DoubleClick += new System.EventHandler(this.SearchResultLW_DoubleClick);
             // 
-            // PhoneSearchMemberLabel
+            // button1
             // 
-            this.PhoneSearchMemberLabel.AutoSize = true;
-            this.PhoneSearchMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.PhoneSearchMemberLabel.Location = new System.Drawing.Point(6, 172);
-            this.PhoneSearchMemberLabel.Name = "PhoneSearchMemberLabel";
-            this.PhoneSearchMemberLabel.Size = new System.Drawing.Size(71, 22);
-            this.PhoneSearchMemberLabel.TabIndex = 9;
-            this.PhoneSearchMemberLabel.Text = "Telefon";
-            // 
-            // PhoneSearchMemberComboBox
-            // 
-            this.PhoneSearchMemberComboBox.FormattingEnabled = true;
-            this.PhoneSearchMemberComboBox.Location = new System.Drawing.Point(107, 171);
-            this.PhoneSearchMemberComboBox.Name = "PhoneSearchMemberComboBox";
-            this.PhoneSearchMemberComboBox.Size = new System.Drawing.Size(258, 28);
-            this.PhoneSearchMemberComboBox.TabIndex = 8;
-            // 
-            // SurnameSearchMemberLabel
-            // 
-            this.SurnameSearchMemberLabel.AutoSize = true;
-            this.SurnameSearchMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SurnameSearchMemberLabel.Location = new System.Drawing.Point(6, 138);
-            this.SurnameSearchMemberLabel.Name = "SurnameSearchMemberLabel";
-            this.SurnameSearchMemberLabel.Size = new System.Drawing.Size(69, 22);
-            this.SurnameSearchMemberLabel.TabIndex = 7;
-            this.SurnameSearchMemberLabel.Text = "Priimek";
-            // 
-            // SurnameSearchMemberTextBox
-            // 
-            this.SurnameSearchMemberTextBox.Location = new System.Drawing.Point(107, 139);
-            this.SurnameSearchMemberTextBox.Name = "SurnameSearchMemberTextBox";
-            this.SurnameSearchMemberTextBox.Size = new System.Drawing.Size(258, 26);
-            this.SurnameSearchMemberTextBox.TabIndex = 6;
-            // 
-            // AddMemberButton
-            // 
-            this.AddMemberButton.Location = new System.Drawing.Point(123, 332);
-            this.AddMemberButton.Name = "AddMemberButton";
-            this.AddMemberButton.Size = new System.Drawing.Size(132, 52);
-            this.AddMemberButton.TabIndex = 5;
-            this.AddMemberButton.Text = "Dodaj člana";
-            this.AddMemberButton.UseVisualStyleBackColor = true;
-            // 
-            // SearchMemberButton
-            // 
-            this.SearchMemberButton.Location = new System.Drawing.Point(131, 244);
-            this.SearchMemberButton.Name = "SearchMemberButton";
-            this.SearchMemberButton.Size = new System.Drawing.Size(114, 36);
-            this.SearchMemberButton.TabIndex = 3;
-            this.SearchMemberButton.Text = "Poišči";
-            this.SearchMemberButton.UseVisualStyleBackColor = true;
-            // 
-            // NameSearchMemberLabel
-            // 
-            this.NameSearchMemberLabel.AutoSize = true;
-            this.NameSearchMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.NameSearchMemberLabel.Location = new System.Drawing.Point(6, 104);
-            this.NameSearchMemberLabel.Name = "NameSearchMemberLabel";
-            this.NameSearchMemberLabel.Size = new System.Drawing.Size(38, 22);
-            this.NameSearchMemberLabel.TabIndex = 2;
-            this.NameSearchMemberLabel.Text = "Ime";
-            // 
-            // NameSearchMemberTextBox
-            // 
-            this.NameSearchMemberTextBox.Location = new System.Drawing.Point(107, 105);
-            this.NameSearchMemberTextBox.Name = "NameSearchMemberTextBox";
-            this.NameSearchMemberTextBox.Size = new System.Drawing.Size(258, 26);
-            this.NameSearchMemberTextBox.TabIndex = 1;
-            // 
-            // SerachMemberLabel
-            // 
-            this.SerachMemberLabel.AutoSize = true;
-            this.SerachMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SerachMemberLabel.Location = new System.Drawing.Point(126, 47);
-            this.SerachMemberLabel.Name = "SerachMemberLabel";
-            this.SerachMemberLabel.Size = new System.Drawing.Size(129, 26);
-            this.SerachMemberLabel.TabIndex = 0;
-            this.SerachMemberLabel.Text = "Poišči člana";
+            this.button1.Location = new System.Drawing.Point(927, 98);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(67, 18);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // BookSearchGroupBox
             // 
             this.BookSearchGroupBox.Controls.Add(this.AddBookButton);
-            this.BookSearchGroupBox.Controls.Add(this.SearchBookTextBox);
-            this.BookSearchGroupBox.Controls.Add(this.SearchBookButton);
-            this.BookSearchGroupBox.Controls.Add(this.SearchBookLabel);
+            this.BookSearchGroupBox.Controls.Add(this.SearchTextBox);
+            this.BookSearchGroupBox.Controls.Add(this.MainSearchButton);
             this.BookSearchGroupBox.Controls.Add(this.SearchBookComboBox);
-            this.BookSearchGroupBox.Location = new System.Drawing.Point(77, 73);
+            this.BookSearchGroupBox.Location = new System.Drawing.Point(8, 12);
+            this.BookSearchGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BookSearchGroupBox.Name = "BookSearchGroupBox";
-            this.BookSearchGroupBox.Size = new System.Drawing.Size(368, 442);
+            this.BookSearchGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BookSearchGroupBox.Size = new System.Drawing.Size(733, 55);
             this.BookSearchGroupBox.TabIndex = 0;
             this.BookSearchGroupBox.TabStop = false;
             this.BookSearchGroupBox.Text = "Iskanje gradiva";
             // 
             // AddBookButton
             // 
-            this.AddBookButton.Location = new System.Drawing.Point(107, 341);
+            this.AddBookButton.Location = new System.Drawing.Point(603, 16);
+            this.AddBookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddBookButton.Name = "AddBookButton";
-            this.AddBookButton.Size = new System.Drawing.Size(143, 52);
+            this.AddBookButton.Size = new System.Drawing.Size(116, 29);
             this.AddBookButton.TabIndex = 4;
             this.AddBookButton.Text = "Dodaj gradivo";
             this.AddBookButton.UseVisualStyleBackColor = true;
             // 
-            // SearchBookTextBox
+            // SearchTextBox
             // 
-            this.SearchBookTextBox.Location = new System.Drawing.Point(42, 164);
-            this.SearchBookTextBox.Name = "SearchBookTextBox";
-            this.SearchBookTextBox.Size = new System.Drawing.Size(266, 26);
-            this.SearchBookTextBox.TabIndex = 3;
+            this.SearchTextBox.Location = new System.Drawing.Point(6, 19);
+            this.SearchTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(307, 22);
+            this.SearchTextBox.TabIndex = 3;
             // 
-            // SearchBookButton
+            // MainSearchButton
             // 
-            this.SearchBookButton.Location = new System.Drawing.Point(117, 244);
-            this.SearchBookButton.Name = "SearchBookButton";
-            this.SearchBookButton.Size = new System.Drawing.Size(117, 36);
-            this.SearchBookButton.TabIndex = 2;
-            this.SearchBookButton.Text = "Poišči";
-            this.SearchBookButton.UseVisualStyleBackColor = true;
-            // 
-            // SearchBookLabel
-            // 
-            this.SearchBookLabel.AutoSize = true;
-            this.SearchBookLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SearchBookLabel.Location = new System.Drawing.Point(102, 47);
-            this.SearchBookLabel.Name = "SearchBookLabel";
-            this.SearchBookLabel.Size = new System.Drawing.Size(148, 26);
-            this.SearchBookLabel.TabIndex = 1;
-            this.SearchBookLabel.Text = "Poišči gradivo";
+            this.MainSearchButton.Location = new System.Drawing.Point(493, 16);
+            this.MainSearchButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MainSearchButton.Name = "MainSearchButton";
+            this.MainSearchButton.Size = new System.Drawing.Size(104, 29);
+            this.MainSearchButton.TabIndex = 2;
+            this.MainSearchButton.Text = "Poišči";
+            this.MainSearchButton.UseVisualStyleBackColor = true;
+            this.MainSearchButton.Click += new System.EventHandler(this.MainSearchButton_Click);
             // 
             // SearchBookComboBox
             // 
@@ -483,12 +394,13 @@ namespace Books
             this.SearchBookComboBox.Items.AddRange(new object[] {
             "Avtor",
             "Inventarna številka",
-            "naslov"});
-            this.SearchBookComboBox.Location = new System.Drawing.Point(75, 103);
+            "Naslov",
+            "Član"});
+            this.SearchBookComboBox.Location = new System.Drawing.Point(319, 19);
+            this.SearchBookComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SearchBookComboBox.Name = "SearchBookComboBox";
-            this.SearchBookComboBox.Size = new System.Drawing.Size(188, 28);
+            this.SearchBookComboBox.Size = new System.Drawing.Size(168, 24);
             this.SearchBookComboBox.TabIndex = 0;
-            this.SearchBookComboBox.SelectedIndexChanged += new System.EventHandler(this.SearchBookComboBox_SelectedIndexChanged);
             // 
             // BookTab
             // 
@@ -497,10 +409,11 @@ namespace Books
             this.BookTab.Controls.Add(this.BooksListView);
             this.BookTab.Controls.Add(this.OneBookGroupBox);
             this.BookTab.Controls.Add(this.AddDataGroupBox);
-            this.BookTab.Location = new System.Drawing.Point(4, 29);
+            this.BookTab.Location = new System.Drawing.Point(4, 25);
+            this.BookTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BookTab.Name = "BookTab";
-            this.BookTab.Padding = new System.Windows.Forms.Padding(3);
-            this.BookTab.Size = new System.Drawing.Size(1215, 951);
+            this.BookTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BookTab.Size = new System.Drawing.Size(1079, 758);
             this.BookTab.TabIndex = 1;
             this.BookTab.Text = "Gradivo";
             this.BookTab.UseVisualStyleBackColor = true;
@@ -520,9 +433,11 @@ namespace Books
             this.BooksGroupBox.Controls.Add(this.AuthorOneBookButton);
             this.BooksGroupBox.Controls.Add(this.TypeOneBookLabel);
             this.BooksGroupBox.Controls.Add(this.TypeOneBookComboBox);
-            this.BooksGroupBox.Location = new System.Drawing.Point(8, 6);
+            this.BooksGroupBox.Location = new System.Drawing.Point(7, 5);
+            this.BooksGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BooksGroupBox.Name = "BooksGroupBox";
-            this.BooksGroupBox.Size = new System.Drawing.Size(493, 407);
+            this.BooksGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BooksGroupBox.Size = new System.Drawing.Size(438, 326);
             this.BooksGroupBox.TabIndex = 3;
             this.BooksGroupBox.TabStop = false;
             this.BooksGroupBox.Text = "Knjige";
@@ -530,93 +445,100 @@ namespace Books
             // NumberOfBooksNumericUpDown
             // 
             this.NumberOfBooksNumericUpDown.Enabled = false;
-            this.NumberOfBooksNumericUpDown.Location = new System.Drawing.Point(137, 30);
+            this.NumberOfBooksNumericUpDown.Location = new System.Drawing.Point(122, 24);
+            this.NumberOfBooksNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NumberOfBooksNumericUpDown.Name = "NumberOfBooksNumericUpDown";
-            this.NumberOfBooksNumericUpDown.Size = new System.Drawing.Size(120, 26);
+            this.NumberOfBooksNumericUpDown.Size = new System.Drawing.Size(107, 22);
             this.NumberOfBooksNumericUpDown.TabIndex = 24;
             // 
             // NumberOfBooksLabel
             // 
             this.NumberOfBooksLabel.AutoSize = true;
-            this.NumberOfBooksLabel.Location = new System.Drawing.Point(22, 36);
+            this.NumberOfBooksLabel.Location = new System.Drawing.Point(20, 29);
             this.NumberOfBooksLabel.Name = "NumberOfBooksLabel";
-            this.NumberOfBooksLabel.Size = new System.Drawing.Size(92, 20);
+            this.NumberOfBooksLabel.Size = new System.Drawing.Size(83, 17);
             this.NumberOfBooksLabel.TabIndex = 23;
             this.NumberOfBooksLabel.Text = "Število knjig";
             // 
             // ChangeBooksButton
             // 
-            this.ChangeBooksButton.Location = new System.Drawing.Point(200, 331);
+            this.ChangeBooksButton.Location = new System.Drawing.Point(178, 265);
+            this.ChangeBooksButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeBooksButton.Name = "ChangeBooksButton";
-            this.ChangeBooksButton.Size = new System.Drawing.Size(105, 34);
+            this.ChangeBooksButton.Size = new System.Drawing.Size(93, 27);
             this.ChangeBooksButton.TabIndex = 22;
             this.ChangeBooksButton.Text = "Spremeni";
             this.ChangeBooksButton.UseVisualStyleBackColor = true;
             // 
             // DescriptionOneBookRichTextBox
             // 
-            this.DescriptionOneBookRichTextBox.Location = new System.Drawing.Point(137, 228);
+            this.DescriptionOneBookRichTextBox.Location = new System.Drawing.Point(122, 182);
+            this.DescriptionOneBookRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DescriptionOneBookRichTextBox.Name = "DescriptionOneBookRichTextBox";
-            this.DescriptionOneBookRichTextBox.Size = new System.Drawing.Size(333, 96);
+            this.DescriptionOneBookRichTextBox.Size = new System.Drawing.Size(296, 78);
             this.DescriptionOneBookRichTextBox.TabIndex = 21;
             this.DescriptionOneBookRichTextBox.Text = "";
             // 
             // TitleBooksTextBox
             // 
-            this.TitleBooksTextBox.Location = new System.Drawing.Point(137, 78);
+            this.TitleBooksTextBox.Location = new System.Drawing.Point(122, 62);
+            this.TitleBooksTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TitleBooksTextBox.Name = "TitleBooksTextBox";
-            this.TitleBooksTextBox.Size = new System.Drawing.Size(255, 26);
+            this.TitleBooksTextBox.Size = new System.Drawing.Size(227, 22);
             this.TitleBooksTextBox.TabIndex = 20;
             // 
             // DescriptionBooks
             // 
             this.DescriptionBooks.AutoSize = true;
-            this.DescriptionBooks.Location = new System.Drawing.Point(35, 266);
+            this.DescriptionBooks.Location = new System.Drawing.Point(31, 213);
             this.DescriptionBooks.Name = "DescriptionBooks";
-            this.DescriptionBooks.Size = new System.Drawing.Size(41, 20);
+            this.DescriptionBooks.Size = new System.Drawing.Size(37, 17);
             this.DescriptionBooks.TabIndex = 19;
             this.DescriptionBooks.Text = "Opis";
             // 
             // TitleBooksLabel
             // 
             this.TitleBooksLabel.AutoSize = true;
-            this.TitleBooksLabel.Location = new System.Drawing.Point(35, 78);
+            this.TitleBooksLabel.Location = new System.Drawing.Point(31, 62);
             this.TitleBooksLabel.Name = "TitleBooksLabel";
-            this.TitleBooksLabel.Size = new System.Drawing.Size(56, 20);
+            this.TitleBooksLabel.Size = new System.Drawing.Size(51, 17);
             this.TitleBooksLabel.TabIndex = 18;
             this.TitleBooksLabel.Text = "Naslov";
             // 
             // AuthorOneBookLabel
             // 
             this.AuthorOneBookLabel.AutoSize = true;
-            this.AuthorOneBookLabel.Location = new System.Drawing.Point(40, 138);
+            this.AuthorOneBookLabel.Location = new System.Drawing.Point(36, 110);
             this.AuthorOneBookLabel.Name = "AuthorOneBookLabel";
-            this.AuthorOneBookLabel.Size = new System.Drawing.Size(46, 20);
+            this.AuthorOneBookLabel.Size = new System.Drawing.Size(41, 17);
             this.AuthorOneBookLabel.TabIndex = 6;
             this.AuthorOneBookLabel.Text = "Avtor";
             // 
             // AuthorOneBookGroupBox
             // 
             this.AuthorOneBookGroupBox.FormattingEnabled = true;
-            this.AuthorOneBookGroupBox.Location = new System.Drawing.Point(137, 131);
+            this.AuthorOneBookGroupBox.Location = new System.Drawing.Point(122, 105);
+            this.AuthorOneBookGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AuthorOneBookGroupBox.Name = "AuthorOneBookGroupBox";
-            this.AuthorOneBookGroupBox.Size = new System.Drawing.Size(255, 28);
+            this.AuthorOneBookGroupBox.Size = new System.Drawing.Size(227, 24);
             this.AuthorOneBookGroupBox.TabIndex = 16;
             // 
             // TypeAddButton
             // 
-            this.TypeAddButton.Location = new System.Drawing.Point(394, 183);
+            this.TypeAddButton.Location = new System.Drawing.Point(350, 146);
+            this.TypeAddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TypeAddButton.Name = "TypeAddButton";
-            this.TypeAddButton.Size = new System.Drawing.Size(84, 34);
+            this.TypeAddButton.Size = new System.Drawing.Size(75, 27);
             this.TypeAddButton.TabIndex = 15;
             this.TypeAddButton.Text = "Dodaj";
             this.TypeAddButton.UseVisualStyleBackColor = true;
             // 
             // AuthorOneBookButton
             // 
-            this.AuthorOneBookButton.Location = new System.Drawing.Point(394, 126);
+            this.AuthorOneBookButton.Location = new System.Drawing.Point(350, 101);
+            this.AuthorOneBookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AuthorOneBookButton.Name = "AuthorOneBookButton";
-            this.AuthorOneBookButton.Size = new System.Drawing.Size(84, 35);
+            this.AuthorOneBookButton.Size = new System.Drawing.Size(75, 28);
             this.AuthorOneBookButton.TabIndex = 17;
             this.AuthorOneBookButton.Text = "Dodaj";
             this.AuthorOneBookButton.UseVisualStyleBackColor = true;
@@ -624,25 +546,27 @@ namespace Books
             // TypeOneBookLabel
             // 
             this.TypeOneBookLabel.AutoSize = true;
-            this.TypeOneBookLabel.Location = new System.Drawing.Point(4, 188);
+            this.TypeOneBookLabel.Location = new System.Drawing.Point(4, 150);
             this.TypeOneBookLabel.Name = "TypeOneBookLabel";
-            this.TypeOneBookLabel.Size = new System.Drawing.Size(116, 20);
+            this.TypeOneBookLabel.Size = new System.Drawing.Size(106, 17);
             this.TypeOneBookLabel.TabIndex = 8;
             this.TypeOneBookLabel.Text = "Področje / Žanr";
             // 
             // TypeOneBookComboBox
             // 
             this.TypeOneBookComboBox.FormattingEnabled = true;
-            this.TypeOneBookComboBox.Location = new System.Drawing.Point(137, 188);
+            this.TypeOneBookComboBox.Location = new System.Drawing.Point(122, 150);
+            this.TypeOneBookComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TypeOneBookComboBox.Name = "TypeOneBookComboBox";
-            this.TypeOneBookComboBox.Size = new System.Drawing.Size(255, 28);
+            this.TypeOneBookComboBox.Size = new System.Drawing.Size(227, 24);
             this.TypeOneBookComboBox.TabIndex = 13;
             // 
             // OneBookChooseButton
             // 
-            this.OneBookChooseButton.Location = new System.Drawing.Point(1050, 346);
+            this.OneBookChooseButton.Location = new System.Drawing.Point(933, 277);
+            this.OneBookChooseButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OneBookChooseButton.Name = "OneBookChooseButton";
-            this.OneBookChooseButton.Size = new System.Drawing.Size(94, 39);
+            this.OneBookChooseButton.Size = new System.Drawing.Size(84, 31);
             this.OneBookChooseButton.TabIndex = 2;
             this.OneBookChooseButton.Text = "Izberi";
             this.OneBookChooseButton.UseVisualStyleBackColor = true;
@@ -657,9 +581,10 @@ namespace Books
             this.columnHeader10,
             this.columnHeader11});
             this.BooksListView.HideSelection = false;
-            this.BooksListView.Location = new System.Drawing.Point(568, 36);
+            this.BooksListView.Location = new System.Drawing.Point(505, 29);
+            this.BooksListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BooksListView.Name = "BooksListView";
-            this.BooksListView.Size = new System.Drawing.Size(626, 304);
+            this.BooksListView.Size = new System.Drawing.Size(557, 244);
             this.BooksListView.TabIndex = 1;
             this.BooksListView.UseCompatibleStateImageBehavior = false;
             this.BooksListView.View = System.Windows.Forms.View.Details;
@@ -715,50 +640,55 @@ namespace Books
             this.OneBookGroupBox.Controls.Add(this.IdNumberOneBookLabel);
             this.OneBookGroupBox.Controls.Add(this.OneBookLabel);
             this.OneBookGroupBox.Controls.Add(this.IdNumberOneBookTextBox);
-            this.OneBookGroupBox.Location = new System.Drawing.Point(12, 474);
+            this.OneBookGroupBox.Location = new System.Drawing.Point(11, 379);
+            this.OneBookGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OneBookGroupBox.Name = "OneBookGroupBox";
-            this.OneBookGroupBox.Size = new System.Drawing.Size(493, 405);
+            this.OneBookGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OneBookGroupBox.Size = new System.Drawing.Size(438, 324);
             this.OneBookGroupBox.TabIndex = 0;
             this.OneBookGroupBox.TabStop = false;
             this.OneBookGroupBox.Text = "Knjiga";
             // 
             // DateAquiredOneBookDateTimePicker
             // 
-            this.DateAquiredOneBookDateTimePicker.Location = new System.Drawing.Point(211, 287);
+            this.DateAquiredOneBookDateTimePicker.Location = new System.Drawing.Point(188, 230);
+            this.DateAquiredOneBookDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DateAquiredOneBookDateTimePicker.Name = "DateAquiredOneBookDateTimePicker";
-            this.DateAquiredOneBookDateTimePicker.Size = new System.Drawing.Size(255, 26);
+            this.DateAquiredOneBookDateTimePicker.Size = new System.Drawing.Size(227, 22);
             this.DateAquiredOneBookDateTimePicker.TabIndex = 19;
             // 
             // DateAquiredOneBookLabel
             // 
             this.DateAquiredOneBookLabel.AutoSize = true;
-            this.DateAquiredOneBookLabel.Location = new System.Drawing.Point(18, 287);
+            this.DateAquiredOneBookLabel.Location = new System.Drawing.Point(16, 230);
             this.DateAquiredOneBookLabel.Name = "DateAquiredOneBookLabel";
-            this.DateAquiredOneBookLabel.Size = new System.Drawing.Size(129, 20);
+            this.DateAquiredOneBookLabel.Size = new System.Drawing.Size(115, 17);
             this.DateAquiredOneBookLabel.TabIndex = 18;
             this.DateAquiredOneBookLabel.Text = "Datum pridobitve";
             // 
             // DateOfPublishOneBookLabel
             // 
             this.DateOfPublishOneBookLabel.AutoSize = true;
-            this.DateOfPublishOneBookLabel.Location = new System.Drawing.Point(18, 154);
+            this.DateOfPublishOneBookLabel.Location = new System.Drawing.Point(16, 123);
             this.DateOfPublishOneBookLabel.Name = "DateOfPublishOneBookLabel";
-            this.DateOfPublishOneBookLabel.Size = new System.Drawing.Size(77, 20);
+            this.DateOfPublishOneBookLabel.Size = new System.Drawing.Size(69, 17);
             this.DateOfPublishOneBookLabel.TabIndex = 16;
             this.DateOfPublishOneBookLabel.Text = "Leto izida";
             // 
             // DateOfPublishOneBookTextBox
             // 
-            this.DateOfPublishOneBookTextBox.Location = new System.Drawing.Point(120, 154);
+            this.DateOfPublishOneBookTextBox.Location = new System.Drawing.Point(107, 123);
+            this.DateOfPublishOneBookTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DateOfPublishOneBookTextBox.Name = "DateOfPublishOneBookTextBox";
-            this.DateOfPublishOneBookTextBox.Size = new System.Drawing.Size(255, 26);
+            this.DateOfPublishOneBookTextBox.Size = new System.Drawing.Size(227, 22);
             this.DateOfPublishOneBookTextBox.TabIndex = 15;
             // 
             // PublisherAddButton
             // 
-            this.PublisherAddButton.Location = new System.Drawing.Point(396, 107);
+            this.PublisherAddButton.Location = new System.Drawing.Point(352, 86);
+            this.PublisherAddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PublisherAddButton.Name = "PublisherAddButton";
-            this.PublisherAddButton.Size = new System.Drawing.Size(84, 34);
+            this.PublisherAddButton.Size = new System.Drawing.Size(75, 27);
             this.PublisherAddButton.TabIndex = 0;
             this.PublisherAddButton.Text = "Dodaj";
             this.PublisherAddButton.UseVisualStyleBackColor = true;
@@ -766,24 +696,27 @@ namespace Books
             // AcquireOneBookGroupBox
             // 
             this.AcquireOneBookGroupBox.FormattingEnabled = true;
-            this.AcquireOneBookGroupBox.Location = new System.Drawing.Point(120, 244);
+            this.AcquireOneBookGroupBox.Location = new System.Drawing.Point(107, 195);
+            this.AcquireOneBookGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AcquireOneBookGroupBox.Name = "AcquireOneBookGroupBox";
-            this.AcquireOneBookGroupBox.Size = new System.Drawing.Size(255, 28);
+            this.AcquireOneBookGroupBox.Size = new System.Drawing.Size(227, 24);
             this.AcquireOneBookGroupBox.TabIndex = 14;
             // 
             // PublisherOneBookComboBox
             // 
             this.PublisherOneBookComboBox.FormattingEnabled = true;
-            this.PublisherOneBookComboBox.Location = new System.Drawing.Point(120, 106);
+            this.PublisherOneBookComboBox.Location = new System.Drawing.Point(107, 85);
+            this.PublisherOneBookComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PublisherOneBookComboBox.Name = "PublisherOneBookComboBox";
-            this.PublisherOneBookComboBox.Size = new System.Drawing.Size(255, 28);
+            this.PublisherOneBookComboBox.Size = new System.Drawing.Size(227, 24);
             this.PublisherOneBookComboBox.TabIndex = 12;
             // 
             // ChangeOneBookButton
             // 
-            this.ChangeOneBookButton.Location = new System.Drawing.Point(133, 340);
+            this.ChangeOneBookButton.Location = new System.Drawing.Point(118, 272);
+            this.ChangeOneBookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeOneBookButton.Name = "ChangeOneBookButton";
-            this.ChangeOneBookButton.Size = new System.Drawing.Size(105, 36);
+            this.ChangeOneBookButton.Size = new System.Drawing.Size(93, 29);
             this.ChangeOneBookButton.TabIndex = 11;
             this.ChangeOneBookButton.Text = "Spremeni";
             this.ChangeOneBookButton.UseVisualStyleBackColor = true;
@@ -791,36 +724,37 @@ namespace Books
             // StatusOneBookPictureBox
             // 
             this.StatusOneBookPictureBox.BackColor = System.Drawing.Color.Green;
-            this.StatusOneBookPictureBox.Location = new System.Drawing.Point(265, 30);
+            this.StatusOneBookPictureBox.Location = new System.Drawing.Point(236, 24);
+            this.StatusOneBookPictureBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StatusOneBookPictureBox.Name = "StatusOneBookPictureBox";
-            this.StatusOneBookPictureBox.Size = new System.Drawing.Size(37, 30);
+            this.StatusOneBookPictureBox.Size = new System.Drawing.Size(33, 24);
             this.StatusOneBookPictureBox.TabIndex = 1;
             this.StatusOneBookPictureBox.TabStop = false;
             // 
             // AquireOneBookLabel
             // 
             this.AquireOneBookLabel.AutoSize = true;
-            this.AquireOneBookLabel.Location = new System.Drawing.Point(9, 247);
+            this.AquireOneBookLabel.Location = new System.Drawing.Point(8, 198);
             this.AquireOneBookLabel.Name = "AquireOneBookLabel";
-            this.AquireOneBookLabel.Size = new System.Drawing.Size(78, 20);
+            this.AquireOneBookLabel.Size = new System.Drawing.Size(71, 17);
             this.AquireOneBookLabel.TabIndex = 10;
             this.AquireOneBookLabel.Text = "Pridobitev";
             // 
             // PublisherOneBookLabel
             // 
             this.PublisherOneBookLabel.AutoSize = true;
-            this.PublisherOneBookLabel.Location = new System.Drawing.Point(18, 109);
+            this.PublisherOneBookLabel.Location = new System.Drawing.Point(16, 87);
             this.PublisherOneBookLabel.Name = "PublisherOneBookLabel";
-            this.PublisherOneBookLabel.Size = new System.Drawing.Size(66, 20);
+            this.PublisherOneBookLabel.Size = new System.Drawing.Size(59, 17);
             this.PublisherOneBookLabel.TabIndex = 9;
             this.PublisherOneBookLabel.Text = "Založba";
             // 
             // IdNumberOneBookLabel
             // 
             this.IdNumberOneBookLabel.AutoSize = true;
-            this.IdNumberOneBookLabel.Location = new System.Drawing.Point(18, 197);
+            this.IdNumberOneBookLabel.Location = new System.Drawing.Point(16, 158);
             this.IdNumberOneBookLabel.Name = "IdNumberOneBookLabel";
-            this.IdNumberOneBookLabel.Size = new System.Drawing.Size(141, 20);
+            this.IdNumberOneBookLabel.Size = new System.Drawing.Size(126, 17);
             this.IdNumberOneBookLabel.TabIndex = 7;
             this.IdNumberOneBookLabel.Text = "Inventarna številka";
             // 
@@ -828,17 +762,18 @@ namespace Books
             // 
             this.OneBookLabel.AutoSize = true;
             this.OneBookLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.OneBookLabel.Location = new System.Drawing.Point(96, 30);
+            this.OneBookLabel.Location = new System.Drawing.Point(85, 24);
             this.OneBookLabel.Name = "OneBookLabel";
-            this.OneBookLabel.Size = new System.Drawing.Size(142, 25);
+            this.OneBookLabel.Size = new System.Drawing.Size(121, 20);
             this.OneBookLabel.TabIndex = 5;
             this.OneBookLabel.Text = "Podatki o knjigi";
             // 
             // IdNumberOneBookTextBox
             // 
-            this.IdNumberOneBookTextBox.Location = new System.Drawing.Point(211, 197);
+            this.IdNumberOneBookTextBox.Location = new System.Drawing.Point(188, 158);
+            this.IdNumberOneBookTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IdNumberOneBookTextBox.Name = "IdNumberOneBookTextBox";
-            this.IdNumberOneBookTextBox.Size = new System.Drawing.Size(255, 26);
+            this.IdNumberOneBookTextBox.Size = new System.Drawing.Size(227, 22);
             this.IdNumberOneBookTextBox.TabIndex = 3;
             // 
             // AddDataGroupBox
@@ -849,52 +784,57 @@ namespace Books
             this.AddDataGroupBox.Controls.Add(this.AddingSomethingTextBox);
             this.AddDataGroupBox.Controls.Add(this.AddingSomethingLabel);
             this.AddDataGroupBox.Controls.Add(this.AddingLabel);
-            this.AddDataGroupBox.Location = new System.Drawing.Point(617, 385);
+            this.AddDataGroupBox.Location = new System.Drawing.Point(548, 308);
+            this.AddDataGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddDataGroupBox.Name = "AddDataGroupBox";
-            this.AddDataGroupBox.Size = new System.Drawing.Size(467, 394);
+            this.AddDataGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AddDataGroupBox.Size = new System.Drawing.Size(415, 315);
             this.AddDataGroupBox.TabIndex = 0;
             this.AddDataGroupBox.TabStop = false;
             this.AddDataGroupBox.Text = "Dodajanje podatkov";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(66, 193);
+            this.richTextBox1.Location = new System.Drawing.Point(59, 154);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(333, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(296, 78);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(208, 161);
+            this.label1.Location = new System.Drawing.Point(185, 129);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "label1";
             // 
             // AddSomethingButton
             // 
-            this.AddSomethingButton.Location = new System.Drawing.Point(185, 341);
+            this.AddSomethingButton.Location = new System.Drawing.Point(164, 273);
+            this.AddSomethingButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddSomethingButton.Name = "AddSomethingButton";
-            this.AddSomethingButton.Size = new System.Drawing.Size(91, 28);
+            this.AddSomethingButton.Size = new System.Drawing.Size(81, 22);
             this.AddSomethingButton.TabIndex = 4;
             this.AddSomethingButton.Text = "Dodaj";
             this.AddSomethingButton.UseVisualStyleBackColor = true;
             // 
             // AddingSomethingTextBox
             // 
-            this.AddingSomethingTextBox.Location = new System.Drawing.Point(66, 112);
+            this.AddingSomethingTextBox.Location = new System.Drawing.Point(59, 90);
+            this.AddingSomethingTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddingSomethingTextBox.Name = "AddingSomethingTextBox";
-            this.AddingSomethingTextBox.Size = new System.Drawing.Size(333, 26);
+            this.AddingSomethingTextBox.Size = new System.Drawing.Size(296, 22);
             this.AddingSomethingTextBox.TabIndex = 3;
             // 
             // AddingSomethingLabel
             // 
             this.AddingSomethingLabel.AutoSize = true;
-            this.AddingSomethingLabel.Location = new System.Drawing.Point(200, 78);
+            this.AddingSomethingLabel.Location = new System.Drawing.Point(178, 62);
             this.AddingSomethingLabel.Name = "AddingSomethingLabel";
-            this.AddingSomethingLabel.Size = new System.Drawing.Size(51, 20);
+            this.AddingSomethingLabel.Size = new System.Drawing.Size(46, 17);
             this.AddingSomethingLabel.TabIndex = 2;
             this.AddingSomethingLabel.Text = "label1";
             // 
@@ -902,30 +842,32 @@ namespace Books
             // 
             this.AddingLabel.AutoSize = true;
             this.AddingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.AddingLabel.Location = new System.Drawing.Point(195, 30);
+            this.AddingLabel.Location = new System.Drawing.Point(173, 24);
             this.AddingLabel.Name = "AddingLabel";
-            this.AddingLabel.Size = new System.Drawing.Size(64, 25);
+            this.AddingLabel.Size = new System.Drawing.Size(53, 20);
             this.AddingLabel.TabIndex = 1;
             this.AddingLabel.Text = "label1";
             // 
-            // MemberTabPage
+            // UserTabPage
             // 
-            this.MemberTabPage.Controls.Add(this.OutputArchiveMemberButton);
-            this.MemberTabPage.Controls.Add(this.BorrowedBookOneMemberGroupBox);
-            this.MemberTabPage.Controls.Add(this.MemberGroupBox);
-            this.MemberTabPage.Location = new System.Drawing.Point(4, 29);
-            this.MemberTabPage.Name = "MemberTabPage";
-            this.MemberTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MemberTabPage.Size = new System.Drawing.Size(1215, 951);
-            this.MemberTabPage.TabIndex = 2;
-            this.MemberTabPage.Text = "Člani";
-            this.MemberTabPage.UseVisualStyleBackColor = true;
+            this.UserTabPage.Controls.Add(this.OutputArchiveMemberButton);
+            this.UserTabPage.Controls.Add(this.BorrowedBookOneMemberGroupBox);
+            this.UserTabPage.Controls.Add(this.MemberGroupBox);
+            this.UserTabPage.Location = new System.Drawing.Point(4, 25);
+            this.UserTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserTabPage.Name = "UserTabPage";
+            this.UserTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserTabPage.Size = new System.Drawing.Size(1079, 758);
+            this.UserTabPage.TabIndex = 2;
+            this.UserTabPage.Text = "Člani";
+            this.UserTabPage.UseVisualStyleBackColor = true;
             // 
             // OutputArchiveMemberButton
             // 
-            this.OutputArchiveMemberButton.Location = new System.Drawing.Point(131, 502);
+            this.OutputArchiveMemberButton.Location = new System.Drawing.Point(110, 438);
+            this.OutputArchiveMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OutputArchiveMemberButton.Name = "OutputArchiveMemberButton";
-            this.OutputArchiveMemberButton.Size = new System.Drawing.Size(157, 75);
+            this.OutputArchiveMemberButton.Size = new System.Drawing.Size(140, 60);
             this.OutputArchiveMemberButton.TabIndex = 4;
             this.OutputArchiveMemberButton.Text = "Izpiši njegov arhiv";
             this.OutputArchiveMemberButton.UseVisualStyleBackColor = true;
@@ -939,11 +881,12 @@ namespace Books
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.RentBookToMemberLabel);
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.AddIdLoanBookTextBox);
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.ReturnBookOneMemberButton);
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.BorrowedBookOneMemberLabel);
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.listView1);
-            this.BorrowedBookOneMemberGroupBox.Location = new System.Drawing.Point(450, 29);
+            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.BookRentsLW);
+            this.BorrowedBookOneMemberGroupBox.Location = new System.Drawing.Point(400, 23);
+            this.BorrowedBookOneMemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BorrowedBookOneMemberGroupBox.Name = "BorrowedBookOneMemberGroupBox";
-            this.BorrowedBookOneMemberGroupBox.Size = new System.Drawing.Size(605, 663);
+            this.BorrowedBookOneMemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BorrowedBookOneMemberGroupBox.Size = new System.Drawing.Size(673, 530);
             this.BorrowedBookOneMemberGroupBox.TabIndex = 3;
             this.BorrowedBookOneMemberGroupBox.TabStop = false;
             this.BorrowedBookOneMemberGroupBox.Text = "Izposojene knjige";
@@ -951,9 +894,9 @@ namespace Books
             // DeadlineLoanBookLabel
             // 
             this.DeadlineLoanBookLabel.AutoSize = true;
-            this.DeadlineLoanBookLabel.Location = new System.Drawing.Point(70, 546);
+            this.DeadlineLoanBookLabel.Location = new System.Drawing.Point(62, 437);
             this.DeadlineLoanBookLabel.Name = "DeadlineLoanBookLabel";
-            this.DeadlineLoanBookLabel.Size = new System.Drawing.Size(63, 20);
+            this.DeadlineLoanBookLabel.Size = new System.Drawing.Size(56, 17);
             this.DeadlineLoanBookLabel.TabIndex = 10;
             this.DeadlineLoanBookLabel.Text = "Do kdaj";
             // 
@@ -965,16 +908,18 @@ namespace Books
             "14 dni",
             "21 dni",
             "1 mesec"});
-            this.DeadlineLoanBookComboBox.Location = new System.Drawing.Point(235, 543);
+            this.DeadlineLoanBookComboBox.Location = new System.Drawing.Point(209, 434);
+            this.DeadlineLoanBookComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeadlineLoanBookComboBox.Name = "DeadlineLoanBookComboBox";
-            this.DeadlineLoanBookComboBox.Size = new System.Drawing.Size(201, 28);
+            this.DeadlineLoanBookComboBox.Size = new System.Drawing.Size(179, 24);
             this.DeadlineLoanBookComboBox.TabIndex = 9;
             // 
             // LoanBookButton
             // 
-            this.LoanBookButton.Location = new System.Drawing.Point(245, 601);
+            this.LoanBookButton.Location = new System.Drawing.Point(218, 481);
+            this.LoanBookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LoanBookButton.Name = "LoanBookButton";
-            this.LoanBookButton.Size = new System.Drawing.Size(107, 38);
+            this.LoanBookButton.Size = new System.Drawing.Size(95, 30);
             this.LoanBookButton.TabIndex = 8;
             this.LoanBookButton.Text = "Izposodi";
             this.LoanBookButton.UseVisualStyleBackColor = true;
@@ -982,9 +927,9 @@ namespace Books
             // AddIdLoanBookLabel
             // 
             this.AddIdLoanBookLabel.AutoSize = true;
-            this.AddIdLoanBookLabel.Location = new System.Drawing.Point(70, 516);
+            this.AddIdLoanBookLabel.Location = new System.Drawing.Point(62, 413);
             this.AddIdLoanBookLabel.Name = "AddIdLoanBookLabel";
-            this.AddIdLoanBookLabel.Size = new System.Drawing.Size(146, 20);
+            this.AddIdLoanBookLabel.Size = new System.Drawing.Size(132, 17);
             this.AddIdLoanBookLabel.TabIndex = 7;
             this.AddIdLoanBookLabel.Text = "Vnesite inv. številko";
             // 
@@ -992,203 +937,235 @@ namespace Books
             // 
             this.RentBookToMemberLabel.AutoSize = true;
             this.RentBookToMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.RentBookToMemberLabel.Location = new System.Drawing.Point(230, 471);
+            this.RentBookToMemberLabel.Location = new System.Drawing.Point(204, 377);
             this.RentBookToMemberLabel.Name = "RentBookToMemberLabel";
-            this.RentBookToMemberLabel.Size = new System.Drawing.Size(156, 26);
+            this.RentBookToMemberLabel.Size = new System.Drawing.Size(135, 24);
             this.RentBookToMemberLabel.TabIndex = 6;
             this.RentBookToMemberLabel.Text = "Izposodi knjigo";
             // 
             // AddIdLoanBookTextBox
             // 
-            this.AddIdLoanBookTextBox.Location = new System.Drawing.Point(235, 510);
+            this.AddIdLoanBookTextBox.Location = new System.Drawing.Point(209, 408);
+            this.AddIdLoanBookTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddIdLoanBookTextBox.Name = "AddIdLoanBookTextBox";
-            this.AddIdLoanBookTextBox.Size = new System.Drawing.Size(201, 26);
+            this.AddIdLoanBookTextBox.Size = new System.Drawing.Size(179, 22);
             this.AddIdLoanBookTextBox.TabIndex = 5;
             // 
             // ReturnBookOneMemberButton
             // 
-            this.ReturnBookOneMemberButton.Location = new System.Drawing.Point(481, 384);
+            this.ReturnBookOneMemberButton.Location = new System.Drawing.Point(428, 307);
+            this.ReturnBookOneMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ReturnBookOneMemberButton.Name = "ReturnBookOneMemberButton";
-            this.ReturnBookOneMemberButton.Size = new System.Drawing.Size(106, 39);
+            this.ReturnBookOneMemberButton.Size = new System.Drawing.Size(94, 31);
             this.ReturnBookOneMemberButton.TabIndex = 4;
             this.ReturnBookOneMemberButton.Text = "Vrni";
             this.ReturnBookOneMemberButton.UseVisualStyleBackColor = true;
             // 
-            // BorrowedBookOneMemberLabel
+            // BookRentsLW
             // 
-            this.BorrowedBookOneMemberLabel.AutoSize = true;
-            this.BorrowedBookOneMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.BorrowedBookOneMemberLabel.Location = new System.Drawing.Point(209, 22);
-            this.BorrowedBookOneMemberLabel.Name = "BorrowedBookOneMemberLabel";
-            this.BorrowedBookOneMemberLabel.Size = new System.Drawing.Size(163, 25);
-            this.BorrowedBookOneMemberLabel.TabIndex = 3;
-            this.BorrowedBookOneMemberLabel.Text = "Izposojene knjige";
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.BookRentsLW.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.IdNumberColumnHeader,
-            this.AuthorColumnHeader,
+            this.TitleColumnHeader,
             this.PublisherColumnHeader,
-            this.TypeColumnHeader,
             this.LoanDateColumnHeader,
-            this.ReturnDateColumnHeader});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(27, 72);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(560, 295);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.DeadlineColumnHeader});
+            this.BookRentsLW.HideSelection = false;
+            this.BookRentsLW.Location = new System.Drawing.Point(6, 29);
+            this.BookRentsLW.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BookRentsLW.Name = "BookRentsLW";
+            this.BookRentsLW.Size = new System.Drawing.Size(661, 237);
+            this.BookRentsLW.TabIndex = 2;
+            this.BookRentsLW.UseCompatibleStateImageBehavior = false;
+            this.BookRentsLW.View = System.Windows.Forms.View.Details;
             // 
             // IdNumberColumnHeader
             // 
             this.IdNumberColumnHeader.Text = "Inv. številka";
-            this.IdNumberColumnHeader.Width = 101;
+            this.IdNumberColumnHeader.Width = 118;
             // 
-            // AuthorColumnHeader
+            // TitleColumnHeader
             // 
-            this.AuthorColumnHeader.Text = "Avtor";
-            this.AuthorColumnHeader.Width = 129;
+            this.TitleColumnHeader.Text = "Naslov";
+            this.TitleColumnHeader.Width = 141;
             // 
             // PublisherColumnHeader
             // 
             this.PublisherColumnHeader.Text = "Založba";
             this.PublisherColumnHeader.Width = 135;
             // 
-            // TypeColumnHeader
-            // 
-            this.TypeColumnHeader.Text = "Žanr";
-            this.TypeColumnHeader.Width = 117;
-            // 
             // LoanDateColumnHeader
             // 
             this.LoanDateColumnHeader.Text = "Datum izposoje";
             this.LoanDateColumnHeader.Width = 136;
             // 
-            // ReturnDateColumnHeader
+            // DeadlineColumnHeader
             // 
-            this.ReturnDateColumnHeader.Text = "Do kdaj mora vrniti";
+            this.DeadlineColumnHeader.Text = "Rok vrnitve";
+            this.DeadlineColumnHeader.Width = 96;
             // 
             // MemberGroupBox
             // 
+            this.MemberGroupBox.Controls.Add(this.label2);
+            this.MemberGroupBox.Controls.Add(this.UserNotesTB);
+            this.MemberGroupBox.Controls.Add(this.CancelEditButton);
             this.MemberGroupBox.Controls.Add(this.SurnameOneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.SurnameOneMemberTextBox);
-            this.MemberGroupBox.Controls.Add(this.AddressOneMemberTextBox);
-            this.MemberGroupBox.Controls.Add(this.PhoneOneMemberTextBox);
-            this.MemberGroupBox.Controls.Add(this.button3);
+            this.MemberGroupBox.Controls.Add(this.UserSurnameTB);
+            this.MemberGroupBox.Controls.Add(this.UserAddressTB);
+            this.MemberGroupBox.Controls.Add(this.UserPhoneTB);
+            this.MemberGroupBox.Controls.Add(this.EditUserButton);
             this.MemberGroupBox.Controls.Add(this.PhoneOneMemberLabel);
             this.MemberGroupBox.Controls.Add(this.AddressOneMemberLabel);
             this.MemberGroupBox.Controls.Add(this.NameOneMemberLabel);
             this.MemberGroupBox.Controls.Add(this.MailOneMemberLabel);
             this.MemberGroupBox.Controls.Add(this.OneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.MailOneMemberTextBox);
-            this.MemberGroupBox.Controls.Add(this.NameOneMemberTextBox);
-            this.MemberGroupBox.Location = new System.Drawing.Point(35, 29);
+            this.MemberGroupBox.Controls.Add(this.UserEmailTB);
+            this.MemberGroupBox.Controls.Add(this.UserNameTB);
+            this.MemberGroupBox.Location = new System.Drawing.Point(31, 23);
+            this.MemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Size = new System.Drawing.Size(376, 408);
+            this.MemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MemberGroupBox.Size = new System.Drawing.Size(334, 411);
             this.MemberGroupBox.TabIndex = 1;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "Član";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 265);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 17);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Opombe";
+            // 
+            // UserNotesTB
+            // 
+            this.UserNotesTB.Location = new System.Drawing.Point(102, 262);
+            this.UserNotesTB.Multiline = true;
+            this.UserNotesTB.Name = "UserNotesTB";
+            this.UserNotesTB.Size = new System.Drawing.Size(227, 107);
+            this.UserNotesTB.TabIndex = 21;
+            // 
+            // CancelEditButton
+            // 
+            this.CancelEditButton.Location = new System.Drawing.Point(236, 374);
+            this.CancelEditButton.Name = "CancelEditButton";
+            this.CancelEditButton.Size = new System.Drawing.Size(93, 29);
+            this.CancelEditButton.TabIndex = 20;
+            this.CancelEditButton.Text = "Prekliči";
+            this.CancelEditButton.UseVisualStyleBackColor = true;
+            this.CancelEditButton.Visible = false;
+            this.CancelEditButton.Click += new System.EventHandler(this.CancelEditButton_Click);
+            // 
             // SurnameOneMemberLabel
             // 
             this.SurnameOneMemberLabel.AutoSize = true;
-            this.SurnameOneMemberLabel.Location = new System.Drawing.Point(6, 153);
+            this.SurnameOneMemberLabel.Location = new System.Drawing.Point(5, 122);
             this.SurnameOneMemberLabel.Name = "SurnameOneMemberLabel";
-            this.SurnameOneMemberLabel.Size = new System.Drawing.Size(60, 20);
+            this.SurnameOneMemberLabel.Size = new System.Drawing.Size(54, 17);
             this.SurnameOneMemberLabel.TabIndex = 19;
             this.SurnameOneMemberLabel.Text = "Priimek";
             // 
-            // SurnameOneMemberTextBox
+            // UserSurnameTB
             // 
-            this.SurnameOneMemberTextBox.Location = new System.Drawing.Point(115, 147);
-            this.SurnameOneMemberTextBox.Name = "SurnameOneMemberTextBox";
-            this.SurnameOneMemberTextBox.Size = new System.Drawing.Size(255, 26);
-            this.SurnameOneMemberTextBox.TabIndex = 18;
+            this.UserSurnameTB.Enabled = false;
+            this.UserSurnameTB.Location = new System.Drawing.Point(102, 118);
+            this.UserSurnameTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserSurnameTB.Name = "UserSurnameTB";
+            this.UserSurnameTB.Size = new System.Drawing.Size(227, 22);
+            this.UserSurnameTB.TabIndex = 18;
             // 
-            // AddressOneMemberTextBox
+            // UserAddressTB
             // 
-            this.AddressOneMemberTextBox.Location = new System.Drawing.Point(115, 238);
-            this.AddressOneMemberTextBox.Name = "AddressOneMemberTextBox";
-            this.AddressOneMemberTextBox.Size = new System.Drawing.Size(255, 26);
-            this.AddressOneMemberTextBox.TabIndex = 17;
+            this.UserAddressTB.Enabled = false;
+            this.UserAddressTB.Location = new System.Drawing.Point(102, 190);
+            this.UserAddressTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserAddressTB.Name = "UserAddressTB";
+            this.UserAddressTB.Size = new System.Drawing.Size(227, 22);
+            this.UserAddressTB.TabIndex = 17;
             // 
-            // PhoneOneMemberTextBox
+            // UserPhoneTB
             // 
-            this.PhoneOneMemberTextBox.Location = new System.Drawing.Point(115, 193);
-            this.PhoneOneMemberTextBox.Name = "PhoneOneMemberTextBox";
-            this.PhoneOneMemberTextBox.Size = new System.Drawing.Size(255, 26);
-            this.PhoneOneMemberTextBox.TabIndex = 16;
+            this.UserPhoneTB.Enabled = false;
+            this.UserPhoneTB.Location = new System.Drawing.Point(102, 154);
+            this.UserPhoneTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserPhoneTB.Name = "UserPhoneTB";
+            this.UserPhoneTB.Size = new System.Drawing.Size(227, 22);
+            this.UserPhoneTB.TabIndex = 16;
             // 
-            // button3
+            // EditUserButton
             // 
-            this.button3.Location = new System.Drawing.Point(134, 343);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(105, 36);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Spremeni";
-            this.button3.UseVisualStyleBackColor = true;
+            this.EditUserButton.Location = new System.Drawing.Point(100, 374);
+            this.EditUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EditUserButton.Name = "EditUserButton";
+            this.EditUserButton.Size = new System.Drawing.Size(93, 29);
+            this.EditUserButton.TabIndex = 11;
+            this.EditUserButton.Text = "Spremeni";
+            this.EditUserButton.UseVisualStyleBackColor = true;
             // 
             // PhoneOneMemberLabel
             // 
             this.PhoneOneMemberLabel.AutoSize = true;
-            this.PhoneOneMemberLabel.Location = new System.Drawing.Point(6, 199);
+            this.PhoneOneMemberLabel.Location = new System.Drawing.Point(5, 159);
             this.PhoneOneMemberLabel.Name = "PhoneOneMemberLabel";
-            this.PhoneOneMemberLabel.Size = new System.Drawing.Size(62, 20);
+            this.PhoneOneMemberLabel.Size = new System.Drawing.Size(56, 17);
             this.PhoneOneMemberLabel.TabIndex = 9;
             this.PhoneOneMemberLabel.Text = "Telefon";
             // 
             // AddressOneMemberLabel
             // 
             this.AddressOneMemberLabel.AutoSize = true;
-            this.AddressOneMemberLabel.Location = new System.Drawing.Point(6, 244);
+            this.AddressOneMemberLabel.Location = new System.Drawing.Point(5, 195);
             this.AddressOneMemberLabel.Name = "AddressOneMemberLabel";
-            this.AddressOneMemberLabel.Size = new System.Drawing.Size(56, 20);
+            this.AddressOneMemberLabel.Size = new System.Drawing.Size(51, 17);
             this.AddressOneMemberLabel.TabIndex = 8;
             this.AddressOneMemberLabel.Text = "Naslov";
             // 
             // NameOneMemberLabel
             // 
             this.NameOneMemberLabel.AutoSize = true;
-            this.NameOneMemberLabel.Location = new System.Drawing.Point(6, 98);
+            this.NameOneMemberLabel.Location = new System.Drawing.Point(5, 78);
             this.NameOneMemberLabel.Name = "NameOneMemberLabel";
-            this.NameOneMemberLabel.Size = new System.Drawing.Size(36, 20);
+            this.NameOneMemberLabel.Size = new System.Drawing.Size(30, 17);
             this.NameOneMemberLabel.TabIndex = 6;
             this.NameOneMemberLabel.Text = "Ime";
             // 
             // MailOneMemberLabel
             // 
             this.MailOneMemberLabel.AutoSize = true;
-            this.MailOneMemberLabel.Location = new System.Drawing.Point(6, 289);
+            this.MailOneMemberLabel.Location = new System.Drawing.Point(5, 231);
             this.MailOneMemberLabel.Name = "MailOneMemberLabel";
-            this.MailOneMemberLabel.Size = new System.Drawing.Size(37, 20);
+            this.MailOneMemberLabel.Size = new System.Drawing.Size(63, 17);
             this.MailOneMemberLabel.TabIndex = 7;
-            this.MailOneMemberLabel.Text = "Mail";
+            this.MailOneMemberLabel.Text = "E-naslov";
             // 
             // OneMemberLabel
             // 
             this.OneMemberLabel.AutoSize = true;
             this.OneMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.OneMemberLabel.Location = new System.Drawing.Point(108, 22);
+            this.OneMemberLabel.Location = new System.Drawing.Point(96, 18);
             this.OneMemberLabel.Name = "OneMemberLabel";
-            this.OneMemberLabel.Size = new System.Drawing.Size(145, 25);
+            this.OneMemberLabel.Size = new System.Drawing.Size(123, 20);
             this.OneMemberLabel.TabIndex = 5;
             this.OneMemberLabel.Text = "Podatki o članu";
             // 
-            // MailOneMemberTextBox
+            // UserEmailTB
             // 
-            this.MailOneMemberTextBox.Location = new System.Drawing.Point(115, 283);
-            this.MailOneMemberTextBox.Name = "MailOneMemberTextBox";
-            this.MailOneMemberTextBox.Size = new System.Drawing.Size(255, 26);
-            this.MailOneMemberTextBox.TabIndex = 3;
+            this.UserEmailTB.Enabled = false;
+            this.UserEmailTB.Location = new System.Drawing.Point(102, 226);
+            this.UserEmailTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserEmailTB.Name = "UserEmailTB";
+            this.UserEmailTB.Size = new System.Drawing.Size(227, 22);
+            this.UserEmailTB.TabIndex = 3;
             // 
-            // NameOneMemberTextBox
+            // UserNameTB
             // 
-            this.NameOneMemberTextBox.Location = new System.Drawing.Point(113, 98);
-            this.NameOneMemberTextBox.Name = "NameOneMemberTextBox";
-            this.NameOneMemberTextBox.Size = new System.Drawing.Size(257, 26);
-            this.NameOneMemberTextBox.TabIndex = 0;
+            this.UserNameTB.Enabled = false;
+            this.UserNameTB.Location = new System.Drawing.Point(100, 78);
+            this.UserNameTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserNameTB.Name = "UserNameTB";
+            this.UserNameTB.Size = new System.Drawing.Size(229, 22);
+            this.UserNameTB.TabIndex = 0;
             // 
             // InsertBookTabePage
             // 
@@ -1196,19 +1173,21 @@ namespace Books
             this.InsertBookTabePage.Controls.Add(this.InsertBooksGroupBox);
             this.InsertBookTabePage.Controls.Add(this.groupBox3);
             this.InsertBookTabePage.Controls.Add(this.BookInsertGroupBox);
-            this.InsertBookTabePage.Location = new System.Drawing.Point(4, 29);
+            this.InsertBookTabePage.Location = new System.Drawing.Point(4, 25);
+            this.InsertBookTabePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertBookTabePage.Name = "InsertBookTabePage";
-            this.InsertBookTabePage.Padding = new System.Windows.Forms.Padding(3);
-            this.InsertBookTabePage.Size = new System.Drawing.Size(1215, 951);
+            this.InsertBookTabePage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InsertBookTabePage.Size = new System.Drawing.Size(1079, 758);
             this.InsertBookTabePage.TabIndex = 3;
             this.InsertBookTabePage.Text = "Vnos Gradiva";
             this.InsertBookTabePage.UseVisualStyleBackColor = true;
             // 
             // OutputArchiveBookButton
             // 
-            this.OutputArchiveBookButton.Location = new System.Drawing.Point(170, 622);
+            this.OutputArchiveBookButton.Location = new System.Drawing.Point(151, 498);
+            this.OutputArchiveBookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OutputArchiveBookButton.Name = "OutputArchiveBookButton";
-            this.OutputArchiveBookButton.Size = new System.Drawing.Size(136, 74);
+            this.OutputArchiveBookButton.Size = new System.Drawing.Size(121, 59);
             this.OutputArchiveBookButton.TabIndex = 5;
             this.OutputArchiveBookButton.Text = "Izpiši arhiv izposoje te knjige";
             this.OutputArchiveBookButton.UseVisualStyleBackColor = true;
@@ -1228,9 +1207,11 @@ namespace Books
             this.InsertBooksGroupBox.Controls.Add(this.button7);
             this.InsertBooksGroupBox.Controls.Add(this.TypeInsertBooksLabel);
             this.InsertBooksGroupBox.Controls.Add(this.TypeInsertBooksComboBox);
-            this.InsertBooksGroupBox.Location = new System.Drawing.Point(559, 18);
+            this.InsertBooksGroupBox.Location = new System.Drawing.Point(497, 14);
+            this.InsertBooksGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertBooksGroupBox.Name = "InsertBooksGroupBox";
-            this.InsertBooksGroupBox.Size = new System.Drawing.Size(493, 407);
+            this.InsertBooksGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InsertBooksGroupBox.Size = new System.Drawing.Size(438, 326);
             this.InsertBooksGroupBox.TabIndex = 4;
             this.InsertBooksGroupBox.TabStop = false;
             this.InsertBooksGroupBox.Text = "Knjige";
@@ -1238,93 +1219,100 @@ namespace Books
             // NumberOfBooksInsertBooksNumericUpDown
             // 
             this.NumberOfBooksInsertBooksNumericUpDown.Enabled = false;
-            this.NumberOfBooksInsertBooksNumericUpDown.Location = new System.Drawing.Point(137, 30);
+            this.NumberOfBooksInsertBooksNumericUpDown.Location = new System.Drawing.Point(122, 24);
+            this.NumberOfBooksInsertBooksNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NumberOfBooksInsertBooksNumericUpDown.Name = "NumberOfBooksInsertBooksNumericUpDown";
-            this.NumberOfBooksInsertBooksNumericUpDown.Size = new System.Drawing.Size(120, 26);
+            this.NumberOfBooksInsertBooksNumericUpDown.Size = new System.Drawing.Size(107, 22);
             this.NumberOfBooksInsertBooksNumericUpDown.TabIndex = 24;
             // 
             // NumberOfBooksInsertBooksLabel
             // 
             this.NumberOfBooksInsertBooksLabel.AutoSize = true;
-            this.NumberOfBooksInsertBooksLabel.Location = new System.Drawing.Point(22, 36);
+            this.NumberOfBooksInsertBooksLabel.Location = new System.Drawing.Point(20, 29);
             this.NumberOfBooksInsertBooksLabel.Name = "NumberOfBooksInsertBooksLabel";
-            this.NumberOfBooksInsertBooksLabel.Size = new System.Drawing.Size(92, 20);
+            this.NumberOfBooksInsertBooksLabel.Size = new System.Drawing.Size(83, 17);
             this.NumberOfBooksInsertBooksLabel.TabIndex = 23;
             this.NumberOfBooksInsertBooksLabel.Text = "Število knjig";
             // 
             // InsertBooksButton
             // 
-            this.InsertBooksButton.Location = new System.Drawing.Point(200, 331);
+            this.InsertBooksButton.Location = new System.Drawing.Point(178, 265);
+            this.InsertBooksButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertBooksButton.Name = "InsertBooksButton";
-            this.InsertBooksButton.Size = new System.Drawing.Size(105, 34);
+            this.InsertBooksButton.Size = new System.Drawing.Size(93, 27);
             this.InsertBooksButton.TabIndex = 22;
             this.InsertBooksButton.Text = "Dodaj";
             this.InsertBooksButton.UseVisualStyleBackColor = true;
             // 
             // DescriptionInsertBooksRichTextBox
             // 
-            this.DescriptionInsertBooksRichTextBox.Location = new System.Drawing.Point(137, 228);
+            this.DescriptionInsertBooksRichTextBox.Location = new System.Drawing.Point(122, 182);
+            this.DescriptionInsertBooksRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DescriptionInsertBooksRichTextBox.Name = "DescriptionInsertBooksRichTextBox";
-            this.DescriptionInsertBooksRichTextBox.Size = new System.Drawing.Size(333, 96);
+            this.DescriptionInsertBooksRichTextBox.Size = new System.Drawing.Size(296, 78);
             this.DescriptionInsertBooksRichTextBox.TabIndex = 21;
             this.DescriptionInsertBooksRichTextBox.Text = "";
             // 
             // TitleInserBooksTextBox
             // 
-            this.TitleInserBooksTextBox.Location = new System.Drawing.Point(137, 78);
+            this.TitleInserBooksTextBox.Location = new System.Drawing.Point(122, 62);
+            this.TitleInserBooksTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TitleInserBooksTextBox.Name = "TitleInserBooksTextBox";
-            this.TitleInserBooksTextBox.Size = new System.Drawing.Size(255, 26);
+            this.TitleInserBooksTextBox.Size = new System.Drawing.Size(227, 22);
             this.TitleInserBooksTextBox.TabIndex = 20;
             // 
             // DescriptionInsertBooksLabel
             // 
             this.DescriptionInsertBooksLabel.AutoSize = true;
-            this.DescriptionInsertBooksLabel.Location = new System.Drawing.Point(35, 266);
+            this.DescriptionInsertBooksLabel.Location = new System.Drawing.Point(31, 213);
             this.DescriptionInsertBooksLabel.Name = "DescriptionInsertBooksLabel";
-            this.DescriptionInsertBooksLabel.Size = new System.Drawing.Size(41, 20);
+            this.DescriptionInsertBooksLabel.Size = new System.Drawing.Size(37, 17);
             this.DescriptionInsertBooksLabel.TabIndex = 19;
             this.DescriptionInsertBooksLabel.Text = "Opis";
             // 
             // TitleInsertBooksLabel
             // 
             this.TitleInsertBooksLabel.AutoSize = true;
-            this.TitleInsertBooksLabel.Location = new System.Drawing.Point(35, 78);
+            this.TitleInsertBooksLabel.Location = new System.Drawing.Point(31, 62);
             this.TitleInsertBooksLabel.Name = "TitleInsertBooksLabel";
-            this.TitleInsertBooksLabel.Size = new System.Drawing.Size(56, 20);
+            this.TitleInsertBooksLabel.Size = new System.Drawing.Size(51, 17);
             this.TitleInsertBooksLabel.TabIndex = 18;
             this.TitleInsertBooksLabel.Text = "Naslov";
             // 
             // AuthorInsertBooksLabel
             // 
             this.AuthorInsertBooksLabel.AutoSize = true;
-            this.AuthorInsertBooksLabel.Location = new System.Drawing.Point(40, 138);
+            this.AuthorInsertBooksLabel.Location = new System.Drawing.Point(36, 110);
             this.AuthorInsertBooksLabel.Name = "AuthorInsertBooksLabel";
-            this.AuthorInsertBooksLabel.Size = new System.Drawing.Size(46, 20);
+            this.AuthorInsertBooksLabel.Size = new System.Drawing.Size(41, 17);
             this.AuthorInsertBooksLabel.TabIndex = 6;
             this.AuthorInsertBooksLabel.Text = "Avtor";
             // 
             // AuthorInsertBooksComboBox
             // 
             this.AuthorInsertBooksComboBox.FormattingEnabled = true;
-            this.AuthorInsertBooksComboBox.Location = new System.Drawing.Point(137, 131);
+            this.AuthorInsertBooksComboBox.Location = new System.Drawing.Point(122, 105);
+            this.AuthorInsertBooksComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AuthorInsertBooksComboBox.Name = "AuthorInsertBooksComboBox";
-            this.AuthorInsertBooksComboBox.Size = new System.Drawing.Size(255, 28);
+            this.AuthorInsertBooksComboBox.Size = new System.Drawing.Size(227, 24);
             this.AuthorInsertBooksComboBox.TabIndex = 16;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(394, 183);
+            this.button5.Location = new System.Drawing.Point(350, 146);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(84, 34);
+            this.button5.Size = new System.Drawing.Size(75, 27);
             this.button5.TabIndex = 15;
             this.button5.Text = "Dodaj";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(394, 126);
+            this.button7.Location = new System.Drawing.Point(350, 101);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(84, 35);
+            this.button7.Size = new System.Drawing.Size(75, 28);
             this.button7.TabIndex = 17;
             this.button7.Text = "Dodaj";
             this.button7.UseVisualStyleBackColor = true;
@@ -1332,18 +1320,19 @@ namespace Books
             // TypeInsertBooksLabel
             // 
             this.TypeInsertBooksLabel.AutoSize = true;
-            this.TypeInsertBooksLabel.Location = new System.Drawing.Point(4, 188);
+            this.TypeInsertBooksLabel.Location = new System.Drawing.Point(4, 150);
             this.TypeInsertBooksLabel.Name = "TypeInsertBooksLabel";
-            this.TypeInsertBooksLabel.Size = new System.Drawing.Size(116, 20);
+            this.TypeInsertBooksLabel.Size = new System.Drawing.Size(106, 17);
             this.TypeInsertBooksLabel.TabIndex = 8;
             this.TypeInsertBooksLabel.Text = "Področje / Žanr";
             // 
             // TypeInsertBooksComboBox
             // 
             this.TypeInsertBooksComboBox.FormattingEnabled = true;
-            this.TypeInsertBooksComboBox.Location = new System.Drawing.Point(137, 188);
+            this.TypeInsertBooksComboBox.Location = new System.Drawing.Point(122, 150);
+            this.TypeInsertBooksComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TypeInsertBooksComboBox.Name = "TypeInsertBooksComboBox";
-            this.TypeInsertBooksComboBox.Size = new System.Drawing.Size(255, 28);
+            this.TypeInsertBooksComboBox.Size = new System.Drawing.Size(227, 24);
             this.TypeInsertBooksComboBox.TabIndex = 13;
             // 
             // groupBox3
@@ -1352,35 +1341,39 @@ namespace Books
             this.groupBox3.Controls.Add(this.textBox7);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Location = new System.Drawing.Point(585, 469);
+            this.groupBox3.Location = new System.Drawing.Point(520, 375);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(467, 209);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(415, 167);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dodajanje podatkov";
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(182, 167);
+            this.button6.Location = new System.Drawing.Point(162, 134);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(91, 28);
+            this.button6.Size = new System.Drawing.Size(81, 22);
             this.button6.TabIndex = 4;
             this.button6.Text = "Dodaj";
             this.button6.UseVisualStyleBackColor = true;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(66, 112);
+            this.textBox7.Location = new System.Drawing.Point(59, 90);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(333, 26);
+            this.textBox7.Size = new System.Drawing.Size(296, 22);
             this.textBox7.TabIndex = 3;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(200, 78);
+            this.label12.Location = new System.Drawing.Point(178, 62);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 20);
+            this.label12.Size = new System.Drawing.Size(46, 17);
             this.label12.TabIndex = 2;
             this.label12.Text = "label1";
             // 
@@ -1388,9 +1381,9 @@ namespace Books
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label13.Location = new System.Drawing.Point(195, 30);
+            this.label13.Location = new System.Drawing.Point(173, 24);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 25);
+            this.label13.Size = new System.Drawing.Size(53, 20);
             this.label13.TabIndex = 1;
             this.label13.Text = "label1";
             // 
@@ -1411,18 +1404,21 @@ namespace Books
             this.BookInsertGroupBox.Controls.Add(this.IdNumberBookInsertLabel);
             this.BookInsertGroupBox.Controls.Add(this.BookInsertLabel);
             this.BookInsertGroupBox.Controls.Add(this.IdNumberBookInsertTextBox);
-            this.BookInsertGroupBox.Location = new System.Drawing.Point(29, 18);
+            this.BookInsertGroupBox.Location = new System.Drawing.Point(26, 14);
+            this.BookInsertGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BookInsertGroupBox.Name = "BookInsertGroupBox";
-            this.BookInsertGroupBox.Size = new System.Drawing.Size(439, 574);
+            this.BookInsertGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BookInsertGroupBox.Size = new System.Drawing.Size(390, 459);
             this.BookInsertGroupBox.TabIndex = 1;
             this.BookInsertGroupBox.TabStop = false;
             this.BookInsertGroupBox.Text = "Knjiga";
             // 
             // MoveToInsertBooksButton
             // 
-            this.MoveToInsertBooksButton.Location = new System.Drawing.Point(323, 188);
+            this.MoveToInsertBooksButton.Location = new System.Drawing.Point(287, 150);
+            this.MoveToInsertBooksButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MoveToInsertBooksButton.Name = "MoveToInsertBooksButton";
-            this.MoveToInsertBooksButton.Size = new System.Drawing.Size(110, 52);
+            this.MoveToInsertBooksButton.Size = new System.Drawing.Size(98, 42);
             this.MoveToInsertBooksButton.TabIndex = 20;
             this.MoveToInsertBooksButton.Text = "Še nimate te knjige";
             this.MoveToInsertBooksButton.UseVisualStyleBackColor = true;
@@ -1430,27 +1426,28 @@ namespace Books
             // AddBooksInsertLabel
             // 
             this.AddBooksInsertLabel.AutoSize = true;
-            this.AddBooksInsertLabel.Location = new System.Drawing.Point(20, 154);
+            this.AddBooksInsertLabel.Location = new System.Drawing.Point(18, 123);
             this.AddBooksInsertLabel.Name = "AddBooksInsertLabel";
-            this.AddBooksInsertLabel.Size = new System.Drawing.Size(107, 20);
+            this.AddBooksInsertLabel.Size = new System.Drawing.Size(95, 17);
             this.AddBooksInsertLabel.TabIndex = 18;
             this.AddBooksInsertLabel.Text = "Izberite knjigo";
             // 
             // AddSearchTypeBookInsertLabel
             // 
             this.AddSearchTypeBookInsertLabel.AutoSize = true;
-            this.AddSearchTypeBookInsertLabel.Location = new System.Drawing.Point(0, 116);
+            this.AddSearchTypeBookInsertLabel.Location = new System.Drawing.Point(0, 93);
             this.AddSearchTypeBookInsertLabel.Name = "AddSearchTypeBookInsertLabel";
-            this.AddSearchTypeBookInsertLabel.Size = new System.Drawing.Size(157, 20);
+            this.AddSearchTypeBookInsertLabel.Size = new System.Drawing.Size(140, 17);
             this.AddSearchTypeBookInsertLabel.TabIndex = 17;
             this.AddSearchTypeBookInsertLabel.Text = "Izberite način iskanja";
             // 
             // AddBooksInserComboBox
             // 
             this.AddBooksInserComboBox.FormattingEnabled = true;
-            this.AddBooksInserComboBox.Location = new System.Drawing.Point(159, 147);
+            this.AddBooksInserComboBox.Location = new System.Drawing.Point(141, 118);
+            this.AddBooksInserComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddBooksInserComboBox.Name = "AddBooksInserComboBox";
-            this.AddBooksInserComboBox.Size = new System.Drawing.Size(274, 28);
+            this.AddBooksInserComboBox.Size = new System.Drawing.Size(244, 24);
             this.AddBooksInserComboBox.TabIndex = 16;
             // 
             // AddSearchTypeBookInsertComboBox
@@ -1460,16 +1457,18 @@ namespace Books
             "Avtor",
             "Naslov",
             "Žanr"});
-            this.AddSearchTypeBookInsertComboBox.Location = new System.Drawing.Point(159, 113);
+            this.AddSearchTypeBookInsertComboBox.Location = new System.Drawing.Point(141, 90);
+            this.AddSearchTypeBookInsertComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddSearchTypeBookInsertComboBox.Name = "AddSearchTypeBookInsertComboBox";
-            this.AddSearchTypeBookInsertComboBox.Size = new System.Drawing.Size(274, 28);
+            this.AddSearchTypeBookInsertComboBox.Size = new System.Drawing.Size(244, 24);
             this.AddSearchTypeBookInsertComboBox.TabIndex = 15;
             // 
             // PublisherBookInsertButton
             // 
-            this.PublisherBookInsertButton.Location = new System.Drawing.Point(355, 296);
+            this.PublisherBookInsertButton.Location = new System.Drawing.Point(316, 237);
+            this.PublisherBookInsertButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PublisherBookInsertButton.Name = "PublisherBookInsertButton";
-            this.PublisherBookInsertButton.Size = new System.Drawing.Size(84, 34);
+            this.PublisherBookInsertButton.Size = new System.Drawing.Size(75, 27);
             this.PublisherBookInsertButton.TabIndex = 0;
             this.PublisherBookInsertButton.Text = "Dodaj";
             this.PublisherBookInsertButton.UseVisualStyleBackColor = true;
@@ -1477,24 +1476,27 @@ namespace Books
             // AquireBookInsertComboBox
             // 
             this.AquireBookInsertComboBox.FormattingEnabled = true;
-            this.AquireBookInsertComboBox.Location = new System.Drawing.Point(178, 398);
+            this.AquireBookInsertComboBox.Location = new System.Drawing.Point(158, 318);
+            this.AquireBookInsertComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AquireBookInsertComboBox.Name = "AquireBookInsertComboBox";
-            this.AquireBookInsertComboBox.Size = new System.Drawing.Size(255, 28);
+            this.AquireBookInsertComboBox.Size = new System.Drawing.Size(227, 24);
             this.AquireBookInsertComboBox.TabIndex = 14;
             // 
             // PublisherBookInsertComboBox
             // 
             this.PublisherBookInsertComboBox.FormattingEnabled = true;
-            this.PublisherBookInsertComboBox.Location = new System.Drawing.Point(117, 302);
+            this.PublisherBookInsertComboBox.Location = new System.Drawing.Point(104, 242);
+            this.PublisherBookInsertComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PublisherBookInsertComboBox.Name = "PublisherBookInsertComboBox";
-            this.PublisherBookInsertComboBox.Size = new System.Drawing.Size(224, 28);
+            this.PublisherBookInsertComboBox.Size = new System.Drawing.Size(200, 24);
             this.PublisherBookInsertComboBox.TabIndex = 12;
             // 
             // InsertBookButton
             // 
-            this.InsertBookButton.Location = new System.Drawing.Point(120, 506);
+            this.InsertBookButton.Location = new System.Drawing.Point(107, 405);
+            this.InsertBookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertBookButton.Name = "InsertBookButton";
-            this.InsertBookButton.Size = new System.Drawing.Size(105, 36);
+            this.InsertBookButton.Size = new System.Drawing.Size(93, 29);
             this.InsertBookButton.TabIndex = 11;
             this.InsertBookButton.Text = "Dodaj";
             this.InsertBookButton.UseVisualStyleBackColor = true;
@@ -1502,36 +1504,36 @@ namespace Books
             // AquireBookInsertLabel
             // 
             this.AquireBookInsertLabel.AutoSize = true;
-            this.AquireBookInsertLabel.Location = new System.Drawing.Point(16, 398);
+            this.AquireBookInsertLabel.Location = new System.Drawing.Point(14, 318);
             this.AquireBookInsertLabel.Name = "AquireBookInsertLabel";
-            this.AquireBookInsertLabel.Size = new System.Drawing.Size(78, 20);
+            this.AquireBookInsertLabel.Size = new System.Drawing.Size(71, 17);
             this.AquireBookInsertLabel.TabIndex = 10;
             this.AquireBookInsertLabel.Text = "Pridobitev";
             // 
             // PublisherBookInsertLabel
             // 
             this.PublisherBookInsertLabel.AutoSize = true;
-            this.PublisherBookInsertLabel.Location = new System.Drawing.Point(16, 310);
+            this.PublisherBookInsertLabel.Location = new System.Drawing.Point(14, 248);
             this.PublisherBookInsertLabel.Name = "PublisherBookInsertLabel";
-            this.PublisherBookInsertLabel.Size = new System.Drawing.Size(66, 20);
+            this.PublisherBookInsertLabel.Size = new System.Drawing.Size(59, 17);
             this.PublisherBookInsertLabel.TabIndex = 9;
             this.PublisherBookInsertLabel.Text = "Založba";
             // 
             // ChooseBooksInsertLabel
             // 
             this.ChooseBooksInsertLabel.AutoSize = true;
-            this.ChooseBooksInsertLabel.Location = new System.Drawing.Point(155, 78);
+            this.ChooseBooksInsertLabel.Location = new System.Drawing.Point(138, 62);
             this.ChooseBooksInsertLabel.Name = "ChooseBooksInsertLabel";
-            this.ChooseBooksInsertLabel.Size = new System.Drawing.Size(93, 20);
+            this.ChooseBooksInsertLabel.Size = new System.Drawing.Size(83, 17);
             this.ChooseBooksInsertLabel.TabIndex = 6;
             this.ChooseBooksInsertLabel.Text = "Izberi knjigo";
             // 
             // IdNumberBookInsertLabel
             // 
             this.IdNumberBookInsertLabel.AutoSize = true;
-            this.IdNumberBookInsertLabel.Location = new System.Drawing.Point(16, 359);
+            this.IdNumberBookInsertLabel.Location = new System.Drawing.Point(14, 287);
             this.IdNumberBookInsertLabel.Name = "IdNumberBookInsertLabel";
-            this.IdNumberBookInsertLabel.Size = new System.Drawing.Size(141, 20);
+            this.IdNumberBookInsertLabel.Size = new System.Drawing.Size(126, 17);
             this.IdNumberBookInsertLabel.TabIndex = 7;
             this.IdNumberBookInsertLabel.Text = "Inventarna številka";
             // 
@@ -1539,26 +1541,28 @@ namespace Books
             // 
             this.BookInsertLabel.AutoSize = true;
             this.BookInsertLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.BookInsertLabel.Location = new System.Drawing.Point(115, 34);
+            this.BookInsertLabel.Location = new System.Drawing.Point(102, 27);
             this.BookInsertLabel.Name = "BookInsertLabel";
-            this.BookInsertLabel.Size = new System.Drawing.Size(118, 25);
+            this.BookInsertLabel.Size = new System.Drawing.Size(99, 20);
             this.BookInsertLabel.TabIndex = 5;
             this.BookInsertLabel.Text = "Vnesi knjigo";
             // 
             // IdNumberBookInsertTextBox
             // 
-            this.IdNumberBookInsertTextBox.Location = new System.Drawing.Point(178, 359);
+            this.IdNumberBookInsertTextBox.Location = new System.Drawing.Point(158, 287);
+            this.IdNumberBookInsertTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IdNumberBookInsertTextBox.Name = "IdNumberBookInsertTextBox";
-            this.IdNumberBookInsertTextBox.Size = new System.Drawing.Size(255, 26);
+            this.IdNumberBookInsertTextBox.Size = new System.Drawing.Size(227, 22);
             this.IdNumberBookInsertTextBox.TabIndex = 3;
             // 
             // InsertMemberTabPage
             // 
             this.InsertMemberTabPage.Controls.Add(this.InsertMemberGroupBox);
-            this.InsertMemberTabPage.Location = new System.Drawing.Point(4, 29);
+            this.InsertMemberTabPage.Location = new System.Drawing.Point(4, 25);
+            this.InsertMemberTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertMemberTabPage.Name = "InsertMemberTabPage";
-            this.InsertMemberTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.InsertMemberTabPage.Size = new System.Drawing.Size(1215, 951);
+            this.InsertMemberTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InsertMemberTabPage.Size = new System.Drawing.Size(1079, 758);
             this.InsertMemberTabPage.TabIndex = 7;
             this.InsertMemberTabPage.Text = "Vnos člana";
             this.InsertMemberTabPage.UseVisualStyleBackColor = true;
@@ -1577,9 +1581,11 @@ namespace Books
             this.InsertMemberGroupBox.Controls.Add(this.InsertmemberLabel);
             this.InsertMemberGroupBox.Controls.Add(this.MailInsertMemberTextBox);
             this.InsertMemberGroupBox.Controls.Add(this.NameInsertMemberTextBox);
-            this.InsertMemberGroupBox.Location = new System.Drawing.Point(365, 59);
+            this.InsertMemberGroupBox.Location = new System.Drawing.Point(324, 47);
+            this.InsertMemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertMemberGroupBox.Name = "InsertMemberGroupBox";
-            this.InsertMemberGroupBox.Size = new System.Drawing.Size(376, 408);
+            this.InsertMemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InsertMemberGroupBox.Size = new System.Drawing.Size(334, 326);
             this.InsertMemberGroupBox.TabIndex = 2;
             this.InsertMemberGroupBox.TabStop = false;
             this.InsertMemberGroupBox.Text = "Član";
@@ -1587,38 +1593,42 @@ namespace Books
             // SurnameInsertMemberLabel
             // 
             this.SurnameInsertMemberLabel.AutoSize = true;
-            this.SurnameInsertMemberLabel.Location = new System.Drawing.Point(6, 153);
+            this.SurnameInsertMemberLabel.Location = new System.Drawing.Point(5, 122);
             this.SurnameInsertMemberLabel.Name = "SurnameInsertMemberLabel";
-            this.SurnameInsertMemberLabel.Size = new System.Drawing.Size(60, 20);
+            this.SurnameInsertMemberLabel.Size = new System.Drawing.Size(54, 17);
             this.SurnameInsertMemberLabel.TabIndex = 19;
             this.SurnameInsertMemberLabel.Text = "Priimek";
             // 
             // SurnameInsertMemberTextBox
             // 
-            this.SurnameInsertMemberTextBox.Location = new System.Drawing.Point(115, 147);
+            this.SurnameInsertMemberTextBox.Location = new System.Drawing.Point(102, 118);
+            this.SurnameInsertMemberTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SurnameInsertMemberTextBox.Name = "SurnameInsertMemberTextBox";
-            this.SurnameInsertMemberTextBox.Size = new System.Drawing.Size(255, 26);
+            this.SurnameInsertMemberTextBox.Size = new System.Drawing.Size(227, 22);
             this.SurnameInsertMemberTextBox.TabIndex = 18;
             // 
             // AddressInserMemberTextBox
             // 
-            this.AddressInserMemberTextBox.Location = new System.Drawing.Point(115, 238);
+            this.AddressInserMemberTextBox.Location = new System.Drawing.Point(102, 190);
+            this.AddressInserMemberTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddressInserMemberTextBox.Name = "AddressInserMemberTextBox";
-            this.AddressInserMemberTextBox.Size = new System.Drawing.Size(255, 26);
+            this.AddressInserMemberTextBox.Size = new System.Drawing.Size(227, 22);
             this.AddressInserMemberTextBox.TabIndex = 17;
             // 
             // PhoneInsertMemberTextBox
             // 
-            this.PhoneInsertMemberTextBox.Location = new System.Drawing.Point(115, 193);
+            this.PhoneInsertMemberTextBox.Location = new System.Drawing.Point(102, 154);
+            this.PhoneInsertMemberTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PhoneInsertMemberTextBox.Name = "PhoneInsertMemberTextBox";
-            this.PhoneInsertMemberTextBox.Size = new System.Drawing.Size(255, 26);
+            this.PhoneInsertMemberTextBox.Size = new System.Drawing.Size(227, 22);
             this.PhoneInsertMemberTextBox.TabIndex = 16;
             // 
             // InsertMemberButton
             // 
-            this.InsertMemberButton.Location = new System.Drawing.Point(134, 343);
+            this.InsertMemberButton.Location = new System.Drawing.Point(119, 274);
+            this.InsertMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertMemberButton.Name = "InsertMemberButton";
-            this.InsertMemberButton.Size = new System.Drawing.Size(105, 36);
+            this.InsertMemberButton.Size = new System.Drawing.Size(93, 29);
             this.InsertMemberButton.TabIndex = 11;
             this.InsertMemberButton.Text = "Vnesi";
             this.InsertMemberButton.UseVisualStyleBackColor = true;
@@ -1626,36 +1636,36 @@ namespace Books
             // PhoneInsertMemberLabel
             // 
             this.PhoneInsertMemberLabel.AutoSize = true;
-            this.PhoneInsertMemberLabel.Location = new System.Drawing.Point(6, 199);
+            this.PhoneInsertMemberLabel.Location = new System.Drawing.Point(5, 159);
             this.PhoneInsertMemberLabel.Name = "PhoneInsertMemberLabel";
-            this.PhoneInsertMemberLabel.Size = new System.Drawing.Size(62, 20);
+            this.PhoneInsertMemberLabel.Size = new System.Drawing.Size(56, 17);
             this.PhoneInsertMemberLabel.TabIndex = 9;
             this.PhoneInsertMemberLabel.Text = "Telefon";
             // 
             // AddressInsertMemberLabel
             // 
             this.AddressInsertMemberLabel.AutoSize = true;
-            this.AddressInsertMemberLabel.Location = new System.Drawing.Point(6, 244);
+            this.AddressInsertMemberLabel.Location = new System.Drawing.Point(5, 195);
             this.AddressInsertMemberLabel.Name = "AddressInsertMemberLabel";
-            this.AddressInsertMemberLabel.Size = new System.Drawing.Size(56, 20);
+            this.AddressInsertMemberLabel.Size = new System.Drawing.Size(51, 17);
             this.AddressInsertMemberLabel.TabIndex = 8;
             this.AddressInsertMemberLabel.Text = "Naslov";
             // 
             // NameInsertMemberlabel
             // 
             this.NameInsertMemberlabel.AutoSize = true;
-            this.NameInsertMemberlabel.Location = new System.Drawing.Point(6, 98);
+            this.NameInsertMemberlabel.Location = new System.Drawing.Point(5, 78);
             this.NameInsertMemberlabel.Name = "NameInsertMemberlabel";
-            this.NameInsertMemberlabel.Size = new System.Drawing.Size(36, 20);
+            this.NameInsertMemberlabel.Size = new System.Drawing.Size(30, 17);
             this.NameInsertMemberlabel.TabIndex = 6;
             this.NameInsertMemberlabel.Text = "Ime";
             // 
             // MailInsertMemberLabel
             // 
             this.MailInsertMemberLabel.AutoSize = true;
-            this.MailInsertMemberLabel.Location = new System.Drawing.Point(6, 289);
+            this.MailInsertMemberLabel.Location = new System.Drawing.Point(5, 231);
             this.MailInsertMemberLabel.Name = "MailInsertMemberLabel";
-            this.MailInsertMemberLabel.Size = new System.Drawing.Size(37, 20);
+            this.MailInsertMemberLabel.Size = new System.Drawing.Size(33, 17);
             this.MailInsertMemberLabel.TabIndex = 7;
             this.MailInsertMemberLabel.Text = "Mail";
             // 
@@ -1663,33 +1673,36 @@ namespace Books
             // 
             this.InsertmemberLabel.AutoSize = true;
             this.InsertmemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.InsertmemberLabel.Location = new System.Drawing.Point(108, 22);
+            this.InsertmemberLabel.Location = new System.Drawing.Point(96, 18);
             this.InsertmemberLabel.Name = "InsertmemberLabel";
-            this.InsertmemberLabel.Size = new System.Drawing.Size(200, 25);
+            this.InsertmemberLabel.Size = new System.Drawing.Size(168, 20);
             this.InsertmemberLabel.TabIndex = 5;
             this.InsertmemberLabel.Text = "Vnesite novega člana";
             // 
             // MailInsertMemberTextBox
             // 
-            this.MailInsertMemberTextBox.Location = new System.Drawing.Point(115, 283);
+            this.MailInsertMemberTextBox.Location = new System.Drawing.Point(102, 226);
+            this.MailInsertMemberTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MailInsertMemberTextBox.Name = "MailInsertMemberTextBox";
-            this.MailInsertMemberTextBox.Size = new System.Drawing.Size(255, 26);
+            this.MailInsertMemberTextBox.Size = new System.Drawing.Size(227, 22);
             this.MailInsertMemberTextBox.TabIndex = 3;
             // 
             // NameInsertMemberTextBox
             // 
-            this.NameInsertMemberTextBox.Location = new System.Drawing.Point(113, 98);
+            this.NameInsertMemberTextBox.Location = new System.Drawing.Point(100, 78);
+            this.NameInsertMemberTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NameInsertMemberTextBox.Name = "NameInsertMemberTextBox";
-            this.NameInsertMemberTextBox.Size = new System.Drawing.Size(257, 26);
+            this.NameInsertMemberTextBox.Size = new System.Drawing.Size(229, 22);
             this.NameInsertMemberTextBox.TabIndex = 0;
             // 
             // BooksOutputTabPage
             // 
             this.BooksOutputTabPage.Controls.Add(this.ArchiveGroupBox);
-            this.BooksOutputTabPage.Location = new System.Drawing.Point(4, 29);
+            this.BooksOutputTabPage.Location = new System.Drawing.Point(4, 25);
+            this.BooksOutputTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BooksOutputTabPage.Name = "BooksOutputTabPage";
-            this.BooksOutputTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.BooksOutputTabPage.Size = new System.Drawing.Size(1215, 951);
+            this.BooksOutputTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BooksOutputTabPage.Size = new System.Drawing.Size(1079, 758);
             this.BooksOutputTabPage.TabIndex = 4;
             this.BooksOutputTabPage.Text = "Izpisi";
             this.BooksOutputTabPage.UseVisualStyleBackColor = true;
@@ -1699,18 +1712,21 @@ namespace Books
             this.ArchiveGroupBox.Controls.Add(this.ExcelButton);
             this.ArchiveGroupBox.Controls.Add(this.SearchArchiveGroupBox);
             this.ArchiveGroupBox.Controls.Add(this.listView2);
-            this.ArchiveGroupBox.Location = new System.Drawing.Point(8, 20);
+            this.ArchiveGroupBox.Location = new System.Drawing.Point(7, 16);
+            this.ArchiveGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ArchiveGroupBox.Name = "ArchiveGroupBox";
-            this.ArchiveGroupBox.Size = new System.Drawing.Size(1058, 670);
+            this.ArchiveGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ArchiveGroupBox.Size = new System.Drawing.Size(940, 536);
             this.ArchiveGroupBox.TabIndex = 1;
             this.ArchiveGroupBox.TabStop = false;
             this.ArchiveGroupBox.Text = "Arhiv";
             // 
             // ExcelButton
             // 
-            this.ExcelButton.Location = new System.Drawing.Point(792, 626);
+            this.ExcelButton.Location = new System.Drawing.Point(704, 501);
+            this.ExcelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ExcelButton.Name = "ExcelButton";
-            this.ExcelButton.Size = new System.Drawing.Size(138, 38);
+            this.ExcelButton.Size = new System.Drawing.Size(123, 30);
             this.ExcelButton.TabIndex = 6;
             this.ExcelButton.Text = "izvozi v excel";
             this.ExcelButton.UseVisualStyleBackColor = true;
@@ -1723,27 +1739,31 @@ namespace Books
             this.SearchArchiveGroupBox.Controls.Add(this.SetFromDateLabel);
             this.SearchArchiveGroupBox.Controls.Add(this.SetToDateTimePicker);
             this.SearchArchiveGroupBox.Controls.Add(this.SetFromDateTimePicker);
-            this.SearchArchiveGroupBox.Location = new System.Drawing.Point(254, 25);
+            this.SearchArchiveGroupBox.Location = new System.Drawing.Point(226, 20);
+            this.SearchArchiveGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SearchArchiveGroupBox.Name = "SearchArchiveGroupBox";
-            this.SearchArchiveGroupBox.Size = new System.Drawing.Size(632, 116);
+            this.SearchArchiveGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SearchArchiveGroupBox.Size = new System.Drawing.Size(562, 93);
             this.SearchArchiveGroupBox.TabIndex = 5;
             this.SearchArchiveGroupBox.TabStop = false;
             this.SearchArchiveGroupBox.Text = "Poiščite po arhivu (brez posameznih uporabnikov ali knjig)";
             // 
             // AllArchiveButton
             // 
-            this.AllArchiveButton.Location = new System.Drawing.Point(549, 47);
+            this.AllArchiveButton.Location = new System.Drawing.Point(488, 38);
+            this.AllArchiveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AllArchiveButton.Name = "AllArchiveButton";
-            this.AllArchiveButton.Size = new System.Drawing.Size(75, 52);
+            this.AllArchiveButton.Size = new System.Drawing.Size(67, 42);
             this.AllArchiveButton.TabIndex = 10;
             this.AllArchiveButton.Text = "Vse";
             this.AllArchiveButton.UseVisualStyleBackColor = true;
             // 
             // SetDateButton
             // 
-            this.SetDateButton.Location = new System.Drawing.Point(467, 47);
+            this.SetDateButton.Location = new System.Drawing.Point(415, 38);
+            this.SetDateButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SetDateButton.Name = "SetDateButton";
-            this.SetDateButton.Size = new System.Drawing.Size(75, 52);
+            this.SetDateButton.Size = new System.Drawing.Size(67, 42);
             this.SetDateButton.TabIndex = 9;
             this.SetDateButton.Text = "Potrdi";
             this.SetDateButton.UseVisualStyleBackColor = true;
@@ -1751,33 +1771,35 @@ namespace Books
             // SetToDatelabel
             // 
             this.SetToDatelabel.AutoSize = true;
-            this.SetToDatelabel.Location = new System.Drawing.Point(325, 37);
+            this.SetToDatelabel.Location = new System.Drawing.Point(289, 30);
             this.SetToDatelabel.Name = "SetToDatelabel";
-            this.SetToDatelabel.Size = new System.Drawing.Size(30, 20);
+            this.SetToDatelabel.Size = new System.Drawing.Size(26, 17);
             this.SetToDatelabel.TabIndex = 8;
             this.SetToDatelabel.Text = "Do";
             // 
             // SetFromDateLabel
             // 
             this.SetFromDateLabel.AutoSize = true;
-            this.SetFromDateLabel.Location = new System.Drawing.Point(93, 37);
+            this.SetFromDateLabel.Location = new System.Drawing.Point(83, 30);
             this.SetFromDateLabel.Name = "SetFromDateLabel";
-            this.SetFromDateLabel.Size = new System.Drawing.Size(30, 20);
+            this.SetFromDateLabel.Size = new System.Drawing.Size(27, 17);
             this.SetFromDateLabel.TabIndex = 7;
             this.SetFromDateLabel.Text = "Od";
             // 
             // SetToDateTimePicker
             // 
-            this.SetToDateTimePicker.Location = new System.Drawing.Point(247, 73);
+            this.SetToDateTimePicker.Location = new System.Drawing.Point(220, 58);
+            this.SetToDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SetToDateTimePicker.Name = "SetToDateTimePicker";
-            this.SetToDateTimePicker.Size = new System.Drawing.Size(200, 26);
+            this.SetToDateTimePicker.Size = new System.Drawing.Size(178, 22);
             this.SetToDateTimePicker.TabIndex = 6;
             // 
             // SetFromDateTimePicker
             // 
-            this.SetFromDateTimePicker.Location = new System.Drawing.Point(18, 73);
+            this.SetFromDateTimePicker.Location = new System.Drawing.Point(16, 58);
+            this.SetFromDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SetFromDateTimePicker.Name = "SetFromDateTimePicker";
-            this.SetFromDateTimePicker.Size = new System.Drawing.Size(200, 26);
+            this.SetFromDateTimePicker.Size = new System.Drawing.Size(178, 22);
             this.SetFromDateTimePicker.TabIndex = 5;
             // 
             // listView2
@@ -1793,9 +1815,10 @@ namespace Books
             this.columnHeader15,
             this.columnHeader16});
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(58, 177);
+            this.listView2.Location = new System.Drawing.Point(52, 142);
+            this.listView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(893, 443);
+            this.listView2.Size = new System.Drawing.Size(794, 355);
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -1846,10 +1869,11 @@ namespace Books
             // 
             this.SettingsTabPage.Controls.Add(this.ChangeUserPasswordGroupBox);
             this.SettingsTabPage.Controls.Add(this.UserDataGroupBox);
-            this.SettingsTabPage.Location = new System.Drawing.Point(4, 29);
+            this.SettingsTabPage.Location = new System.Drawing.Point(4, 25);
+            this.SettingsTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SettingsTabPage.Name = "SettingsTabPage";
-            this.SettingsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsTabPage.Size = new System.Drawing.Size(1215, 951);
+            this.SettingsTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SettingsTabPage.Size = new System.Drawing.Size(1079, 758);
             this.SettingsTabPage.TabIndex = 5;
             this.SettingsTabPage.Text = "Nastavitve";
             this.SettingsTabPage.UseVisualStyleBackColor = true;
@@ -1865,27 +1889,31 @@ namespace Books
             this.ChangeUserPasswordGroupBox.Controls.Add(this.Password1ChangeUserPasswordLabel);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.UsernameChangeUserPasswordTextBox);
             this.ChangeUserPasswordGroupBox.Controls.Add(this.label3);
-            this.ChangeUserPasswordGroupBox.Location = new System.Drawing.Point(518, 28);
+            this.ChangeUserPasswordGroupBox.Location = new System.Drawing.Point(460, 22);
+            this.ChangeUserPasswordGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeUserPasswordGroupBox.Name = "ChangeUserPasswordGroupBox";
-            this.ChangeUserPasswordGroupBox.Size = new System.Drawing.Size(472, 447);
+            this.ChangeUserPasswordGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChangeUserPasswordGroupBox.Size = new System.Drawing.Size(420, 358);
             this.ChangeUserPasswordGroupBox.TabIndex = 1;
             this.ChangeUserPasswordGroupBox.TabStop = false;
             this.ChangeUserPasswordGroupBox.Text = "Zamenjaj geslo";
             // 
             // ChangeUserPasswordButton
             // 
-            this.ChangeUserPasswordButton.Location = new System.Drawing.Point(149, 318);
+            this.ChangeUserPasswordButton.Location = new System.Drawing.Point(132, 254);
+            this.ChangeUserPasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeUserPasswordButton.Name = "ChangeUserPasswordButton";
-            this.ChangeUserPasswordButton.Size = new System.Drawing.Size(104, 60);
+            this.ChangeUserPasswordButton.Size = new System.Drawing.Size(92, 48);
             this.ChangeUserPasswordButton.TabIndex = 14;
             this.ChangeUserPasswordButton.Text = "Ponastavi geslo";
             this.ChangeUserPasswordButton.UseVisualStyleBackColor = true;
             // 
             // SetVisiblePasswordChangeUserPasswordButton
             // 
-            this.SetVisiblePasswordChangeUserPasswordButton.Location = new System.Drawing.Point(379, 208);
+            this.SetVisiblePasswordChangeUserPasswordButton.Location = new System.Drawing.Point(337, 166);
+            this.SetVisiblePasswordChangeUserPasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SetVisiblePasswordChangeUserPasswordButton.Name = "SetVisiblePasswordChangeUserPasswordButton";
-            this.SetVisiblePasswordChangeUserPasswordButton.Size = new System.Drawing.Size(75, 42);
+            this.SetVisiblePasswordChangeUserPasswordButton.Size = new System.Drawing.Size(67, 34);
             this.SetVisiblePasswordChangeUserPasswordButton.TabIndex = 13;
             this.SetVisiblePasswordChangeUserPasswordButton.Text = "pokaži";
             this.SetVisiblePasswordChangeUserPasswordButton.UseVisualStyleBackColor = true;
@@ -1893,59 +1921,62 @@ namespace Books
             // UsernameGhangeUserPasswordLabel
             // 
             this.UsernameGhangeUserPasswordLabel.AutoSize = true;
-            this.UsernameGhangeUserPasswordLabel.Location = new System.Drawing.Point(145, 42);
+            this.UsernameGhangeUserPasswordLabel.Location = new System.Drawing.Point(129, 34);
             this.UsernameGhangeUserPasswordLabel.Name = "UsernameGhangeUserPasswordLabel";
-            this.UsernameGhangeUserPasswordLabel.Size = new System.Drawing.Size(128, 20);
+            this.UsernameGhangeUserPasswordLabel.Size = new System.Drawing.Size(114, 17);
             this.UsernameGhangeUserPasswordLabel.TabIndex = 12;
             this.UsernameGhangeUserPasswordLabel.Text = "Uporabniško ime";
             // 
             // Password2ChangeUserPasswordTextBox
             // 
-            this.Password2ChangeUserPasswordTextBox.Location = new System.Drawing.Point(30, 256);
+            this.Password2ChangeUserPasswordTextBox.Location = new System.Drawing.Point(27, 205);
+            this.Password2ChangeUserPasswordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Password2ChangeUserPasswordTextBox.Name = "Password2ChangeUserPasswordTextBox";
             this.Password2ChangeUserPasswordTextBox.PasswordChar = '*';
-            this.Password2ChangeUserPasswordTextBox.Size = new System.Drawing.Size(325, 26);
+            this.Password2ChangeUserPasswordTextBox.Size = new System.Drawing.Size(289, 22);
             this.Password2ChangeUserPasswordTextBox.TabIndex = 11;
             // 
             // Password2ChangeUserPasswordLabel
             // 
             this.Password2ChangeUserPasswordLabel.AutoSize = true;
-            this.Password2ChangeUserPasswordLabel.Location = new System.Drawing.Point(122, 220);
+            this.Password2ChangeUserPasswordLabel.Location = new System.Drawing.Point(108, 176);
             this.Password2ChangeUserPasswordLabel.Name = "Password2ChangeUserPasswordLabel";
-            this.Password2ChangeUserPasswordLabel.Size = new System.Drawing.Size(167, 20);
+            this.Password2ChangeUserPasswordLabel.Size = new System.Drawing.Size(151, 17);
             this.Password2ChangeUserPasswordLabel.TabIndex = 10;
             this.Password2ChangeUserPasswordLabel.Text = "Ponovno vnesite geslo";
             // 
             // Password1ChangeUserPasswordTextBox
             // 
-            this.Password1ChangeUserPasswordTextBox.Location = new System.Drawing.Point(30, 172);
+            this.Password1ChangeUserPasswordTextBox.Location = new System.Drawing.Point(27, 138);
+            this.Password1ChangeUserPasswordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Password1ChangeUserPasswordTextBox.Name = "Password1ChangeUserPasswordTextBox";
             this.Password1ChangeUserPasswordTextBox.PasswordChar = '*';
-            this.Password1ChangeUserPasswordTextBox.Size = new System.Drawing.Size(325, 26);
+            this.Password1ChangeUserPasswordTextBox.Size = new System.Drawing.Size(289, 22);
             this.Password1ChangeUserPasswordTextBox.TabIndex = 9;
             // 
             // Password1ChangeUserPasswordLabel
             // 
             this.Password1ChangeUserPasswordLabel.AutoSize = true;
-            this.Password1ChangeUserPasswordLabel.Location = new System.Drawing.Point(148, 136);
+            this.Password1ChangeUserPasswordLabel.Location = new System.Drawing.Point(132, 109);
             this.Password1ChangeUserPasswordLabel.Name = "Password1ChangeUserPasswordLabel";
-            this.Password1ChangeUserPasswordLabel.Size = new System.Drawing.Size(105, 20);
+            this.Password1ChangeUserPasswordLabel.Size = new System.Drawing.Size(93, 17);
             this.Password1ChangeUserPasswordLabel.TabIndex = 8;
             this.Password1ChangeUserPasswordLabel.Text = "Vnesite geslo";
             // 
             // UsernameChangeUserPasswordTextBox
             // 
-            this.UsernameChangeUserPasswordTextBox.Location = new System.Drawing.Point(30, 84);
+            this.UsernameChangeUserPasswordTextBox.Location = new System.Drawing.Point(27, 67);
+            this.UsernameChangeUserPasswordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UsernameChangeUserPasswordTextBox.Name = "UsernameChangeUserPasswordTextBox";
-            this.UsernameChangeUserPasswordTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameChangeUserPasswordTextBox.Size = new System.Drawing.Size(289, 22);
             this.UsernameChangeUserPasswordTextBox.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(164, -45);
+            this.label3.Location = new System.Drawing.Point(146, -36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.Size = new System.Drawing.Size(30, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "ime";
             // 
@@ -1964,115 +1995,124 @@ namespace Books
             this.UserDataGroupBox.Controls.Add(this.ChangeUserdata);
             this.UserDataGroupBox.Controls.Add(this.UsernameUserTextBox);
             this.UserDataGroupBox.Controls.Add(this.UsernameUserLabel);
-            this.UserDataGroupBox.Location = new System.Drawing.Point(18, 15);
+            this.UserDataGroupBox.Location = new System.Drawing.Point(16, 12);
+            this.UserDataGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserDataGroupBox.Name = "UserDataGroupBox";
-            this.UserDataGroupBox.Size = new System.Drawing.Size(432, 553);
+            this.UserDataGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserDataGroupBox.Size = new System.Drawing.Size(384, 442);
             this.UserDataGroupBox.TabIndex = 0;
             this.UserDataGroupBox.TabStop = false;
             this.UserDataGroupBox.Text = "Podatki o uporabniku";
             // 
             // AddressUserTextBox
             // 
-            this.AddressUserTextBox.Location = new System.Drawing.Point(133, 177);
+            this.AddressUserTextBox.Location = new System.Drawing.Point(118, 142);
+            this.AddressUserTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddressUserTextBox.Name = "AddressUserTextBox";
-            this.AddressUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.AddressUserTextBox.Size = new System.Drawing.Size(227, 22);
             this.AddressUserTextBox.TabIndex = 34;
             // 
             // PhoneUserTextBox
             // 
-            this.PhoneUserTextBox.Location = new System.Drawing.Point(133, 132);
+            this.PhoneUserTextBox.Location = new System.Drawing.Point(118, 106);
+            this.PhoneUserTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PhoneUserTextBox.Name = "PhoneUserTextBox";
-            this.PhoneUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.PhoneUserTextBox.Size = new System.Drawing.Size(227, 22);
             this.PhoneUserTextBox.TabIndex = 33;
             // 
             // PhoneUserLabel
             // 
             this.PhoneUserLabel.AutoSize = true;
-            this.PhoneUserLabel.Location = new System.Drawing.Point(33, 138);
+            this.PhoneUserLabel.Location = new System.Drawing.Point(29, 110);
             this.PhoneUserLabel.Name = "PhoneUserLabel";
-            this.PhoneUserLabel.Size = new System.Drawing.Size(62, 20);
+            this.PhoneUserLabel.Size = new System.Drawing.Size(56, 17);
             this.PhoneUserLabel.TabIndex = 32;
             this.PhoneUserLabel.Text = "Telefon";
             // 
             // AddressUserLabel
             // 
             this.AddressUserLabel.AutoSize = true;
-            this.AddressUserLabel.Location = new System.Drawing.Point(33, 183);
+            this.AddressUserLabel.Location = new System.Drawing.Point(29, 146);
             this.AddressUserLabel.Name = "AddressUserLabel";
-            this.AddressUserLabel.Size = new System.Drawing.Size(56, 20);
+            this.AddressUserLabel.Size = new System.Drawing.Size(51, 17);
             this.AddressUserLabel.TabIndex = 31;
             this.AddressUserLabel.Text = "Naslov";
             // 
             // MailUserLabel
             // 
             this.MailUserLabel.AutoSize = true;
-            this.MailUserLabel.Location = new System.Drawing.Point(33, 225);
+            this.MailUserLabel.Location = new System.Drawing.Point(29, 180);
             this.MailUserLabel.Name = "MailUserLabel";
-            this.MailUserLabel.Size = new System.Drawing.Size(37, 20);
+            this.MailUserLabel.Size = new System.Drawing.Size(33, 17);
             this.MailUserLabel.TabIndex = 30;
             this.MailUserLabel.Text = "Mail";
             // 
             // MailUserTextBox
             // 
-            this.MailUserTextBox.Location = new System.Drawing.Point(133, 225);
+            this.MailUserTextBox.Location = new System.Drawing.Point(118, 180);
+            this.MailUserTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MailUserTextBox.Name = "MailUserTextBox";
-            this.MailUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.MailUserTextBox.Size = new System.Drawing.Size(227, 22);
             this.MailUserTextBox.TabIndex = 29;
             // 
             // SurnameUserTextBox
             // 
-            this.SurnameUserTextBox.Location = new System.Drawing.Point(133, 94);
+            this.SurnameUserTextBox.Location = new System.Drawing.Point(118, 75);
+            this.SurnameUserTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SurnameUserTextBox.Name = "SurnameUserTextBox";
-            this.SurnameUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.SurnameUserTextBox.Size = new System.Drawing.Size(227, 22);
             this.SurnameUserTextBox.TabIndex = 27;
             // 
             // SurnameUserLabel
             // 
             this.SurnameUserLabel.AutoSize = true;
-            this.SurnameUserLabel.Location = new System.Drawing.Point(30, 97);
+            this.SurnameUserLabel.Location = new System.Drawing.Point(27, 78);
             this.SurnameUserLabel.Name = "SurnameUserLabel";
-            this.SurnameUserLabel.Size = new System.Drawing.Size(60, 20);
+            this.SurnameUserLabel.Size = new System.Drawing.Size(54, 17);
             this.SurnameUserLabel.TabIndex = 26;
             this.SurnameUserLabel.Text = "Priimek";
             // 
             // NameUserTextBox
             // 
-            this.NameUserTextBox.Location = new System.Drawing.Point(131, 49);
+            this.NameUserTextBox.Location = new System.Drawing.Point(116, 39);
+            this.NameUserTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NameUserTextBox.Name = "NameUserTextBox";
-            this.NameUserTextBox.Size = new System.Drawing.Size(255, 26);
+            this.NameUserTextBox.Size = new System.Drawing.Size(227, 22);
             this.NameUserTextBox.TabIndex = 25;
             // 
             // NameUserLabel
             // 
             this.NameUserLabel.AutoSize = true;
-            this.NameUserLabel.Location = new System.Drawing.Point(33, 55);
+            this.NameUserLabel.Location = new System.Drawing.Point(29, 44);
             this.NameUserLabel.Name = "NameUserLabel";
-            this.NameUserLabel.Size = new System.Drawing.Size(34, 20);
+            this.NameUserLabel.Size = new System.Drawing.Size(30, 17);
             this.NameUserLabel.TabIndex = 24;
             this.NameUserLabel.Text = "ime";
             // 
             // ChangeUserdata
             // 
-            this.ChangeUserdata.Location = new System.Drawing.Point(149, 455);
+            this.ChangeUserdata.Location = new System.Drawing.Point(132, 364);
+            this.ChangeUserdata.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeUserdata.Name = "ChangeUserdata";
-            this.ChangeUserdata.Size = new System.Drawing.Size(96, 40);
+            this.ChangeUserdata.Size = new System.Drawing.Size(85, 32);
             this.ChangeUserdata.TabIndex = 6;
             this.ChangeUserdata.Text = "Spremeni";
             this.ChangeUserdata.UseVisualStyleBackColor = true;
             // 
             // UsernameUserTextBox
             // 
-            this.UsernameUserTextBox.Location = new System.Drawing.Point(41, 331);
+            this.UsernameUserTextBox.Location = new System.Drawing.Point(36, 265);
+            this.UsernameUserTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UsernameUserTextBox.Name = "UsernameUserTextBox";
-            this.UsernameUserTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameUserTextBox.Size = new System.Drawing.Size(289, 22);
             this.UsernameUserTextBox.TabIndex = 5;
             // 
             // UsernameUserLabel
             // 
             this.UsernameUserLabel.AutoSize = true;
-            this.UsernameUserLabel.Location = new System.Drawing.Point(145, 295);
+            this.UsernameUserLabel.Location = new System.Drawing.Point(129, 236);
             this.UsernameUserLabel.Name = "UsernameUserLabel";
-            this.UsernameUserLabel.Size = new System.Drawing.Size(125, 20);
+            this.UsernameUserLabel.Size = new System.Drawing.Size(112, 17);
             this.UsernameUserLabel.TabIndex = 4;
             this.UsernameUserLabel.Text = "uporabniško ime";
             // 
@@ -2081,10 +2121,11 @@ namespace Books
             this.LoginTabPage.Controls.Add(this.LoginGroupBox);
             this.LoginTabPage.Controls.Add(this.groupBox6);
             this.LoginTabPage.Controls.Add(this.groupBox4);
-            this.LoginTabPage.Location = new System.Drawing.Point(4, 29);
+            this.LoginTabPage.Location = new System.Drawing.Point(4, 25);
+            this.LoginTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LoginTabPage.Name = "LoginTabPage";
-            this.LoginTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.LoginTabPage.Size = new System.Drawing.Size(1215, 951);
+            this.LoginTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LoginTabPage.Size = new System.Drawing.Size(1079, 758);
             this.LoginTabPage.TabIndex = 6;
             this.LoginTabPage.Text = "Prijava";
             this.LoginTabPage.UseVisualStyleBackColor = true;
@@ -2096,18 +2137,21 @@ namespace Books
             this.LoginGroupBox.Controls.Add(this.PasswordLoginTextBox);
             this.LoginGroupBox.Controls.Add(this.PasswordLoginLabel);
             this.LoginGroupBox.Controls.Add(this.UsernameLoginTextBox);
-            this.LoginGroupBox.Location = new System.Drawing.Point(9, 7);
+            this.LoginGroupBox.Location = new System.Drawing.Point(8, 6);
+            this.LoginGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LoginGroupBox.Name = "LoginGroupBox";
-            this.LoginGroupBox.Size = new System.Drawing.Size(333, 403);
+            this.LoginGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LoginGroupBox.Size = new System.Drawing.Size(296, 322);
             this.LoginGroupBox.TabIndex = 3;
             this.LoginGroupBox.TabStop = false;
             this.LoginGroupBox.Text = "Prijava";
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(112, 247);
+            this.LoginButton.Location = new System.Drawing.Point(100, 198);
+            this.LoginButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(102, 46);
+            this.LoginButton.Size = new System.Drawing.Size(91, 37);
             this.LoginButton.TabIndex = 17;
             this.LoginButton.Text = "Prijavi se";
             this.LoginButton.UseVisualStyleBackColor = true;
@@ -2115,34 +2159,36 @@ namespace Books
             // UsernameLoginLabel
             // 
             this.UsernameLoginLabel.AutoSize = true;
-            this.UsernameLoginLabel.Location = new System.Drawing.Point(86, 53);
+            this.UsernameLoginLabel.Location = new System.Drawing.Point(76, 42);
             this.UsernameLoginLabel.Name = "UsernameLoginLabel";
-            this.UsernameLoginLabel.Size = new System.Drawing.Size(183, 20);
+            this.UsernameLoginLabel.Size = new System.Drawing.Size(163, 17);
             this.UsernameLoginLabel.TabIndex = 16;
             this.UsernameLoginLabel.Text = "Vnesite uporabniško ime";
             // 
             // PasswordLoginTextBox
             // 
-            this.PasswordLoginTextBox.Location = new System.Drawing.Point(1, 172);
+            this.PasswordLoginTextBox.Location = new System.Drawing.Point(1, 138);
+            this.PasswordLoginTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PasswordLoginTextBox.Name = "PasswordLoginTextBox";
             this.PasswordLoginTextBox.PasswordChar = '*';
-            this.PasswordLoginTextBox.Size = new System.Drawing.Size(325, 26);
+            this.PasswordLoginTextBox.Size = new System.Drawing.Size(289, 22);
             this.PasswordLoginTextBox.TabIndex = 15;
             // 
             // PasswordLoginLabel
             // 
             this.PasswordLoginLabel.AutoSize = true;
-            this.PasswordLoginLabel.Location = new System.Drawing.Point(119, 136);
+            this.PasswordLoginLabel.Location = new System.Drawing.Point(106, 109);
             this.PasswordLoginLabel.Name = "PasswordLoginLabel";
-            this.PasswordLoginLabel.Size = new System.Drawing.Size(105, 20);
+            this.PasswordLoginLabel.Size = new System.Drawing.Size(93, 17);
             this.PasswordLoginLabel.TabIndex = 14;
             this.PasswordLoginLabel.Text = "Vnesite geslo";
             // 
             // UsernameLoginTextBox
             // 
-            this.UsernameLoginTextBox.Location = new System.Drawing.Point(1, 84);
+            this.UsernameLoginTextBox.Location = new System.Drawing.Point(1, 67);
+            this.UsernameLoginTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UsernameLoginTextBox.Name = "UsernameLoginTextBox";
-            this.UsernameLoginTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameLoginTextBox.Size = new System.Drawing.Size(289, 22);
             this.UsernameLoginTextBox.TabIndex = 13;
             // 
             // groupBox6
@@ -2156,27 +2202,31 @@ namespace Books
             this.groupBox6.Controls.Add(this.ChangePasswordPassword1Label);
             this.groupBox6.Controls.Add(this.ChangePasswordUsernameTextBox);
             this.groupBox6.Controls.Add(this.label14);
-            this.groupBox6.Location = new System.Drawing.Point(722, 7);
+            this.groupBox6.Location = new System.Drawing.Point(642, 6);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(472, 447);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox6.Size = new System.Drawing.Size(420, 358);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Zamenjaj geslo";
             // 
             // ChangePasswordButton
             // 
-            this.ChangePasswordButton.Location = new System.Drawing.Point(149, 318);
+            this.ChangePasswordButton.Location = new System.Drawing.Point(132, 254);
+            this.ChangePasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangePasswordButton.Name = "ChangePasswordButton";
-            this.ChangePasswordButton.Size = new System.Drawing.Size(104, 60);
+            this.ChangePasswordButton.Size = new System.Drawing.Size(92, 48);
             this.ChangePasswordButton.TabIndex = 14;
             this.ChangePasswordButton.Text = "Ponastavi geslo";
             this.ChangePasswordButton.UseVisualStyleBackColor = true;
             // 
             // VisiblePasswordChangePasswordButton
             // 
-            this.VisiblePasswordChangePasswordButton.Location = new System.Drawing.Point(379, 208);
+            this.VisiblePasswordChangePasswordButton.Location = new System.Drawing.Point(337, 166);
+            this.VisiblePasswordChangePasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.VisiblePasswordChangePasswordButton.Name = "VisiblePasswordChangePasswordButton";
-            this.VisiblePasswordChangePasswordButton.Size = new System.Drawing.Size(75, 42);
+            this.VisiblePasswordChangePasswordButton.Size = new System.Drawing.Size(67, 34);
             this.VisiblePasswordChangePasswordButton.TabIndex = 13;
             this.VisiblePasswordChangePasswordButton.Text = "pokaži";
             this.VisiblePasswordChangePasswordButton.UseVisualStyleBackColor = true;
@@ -2184,59 +2234,62 @@ namespace Books
             // ChangePasswordUsernameLabel
             // 
             this.ChangePasswordUsernameLabel.AutoSize = true;
-            this.ChangePasswordUsernameLabel.Location = new System.Drawing.Point(134, 42);
+            this.ChangePasswordUsernameLabel.Location = new System.Drawing.Point(119, 34);
             this.ChangePasswordUsernameLabel.Name = "ChangePasswordUsernameLabel";
-            this.ChangePasswordUsernameLabel.Size = new System.Drawing.Size(128, 20);
+            this.ChangePasswordUsernameLabel.Size = new System.Drawing.Size(114, 17);
             this.ChangePasswordUsernameLabel.TabIndex = 12;
             this.ChangePasswordUsernameLabel.Text = "Uporabniško ime";
             // 
             // ChangePasswordPasswor2TextBox
             // 
-            this.ChangePasswordPasswor2TextBox.Location = new System.Drawing.Point(30, 256);
+            this.ChangePasswordPasswor2TextBox.Location = new System.Drawing.Point(27, 205);
+            this.ChangePasswordPasswor2TextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangePasswordPasswor2TextBox.Name = "ChangePasswordPasswor2TextBox";
             this.ChangePasswordPasswor2TextBox.PasswordChar = '*';
-            this.ChangePasswordPasswor2TextBox.Size = new System.Drawing.Size(325, 26);
+            this.ChangePasswordPasswor2TextBox.Size = new System.Drawing.Size(289, 22);
             this.ChangePasswordPasswor2TextBox.TabIndex = 11;
             // 
             // ChangePasswordPassword2Label
             // 
             this.ChangePasswordPassword2Label.AutoSize = true;
-            this.ChangePasswordPassword2Label.Location = new System.Drawing.Point(122, 220);
+            this.ChangePasswordPassword2Label.Location = new System.Drawing.Point(108, 176);
             this.ChangePasswordPassword2Label.Name = "ChangePasswordPassword2Label";
-            this.ChangePasswordPassword2Label.Size = new System.Drawing.Size(167, 20);
+            this.ChangePasswordPassword2Label.Size = new System.Drawing.Size(151, 17);
             this.ChangePasswordPassword2Label.TabIndex = 10;
             this.ChangePasswordPassword2Label.Text = "Ponovno vnesite geslo";
             // 
             // ChangePasswordPassword1TextBox
             // 
-            this.ChangePasswordPassword1TextBox.Location = new System.Drawing.Point(30, 172);
+            this.ChangePasswordPassword1TextBox.Location = new System.Drawing.Point(27, 138);
+            this.ChangePasswordPassword1TextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangePasswordPassword1TextBox.Name = "ChangePasswordPassword1TextBox";
             this.ChangePasswordPassword1TextBox.PasswordChar = '*';
-            this.ChangePasswordPassword1TextBox.Size = new System.Drawing.Size(325, 26);
+            this.ChangePasswordPassword1TextBox.Size = new System.Drawing.Size(289, 22);
             this.ChangePasswordPassword1TextBox.TabIndex = 9;
             // 
             // ChangePasswordPassword1Label
             // 
             this.ChangePasswordPassword1Label.AutoSize = true;
-            this.ChangePasswordPassword1Label.Location = new System.Drawing.Point(148, 136);
+            this.ChangePasswordPassword1Label.Location = new System.Drawing.Point(132, 109);
             this.ChangePasswordPassword1Label.Name = "ChangePasswordPassword1Label";
-            this.ChangePasswordPassword1Label.Size = new System.Drawing.Size(105, 20);
+            this.ChangePasswordPassword1Label.Size = new System.Drawing.Size(93, 17);
             this.ChangePasswordPassword1Label.TabIndex = 8;
             this.ChangePasswordPassword1Label.Text = "Vnesite geslo";
             // 
             // ChangePasswordUsernameTextBox
             // 
-            this.ChangePasswordUsernameTextBox.Location = new System.Drawing.Point(30, 84);
+            this.ChangePasswordUsernameTextBox.Location = new System.Drawing.Point(27, 67);
+            this.ChangePasswordUsernameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangePasswordUsernameTextBox.Name = "ChangePasswordUsernameTextBox";
-            this.ChangePasswordUsernameTextBox.Size = new System.Drawing.Size(325, 26);
+            this.ChangePasswordUsernameTextBox.Size = new System.Drawing.Size(289, 22);
             this.ChangePasswordUsernameTextBox.TabIndex = 7;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(164, -45);
+            this.label14.Location = new System.Drawing.Point(146, -36);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(34, 20);
+            this.label14.Size = new System.Drawing.Size(30, 17);
             this.label14.TabIndex = 6;
             this.label14.Text = "ime";
             // 
@@ -2261,109 +2314,117 @@ namespace Books
             this.groupBox4.Controls.Add(this.SurnameRegisterLabel);
             this.groupBox4.Controls.Add(this.NameRegisterTextBox);
             this.groupBox4.Controls.Add(this.NameRegisterLabel);
-            this.groupBox4.Location = new System.Drawing.Point(348, 7);
+            this.groupBox4.Location = new System.Drawing.Point(309, 6);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(368, 634);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox4.Size = new System.Drawing.Size(327, 507);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Podatki o uporabniku";
             // 
             // UsernameRegisterTextBox
             // 
-            this.UsernameRegisterTextBox.Location = new System.Drawing.Point(26, 325);
+            this.UsernameRegisterTextBox.Location = new System.Drawing.Point(23, 260);
+            this.UsernameRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UsernameRegisterTextBox.Name = "UsernameRegisterTextBox";
             this.UsernameRegisterTextBox.PasswordChar = '*';
-            this.UsernameRegisterTextBox.Size = new System.Drawing.Size(325, 26);
+            this.UsernameRegisterTextBox.Size = new System.Drawing.Size(289, 22);
             this.UsernameRegisterTextBox.TabIndex = 25;
             // 
             // UsernameRegisterLabel
             // 
             this.UsernameRegisterLabel.AutoSize = true;
-            this.UsernameRegisterLabel.Location = new System.Drawing.Point(103, 283);
+            this.UsernameRegisterLabel.Location = new System.Drawing.Point(92, 226);
             this.UsernameRegisterLabel.Name = "UsernameRegisterLabel";
-            this.UsernameRegisterLabel.Size = new System.Drawing.Size(183, 20);
+            this.UsernameRegisterLabel.Size = new System.Drawing.Size(163, 17);
             this.UsernameRegisterLabel.TabIndex = 24;
             this.UsernameRegisterLabel.Text = "Vnesite uporabniško ime";
             // 
             // AddressRegisterTextBox
             // 
-            this.AddressRegisterTextBox.Location = new System.Drawing.Point(109, 167);
+            this.AddressRegisterTextBox.Location = new System.Drawing.Point(97, 134);
+            this.AddressRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddressRegisterTextBox.Name = "AddressRegisterTextBox";
-            this.AddressRegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.AddressRegisterTextBox.Size = new System.Drawing.Size(227, 22);
             this.AddressRegisterTextBox.TabIndex = 23;
             // 
             // PhoneRegisterTextBox
             // 
-            this.PhoneRegisterTextBox.Location = new System.Drawing.Point(109, 122);
+            this.PhoneRegisterTextBox.Location = new System.Drawing.Point(97, 98);
+            this.PhoneRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PhoneRegisterTextBox.Name = "PhoneRegisterTextBox";
-            this.PhoneRegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.PhoneRegisterTextBox.Size = new System.Drawing.Size(227, 22);
             this.PhoneRegisterTextBox.TabIndex = 22;
             // 
             // PhoneRegisterLabel
             // 
             this.PhoneRegisterLabel.AutoSize = true;
-            this.PhoneRegisterLabel.Location = new System.Drawing.Point(9, 128);
+            this.PhoneRegisterLabel.Location = new System.Drawing.Point(8, 102);
             this.PhoneRegisterLabel.Name = "PhoneRegisterLabel";
-            this.PhoneRegisterLabel.Size = new System.Drawing.Size(62, 20);
+            this.PhoneRegisterLabel.Size = new System.Drawing.Size(56, 17);
             this.PhoneRegisterLabel.TabIndex = 21;
             this.PhoneRegisterLabel.Text = "Telefon";
             // 
             // AddressRegisterLabel
             // 
             this.AddressRegisterLabel.AutoSize = true;
-            this.AddressRegisterLabel.Location = new System.Drawing.Point(9, 173);
+            this.AddressRegisterLabel.Location = new System.Drawing.Point(8, 138);
             this.AddressRegisterLabel.Name = "AddressRegisterLabel";
-            this.AddressRegisterLabel.Size = new System.Drawing.Size(56, 20);
+            this.AddressRegisterLabel.Size = new System.Drawing.Size(51, 17);
             this.AddressRegisterLabel.TabIndex = 20;
             this.AddressRegisterLabel.Text = "Naslov";
             // 
             // Mail1RegisterLabel
             // 
             this.Mail1RegisterLabel.AutoSize = true;
-            this.Mail1RegisterLabel.Location = new System.Drawing.Point(9, 215);
+            this.Mail1RegisterLabel.Location = new System.Drawing.Point(8, 172);
             this.Mail1RegisterLabel.Name = "Mail1RegisterLabel";
-            this.Mail1RegisterLabel.Size = new System.Drawing.Size(37, 20);
+            this.Mail1RegisterLabel.Size = new System.Drawing.Size(33, 17);
             this.Mail1RegisterLabel.TabIndex = 19;
             this.Mail1RegisterLabel.Text = "Mail";
             // 
             // Mail1RegisterTextBox
             // 
-            this.Mail1RegisterTextBox.Location = new System.Drawing.Point(109, 212);
+            this.Mail1RegisterTextBox.Location = new System.Drawing.Point(97, 170);
+            this.Mail1RegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Mail1RegisterTextBox.Name = "Mail1RegisterTextBox";
-            this.Mail1RegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.Mail1RegisterTextBox.Size = new System.Drawing.Size(227, 22);
             this.Mail1RegisterTextBox.TabIndex = 18;
             // 
             // Password2RegisterTextBox
             // 
-            this.Password2RegisterTextBox.Location = new System.Drawing.Point(26, 478);
+            this.Password2RegisterTextBox.Location = new System.Drawing.Point(23, 382);
+            this.Password2RegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Password2RegisterTextBox.Name = "Password2RegisterTextBox";
             this.Password2RegisterTextBox.PasswordChar = '*';
-            this.Password2RegisterTextBox.Size = new System.Drawing.Size(325, 26);
+            this.Password2RegisterTextBox.Size = new System.Drawing.Size(289, 22);
             this.Password2RegisterTextBox.TabIndex = 15;
             // 
             // Password2RegisterLabel
             // 
             this.Password2RegisterLabel.AutoSize = true;
-            this.Password2RegisterLabel.Location = new System.Drawing.Point(105, 452);
+            this.Password2RegisterLabel.Location = new System.Drawing.Point(93, 362);
             this.Password2RegisterLabel.Name = "Password2RegisterLabel";
-            this.Password2RegisterLabel.Size = new System.Drawing.Size(167, 20);
+            this.Password2RegisterLabel.Size = new System.Drawing.Size(151, 17);
             this.Password2RegisterLabel.TabIndex = 14;
             this.Password2RegisterLabel.Text = "Ponovno vnesite geslo";
             // 
             // Password1RegisterTextBox
             // 
-            this.Password1RegisterTextBox.Location = new System.Drawing.Point(26, 405);
+            this.Password1RegisterTextBox.Location = new System.Drawing.Point(23, 324);
+            this.Password1RegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Password1RegisterTextBox.Name = "Password1RegisterTextBox";
             this.Password1RegisterTextBox.PasswordChar = '*';
-            this.Password1RegisterTextBox.Size = new System.Drawing.Size(325, 26);
+            this.Password1RegisterTextBox.Size = new System.Drawing.Size(289, 22);
             this.Password1RegisterTextBox.TabIndex = 13;
             // 
             // Password1RegisterLabel
             // 
             this.Password1RegisterLabel.AutoSize = true;
-            this.Password1RegisterLabel.Location = new System.Drawing.Point(131, 368);
+            this.Password1RegisterLabel.Location = new System.Drawing.Point(116, 294);
             this.Password1RegisterLabel.Name = "Password1RegisterLabel";
-            this.Password1RegisterLabel.Size = new System.Drawing.Size(105, 20);
+            this.Password1RegisterLabel.Size = new System.Drawing.Size(93, 17);
             this.Password1RegisterLabel.TabIndex = 12;
             this.Password1RegisterLabel.Text = "Vnesite geslo";
             // 
@@ -2378,27 +2439,31 @@ namespace Books
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.textBox6);
             this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Location = new System.Drawing.Point(438, 53);
+            this.groupBox5.Location = new System.Drawing.Point(389, 42);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(416, 451);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox5.Size = new System.Drawing.Size(370, 361);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Zamenjaj geslo";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(149, 318);
+            this.button2.Location = new System.Drawing.Point(132, 254);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 60);
+            this.button2.Size = new System.Drawing.Size(92, 48);
             this.button2.TabIndex = 14;
             this.button2.Text = "Ponastavi geslo";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(379, 208);
+            this.button4.Location = new System.Drawing.Point(337, 166);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 42);
+            this.button4.Size = new System.Drawing.Size(67, 34);
             this.button4.TabIndex = 13;
             this.button4.Text = "pokaži";
             this.button4.UseVisualStyleBackColor = true;
@@ -2406,67 +2471,71 @@ namespace Books
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(170, 42);
+            this.label5.Location = new System.Drawing.Point(151, 34);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 20);
+            this.label5.Size = new System.Drawing.Size(46, 17);
             this.label5.TabIndex = 12;
             this.label5.Text = "e-mail";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(30, 256);
+            this.textBox4.Location = new System.Drawing.Point(27, 205);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Name = "textBox4";
             this.textBox4.PasswordChar = '*';
-            this.textBox4.Size = new System.Drawing.Size(325, 26);
+            this.textBox4.Size = new System.Drawing.Size(289, 22);
             this.textBox4.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(122, 220);
+            this.label6.Location = new System.Drawing.Point(108, 176);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(167, 20);
+            this.label6.Size = new System.Drawing.Size(151, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "Ponovno vnesite geslo";
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(30, 172);
+            this.textBox5.Location = new System.Drawing.Point(27, 138);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox5.Name = "textBox5";
             this.textBox5.PasswordChar = '*';
-            this.textBox5.Size = new System.Drawing.Size(325, 26);
+            this.textBox5.Size = new System.Drawing.Size(289, 22);
             this.textBox5.TabIndex = 9;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(148, 136);
+            this.label7.Location = new System.Drawing.Point(132, 109);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 20);
+            this.label7.Size = new System.Drawing.Size(93, 17);
             this.label7.TabIndex = 8;
             this.label7.Text = "Vnesite geslo";
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(30, 84);
+            this.textBox6.Location = new System.Drawing.Point(27, 67);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(325, 26);
+            this.textBox6.Size = new System.Drawing.Size(289, 22);
             this.textBox6.TabIndex = 7;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(164, -45);
+            this.label8.Location = new System.Drawing.Point(146, -36);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 20);
+            this.label8.Size = new System.Drawing.Size(30, 17);
             this.label8.TabIndex = 6;
             this.label8.Text = "ime";
             // 
             // RegisterButton
             // 
-            this.RegisterButton.Location = new System.Drawing.Point(135, 534);
+            this.RegisterButton.Location = new System.Drawing.Point(120, 427);
+            this.RegisterButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(114, 40);
+            this.RegisterButton.Size = new System.Drawing.Size(101, 32);
             this.RegisterButton.TabIndex = 6;
             this.RegisterButton.Text = "Registriraj se";
             this.RegisterButton.UseVisualStyleBackColor = true;
@@ -2474,65 +2543,56 @@ namespace Books
             // MailRegisterLabel
             // 
             this.MailRegisterLabel.AutoSize = true;
-            this.MailRegisterLabel.Location = new System.Drawing.Point(149, 211);
+            this.MailRegisterLabel.Location = new System.Drawing.Point(132, 169);
             this.MailRegisterLabel.Name = "MailRegisterLabel";
-            this.MailRegisterLabel.Size = new System.Drawing.Size(51, 20);
+            this.MailRegisterLabel.Size = new System.Drawing.Size(46, 17);
             this.MailRegisterLabel.TabIndex = 4;
             this.MailRegisterLabel.Text = "e-mail";
             // 
             // SurnameRegisterTextBox
             // 
-            this.SurnameRegisterTextBox.Location = new System.Drawing.Point(109, 84);
+            this.SurnameRegisterTextBox.Location = new System.Drawing.Point(97, 67);
+            this.SurnameRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SurnameRegisterTextBox.Name = "SurnameRegisterTextBox";
-            this.SurnameRegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.SurnameRegisterTextBox.Size = new System.Drawing.Size(227, 22);
             this.SurnameRegisterTextBox.TabIndex = 3;
             // 
             // SurnameRegisterLabel
             // 
             this.SurnameRegisterLabel.AutoSize = true;
-            this.SurnameRegisterLabel.Location = new System.Drawing.Point(6, 87);
+            this.SurnameRegisterLabel.Location = new System.Drawing.Point(5, 70);
             this.SurnameRegisterLabel.Name = "SurnameRegisterLabel";
-            this.SurnameRegisterLabel.Size = new System.Drawing.Size(60, 20);
+            this.SurnameRegisterLabel.Size = new System.Drawing.Size(54, 17);
             this.SurnameRegisterLabel.TabIndex = 2;
             this.SurnameRegisterLabel.Text = "Priimek";
             // 
             // NameRegisterTextBox
             // 
-            this.NameRegisterTextBox.Location = new System.Drawing.Point(107, 39);
+            this.NameRegisterTextBox.Location = new System.Drawing.Point(95, 31);
+            this.NameRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NameRegisterTextBox.Name = "NameRegisterTextBox";
-            this.NameRegisterTextBox.Size = new System.Drawing.Size(255, 26);
+            this.NameRegisterTextBox.Size = new System.Drawing.Size(227, 22);
             this.NameRegisterTextBox.TabIndex = 1;
             // 
             // NameRegisterLabel
             // 
             this.NameRegisterLabel.AutoSize = true;
-            this.NameRegisterLabel.Location = new System.Drawing.Point(9, 45);
+            this.NameRegisterLabel.Location = new System.Drawing.Point(8, 36);
             this.NameRegisterLabel.Name = "NameRegisterLabel";
-            this.NameRegisterLabel.Size = new System.Drawing.Size(34, 20);
+            this.NameRegisterLabel.Size = new System.Drawing.Size(30, 17);
             this.NameRegisterLabel.TabIndex = 0;
             this.NameRegisterLabel.Text = "ime";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1043, 122);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1223, 984);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(1087, 787);
+            this.Controls.Add(this.MainTabControl);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.tabControl1.ResumeLayout(false);
-            this.MainTab.ResumeLayout(false);
-            this.SearchMemberGroupBox.ResumeLayout(false);
-            this.SearchMemberGroupBox.PerformLayout();
+            this.MainTabControl.ResumeLayout(false);
+            this.SearchTab.ResumeLayout(false);
             this.BookSearchGroupBox.ResumeLayout(false);
             this.BookSearchGroupBox.PerformLayout();
             this.BookTab.ResumeLayout(false);
@@ -2544,7 +2604,7 @@ namespace Books
             ((System.ComponentModel.ISupportInitialize)(this.StatusOneBookPictureBox)).EndInit();
             this.AddDataGroupBox.ResumeLayout(false);
             this.AddDataGroupBox.PerformLayout();
-            this.MemberTabPage.ResumeLayout(false);
+            this.UserTabPage.ResumeLayout(false);
             this.BorrowedBookOneMemberGroupBox.ResumeLayout(false);
             this.BorrowedBookOneMemberGroupBox.PerformLayout();
             this.MemberGroupBox.ResumeLayout(false);
@@ -2584,20 +2644,13 @@ namespace Books
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage MainTab;
+        private System.Windows.Forms.TabControl MainTabControl;
+        private System.Windows.Forms.TabPage SearchTab;
         private System.Windows.Forms.TabPage BookTab;
-        private System.Windows.Forms.GroupBox SearchMemberGroupBox;
         private System.Windows.Forms.GroupBox BookSearchGroupBox;
         private System.Windows.Forms.ComboBox SearchBookComboBox;
-        private System.Windows.Forms.TextBox SearchBookTextBox;
-        private System.Windows.Forms.Button SearchBookButton;
-        private System.Windows.Forms.Label SearchBookLabel;
-        private System.Windows.Forms.Button SearchMemberButton;
-        private System.Windows.Forms.Label NameSearchMemberLabel;
-        private System.Windows.Forms.TextBox NameSearchMemberTextBox;
-        private System.Windows.Forms.Label SerachMemberLabel;
-        private System.Windows.Forms.Button AddMemberButton;
+        private System.Windows.Forms.TextBox SearchTextBox;
+        private System.Windows.Forms.Button MainSearchButton;
         private System.Windows.Forms.Button AddBookButton;
         private System.Windows.Forms.GroupBox OneBookGroupBox;
         private System.Windows.Forms.Label OneBookLabel;
@@ -2618,27 +2671,24 @@ namespace Books
         private System.Windows.Forms.Button AddSomethingButton;
         private System.Windows.Forms.TextBox AddingSomethingTextBox;
         private System.Windows.Forms.Label AddingLabel;
-        private System.Windows.Forms.TabPage MemberTabPage;
+        private System.Windows.Forms.TabPage UserTabPage;
         private System.Windows.Forms.GroupBox BorrowedBookOneMemberGroupBox;
         private System.Windows.Forms.Button ReturnBookOneMemberButton;
-        private System.Windows.Forms.Label BorrowedBookOneMemberLabel;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView BookRentsLW;
         private System.Windows.Forms.ColumnHeader IdNumberColumnHeader;
-        private System.Windows.Forms.ColumnHeader AuthorColumnHeader;
         private System.Windows.Forms.ColumnHeader PublisherColumnHeader;
-        private System.Windows.Forms.ColumnHeader TypeColumnHeader;
         private System.Windows.Forms.ColumnHeader LoanDateColumnHeader;
         private System.Windows.Forms.GroupBox MemberGroupBox;
-        private System.Windows.Forms.TextBox AddressOneMemberTextBox;
-        private System.Windows.Forms.TextBox PhoneOneMemberTextBox;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox UserAddressTB;
+        private System.Windows.Forms.TextBox UserPhoneTB;
+        private System.Windows.Forms.Button EditUserButton;
         private System.Windows.Forms.Label PhoneOneMemberLabel;
         private System.Windows.Forms.Label AddressOneMemberLabel;
         private System.Windows.Forms.Label NameOneMemberLabel;
         private System.Windows.Forms.Label MailOneMemberLabel;
         private System.Windows.Forms.Label OneMemberLabel;
-        private System.Windows.Forms.TextBox MailOneMemberTextBox;
-        private System.Windows.Forms.TextBox NameOneMemberTextBox;
+        private System.Windows.Forms.TextBox UserEmailTB;
+        private System.Windows.Forms.TextBox UserNameTB;
         private System.Windows.Forms.TabPage InsertBookTabePage;
         private System.Windows.Forms.GroupBox BookInsertGroupBox;
         private System.Windows.Forms.Button PublisherBookInsertButton;
@@ -2772,14 +2822,14 @@ namespace Books
         private System.Windows.Forms.ComboBox AddBooksInserComboBox;
         private System.Windows.Forms.ComboBox AddSearchTypeBookInsertComboBox;
         private System.Windows.Forms.Label SurnameOneMemberLabel;
-        private System.Windows.Forms.TextBox SurnameOneMemberTextBox;
+        private System.Windows.Forms.TextBox UserSurnameTB;
         private System.Windows.Forms.Label DeadlineLoanBookLabel;
         private System.Windows.Forms.ComboBox DeadlineLoanBookComboBox;
         private System.Windows.Forms.Button LoanBookButton;
         private System.Windows.Forms.Label AddIdLoanBookLabel;
         private System.Windows.Forms.Label RentBookToMemberLabel;
         private System.Windows.Forms.TextBox AddIdLoanBookTextBox;
-        private System.Windows.Forms.ColumnHeader ReturnDateColumnHeader;
+        private System.Windows.Forms.ColumnHeader DeadlineColumnHeader;
         private System.Windows.Forms.GroupBox InsertMemberGroupBox;
         private System.Windows.Forms.Label SurnameInsertMemberLabel;
         private System.Windows.Forms.TextBox SurnameInsertMemberTextBox;
@@ -2799,10 +2849,6 @@ namespace Books
         private System.Windows.Forms.Button OutputArchiveMemberButton;
         private System.Windows.Forms.Button OutputArchiveBookButton;
         private System.Windows.Forms.Button AllArchiveButton;
-        private System.Windows.Forms.Label PhoneSearchMemberLabel;
-        private System.Windows.Forms.ComboBox PhoneSearchMemberComboBox;
-        private System.Windows.Forms.Label SurnameSearchMemberLabel;
-        private System.Windows.Forms.TextBox SurnameSearchMemberTextBox;
         private System.Windows.Forms.TextBox UsernameRegisterTextBox;
         private System.Windows.Forms.Label UsernameRegisterLabel;
         private System.Windows.Forms.TextBox AddressRegisterTextBox;
@@ -2822,6 +2868,11 @@ namespace Books
         private System.Windows.Forms.TextBox NameUserTextBox;
         private System.Windows.Forms.Label NameUserLabel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView SearchResultLW;
+        private System.Windows.Forms.Button CancelEditButton;
+        private System.Windows.Forms.TextBox UserNotesTB;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader TitleColumnHeader;
     }
 }
 
