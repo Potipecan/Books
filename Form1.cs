@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Books.TabControllers;
@@ -53,6 +54,8 @@ namespace Books
             await utc.GoHere(user);
         }
 
+        #region User details
+
         private void EditUserButton_Click(object sender, EventArgs e)
         {
             if (utc.IsUserEditMode) utc.ConfirmUserEdit();
@@ -63,6 +66,35 @@ namespace Books
         {
             utc.IsUserEditMode = false;
         }
+
+        private void ReturnBookOneMemberButton_Click(object sender, EventArgs e)
+        {
+            utc.ReturnBooks();
+        }
+
+        #endregion
+
+        #region Book loans
+
+
+        private void LoanBookCodeTB_TextChanged(object sender, EventArgs e)
+        {
+            utc.BookQuery();
+        }
+
+        private void DeadlineSelectionCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            utc.DeadlineSelectionChanged();
+        }
+
+        private void ConfirmBookLoanButton_Click(object sender, EventArgs e)
+        {
+            utc.ConfirmBookLoan();
+        }
+
+
+
+        #endregion
 
         #endregion
 

@@ -226,7 +226,10 @@ namespace Database
         /// <returns>A book copy that matches the search parameters with all its connected properties.</returns>
         public static async Task<BookCopy> GetBookCopy(string code)
         {
-            return (await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code == code))[0];
+            var b = (await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code == code, true));
+
+            if (b.Count > 0) return b[0];
+            return null;
         }
 
         public static async Task<List<Author>> GetAuthors(string name = "")
@@ -257,5 +260,54 @@ namespace Database
         }
 
         #endregion
+
+        public static async Task ReturnBook(BookRent bookrent)
+        {
+            var r = new BookRentRecord()
+            {
+                BookCopyID = bookrent.BookCopyID,
+                RentDate = bookrent.RentDate,
+                DeadLine = bookrent.DeadLine,
+                RetrunDate = DateTime.Now,
+                UserID = bookrent.UserID,
+            };
+
+            await conn.DeleteAsync(bookrent);
+            await conn.InsertAsync(r);
+        }
+
+        public static async Task ReturnBooks(List<BookRent> bookrents)
+        {
+            var rs = new List<BookRentRecord>();
+
+            foreach(var bookrent in bookrents)
+            {
+                rs.Add(new BookRentRecord()
+                {
+                    BookCopyID = bookrent.BookCopyID,
+                    RentDate = bookrent.RentDate,
+                    DeadLine = bookrent.DeadLine,
+                    RetrunDate = DateTime.Now,
+                    UserID = bookrent.UserID,
+                });
+            }
+
+            await conn.DeleteAllAsync(bookrents);
+            await conn.InsertAllAsync(rs);
+        }
+
+        public static async Task<List<BookRentRecord>> GetUserBookLoanArchive(User user)
+        {
+            var res = new List<BookRentRecord>();
+
+            res = await conn.Table<BookRentRecord>().Where(b => b.UserID == user.ID).ToListAsync();
+
+            return res;
+        }
+
+        public static async Task LoanBooks(List<BookRent> bookrents)
+        {
+            await conn.InsertAllAsync(bookrents);
+        }
     }
 }

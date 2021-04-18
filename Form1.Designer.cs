@@ -86,14 +86,8 @@ namespace Books
             this.UserTabPage = new System.Windows.Forms.TabPage();
             this.UserTabControl = new System.Windows.Forms.TabControl();
             this.UserInfoTabPage = new System.Windows.Forms.TabPage();
-            this.OutputArchiveMemberButton = new System.Windows.Forms.Button();
             this.BorrowedBookOneMemberGroupBox = new System.Windows.Forms.GroupBox();
-            this.DeadlineLoanBookLabel = new System.Windows.Forms.Label();
-            this.DeadlineLoanBookComboBox = new System.Windows.Forms.ComboBox();
-            this.LoanBookButton = new System.Windows.Forms.Button();
-            this.AddIdLoanBookLabel = new System.Windows.Forms.Label();
-            this.RentBookToMemberLabel = new System.Windows.Forms.Label();
-            this.AddIdLoanBookTextBox = new System.Windows.Forms.TextBox();
+            this.ExtendBookLoanButton = new System.Windows.Forms.Button();
             this.ReturnBookOneMemberButton = new System.Windows.Forms.Button();
             this.BookRentsLW = new System.Windows.Forms.ListView();
             this.IdNumberColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -102,6 +96,7 @@ namespace Books
             this.LoanDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DeadlineColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.ShowArchiveUserButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.UserNotesTB = new System.Windows.Forms.TextBox();
             this.CancelEditButton = new System.Windows.Forms.Button();
@@ -118,6 +113,18 @@ namespace Books
             this.UserEmailTB = new System.Windows.Forms.TextBox();
             this.UserNameTB = new System.Windows.Forms.TextBox();
             this.UserBookLoanTabPage = new System.Windows.Forms.TabPage();
+            this.AddedBookLoansLW = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DeadlineDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.RemoveBookLoanButton = new System.Windows.Forms.Button();
+            this.DeadlineSelectionCB = new System.Windows.Forms.ComboBox();
+            this.AddBookLoanButton = new System.Windows.Forms.Button();
+            this.BookTitleLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.LoanBookCodeTB = new System.Windows.Forms.TextBox();
             this.InsertBookTabePage = new System.Windows.Forms.TabPage();
             this.OutputArchiveBookButton = new System.Windows.Forms.Button();
             this.InsertBooksGroupBox = new System.Windows.Forms.GroupBox();
@@ -261,6 +268,7 @@ namespace Books
             this.NameRegisterTextBox = new System.Windows.Forms.TextBox();
             this.NameRegisterLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.ConfirmBookLoanButton = new System.Windows.Forms.Button();
             this.MainTabControl.SuspendLayout();
             this.SearchTab.SuspendLayout();
             this.BookSearchGroupBox.SuspendLayout();
@@ -275,6 +283,8 @@ namespace Books
             this.UserInfoTabPage.SuspendLayout();
             this.BorrowedBookOneMemberGroupBox.SuspendLayout();
             this.MemberGroupBox.SuspendLayout();
+            this.UserBookLoanTabPage.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.InsertBookTabePage.SuspendLayout();
             this.InsertBooksGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfBooksInsertBooksNumericUpDown)).BeginInit();
@@ -310,7 +320,7 @@ namespace Books
             this.MainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(1087, 787);
+            this.MainTabControl.Size = new System.Drawing.Size(1087, 548);
             this.MainTabControl.TabIndex = 0;
             // 
             // SearchTab
@@ -322,7 +332,7 @@ namespace Books
             this.SearchTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SearchTab.Name = "SearchTab";
             this.SearchTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SearchTab.Size = new System.Drawing.Size(1079, 758);
+            this.SearchTab.Size = new System.Drawing.Size(1079, 519);
             this.SearchTab.TabIndex = 0;
             this.SearchTab.Text = "Iskanje";
             this.SearchTab.UseVisualStyleBackColor = true;
@@ -418,7 +428,7 @@ namespace Books
             this.BookTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BookTab.Name = "BookTab";
             this.BookTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BookTab.Size = new System.Drawing.Size(1079, 758);
+            this.BookTab.Size = new System.Drawing.Size(1079, 519);
             this.BookTab.TabIndex = 1;
             this.BookTab.Text = "Gradivo";
             this.BookTab.UseVisualStyleBackColor = true;
@@ -860,7 +870,7 @@ namespace Books
             this.UserTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserTabPage.Name = "UserTabPage";
             this.UserTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.UserTabPage.Size = new System.Drawing.Size(1079, 758);
+            this.UserTabPage.Size = new System.Drawing.Size(1079, 519);
             this.UserTabPage.TabIndex = 2;
             this.UserTabPage.Text = "Člani";
             this.UserTabPage.UseVisualStyleBackColor = true;
@@ -873,120 +883,55 @@ namespace Books
             this.UserTabControl.Location = new System.Drawing.Point(3, 2);
             this.UserTabControl.Name = "UserTabControl";
             this.UserTabControl.SelectedIndex = 0;
-            this.UserTabControl.Size = new System.Drawing.Size(1073, 754);
+            this.UserTabControl.Size = new System.Drawing.Size(1073, 515);
             this.UserTabControl.TabIndex = 0;
             // 
             // UserInfoTabPage
             // 
-            this.UserInfoTabPage.Controls.Add(this.OutputArchiveMemberButton);
             this.UserInfoTabPage.Controls.Add(this.BorrowedBookOneMemberGroupBox);
             this.UserInfoTabPage.Controls.Add(this.MemberGroupBox);
             this.UserInfoTabPage.Location = new System.Drawing.Point(4, 25);
             this.UserInfoTabPage.Name = "UserInfoTabPage";
             this.UserInfoTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.UserInfoTabPage.Size = new System.Drawing.Size(1065, 725);
+            this.UserInfoTabPage.Size = new System.Drawing.Size(1065, 486);
             this.UserInfoTabPage.TabIndex = 0;
             this.UserInfoTabPage.Text = "Uporabnik";
             this.UserInfoTabPage.UseVisualStyleBackColor = true;
             // 
-            // OutputArchiveMemberButton
-            // 
-            this.OutputArchiveMemberButton.Location = new System.Drawing.Point(85, 420);
-            this.OutputArchiveMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.OutputArchiveMemberButton.Name = "OutputArchiveMemberButton";
-            this.OutputArchiveMemberButton.Size = new System.Drawing.Size(140, 60);
-            this.OutputArchiveMemberButton.TabIndex = 7;
-            this.OutputArchiveMemberButton.Text = "Izpiši arhiv";
-            this.OutputArchiveMemberButton.UseVisualStyleBackColor = true;
-            // 
             // BorrowedBookOneMemberGroupBox
             // 
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.DeadlineLoanBookLabel);
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.DeadlineLoanBookComboBox);
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.LoanBookButton);
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.AddIdLoanBookLabel);
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.RentBookToMemberLabel);
-            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.AddIdLoanBookTextBox);
+            this.BorrowedBookOneMemberGroupBox.Controls.Add(this.ExtendBookLoanButton);
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.ReturnBookOneMemberButton);
             this.BorrowedBookOneMemberGroupBox.Controls.Add(this.BookRentsLW);
             this.BorrowedBookOneMemberGroupBox.Location = new System.Drawing.Point(375, 5);
             this.BorrowedBookOneMemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BorrowedBookOneMemberGroupBox.Name = "BorrowedBookOneMemberGroupBox";
             this.BorrowedBookOneMemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BorrowedBookOneMemberGroupBox.Size = new System.Drawing.Size(673, 530);
+            this.BorrowedBookOneMemberGroupBox.Size = new System.Drawing.Size(673, 465);
             this.BorrowedBookOneMemberGroupBox.TabIndex = 6;
             this.BorrowedBookOneMemberGroupBox.TabStop = false;
             this.BorrowedBookOneMemberGroupBox.Text = "Izposojene knjige";
             // 
-            // DeadlineLoanBookLabel
+            // ExtendBookLoanButton
             // 
-            this.DeadlineLoanBookLabel.AutoSize = true;
-            this.DeadlineLoanBookLabel.Location = new System.Drawing.Point(62, 437);
-            this.DeadlineLoanBookLabel.Name = "DeadlineLoanBookLabel";
-            this.DeadlineLoanBookLabel.Size = new System.Drawing.Size(56, 17);
-            this.DeadlineLoanBookLabel.TabIndex = 10;
-            this.DeadlineLoanBookLabel.Text = "Do kdaj";
-            // 
-            // DeadlineLoanBookComboBox
-            // 
-            this.DeadlineLoanBookComboBox.FormattingEnabled = true;
-            this.DeadlineLoanBookComboBox.Items.AddRange(new object[] {
-            "7 dni",
-            "14 dni",
-            "21 dni",
-            "1 mesec"});
-            this.DeadlineLoanBookComboBox.Location = new System.Drawing.Point(209, 434);
-            this.DeadlineLoanBookComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DeadlineLoanBookComboBox.Name = "DeadlineLoanBookComboBox";
-            this.DeadlineLoanBookComboBox.Size = new System.Drawing.Size(179, 24);
-            this.DeadlineLoanBookComboBox.TabIndex = 9;
-            // 
-            // LoanBookButton
-            // 
-            this.LoanBookButton.Location = new System.Drawing.Point(218, 481);
-            this.LoanBookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.LoanBookButton.Name = "LoanBookButton";
-            this.LoanBookButton.Size = new System.Drawing.Size(95, 30);
-            this.LoanBookButton.TabIndex = 8;
-            this.LoanBookButton.Text = "Izposodi";
-            this.LoanBookButton.UseVisualStyleBackColor = true;
-            // 
-            // AddIdLoanBookLabel
-            // 
-            this.AddIdLoanBookLabel.AutoSize = true;
-            this.AddIdLoanBookLabel.Location = new System.Drawing.Point(62, 413);
-            this.AddIdLoanBookLabel.Name = "AddIdLoanBookLabel";
-            this.AddIdLoanBookLabel.Size = new System.Drawing.Size(132, 17);
-            this.AddIdLoanBookLabel.TabIndex = 7;
-            this.AddIdLoanBookLabel.Text = "Vnesite inv. številko";
-            // 
-            // RentBookToMemberLabel
-            // 
-            this.RentBookToMemberLabel.AutoSize = true;
-            this.RentBookToMemberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.RentBookToMemberLabel.Location = new System.Drawing.Point(204, 377);
-            this.RentBookToMemberLabel.Name = "RentBookToMemberLabel";
-            this.RentBookToMemberLabel.Size = new System.Drawing.Size(135, 24);
-            this.RentBookToMemberLabel.TabIndex = 6;
-            this.RentBookToMemberLabel.Text = "Izposodi knjigo";
-            // 
-            // AddIdLoanBookTextBox
-            // 
-            this.AddIdLoanBookTextBox.Location = new System.Drawing.Point(209, 408);
-            this.AddIdLoanBookTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.AddIdLoanBookTextBox.Name = "AddIdLoanBookTextBox";
-            this.AddIdLoanBookTextBox.Size = new System.Drawing.Size(179, 22);
-            this.AddIdLoanBookTextBox.TabIndex = 5;
+            this.ExtendBookLoanButton.Location = new System.Drawing.Point(119, 421);
+            this.ExtendBookLoanButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExtendBookLoanButton.Name = "ExtendBookLoanButton";
+            this.ExtendBookLoanButton.Size = new System.Drawing.Size(173, 31);
+            this.ExtendBookLoanButton.TabIndex = 5;
+            this.ExtendBookLoanButton.Text = "Podaljšaj";
+            this.ExtendBookLoanButton.UseVisualStyleBackColor = true;
             // 
             // ReturnBookOneMemberButton
             // 
-            this.ReturnBookOneMemberButton.Location = new System.Drawing.Point(428, 307);
+            this.ReturnBookOneMemberButton.Location = new System.Drawing.Point(6, 421);
             this.ReturnBookOneMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ReturnBookOneMemberButton.Name = "ReturnBookOneMemberButton";
             this.ReturnBookOneMemberButton.Size = new System.Drawing.Size(94, 31);
             this.ReturnBookOneMemberButton.TabIndex = 4;
             this.ReturnBookOneMemberButton.Text = "Vrni";
             this.ReturnBookOneMemberButton.UseVisualStyleBackColor = true;
+            this.ReturnBookOneMemberButton.Click += new System.EventHandler(this.ReturnBookOneMemberButton_Click);
             // 
             // BookRentsLW
             // 
@@ -1000,7 +945,7 @@ namespace Books
             this.BookRentsLW.Location = new System.Drawing.Point(6, 29);
             this.BookRentsLW.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BookRentsLW.Name = "BookRentsLW";
-            this.BookRentsLW.Size = new System.Drawing.Size(661, 237);
+            this.BookRentsLW.Size = new System.Drawing.Size(661, 374);
             this.BookRentsLW.TabIndex = 2;
             this.BookRentsLW.UseCompatibleStateImageBehavior = false;
             this.BookRentsLW.View = System.Windows.Forms.View.Details;
@@ -1032,6 +977,7 @@ namespace Books
             // 
             // MemberGroupBox
             // 
+            this.MemberGroupBox.Controls.Add(this.ShowArchiveUserButton);
             this.MemberGroupBox.Controls.Add(this.label2);
             this.MemberGroupBox.Controls.Add(this.UserNotesTB);
             this.MemberGroupBox.Controls.Add(this.CancelEditButton);
@@ -1051,10 +997,20 @@ namespace Books
             this.MemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MemberGroupBox.Name = "MemberGroupBox";
             this.MemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MemberGroupBox.Size = new System.Drawing.Size(334, 411);
+            this.MemberGroupBox.Size = new System.Drawing.Size(334, 465);
             this.MemberGroupBox.TabIndex = 5;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "Član";
+            // 
+            // ShowArchiveUserButton
+            // 
+            this.ShowArchiveUserButton.Location = new System.Drawing.Point(8, 421);
+            this.ShowArchiveUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ShowArchiveUserButton.Name = "ShowArchiveUserButton";
+            this.ShowArchiveUserButton.Size = new System.Drawing.Size(140, 31);
+            this.ShowArchiveUserButton.TabIndex = 7;
+            this.ShowArchiveUserButton.Text = "Izpiši arhiv";
+            this.ShowArchiveUserButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -1195,13 +1151,129 @@ namespace Books
             // 
             // UserBookLoanTabPage
             // 
+            this.UserBookLoanTabPage.Controls.Add(this.AddedBookLoansLW);
+            this.UserBookLoanTabPage.Controls.Add(this.groupBox1);
             this.UserBookLoanTabPage.Location = new System.Drawing.Point(4, 25);
             this.UserBookLoanTabPage.Name = "UserBookLoanTabPage";
             this.UserBookLoanTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.UserBookLoanTabPage.Size = new System.Drawing.Size(1065, 725);
+            this.UserBookLoanTabPage.Size = new System.Drawing.Size(1065, 486);
             this.UserBookLoanTabPage.TabIndex = 1;
             this.UserBookLoanTabPage.Text = "Izposoja";
             this.UserBookLoanTabPage.UseVisualStyleBackColor = true;
+            // 
+            // AddedBookLoansLW
+            // 
+            this.AddedBookLoansLW.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader17,
+            this.columnHeader18});
+            this.AddedBookLoansLW.HideSelection = false;
+            this.AddedBookLoansLW.Location = new System.Drawing.Point(323, 6);
+            this.AddedBookLoansLW.Name = "AddedBookLoansLW";
+            this.AddedBookLoansLW.Size = new System.Drawing.Size(739, 316);
+            this.AddedBookLoansLW.TabIndex = 2;
+            this.AddedBookLoansLW.UseCompatibleStateImageBehavior = false;
+            this.AddedBookLoansLW.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Inv. št.";
+            this.columnHeader4.Width = 116;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "Naslov";
+            this.columnHeader17.Width = 167;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "Rok vrnitve";
+            this.columnHeader18.Width = 148;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ConfirmBookLoanButton);
+            this.groupBox1.Controls.Add(this.DeadlineDateTimePicker);
+            this.groupBox1.Controls.Add(this.RemoveBookLoanButton);
+            this.groupBox1.Controls.Add(this.DeadlineSelectionCB);
+            this.groupBox1.Controls.Add(this.AddBookLoanButton);
+            this.groupBox1.Controls.Add(this.BookTitleLabel);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.LoanBookCodeTB);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(311, 316);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Dodajanje knjig";
+            // 
+            // DeadlineDateTimePicker
+            // 
+            this.DeadlineDateTimePicker.Enabled = false;
+            this.DeadlineDateTimePicker.Location = new System.Drawing.Point(10, 116);
+            this.DeadlineDateTimePicker.Name = "DeadlineDateTimePicker";
+            this.DeadlineDateTimePicker.Size = new System.Drawing.Size(295, 22);
+            this.DeadlineDateTimePicker.TabIndex = 6;
+            // 
+            // RemoveBookLoanButton
+            // 
+            this.RemoveBookLoanButton.Location = new System.Drawing.Point(105, 144);
+            this.RemoveBookLoanButton.Name = "RemoveBookLoanButton";
+            this.RemoveBookLoanButton.Size = new System.Drawing.Size(94, 31);
+            this.RemoveBookLoanButton.TabIndex = 5;
+            this.RemoveBookLoanButton.Text = "Odstrani";
+            this.RemoveBookLoanButton.UseVisualStyleBackColor = true;
+            // 
+            // DeadlineSelectionCB
+            // 
+            this.DeadlineSelectionCB.FormattingEnabled = true;
+            this.DeadlineSelectionCB.Items.AddRange(new object[] {
+            "Po meri",
+            "5 delovnih dni",
+            "10 delovnih dni",
+            "15 delovnih dni",
+            "20 delovnih dni",
+            "Leto"});
+            this.DeadlineSelectionCB.Location = new System.Drawing.Point(10, 85);
+            this.DeadlineSelectionCB.Name = "DeadlineSelectionCB";
+            this.DeadlineSelectionCB.Size = new System.Drawing.Size(295, 24);
+            this.DeadlineSelectionCB.TabIndex = 4;
+            this.DeadlineSelectionCB.SelectedIndexChanged += new System.EventHandler(this.DeadlineSelectionCB_SelectedIndexChanged);
+            // 
+            // AddBookLoanButton
+            // 
+            this.AddBookLoanButton.Location = new System.Drawing.Point(9, 144);
+            this.AddBookLoanButton.Name = "AddBookLoanButton";
+            this.AddBookLoanButton.Size = new System.Drawing.Size(90, 31);
+            this.AddBookLoanButton.TabIndex = 3;
+            this.AddBookLoanButton.Text = "Dodaj";
+            this.AddBookLoanButton.UseVisualStyleBackColor = true;
+            // 
+            // BookTitleLabel
+            // 
+            this.BookTitleLabel.AutoSize = true;
+            this.BookTitleLabel.Location = new System.Drawing.Point(6, 53);
+            this.BookTitleLabel.Name = "BookTitleLabel";
+            this.BookTitleLabel.Size = new System.Drawing.Size(12, 17);
+            this.BookTitleLabel.TabIndex = 2;
+            this.BookTitleLabel.Text = "/";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 17);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Inv. št.";
+            // 
+            // LoanBookCodeTB
+            // 
+            this.LoanBookCodeTB.Location = new System.Drawing.Point(62, 19);
+            this.LoanBookCodeTB.Name = "LoanBookCodeTB";
+            this.LoanBookCodeTB.Size = new System.Drawing.Size(243, 22);
+            this.LoanBookCodeTB.TabIndex = 0;
+            this.LoanBookCodeTB.TextChanged += new System.EventHandler(this.LoanBookCodeTB_TextChanged);
             // 
             // InsertBookTabePage
             // 
@@ -1213,7 +1285,7 @@ namespace Books
             this.InsertBookTabePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertBookTabePage.Name = "InsertBookTabePage";
             this.InsertBookTabePage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.InsertBookTabePage.Size = new System.Drawing.Size(1079, 758);
+            this.InsertBookTabePage.Size = new System.Drawing.Size(1079, 519);
             this.InsertBookTabePage.TabIndex = 3;
             this.InsertBookTabePage.Text = "Vnos Gradiva";
             this.InsertBookTabePage.UseVisualStyleBackColor = true;
@@ -1598,7 +1670,7 @@ namespace Books
             this.InsertMemberTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsertMemberTabPage.Name = "InsertMemberTabPage";
             this.InsertMemberTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.InsertMemberTabPage.Size = new System.Drawing.Size(1079, 758);
+            this.InsertMemberTabPage.Size = new System.Drawing.Size(1079, 519);
             this.InsertMemberTabPage.TabIndex = 7;
             this.InsertMemberTabPage.Text = "Vnos člana";
             this.InsertMemberTabPage.UseVisualStyleBackColor = true;
@@ -1738,7 +1810,7 @@ namespace Books
             this.BooksOutputTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BooksOutputTabPage.Name = "BooksOutputTabPage";
             this.BooksOutputTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BooksOutputTabPage.Size = new System.Drawing.Size(1079, 758);
+            this.BooksOutputTabPage.Size = new System.Drawing.Size(1079, 519);
             this.BooksOutputTabPage.TabIndex = 4;
             this.BooksOutputTabPage.Text = "Izpisi";
             this.BooksOutputTabPage.UseVisualStyleBackColor = true;
@@ -1909,7 +1981,7 @@ namespace Books
             this.SettingsTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SettingsTabPage.Name = "SettingsTabPage";
             this.SettingsTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SettingsTabPage.Size = new System.Drawing.Size(1079, 758);
+            this.SettingsTabPage.Size = new System.Drawing.Size(1079, 519);
             this.SettingsTabPage.TabIndex = 5;
             this.SettingsTabPage.Text = "Nastavitve";
             this.SettingsTabPage.UseVisualStyleBackColor = true;
@@ -2161,7 +2233,7 @@ namespace Books
             this.LoginTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LoginTabPage.Name = "LoginTabPage";
             this.LoginTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.LoginTabPage.Size = new System.Drawing.Size(1079, 758);
+            this.LoginTabPage.Size = new System.Drawing.Size(1079, 519);
             this.LoginTabPage.TabIndex = 6;
             this.LoginTabPage.Text = "Prijava";
             this.LoginTabPage.UseVisualStyleBackColor = true;
@@ -2619,11 +2691,22 @@ namespace Books
             this.NameRegisterLabel.TabIndex = 0;
             this.NameRegisterLabel.Text = "ime";
             // 
+            // ConfirmBookLoanButton
+            // 
+            this.ConfirmBookLoanButton.Location = new System.Drawing.Point(7, 272);
+            this.ConfirmBookLoanButton.Name = "ConfirmBookLoanButton";
+            this.ConfirmBookLoanButton.Size = new System.Drawing.Size(110, 38);
+            this.ConfirmBookLoanButton.TabIndex = 7;
+            this.ConfirmBookLoanButton.Text = "Potrdi izposojo";
+            this.ConfirmBookLoanButton.UseVisualStyleBackColor = true;
+            this.ConfirmBookLoanButton.Click += new System.EventHandler(this.ConfirmBookLoanButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 787);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1087, 548);
             this.Controls.Add(this.MainTabControl);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
@@ -2644,9 +2727,11 @@ namespace Books
             this.UserTabControl.ResumeLayout(false);
             this.UserInfoTabPage.ResumeLayout(false);
             this.BorrowedBookOneMemberGroupBox.ResumeLayout(false);
-            this.BorrowedBookOneMemberGroupBox.PerformLayout();
             this.MemberGroupBox.ResumeLayout(false);
             this.MemberGroupBox.PerformLayout();
+            this.UserBookLoanTabPage.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.InsertBookTabePage.ResumeLayout(false);
             this.InsertBooksGroupBox.ResumeLayout(false);
             this.InsertBooksGroupBox.PerformLayout();
@@ -2868,13 +2953,6 @@ namespace Books
         private System.Windows.Forms.TabControl UserTabControl;
         private System.Windows.Forms.TabPage UserInfoTabPage;
         private System.Windows.Forms.GroupBox BorrowedBookOneMemberGroupBox;
-        private System.Windows.Forms.Label DeadlineLoanBookLabel;
-        private System.Windows.Forms.ComboBox DeadlineLoanBookComboBox;
-        private System.Windows.Forms.Button LoanBookButton;
-        private System.Windows.Forms.Label AddIdLoanBookLabel;
-        private System.Windows.Forms.Label RentBookToMemberLabel;
-        private System.Windows.Forms.TextBox AddIdLoanBookTextBox;
-        private System.Windows.Forms.Button ReturnBookOneMemberButton;
         private System.Windows.Forms.ColumnHeader IdNumberColumnHeader;
         private System.Windows.Forms.ColumnHeader TitleColumnHeader;
         private System.Windows.Forms.ColumnHeader PublisherColumnHeader;
@@ -2894,7 +2972,7 @@ namespace Books
         public System.Windows.Forms.ListView SearchResultLW;
         public System.Windows.Forms.ComboBox SearchBookComboBox;
         public System.Windows.Forms.TextBox SearchTextBox;
-        public System.Windows.Forms.Button OutputArchiveMemberButton;
+        public System.Windows.Forms.Button ShowArchiveUserButton;
         public System.Windows.Forms.ListView BookRentsLW;
         public System.Windows.Forms.TextBox UserNotesTB;
         public System.Windows.Forms.Button CancelEditButton;
@@ -2913,6 +2991,21 @@ namespace Books
         public System.Windows.Forms.TabPage SettingsTabPage;
         public System.Windows.Forms.TabPage LoginTabPage;
         public System.Windows.Forms.TabPage InsertMemberTabPage;
+        public System.Windows.Forms.Button ExtendBookLoanButton;
+        public System.Windows.Forms.Button ReturnBookOneMemberButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.TextBox LoanBookCodeTB;
+        public System.Windows.Forms.ListView AddedBookLoansLW;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        public System.Windows.Forms.Button RemoveBookLoanButton;
+        public System.Windows.Forms.ComboBox DeadlineSelectionCB;
+        public System.Windows.Forms.Button AddBookLoanButton;
+        public System.Windows.Forms.Label BookTitleLabel;
+        public System.Windows.Forms.DateTimePicker DeadlineDateTimePicker;
+        private System.Windows.Forms.Button ConfirmBookLoanButton;
     }
 }
 
