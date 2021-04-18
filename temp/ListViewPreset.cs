@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Utils
+namespace Books.Utils
 {
-    public class ListViewPreset
+    class ListViewPreset
     {
         private Dictionary<string, int> Columns;
 

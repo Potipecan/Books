@@ -8,6 +8,7 @@ using Database.TableClasses;
 using System.IO;
 using System.Diagnostics;
 using SQLiteNetExtensionsAsync.Extensions;
+using Utils;
 
 namespace Database
 {
@@ -28,6 +29,7 @@ namespace Database
 
             _path = Path.Combine(_directory, _databaseFilename);
 
+
             Debug.WriteLine(_path);
 
             conn = new SQLiteAsyncConnection(_path, Constants.Flags);
@@ -41,14 +43,41 @@ namespace Database
                 await conn.CreateTableAsync<BookCopy>();
                 await conn.CreateTableAsync<BookRent>();
                 await conn.CreateTableAsync<BookRentRecord>();
+                await conn.CreateTableAsync<Publisher>();
+                await conn.CreateTableAsync<Librarian>();
             }).Wait();
 
-           
 
+            // adding test librarian
+            Task.Run(async () =>
+            {
+                var l = new Librarian()
+                {
+                    Name = "Test",
+                    Surname = "Test",
+                    Email = "test@test.si",
+                    Phone = "123456789",
+                    Address = "Testna ulica 123, 9999 Testno mesto",
+                    Password = Helper.CreateMD5("test")
+                };
+
+            if ((await conn.Table<Librarian>().Where(t => t.Email == l.Email && t.Password == l.Password).ToListAsync()).Count == 0)
+                {
+                    await conn.InsertAsync(l);
+                }
+            });
            
         }
 
         #region Administration
+
+        public static async Task<Librarian> LibrarianLogin(string email, string password)
+        {
+            var l = await conn.Table<Librarian>().Where(a => a.Email == email && a.Password == password).ToListAsync();
+
+            if (l.Count > 0) return l[0];
+            return null;
+        }
 
         public static bool DeleteDatabase()
         {

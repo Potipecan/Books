@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Books.TabControllers;
-using Books.Utils;
+using Utils;
 using Database;
 using Database.TableClasses;
 
@@ -17,12 +17,16 @@ namespace Books
 {
     public partial class Form1 : Form
     {
+        public Librarian Librarian { get; private set; }
+
         private SearchTabController stc;
         private UserTabController utc;
 
-        public Form1()
+        public Form1(Librarian librarian)
         {
             InitializeComponent();
+
+            Librarian = librarian;
 
             stc = new SearchTabController(this);
             utc = new UserTabController(this);

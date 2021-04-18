@@ -222,12 +222,6 @@ namespace Books
             this.UsernameUserTextBox = new System.Windows.Forms.TextBox();
             this.UsernameUserLabel = new System.Windows.Forms.Label();
             this.LoginTabPage = new System.Windows.Forms.TabPage();
-            this.LoginGroupBox = new System.Windows.Forms.GroupBox();
-            this.LoginButton = new System.Windows.Forms.Button();
-            this.UsernameLoginLabel = new System.Windows.Forms.Label();
-            this.PasswordLoginTextBox = new System.Windows.Forms.TextBox();
-            this.PasswordLoginLabel = new System.Windows.Forms.Label();
-            this.UsernameLoginTextBox = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.ChangePasswordButton = new System.Windows.Forms.Button();
             this.VisiblePasswordChangePasswordButton = new System.Windows.Forms.Button();
@@ -299,7 +293,6 @@ namespace Books
             this.ChangeUserPasswordGroupBox.SuspendLayout();
             this.UserDataGroupBox.SuspendLayout();
             this.LoginTabPage.SuspendLayout();
-            this.LoginGroupBox.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -2226,7 +2219,6 @@ namespace Books
             // 
             // LoginTabPage
             // 
-            this.LoginTabPage.Controls.Add(this.LoginGroupBox);
             this.LoginTabPage.Controls.Add(this.groupBox6);
             this.LoginTabPage.Controls.Add(this.groupBox4);
             this.LoginTabPage.Location = new System.Drawing.Point(4, 25);
@@ -2237,67 +2229,6 @@ namespace Books
             this.LoginTabPage.TabIndex = 6;
             this.LoginTabPage.Text = "Prijava";
             this.LoginTabPage.UseVisualStyleBackColor = true;
-            // 
-            // LoginGroupBox
-            // 
-            this.LoginGroupBox.Controls.Add(this.LoginButton);
-            this.LoginGroupBox.Controls.Add(this.UsernameLoginLabel);
-            this.LoginGroupBox.Controls.Add(this.PasswordLoginTextBox);
-            this.LoginGroupBox.Controls.Add(this.PasswordLoginLabel);
-            this.LoginGroupBox.Controls.Add(this.UsernameLoginTextBox);
-            this.LoginGroupBox.Location = new System.Drawing.Point(8, 6);
-            this.LoginGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.LoginGroupBox.Name = "LoginGroupBox";
-            this.LoginGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.LoginGroupBox.Size = new System.Drawing.Size(296, 322);
-            this.LoginGroupBox.TabIndex = 3;
-            this.LoginGroupBox.TabStop = false;
-            this.LoginGroupBox.Text = "Prijava";
-            // 
-            // LoginButton
-            // 
-            this.LoginButton.Location = new System.Drawing.Point(100, 198);
-            this.LoginButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(91, 37);
-            this.LoginButton.TabIndex = 17;
-            this.LoginButton.Text = "Prijavi se";
-            this.LoginButton.UseVisualStyleBackColor = true;
-            // 
-            // UsernameLoginLabel
-            // 
-            this.UsernameLoginLabel.AutoSize = true;
-            this.UsernameLoginLabel.Location = new System.Drawing.Point(76, 42);
-            this.UsernameLoginLabel.Name = "UsernameLoginLabel";
-            this.UsernameLoginLabel.Size = new System.Drawing.Size(163, 17);
-            this.UsernameLoginLabel.TabIndex = 16;
-            this.UsernameLoginLabel.Text = "Vnesite uporabniško ime";
-            // 
-            // PasswordLoginTextBox
-            // 
-            this.PasswordLoginTextBox.Location = new System.Drawing.Point(1, 138);
-            this.PasswordLoginTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.PasswordLoginTextBox.Name = "PasswordLoginTextBox";
-            this.PasswordLoginTextBox.PasswordChar = '*';
-            this.PasswordLoginTextBox.Size = new System.Drawing.Size(289, 22);
-            this.PasswordLoginTextBox.TabIndex = 15;
-            // 
-            // PasswordLoginLabel
-            // 
-            this.PasswordLoginLabel.AutoSize = true;
-            this.PasswordLoginLabel.Location = new System.Drawing.Point(106, 109);
-            this.PasswordLoginLabel.Name = "PasswordLoginLabel";
-            this.PasswordLoginLabel.Size = new System.Drawing.Size(93, 17);
-            this.PasswordLoginLabel.TabIndex = 14;
-            this.PasswordLoginLabel.Text = "Vnesite geslo";
-            // 
-            // UsernameLoginTextBox
-            // 
-            this.UsernameLoginTextBox.Location = new System.Drawing.Point(1, 67);
-            this.UsernameLoginTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.UsernameLoginTextBox.Name = "UsernameLoginTextBox";
-            this.UsernameLoginTextBox.Size = new System.Drawing.Size(289, 22);
-            this.UsernameLoginTextBox.TabIndex = 13;
             // 
             // groupBox6
             // 
@@ -2753,8 +2684,6 @@ namespace Books
             this.UserDataGroupBox.ResumeLayout(false);
             this.UserDataGroupBox.PerformLayout();
             this.LoginTabPage.ResumeLayout(false);
-            this.LoginGroupBox.ResumeLayout(false);
-            this.LoginGroupBox.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -2864,12 +2793,6 @@ namespace Books
         private System.Windows.Forms.Label Password2RegisterLabel;
         private System.Windows.Forms.TextBox Password1RegisterTextBox;
         private System.Windows.Forms.Label Password1RegisterLabel;
-        private System.Windows.Forms.GroupBox LoginGroupBox;
-        private System.Windows.Forms.Button LoginButton;
-        private System.Windows.Forms.Label UsernameLoginLabel;
-        private System.Windows.Forms.TextBox PasswordLoginTextBox;
-        private System.Windows.Forms.Label PasswordLoginLabel;
-        private System.Windows.Forms.TextBox UsernameLoginTextBox;
         private System.Windows.Forms.GroupBox BooksGroupBox;
         private System.Windows.Forms.NumericUpDown NumberOfBooksNumericUpDown;
         private System.Windows.Forms.Label NumberOfBooksLabel;
