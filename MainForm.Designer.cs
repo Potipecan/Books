@@ -38,6 +38,10 @@ namespace Books
             this.MainSearchButton = new System.Windows.Forms.Button();
             this.SearchBookComboBox = new System.Windows.Forms.ComboBox();
             this.BookTab = new System.Windows.Forms.TabPage();
+            this.MaterialTabControl = new System.Windows.Forms.TabControl();
+            this.BooksPage = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.AuthorsPage = new System.Windows.Forms.TabPage();
             this.UserTabPage = new System.Windows.Forms.TabPage();
             this.UserTabControl = new System.Windows.Forms.TabControl();
             this.UserInfoTabPage = new System.Windows.Forms.TabPage();
@@ -157,14 +161,41 @@ namespace Books
             this.LibrarianNewPassTB = new System.Windows.Forms.TextBox();
             this.ChangeLibrarianDataButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.MaterialTabControl = new System.Windows.Forms.TabControl();
-            this.BooksPage = new System.Windows.Forms.TabPage();
-            this.AuthorsPage = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.AuthorSelectionCB = new System.Windows.Forms.ComboBox();
+            this.AddAuthorBookCB = new System.Windows.Forms.Button();
+            this.BookTitleTB = new System.Windows.Forms.TextBox();
+            this.AuthorsBookLB = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BookDescriptionTB = new System.Windows.Forms.TextBox();
+            this.BookSectionComboBox = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.BookCopyLW = new System.Windows.Forms.ListView();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.PublishersCB = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.BookCopyCodeTB = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.BookCopyAcquisitionCB = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.BookConfirmationButton = new System.Windows.Forms.Button();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MainTabControl.SuspendLayout();
             this.SearchTab.SuspendLayout();
             this.BookSearchGroupBox.SuspendLayout();
             this.BookTab.SuspendLayout();
+            this.MaterialTabControl.SuspendLayout();
+            this.BooksPage.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.UserTabPage.SuspendLayout();
             this.UserTabControl.SuspendLayout();
             this.UserInfoTabPage.SuspendLayout();
@@ -183,8 +214,8 @@ namespace Books
             this.UserDataGroupBox.SuspendLayout();
             this.LibrarianInfoGB.SuspendLayout();
             this.LibrarianPasswordChangeGB.SuspendLayout();
-            this.MaterialTabControl.SuspendLayout();
-            this.BooksPage.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTabControl
@@ -296,6 +327,59 @@ namespace Books
             this.BookTab.TabIndex = 1;
             this.BookTab.Text = "Gradivo";
             this.BookTab.UseVisualStyleBackColor = true;
+            // 
+            // MaterialTabControl
+            // 
+            this.MaterialTabControl.Controls.Add(this.BooksPage);
+            this.MaterialTabControl.Controls.Add(this.AuthorsPage);
+            this.MaterialTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MaterialTabControl.Location = new System.Drawing.Point(3, 2);
+            this.MaterialTabControl.Name = "MaterialTabControl";
+            this.MaterialTabControl.SelectedIndex = 0;
+            this.MaterialTabControl.Size = new System.Drawing.Size(1073, 515);
+            this.MaterialTabControl.TabIndex = 0;
+            // 
+            // BooksPage
+            // 
+            this.BooksPage.Controls.Add(this.groupBox3);
+            this.BooksPage.Controls.Add(this.groupBox2);
+            this.BooksPage.Location = new System.Drawing.Point(4, 25);
+            this.BooksPage.Name = "BooksPage";
+            this.BooksPage.Padding = new System.Windows.Forms.Padding(3);
+            this.BooksPage.Size = new System.Drawing.Size(1065, 486);
+            this.BooksPage.TabIndex = 0;
+            this.BooksPage.Text = "Knjige";
+            this.BooksPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.BookConfirmationButton);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.BookSectionComboBox);
+            this.groupBox2.Controls.Add(this.BookDescriptionTB);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.AuthorsBookLB);
+            this.groupBox2.Controls.Add(this.BookTitleTB);
+            this.groupBox2.Controls.Add(this.AddAuthorBookCB);
+            this.groupBox2.Controls.Add(this.AuthorSelectionCB);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(509, 474);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Knjiga";
+            // 
+            // AuthorsPage
+            // 
+            this.AuthorsPage.Location = new System.Drawing.Point(4, 25);
+            this.AuthorsPage.Name = "AuthorsPage";
+            this.AuthorsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AuthorsPage.Size = new System.Drawing.Size(1065, 486);
+            this.AuthorsPage.TabIndex = 1;
+            this.AuthorsPage.Text = "Avtorji";
+            this.AuthorsPage.UseVisualStyleBackColor = true;
             // 
             // UserTabPage
             // 
@@ -1452,48 +1536,262 @@ namespace Books
             this.ChangeLibrarianDataButton.UseVisualStyleBackColor = true;
             this.ChangeLibrarianDataButton.Click += new System.EventHandler(this.ChangeLibrarianDataButton_Click);
             // 
-            // MaterialTabControl
+            // AuthorSelectionCB
             // 
-            this.MaterialTabControl.Controls.Add(this.BooksPage);
-            this.MaterialTabControl.Controls.Add(this.AuthorsPage);
-            this.MaterialTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MaterialTabControl.Location = new System.Drawing.Point(3, 2);
-            this.MaterialTabControl.Name = "MaterialTabControl";
-            this.MaterialTabControl.SelectedIndex = 0;
-            this.MaterialTabControl.Size = new System.Drawing.Size(1073, 515);
-            this.MaterialTabControl.TabIndex = 0;
+            this.AuthorSelectionCB.FormattingEnabled = true;
+            this.AuthorSelectionCB.Location = new System.Drawing.Point(107, 221);
+            this.AuthorSelectionCB.Name = "AuthorSelectionCB";
+            this.AuthorSelectionCB.Size = new System.Drawing.Size(230, 24);
+            this.AuthorSelectionCB.TabIndex = 0;
             // 
-            // BooksPage
+            // AddAuthorBookCB
             // 
-            this.BooksPage.Controls.Add(this.groupBox2);
-            this.BooksPage.Location = new System.Drawing.Point(4, 25);
-            this.BooksPage.Name = "BooksPage";
-            this.BooksPage.Padding = new System.Windows.Forms.Padding(3);
-            this.BooksPage.Size = new System.Drawing.Size(1065, 486);
-            this.BooksPage.TabIndex = 0;
-            this.BooksPage.Text = "Knjige";
-            this.BooksPage.UseVisualStyleBackColor = true;
+            this.AddAuthorBookCB.Location = new System.Drawing.Point(343, 217);
+            this.AddAuthorBookCB.Name = "AddAuthorBookCB";
+            this.AddAuthorBookCB.Size = new System.Drawing.Size(113, 31);
+            this.AddAuthorBookCB.TabIndex = 1;
+            this.AddAuthorBookCB.Text = "Dodaj";
+            this.AddAuthorBookCB.UseVisualStyleBackColor = true;
             // 
-            // AuthorsPage
+            // BookTitleTB
             // 
-            this.AuthorsPage.Location = new System.Drawing.Point(4, 25);
-            this.AuthorsPage.Name = "AuthorsPage";
-            this.AuthorsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AuthorsPage.Size = new System.Drawing.Size(1065, 486);
-            this.AuthorsPage.TabIndex = 1;
-            this.AuthorsPage.Text = "AuthorsPage";
-            this.AuthorsPage.UseVisualStyleBackColor = true;
+            this.BookTitleTB.Location = new System.Drawing.Point(107, 26);
+            this.BookTitleTB.Name = "BookTitleTB";
+            this.BookTitleTB.Size = new System.Drawing.Size(396, 22);
+            this.BookTitleTB.TabIndex = 2;
             // 
-            // groupBox2
+            // AuthorsBookB
             // 
-            this.groupBox2.Location = new System.Drawing.Point(25, 19);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(390, 407);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.AuthorsBookLB.FormattingEnabled = true;
+            this.AuthorsBookLB.ItemHeight = 16;
+            this.AuthorsBookLB.Location = new System.Drawing.Point(107, 251);
+            this.AuthorsBookLB.Name = "AuthorsBookB";
+            this.AuthorsBookLB.Size = new System.Drawing.Size(349, 116);
+            this.AuthorsBookLB.TabIndex = 3;
             // 
-            // Form1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Naslov:";
+            // 
+            // BookDescriptionTB
+            // 
+            this.BookDescriptionTB.Location = new System.Drawing.Point(107, 54);
+            this.BookDescriptionTB.Multiline = true;
+            this.BookDescriptionTB.Name = "BookDescriptionTB";
+            this.BookDescriptionTB.Size = new System.Drawing.Size(396, 110);
+            this.BookDescriptionTB.TabIndex = 5;
+            // 
+            // BookSectionComboBox
+            // 
+            this.BookSectionComboBox.FormattingEnabled = true;
+            this.BookSectionComboBox.Location = new System.Drawing.Point(107, 182);
+            this.BookSectionComboBox.Name = "BookSectionComboBox";
+            this.BookSectionComboBox.Size = new System.Drawing.Size(230, 24);
+            this.BookSectionComboBox.TabIndex = 6;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label26);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.numericUpDown1);
+            this.groupBox3.Controls.Add(this.dateTimePicker1);
+            this.groupBox3.Controls.Add(this.BookCopyAcquisitionCB);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.label23);
+            this.groupBox3.Controls.Add(this.BookCopyCodeTB);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.BookCopyLW);
+            this.groupBox3.Controls.Add(this.PublishersCB);
+            this.groupBox3.Location = new System.Drawing.Point(521, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(543, 473);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Izvodi";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(60, 57);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 17);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Opis:";
+            // 
+            // BookCopyLW
+            // 
+            this.BookCopyLW.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.BookCopyLW.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BookCopyLW.HideSelection = false;
+            this.BookCopyLW.Location = new System.Drawing.Point(3, 170);
+            this.BookCopyLW.MultiSelect = false;
+            this.BookCopyLW.Name = "BookCopyLW";
+            this.BookCopyLW.ShowItemToolTips = true;
+            this.BookCopyLW.Size = new System.Drawing.Size(537, 300);
+            this.BookCopyLW.TabIndex = 0;
+            this.BookCopyLW.UseCompatibleStateImageBehavior = false;
+            this.BookCopyLW.View = System.Windows.Forms.View.Details;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(59, 185);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(42, 17);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "Žanr:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(40, 251);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(61, 17);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Avtor(ji):";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 31);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Dodaj";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // PublishersCB
+            // 
+            this.PublishersCB.FormattingEnabled = true;
+            this.PublishersCB.Location = new System.Drawing.Point(96, 57);
+            this.PublishersCB.Name = "PublishersCB";
+            this.PublishersCB.Size = new System.Drawing.Size(230, 24);
+            this.PublishersCB.TabIndex = 10;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(37, 29);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(53, 17);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "Inv. št.:";
+            // 
+            // BookCopyCodeTB
+            // 
+            this.BookCopyCodeTB.Location = new System.Drawing.Point(96, 26);
+            this.BookCopyCodeTB.Name = "BookCopyCodeTB";
+            this.BookCopyCodeTB.Size = new System.Drawing.Size(396, 22);
+            this.BookCopyCodeTB.TabIndex = 12;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(27, 60);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(63, 17);
+            this.label24.TabIndex = 14;
+            this.label24.Text = "Založba:";
+            // 
+            // BookCopyAcquisitionCB
+            // 
+            this.BookCopyAcquisitionCB.FormattingEnabled = true;
+            this.BookCopyAcquisitionCB.Location = new System.Drawing.Point(96, 87);
+            this.BookCopyAcquisitionCB.Name = "BookCopyAcquisitionCB";
+            this.BookCopyAcquisitionCB.Size = new System.Drawing.Size(155, 24);
+            this.BookCopyAcquisitionCB.TabIndex = 15;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(257, 89);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 16;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(435, 59);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(81, 22);
+            this.numericUpDown1.TabIndex = 17;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            2021,
+            0,
+            0,
+            0});
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(356, 60);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(73, 17);
+            this.label25.TabIndex = 18;
+            this.label25.Text = "Leto izida:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(15, 90);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(75, 17);
+            this.label26.TabIndex = 19;
+            this.label26.Text = "Pridobitev:";
+            // 
+            // BookConfirmationButton
+            // 
+            this.BookConfirmationButton.Location = new System.Drawing.Point(107, 373);
+            this.BookConfirmationButton.Name = "BookConfirmationButton";
+            this.BookConfirmationButton.Size = new System.Drawing.Size(109, 36);
+            this.BookConfirmationButton.TabIndex = 10;
+            this.BookConfirmationButton.Text = "Potrdi";
+            this.BookConfirmationButton.UseVisualStyleBackColor = true;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Inv. št.";
+            this.columnHeader8.Width = 113;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Založba";
+            this.columnHeader9.Width = 126;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Leto izida";
+            this.columnHeader10.Width = 0;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Pridobitev";
+            this.columnHeader11.Width = 124;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Datum";
+            this.columnHeader12.Width = 139;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1501,12 +1799,16 @@ namespace Books
             this.ClientSize = new System.Drawing.Size(1087, 548);
             this.Controls.Add(this.MainTabControl);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.MainTabControl.ResumeLayout(false);
             this.SearchTab.ResumeLayout(false);
             this.BookSearchGroupBox.ResumeLayout(false);
             this.BookSearchGroupBox.PerformLayout();
             this.BookTab.ResumeLayout(false);
+            this.MaterialTabControl.ResumeLayout(false);
+            this.BooksPage.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.UserTabPage.ResumeLayout(false);
             this.UserTabControl.ResumeLayout(false);
             this.UserInfoTabPage.ResumeLayout(false);
@@ -1533,8 +1835,9 @@ namespace Books
             this.LibrarianInfoGB.PerformLayout();
             this.LibrarianPasswordChangeGB.ResumeLayout(false);
             this.LibrarianPasswordChangeGB.PerformLayout();
-            this.MaterialTabControl.ResumeLayout(false);
-            this.BooksPage.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1672,6 +1975,34 @@ namespace Books
         private System.Windows.Forms.TabPage BooksPage;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TabPage AuthorsPage;
+        public System.Windows.Forms.TextBox BookDescriptionTB;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.ListBox AuthorsBookLB;
+        public System.Windows.Forms.TextBox BookTitleTB;
+        public System.Windows.Forms.Button AddAuthorBookCB;
+        public System.Windows.Forms.ComboBox AuthorSelectionCB;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        public System.Windows.Forms.TextBox BookCopyCodeTB;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.ListView BookCopyLW;
+        public System.Windows.Forms.ComboBox PublishersCB;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        public System.Windows.Forms.ComboBox BookSectionComboBox;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        public System.Windows.Forms.ComboBox BookCopyAcquisitionCB;
+        public System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        public System.Windows.Forms.Button BookConfirmationButton;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
     }
 }
 

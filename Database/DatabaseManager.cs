@@ -304,6 +304,11 @@ namespace Database
             return await conn.GetWithChildrenAsync<User>(user, true);
         }
 
+        public static async Task<List<Section>> GetSections()
+        {
+            return await conn.Table<Section>().ToListAsync();
+        }
+
         #endregion
 
         public static async Task ReturnBook(BookRent bookrent)
