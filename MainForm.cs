@@ -15,28 +15,28 @@ using Database.TableClasses;
 
 namespace Books
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Librarian Librarian { get; private set; }
-
         private SearchTabController stc;
         private UserTabController utc;
+        public SettingsTabController settc;
+        private MaterialTabController mtc;
 
-        public Form1(Librarian librarian)
+        public MainForm(Librarian librarian)
         {
             InitializeComponent();
 
-            Librarian = librarian;
-
             stc = new SearchTabController(this);
             utc = new UserTabController(this);
+            settc = new SettingsTabController(this, librarian);
+            mtc = new MaterialTabController(this);
         }
 
         #region SearchPage
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DatabaseManager.DeleteDatabase();
+            DatabaseManager.ResetDatabase();
         }
 
         private async void MainSearchButton_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace Books
 
         private void DeadlineSelectionCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            utc.DeadlineSelectionChanged();
+            if(utc != null) utc.DeadlineSelectionChanged();
         }
 
         private void ConfirmBookLoanButton_Click(object sender, EventArgs e)
@@ -102,7 +102,33 @@ namespace Books
 
         #endregion
 
-        #region Books page
+        #region Materials page
+
+
+
+        #endregion
+
+        #region Settings page
+
+        private async void ChangeLibrarianDataButton_Click(object sender, EventArgs e)
+        {
+            if (settc.IsEditMode)
+            {
+                await settc.EditLibrarianInfo();
+            }
+            else settc.IsEditMode = true;
+        }
+
+        private void CancelLibrarianChangeButton_Click(object sender, EventArgs e)
+        {
+            settc.Admin = settc.Admin;
+        }
+
+        private async void ConfirmAddLibrarianButton_Click(object sender, EventArgs e)
+        {
+            await settc.AddNewLibrarian();
+        }
+
         #endregion
 
     }

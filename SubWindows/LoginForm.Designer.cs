@@ -35,6 +35,7 @@ namespace Books.SubWindows
             this.LoginPasswordTB = new System.Windows.Forms.TextBox();
             this.PasswordLoginLabel = new System.Windows.Forms.Label();
             this.LoginEmailTB = new System.Windows.Forms.TextBox();
+            this.DeleteDBButton = new System.Windows.Forms.Button();
             this.LoginGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,11 +101,22 @@ namespace Books.SubWindows
             this.LoginEmailTB.Size = new System.Drawing.Size(289, 22);
             this.LoginEmailTB.TabIndex = 13;
             // 
+            // DeleteDBButton
+            // 
+            this.DeleteDBButton.Location = new System.Drawing.Point(646, 262);
+            this.DeleteDBButton.Name = "DeleteDBButton";
+            this.DeleteDBButton.Size = new System.Drawing.Size(88, 37);
+            this.DeleteDBButton.TabIndex = 5;
+            this.DeleteDBButton.Text = "Izbriši DB";
+            this.DeleteDBButton.UseVisualStyleBackColor = true;
+            this.DeleteDBButton.Click += new System.EventHandler(this.DeleteDBButton_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteDBButton);
             this.Controls.Add(this.LoginGroupBox);
             this.Name = "LoginForm";
             this.Text = "LoginForm";
@@ -122,5 +134,6 @@ namespace Books.SubWindows
         private System.Windows.Forms.TextBox LoginPasswordTB;
         private System.Windows.Forms.Label PasswordLoginLabel;
         private System.Windows.Forms.TextBox LoginEmailTB;
+        private System.Windows.Forms.Button DeleteDBButton;
     }
 }

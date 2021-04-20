@@ -12,13 +12,13 @@ namespace Books.TabControllers
 {
     public class SearchTabController
     {
-        private Form1 f;
+        private MainForm f;
 
         private List<ListViewPreset> Presets;
         private List<object> SearchResults;
 
 
-        public SearchTabController(Form1 form)
+        public SearchTabController(MainForm form)
         {
             f = form;
 

@@ -21,9 +21,9 @@ namespace Database.TableClasses
         public string Phone { get; set; }
         [Column("address")]
         public string Address { get; set; }
-        [Column("email"), Unique]
+        [Column("email"), Unique, NotNull]
         public string Email { get; set; }
-        [Column("password")]
+        [Column("password"), NotNull]
         public string Password { get; set; }
     }
 }

@@ -21,9 +21,8 @@ namespace Books.SubWindows
 
         private async void LoginButton_Click(object sender, EventArgs e)
         {
-            var pass = Helper.CreateMD5(LoginPasswordTB.Text);
 
-            var l = await DatabaseManager.LibrarianLogin(LoginEmailTB.Text, pass);
+            var l = await DatabaseManager.LibrarianLogin(LoginEmailTB.Text, LoginPasswordTB.Text);
 
             if(l == null)
             {
@@ -32,8 +31,21 @@ namespace Books.SubWindows
             }
 
             Hide();
-            var f = new Form1(l);
+            var f = new MainForm(l);
+            f.FormClosed += F_FormClosed;
+
+
             f.Show();
+        }
+
+        private void F_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Show();
+        }
+
+        private void DeleteDBButton_Click(object sender, EventArgs e)
+        {
+            DatabaseManager.ResetDatabase();
         }
     }
 }

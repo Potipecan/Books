@@ -14,7 +14,7 @@ namespace Books.TabControllers
 {
     public class UserTabController
     {
-        private Form1 f;
+        private MainForm f;
 
         private CancellationTokenSource cancelBookQuerySource;
         private CancellationToken cancelBookQuery;
@@ -66,7 +66,7 @@ namespace Books.TabControllers
             }
         }
 
-        public UserTabController(Form1 form)
+        public UserTabController(MainForm form)
         {
             f = form;
 
