@@ -31,6 +31,7 @@ namespace Books
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.MainTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.SearchMemberGroupBox = new System.Windows.Forms.GroupBox();
             this.PhoneSearchMemberLabel = new System.Windows.Forms.Label();
             this.PhoneSearchMemberComboBox = new System.Windows.Forms.ComboBox();
@@ -266,7 +267,6 @@ namespace Books
             this.NameRegisterTextBox = new System.Windows.Forms.TextBox();
             this.NameRegisterLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MainTab.SuspendLayout();
             this.SearchMemberGroupBox.SuspendLayout();
@@ -329,6 +329,16 @@ namespace Books
             this.MainTab.TabIndex = 0;
             this.MainTab.Text = "Osnovno";
             this.MainTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1043, 122);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // SearchMemberGroupBox
             // 
@@ -2511,16 +2521,6 @@ namespace Books
             this.NameRegisterLabel.Size = new System.Drawing.Size(34, 20);
             this.NameRegisterLabel.TabIndex = 0;
             this.NameRegisterLabel.Text = "ime";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1043, 122);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
