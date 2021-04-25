@@ -87,16 +87,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="SubWindows\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubWindows\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\UserBookLoanArchiveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubWindows\UserBookLoanArchiveForm.Designer.cs">
+      <DependentUpon>UserBookLoanArchiveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControllers\MaterialTabController.cs" />
+    <Compile Include="TabControllers\SearchTabController.cs" />
+    <Compile Include="TabControllers\SettingsTabController.cs" />
+    <Compile Include="TabControllers\UserTabController.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,6 +123,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SubWindows\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubWindows\UserBookLoanArchiveForm.resx">
+      <DependentUpon>UserBookLoanArchiveForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="bin\Debug\library.sqlite" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -127,7 +149,12 @@
       <Project>{844ab838-12da-4365-8b45-8a40c643869f}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="Utils\Utils.csproj">
+      <Project>{1eeee186-8cea-4e9f-9476-cec9e8e2828e}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\SQLitePCLRaw.lib.e_sqlite3.2.0.3\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('packages\SQLitePCLRaw.lib.e_sqlite3.2.0.3\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -8,6 +8,7 @@ using Database.TableClasses;
 using System.IO;
 using System.Diagnostics;
 using SQLiteNetExtensionsAsync.Extensions;
+using Utils;
 
 namespace Database
 {
@@ -18,7 +19,7 @@ namespace Database
         private static readonly string _path;
 
         private static readonly SQLiteAsyncConnection conn;
-        
+
 
         static DatabaseManager()
         {
@@ -28,39 +29,83 @@ namespace Database
 
             _path = Path.Combine(_directory, _databaseFilename);
 
+
             Debug.WriteLine(_path);
 
             conn = new SQLiteAsyncConnection(_path, Constants.Flags);
+            //Initialize();
+
             Task.Run(async () =>
             {
                 await conn.CreateTableAsync<User>();
                 await conn.CreateTableAsync<Book>();
-                await conn.CreateTableAsync<Section>();
                 await conn.CreateTableAsync<Author>();
-                await conn.CreateTableAsync<AuthorBook>();
                 await conn.CreateTableAsync<BookCopy>();
+                await conn.CreateTableAsync<Publisher>();
+                await conn.CreateTableAsync<Librarian>();
                 await conn.CreateTableAsync<BookRent>();
                 await conn.CreateTableAsync<BookRentRecord>();
-            }).Wait();
+                await conn.CreateTableAsync<AuthorBook>();
+                await conn.CreateTableAsync<Section>();
 
-           
 
-           
+                Initialize();
+            });
         }
 
         #region Administration
 
-        public static bool DeleteDatabase()
+        public static async Task<Librarian> LibrarianLogin(string email, string password)
+        {
+            password = Helper.CreateMD5(password);
+
+            var l = await conn.Table<Librarian>().Where(a => a.Email == email && a.Password == password).ToListAsync();
+
+            if (l.Count > 0) return l[0];
+            return null;
+        }
+
+        public static async Task<bool> UpdateLibrarian(Librarian librarian)
+        {
+            return await conn.UpdateAsync(librarian) == 1;
+        }
+
+        public static async Task<bool> AddLibrarian(Librarian librarian)
+        {
+            return await conn.InsertAsync(librarian) == 1;
+        }
+
+        public static bool ResetDatabase()
         {
             try
             {
                 if (File.Exists(_path)) File.Delete(_path);
+                Initialize();
             }
             catch (Exception)
             {
                 return false;
             }
             return true;
+        }
+
+        private static async void Initialize()
+        {
+            var l = new Librarian()
+            {
+                Name = "Test",
+                Surname = "Test",
+                Email = "test@test.si",
+                Phone = "123456789",
+                Address = "Testna ulica 123, 9999 Testno mesto",
+                Password = Helper.CreateMD5("test")
+            };
+
+            if ((await conn.Table<Librarian>().Where(t => t.Email == l.Email && t.Password == l.Password).ToListAsync()).Count == 0)
+            {
+                await conn.InsertAsync(l);
+            }
+
         }
 
         #endregion
@@ -190,8 +235,8 @@ namespace Database
         {
             List<Book> res = null;
 
-            res = (await conn.GetAllWithChildrenAsync<Book>()).FindAll(b => 
-            (section == null || b.SectionID == section.ID) && 
+            res = (await conn.GetAllWithChildrenAsync<Book>()).FindAll(b =>
+            (section == null || b.SectionID == section.ID) &&
             (author == null || b.Authors.Contains(author)
             ));
 
@@ -226,7 +271,10 @@ namespace Database
         /// <returns>A book copy that matches the search parameters with all its connected properties.</returns>
         public static async Task<BookCopy> GetBookCopy(string code)
         {
-            return (await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code == code))[0];
+            var b = (await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code == code, true));
+
+            if (b.Count > 0) return b[0];
+            return null;
         }
 
         public static async Task<List<Author>> GetAuthors(string name = "")
@@ -236,7 +284,80 @@ namespace Database
             return res;
         }
 
+        public static async Task<List<User>> GetUsers(string search)
+        {
+            var res = new List<User>();
+
+            var lowerName = search.ToLower().Replace(" ", string.Empty);
+
+            res = await conn.Table<User>().Where(u =>
+            u.Name.ToLower().Replace(" ", string.Empty).Contains(lowerName) ||
+            u.Phone == search ||
+            u.Email.Contains(lowerName)
+            ).ToListAsync();
+
+            return res;
+        }
+
+        public static async Task<User> GetUser(User user)
+        {
+            return await conn.GetWithChildrenAsync<User>(user, true);
+        }
+
+        public static async Task<List<Section>> GetSections()
+        {
+            return await conn.Table<Section>().ToListAsync();
+        }
 
         #endregion
+
+        public static async Task ReturnBook(BookRent bookrent)
+        {
+            var r = new BookRentRecord()
+            {
+                BookCopyID = bookrent.BookCopyID,
+                RentDate = bookrent.RentDate,
+                DeadLine = bookrent.DeadLine,
+                RetrunDate = DateTime.Now,
+                UserID = bookrent.UserID,
+            };
+
+            await conn.DeleteAsync(bookrent);
+            await conn.InsertAsync(r);
+        }
+
+        public static async Task ReturnBooks(List<BookRent> bookrents)
+        {
+            var rs = new List<BookRentRecord>();
+
+            foreach (var bookrent in bookrents)
+            {
+                rs.Add(new BookRentRecord()
+                {
+                    BookCopyID = bookrent.BookCopyID,
+                    RentDate = bookrent.RentDate,
+                    DeadLine = bookrent.DeadLine,
+                    RetrunDate = DateTime.Now,
+                    UserID = bookrent.UserID,
+                });
+            }
+
+            await conn.DeleteAllAsync(bookrents);
+            await conn.InsertAllAsync(rs);
+        }
+
+        public static async Task<List<BookRentRecord>> GetUserBookLoanArchive(User user)
+        {
+            var res = new List<BookRentRecord>();
+
+            res = await conn.Table<BookRentRecord>().Where(b => b.UserID == user.ID).ToListAsync();
+
+            return res;
+        }
+
+        public static async Task LoanBooks(List<BookRent> bookrents)
+        {
+            await conn.InsertAllAsync(bookrents);
+        }
     }
 }
