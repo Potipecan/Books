@@ -9,6 +9,7 @@ using System.IO;
 using System.Diagnostics;
 using SQLiteNetExtensionsAsync.Extensions;
 using Utils;
+using System.Linq.Expressions;
 
 namespace Database
 {
@@ -33,21 +34,22 @@ namespace Database
             Debug.WriteLine(_path);
 
             conn = new SQLiteAsyncConnection(_path, Constants.Flags);
-            //Initialize();
 
             Task.Run(async () =>
             {
-                await conn.CreateTableAsync<User>();
-                await conn.CreateTableAsync<Book>();
-                await conn.CreateTableAsync<Author>();
-                await conn.CreateTableAsync<BookCopy>();
-                await conn.CreateTableAsync<Publisher>();
-                await conn.CreateTableAsync<Librarian>();
-                await conn.CreateTableAsync<BookRent>();
-                await conn.CreateTableAsync<BookRentRecord>();
-                await conn.CreateTableAsync<AuthorBook>();
-                await conn.CreateTableAsync<Section>();
-
+                await conn.CreateTablesAsync(
+                    CreateFlags.None,
+                    typeof(User),
+                    typeof(Book),
+                    typeof(Author),
+                    typeof(BookCopy),
+                    typeof(Publisher),
+                    typeof(Librarian),
+                    typeof(BookRent),
+                    typeof(BookRentRecord),
+                    typeof(AuthorBook),
+                    typeof(Section)
+                    );
 
                 Initialize();
             });
@@ -159,6 +161,11 @@ namespace Database
 
         #region Update functions
 
+        public static async Task<bool> UpdateSection(Section section)
+        {
+            return await conn.UpdateAsync(section) == 1;
+        }
+
         public static async Task<bool> UpdateAuthor(Author author)
         {
             return await conn.UpdateAsync(author) == 1;
@@ -224,6 +231,23 @@ namespace Database
         #endregion
 
         #region Get functions
+
+        public static async Task<List<Publisher>> GetPublishers(string name = "")
+        {
+            bool search = name == "";
+            name = name.Replace(" ", "").ToLower();
+
+            var l = await conn.Table<Publisher>().Where(p => search || p.Name.Replace(" ", "").ToLower().Contains(name)).ToListAsync();
+
+            return l;
+        }
+
+        public static async Task<bool> IsCodeUnique(string code)
+        {
+            int i = await conn.ExecuteScalarAsync<int>($"SELECT count(*) FROM book_copies WHERE code LIKE '%{code}%';");
+
+            return i == 0;
+        }
 
         /// <summary>
         /// Retrieves a list of books by section and author.
@@ -307,6 +331,15 @@ namespace Database
         public static async Task<List<Section>> GetSections()
         {
             return await conn.Table<Section>().ToListAsync();
+        }
+
+        public static async Task<List<BookCopy>> GetBookCopies(string code)
+        {
+            var res = new List<BookCopy>();
+
+            res = await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code.Contains(code), true);
+
+            return res;
         }
 
         #endregion

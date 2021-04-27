@@ -20,5 +20,10 @@ namespace Database.TableClasses
         
         [ManyToMany(typeof(AuthorBook))]
         public List<Book> Books { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

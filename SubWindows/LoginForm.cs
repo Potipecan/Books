@@ -19,12 +19,11 @@ namespace Books.SubWindows
             InitializeComponent();
         }
 
-        private async void LoginButton_Click(object sender, EventArgs e)
+        private async void Login(string email, string password)
         {
+            var l = await DatabaseManager.LibrarianLogin(email, password);
 
-            var l = await DatabaseManager.LibrarianLogin(LoginEmailTB.Text, LoginPasswordTB.Text);
-
-            if(l == null)
+            if (l == null)
             {
                 MessageBox.Show("Preverite prijavne podatke.", "Prijava neuspešna");
                 return;
@@ -38,6 +37,13 @@ namespace Books.SubWindows
             f.Show();
         }
 
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            Login(LoginEmailTB.Text, LoginPasswordTB.Text);            
+        }
+
+
         private void F_FormClosed(object sender, FormClosedEventArgs e)
         {
             Show();
@@ -46,6 +52,11 @@ namespace Books.SubWindows
         private void DeleteDBButton_Click(object sender, EventArgs e)
         {
             DatabaseManager.ResetDatabase();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Login("admin@example.com", "olseg");
         }
     }
 }

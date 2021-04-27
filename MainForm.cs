@@ -104,6 +104,50 @@ namespace Books
 
         #region Materials page
 
+        public void AuthorSelectionCB_TextChanged(object sender, EventArgs e)
+        {
+            mtc.AuthorQuery();
+        }
+
+        private void AddAuthorButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.SelectedAuthor != null) mtc.EditAuthor();
+            else mtc.AddAuthor();
+        }
+
+        private void CancelAuthorEditButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.IsAuthorEditMode) mtc.IsAuthorEditMode = false;
+            else mtc.SelectedAuthor = null;
+        }
+
+        private void AddSectionButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.SelectedSection != null) mtc.EditSection();
+            else mtc.AddSection();
+        }
+
+        private void CancelSectionEditButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.IsSectionEditMode) mtc.IsSectionEditMode = false;
+            else mtc.SelectedSection = null;
+        }
+
+        private void BookConfirmationButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.CurrentBook != null) mtc.UpdateBook();
+            else mtc.AddBook();
+        }
+
+        private void AddAuthorBookCB_Click(object sender, EventArgs e)
+        {
+            mtc.SelectAuthor();
+        }
+
+        private void AddBookCopyButton_Click(object sender, EventArgs e)
+        {
+            mtc.AddBookCopy();
+        }
 
 
         #endregion
@@ -129,7 +173,13 @@ namespace Books
             await settc.AddNewLibrarian();
         }
 
+
         #endregion
 
+        private void AddPublisherButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.SelectedPublisher == null) mtc.AddPubliser();
+            else mtc.EditPublisher();
+        }
     }
 }

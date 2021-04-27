@@ -139,13 +139,13 @@ namespace Books.TabControllers
 
         private async Task SearchBook()
         {
-            var books = await DatabaseManager.GetBooks(f.SearchTextBox.Text);
+            var books = await DatabaseManager.GetBookCopies(f.SearchTextBox.Text);
 
             foreach (var b in books)
             {
                 string authors = "";
 
-                foreach (var a in b.Authors)
+                foreach (var a in b.Book.Authors)
                 {
                     var s = a.Name.Split(' ');
                     authors += $"{s[0].Substring(0, 1)}. {s[1]}, ";
@@ -153,10 +153,10 @@ namespace Books.TabControllers
                 authors.TrimEnd(',', ' ');
 
                 var row = new ListViewItem(new string[] {
-                    b.Title,
+                    b.Book.Title,
                     b.Code,
                     authors,
-                    b.Description
+                    b.Book.Description
                 });
                 f.SearchResultLW.Items.Add(row);
 
