@@ -213,7 +213,15 @@ namespace Database
 
         public static async Task<bool> DeleteAuthor(Author author)
         {
-            await conn.DeleteAsync(author, true);
+            try
+            {
+                await conn.DeleteAsync(author, true);
+            }
+            catch (SQLiteException sqlex)
+            {
+                Debug.Fail(sqlex.Message);
+                return false;
+            }
             return true;
         }
 
@@ -228,13 +236,32 @@ namespace Database
             return await conn.DeleteAsync(bookcopy) == 1;
         }
 
+        public static async Task<bool> DeleteSection(Section section)
+        {
+            try
+            {
+                await conn.DeleteAsync(section, true);
+            }
+            catch(SQLiteException sqlex)
+            {
+                Debug.Fail(sqlex.Message);
+                return false;
+            }
+            return true;
+        }
+
         #endregion
 
         #region Get functions
 
+        public static async Task <Section> GetSectionWithChildren(Section section)
+        {
+            return await conn.GetWithChildrenAsync<Section>(section.ID, true);
+        }
+
         public static async Task<List<Publisher>> GetPublishers(string name = "")
         {
-            bool search = name == "";
+            bool search = name != "";
             name = name.Replace(" ", "").ToLower();
 
             var l = await conn.Table<Publisher>().Where(p => search || p.Name.Replace(" ", "").ToLower().Contains(name)).ToListAsync();
@@ -274,8 +301,8 @@ namespace Database
         /// <returns>A list of books with connected properties.</returns>
         public static async Task<List<Book>> GetBooks(string title)
         {
-            title = title.ToLower();
-            return await conn.GetAllWithChildrenAsync<Book>(b => b.Title.ToLower().Contains(title));
+            title = title.ToLower().Replace(" ", "");
+            return await conn.GetAllWithChildrenAsync<Book>(b => b.Title.ToLower().Replace(" ", "").Contains(title), true);
         }
 
         /// <summary>
@@ -285,7 +312,7 @@ namespace Database
         /// <returns>A book object with all its connected properties.</returns>
         public static async Task<Book> GetBook(Book book)
         {
-            return await conn.GetWithChildrenAsync<Book>(book);
+            return await conn.GetWithChildrenAsync<Book>(book.ID, true);
         }
 
         /// <summary>

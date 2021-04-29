@@ -104,6 +104,28 @@ namespace Books
 
         #region Materials page
 
+        public void GoToMaterialsPage(object o)
+        {
+            switch (o.GetType().Name)
+            {
+                case "Book":
+                    mtc.GoHere(o as Book);
+                    break;
+                case "Author":
+                    mtc.GoHere(o as Author);
+                    break;
+                case "Publisher":
+                    mtc.GoHere(o as Publisher);
+                    break;
+                case "Section":
+                    mtc.GoHere(o as Section);
+                    break;
+
+                default:
+                    throw new ArgumentException("Argument can only be of Book, Publisher, Section or Author class");
+            }
+        }
+
         public void AuthorSelectionCB_TextChanged(object sender, EventArgs e)
         {
             mtc.AuthorQuery();
@@ -135,7 +157,7 @@ namespace Books
 
         private void BookConfirmationButton_Click(object sender, EventArgs e)
         {
-            if (mtc.CurrentBook != null) mtc.UpdateBook();
+            if (mtc.SelectedBook != null) mtc.UpdateBook();
             else mtc.AddBook();
         }
 
@@ -146,7 +168,47 @@ namespace Books
 
         private void AddBookCopyButton_Click(object sender, EventArgs e)
         {
-            mtc.AddBookCopy();
+            if (mtc.SelectedBookCopy == null) mtc.AddBookCopy();
+            else mtc.UpdateBookCopy();
+        }
+
+        private void AddPublisherButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.SelectedPublisher == null) mtc.AddPublisher();
+            else mtc.EditPublisher();
+        }
+
+        private void CancelBookEditButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.IsBookEditMode) mtc.SelectedBook = mtc.SelectedBook;
+            else mtc.SelectedBook = null;
+        }
+
+        private void DeleteBookButton_Click(object sender, EventArgs e)
+        {
+            mtc.DeleteBook();
+        }
+
+        private void BookCopyLW_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mtc.BookCopySelectionChanged();
+        }
+
+        private void CancelBookCopyEditButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.SelectedBookCopy == null) mtc.SelectedBookCopy = null;
+            else if (mtc.IsBookCopyEditMode) mtc.SelectedBookCopy = mtc.SelectedBookCopy;
+            else mtc.SelectedBookCopy = null;
+        }
+
+        private void RemoveBookCopyButton_Click(object sender, EventArgs e)
+        {
+            mtc.RemoveBookCopy();
+        }
+
+        private void DeleteAuthorButton_Click(object sender, EventArgs e)
+        {
+            mtc.DeleteAuthor();
         }
 
 
@@ -176,10 +238,5 @@ namespace Books
 
         #endregion
 
-        private void AddPublisherButton_Click(object sender, EventArgs e)
-        {
-            if (mtc.SelectedPublisher == null) mtc.AddPubliser();
-            else mtc.EditPublisher();
-        }
     }
 }

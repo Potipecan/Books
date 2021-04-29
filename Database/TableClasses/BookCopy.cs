@@ -24,7 +24,7 @@ namespace Database.TableClasses
 
         [Column("publisher_id"), ForeignKey(typeof(Publisher))]
         public int PublisherID { get; set; }
-        [OneToMany]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public Publisher Publisher { get; set; }
 
         [Column("book_id"), NotNull, ForeignKey(typeof(Book))]

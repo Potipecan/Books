@@ -56,7 +56,7 @@ namespace Books.SubWindows
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Login("admin@example.com", "olseg");
+            Login("test@test.si", "test");
         }
     }
 }

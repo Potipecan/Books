@@ -39,14 +39,12 @@ namespace Books.TabControllers
                 ["Naslov"] = 100,
                 ["Inventarna št."] = 50,
                 ["Založba"] = 100,
-                ["Avtor"] = 100,
                 ["Letnik"] = 50,
             };
 
             var bookpreset = new Dictionary<string, int>()
             {
                 ["Naslov"] = 100,
-                ["Šifra"] = 50,
                 ["Avtor"] = 100,
                 ["Povzetek"] = 200
             };
@@ -96,17 +94,20 @@ namespace Books.TabControllers
 
         public void InspectSearchResult()
         {
+            object o = SearchResults[f.SearchResultLW.SelectedItems[0].Index];
             switch (f.SearchBookComboBox.SelectedIndex)
             {
                 case 0: // avtor
-
+                    f.GoToMaterialsPage(o as Author);
                     break;
                 case 1: // inventarna
+                    f.GoToMaterialsPage((o as BookCopy).Book);
                     break;
                 case 2: // naslov
+                    f.GoToMaterialsPage(o as Book);
                     break;
                 case 3: // član
-                    f.GoToUserPage(SearchResults[f.SearchResultLW.SelectedItems[0].Index] as User);
+                    f.GoToUserPage(o as User);
                     break;
             }
 
@@ -133,19 +134,31 @@ namespace Books.TabControllers
 
         private async Task SearchBookCopy()
         {
-            var bookcopy = await DatabaseManager.GetBookCopy(f.SearchTextBox.Text);
+            var bookcopies = await DatabaseManager.GetBookCopies(f.SearchTextBox.Text);
+            bookcopies.ForEach(bc =>
+            {
+                var n = new string[]
+                {
+                    bc.Book.Title,
+                    bc.Code,
+                    bc.Publisher.Name,
+                    $"{bc.Year}"
+                };
 
+                f.SearchResultLW.Items.Add(new ListViewItem(n));
+                SearchResults.Add(bc);
+            });
         }
 
         private async Task SearchBook()
         {
-            var books = await DatabaseManager.GetBookCopies(f.SearchTextBox.Text);
+            var books = await DatabaseManager.GetBooks(f.SearchTextBox.Text);
 
             foreach (var b in books)
             {
                 string authors = "";
 
-                foreach (var a in b.Book.Authors)
+                foreach (var a in b.Authors)
                 {
                     var s = a.Name.Split(' ');
                     authors += $"{s[0].Substring(0, 1)}. {s[1]}, ";
@@ -153,13 +166,12 @@ namespace Books.TabControllers
                 authors.TrimEnd(',', ' ');
 
                 var row = new ListViewItem(new string[] {
-                    b.Book.Title,
-                    b.Code,
+                    b.Title,
                     authors,
-                    b.Book.Description
+                    b.Description
                 });
-                f.SearchResultLW.Items.Add(row);
 
+                f.SearchResultLW.Items.Add(row);
                 SearchResults.Add(b);
             }
         }

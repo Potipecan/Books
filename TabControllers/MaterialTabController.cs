@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utils;
 
 namespace Books.TabControllers
 {
@@ -43,21 +44,53 @@ namespace Books.TabControllers
             OnAuthorsUpdated();
             PublishersUpdated += OnPublishersUpdated;
             OnPublishersUpdated();
+
+            #region quick tests
+            Debug.WriteLine(((AcquisitionType)0).ToString());
+            #endregion
+
         }
+
+        #region Go here functions
+
+        public void GoHere(Book book)
+        {
+            SelectedBook = book;
+            f.MainTabControl.SelectedTab = f.BookTab;
+            f.MaterialTabControl.SelectedTab = f.BooksPage;
+        }
+
+        public void GoHere(Author author)
+        {
+            SelectedAuthor = author;
+            f.MainTabControl.SelectedTab = f.BookTab;
+            f.MaterialTabControl.SelectedTab = f.AuthorsPage;
+        }
+
+        public void GoHere(Section section)
+        {
+            SelectedSection = section;
+            f.MainTabControl.SelectedTab = f.BookTab;
+            f.MaterialTabControl.SelectedTab = f.SectionsPage;
+        }
+
+        public void GoHere(Publisher publisher)
+        {
+            SelectedPublisher = publisher;
+            f.MainTabControl.SelectedTab = f.BookTab;
+            f.MaterialTabControl.SelectedTab = f.PublishersPage;
+        }
+
+        #endregion
 
         #region Signal bindings
 
         private void OnSectionsUpdated()
         {
-            var sections = new List<Section>();
-
             Task.Run(async () =>
             {
-                sections = await DatabaseManager.GetSections();
+                Sections = await DatabaseManager.GetSections();
             }).Wait();
-
-            f.BookSectionCB.Items.Clear();
-            foreach (var s in sections) f.BookSectionCB.Items.Add(s);
         }
 
         private void OnAuthorsUpdated()
@@ -78,33 +111,79 @@ namespace Books.TabControllers
             var t = f.PublishersCB.Text;
             Task.Run(async () =>
             {
-                publishers = await DatabaseManager.GetPublishers(t);
+                Publishers = await DatabaseManager.GetPublishers(t);
             }).Wait();
-            f.PublishersCB.Items.Clear();
-            foreach (var a in publishers) f.PublishersCB.Items.Add(a);
         }
 
         #endregion
 
         #region Books page
 
-        private Book currentBook;
-        public Book CurrentBook
+        private List<Section> sections;
+        public List<Section> Sections
         {
-            get => currentBook;
+            get => sections;
             set
             {
+                if (value == null) throw new Exception("Cannot be null");
+                sections = value;
 
+                int id = -1;
+                if (f.BookSectionCB.SelectedIndex >= 0) id = (f.BookSectionCB.SelectedItem as Section).ID;
+
+                f.BookSectionCB.Items.Clear();
+                foreach (var v in value)
+                {
+                    f.BookSectionCB.Items.Add(v);
+                    if (v.ID == id) id = Sections.Count - 1;
+                }
+
+                f.BookSectionCB.SelectedIndex = id;
+            }
+        }
+
+        private List<Publisher> publishers;
+        private List<Publisher> Publishers
+        {
+            get => publishers;
+            set
+            {
+                if (value == null) throw new Exception("Cannot be null");
+                publishers = value;
+
+                int id = -1;
+                if (f.PublishersCB.SelectedIndex >= 0) id = (f.PublishersCB.SelectedItem as Section).ID;
+
+                f.PublishersCB.Items.Clear();
+                foreach (var v in value)
+                {
+                    f.PublishersCB.Items.Add(v);
+                    if (v.ID == id) id = Sections.Count - 1;
+                }
+
+                f.PublishersCB.SelectedIndex = id;
+            }
+        }
+
+        private Book selectedBook;
+        public Book SelectedBook
+        {
+            get => selectedBook;
+            set
+            {
+                f.DeleteBookButton.Visible = value != null;
                 if (value != null)
                 {
                     f.BookTitleTB.Text = value.Title;
                     f.BookDescriptionTB.Text = value.Description;
 
-                    if (value.Authors.Count == 0 || value.Section == null || value.BookCopies.Count < 1)
+                    if (value.Authors == null ||
+                        value.Section == null ||
+                        value.BookCopies == null)
                         Task.Run(async () => value = await DatabaseManager.GetBook(value)).Wait();
 
 
-                    f.BookSectionCB.SelectedItem = value.Section;
+                    f.BookSectionCB.SelectedIndex = Sections.FindIndex(s => s.ID == value.SectionID);
 
                     f.AuthorsBookLB.Items.Clear();
                     foreach (var a in value.Authors) f.AuthorsBookLB.Items.Add(a.Name);
@@ -114,6 +193,9 @@ namespace Books.TabControllers
 
                     newBookCopies = value.BookCopies;
                     newAuthors = value.Authors;
+
+                    f.AddBookButton.Text = "Uredi";
+                    f.CancelBookEditButton.Text = "Počisti";
                 }
                 else
                 {
@@ -125,27 +207,67 @@ namespace Books.TabControllers
                     f.AuthorSelectionCB.SelectedIndex = -1;
                     f.BookCopyLW.Items.Clear();
 
-                    SelectedBookCopy = null;
 
                     newBookCopies = new List<BookCopy>();
                     newAuthors = new List<Author>();
+
+                    f.AddBookButton.Text = "Dodaj";
+                    f.CancelBookEditButton.Text = "Počisti";
                 }
 
-                currentBook = value;
+                selectedBook = value;
+                SelectedBookCopy = null;
+
+                IsBookEditMode = false;
+            }
+        }
+
+        private bool isBookEditMode;
+        public bool IsBookEditMode
+        {
+            get => isBookEditMode;
+            set
+            {
+                if (SelectedBook == null)
+                {
+                    Helper.ToggleCommonControls(f.BookGB.Controls, true);
+                    isBookEditMode = false;
+                    f.DeleteBookButton.Enabled = false;
+                    return;
+                }
+
+                isBookEditMode = value;
+                f.DeleteBookButton.Enabled = value;
+
+                Helper.ToggleCommonControls(f.BookGB.Controls, value);
+
+                if (value)
+                {
+                    f.AddBookButton.Text = "Potrdi";
+                    f.CancelBookEditButton.Text = "Prekliči";
+                }
+                else
+                {
+                    f.AddBookButton.Text = "Uredi";
+                    f.CancelBookEditButton.Text = "Počisti";
+                }
             }
         }
 
         private BookCopy selectedBookCopy;
-        private BookCopy SelectedBookCopy
+        public BookCopy SelectedBookCopy
         {
             get => selectedBookCopy;
             set
             {
                 selectedBookCopy = value;
+
+                IsBookCopyEditMode = false;
+
                 if (value != null)
                 {
                     f.BookCopyCodeTB.Text = value.Code;
-                    f.PublishersCB.SelectedItem = value.Publisher;
+                    f.PublishersCB.SelectedIndex = Publishers.FindIndex(p => p.ID == value.PublisherID);
                     f.BookCopyAcquisitionCB.SelectedIndex = value.AcquisitionType;
                     f.BookCopyAcquisitionDTP.Value = value.AcquisitionDate;
                     f.BookCopyYearNUD.Value = value.Year;
@@ -161,6 +283,38 @@ namespace Books.TabControllers
             }
         }
 
+        private bool isBookCopyEditMode;
+        public bool IsBookCopyEditMode
+        {
+            get => isBookCopyEditMode;
+            set
+            {
+                if (SelectedBookCopy == null)
+                {
+                    Helper.ToggleCommonControls(f.BookCopyGB.Controls, false);
+                    isBookCopyEditMode = false;
+                    f.RemoveBookCopyButton.Enabled = false;
+                    return;
+                }
+
+                isBookCopyEditMode = value;
+                f.RemoveBookCopyButton.Enabled = value;
+
+                Helper.ToggleCommonControls(f.BookCopyGB.Controls, value);
+
+                if (value)
+                {
+                    f.AddBookCopyButton.Text = "Potrdi";
+                    f.CancelBookCopyEditButton.Text = "Prekliči";
+                }
+                else
+                {
+                    f.AddBookCopyButton.Text = "Uredi";
+                    f.CancelBookCopyEditButton.Text = "Počisti";
+                }
+            }
+        }
+
         private List<BookCopy> newBookCopies;
         private List<Author> newAuthors;
 
@@ -171,18 +325,138 @@ namespace Books.TabControllers
 
         private void DisplayBookCopy(BookCopy copy)
         {
+            int i = newBookCopies.IndexOf(copy);
             var s = new string[]
             {
                 copy.Code,
                 copy.Publisher.Name,
-                ((AcquisitionType)copy.AcquisitionType).ToString(),
-                copy.Year.ToString()
+                $"{(AcquisitionType)copy.AcquisitionType}",
+                copy.AcquisitionDate.ToShortDateString()
             };
 
-            var i = new ListViewItem(s);
+            var l = new ListViewItem(s);
 
-            newBookCopies.Add(copy);
-            f.BookCopyLW.Items.Add(i);
+            if (i < 0)
+            {
+                f.BookCopyLW.Items.Add(l);
+                newBookCopies.Add(copy);
+            }
+            else
+            {
+                f.BookCopyLW.Items.RemoveAt(i);
+                f.BookCopyLW.Items.Insert(i, l);
+            }
+        }
+
+
+        public async void AddBook()
+        {
+            switch (ValidateBook())
+            {
+                case BookValidationResult.MissingTitleOrDescription:
+                    MessageBox.Show("Naslov in opis ne more biti prazna.");
+                    return;
+
+                case BookValidationResult.NoAuthors:
+                    MessageBox.Show("Knjiga imora imeti vsaj enega avtorja.");
+                    return;
+
+                case BookValidationResult.NoBookCopies:
+                    MessageBox.Show("Knjiga mora imeti vsaj en izvod.");
+                    return;
+            }
+
+            var b = new Book()
+            {
+                Title = f.BookTitleTB.Text,
+                Description = f.BookDescriptionTB.Text,
+                Authors = newAuthors,
+                BookCopies = newBookCopies,
+                Section = f.BookSectionCB.SelectedItem as Section
+            };
+
+            if (await DatabaseManager.AddBook(b))
+            {
+                MessageBox.Show("Knjiga uspešno dodana");
+                return;
+            }
+
+            MessageBox.Show("Napaka!");
+        }
+
+        public async void UpdateBook()
+        {
+            if (!IsBookEditMode) return;
+
+            switch (ValidateBook())
+            {
+                case BookValidationResult.MissingTitleOrDescription:
+                    MessageBox.Show("Naslov in opis ne more biti prazna.");
+                    return;
+
+                case BookValidationResult.NoAuthors:
+                    MessageBox.Show("Knjiga imora imeti vsaj enega avtorja.");
+                    return;
+
+                case BookValidationResult.NoBookCopies:
+                    MessageBox.Show("Knjiga mora imeti vsaj en izvod.");
+                    return;
+            }
+
+            var b = new Book()
+            {
+                ID = SelectedBook.ID,
+                Title = f.BookTitleTB.Text,
+                Description = f.BookDescriptionTB.Text,
+                Authors = newAuthors,
+                BookCopies = newBookCopies,
+                Section = f.BookSectionCB.SelectedItem as Section
+            };
+
+            if (await DatabaseManager.UpdateBook(b))
+            {
+                MessageBox.Show("Spremembe uspešno shranjene.");
+                SelectedBook = b;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri shranjevanju sprememb.");
+        }
+
+        public async void DeleteBook()
+        {
+            if (!IsBookEditMode) return;
+
+            var a = MessageBox.Show("Knjiga in vsi njeni izvodi bodo izbrisani iz podatkovne baze.\n" +
+                "Dejanja ne bo mogoče razveljaviti.", "Brisanje knjige.", MessageBoxButtons.YesNo);
+
+            if (a != DialogResult.Yes) return;
+
+            if (await DatabaseManager.DeleteBook(SelectedBook))
+            {
+                MessageBox.Show("Brisanje knjige uspešno.");
+                SelectedBook = null;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri brisanju knjige.");
+        }
+
+        public void SelectAuthor()
+        {
+            var a = f.AuthorSelectionCB.SelectedItem;
+            if (a == null) return;
+
+            newAuthors.Add(a as Author);
+            f.AuthorsBookLB.Items.Add(a);
+        }
+
+
+
+        public void BookCopySelectionChanged()
+        {
+            if (f.BookCopyLW.SelectedItems.Count < 1) SelectedBookCopy = null;
+            else SelectedBookCopy = newBookCopies[f.BookCopyLW.SelectedItems[0].Index];
         }
 
         public async void AddBookCopy()
@@ -226,105 +500,58 @@ namespace Books.TabControllers
             DisplayBookCopy(bc);
         }
 
-        public async void AddBook()
-        {
-            switch (ValidateBook())
-            {
-                case BookValidationResult.MissingTitleOrDescription:
-                    MessageBox.Show("Naslov in opis ne more biti prazna.");
-                    return;
-
-                case BookValidationResult.NoAuthors:
-                    MessageBox.Show("Knjiga imora imeti vsaj enega avtorja.");
-                    return;
-
-                case BookValidationResult.NoBookCopies:
-                    MessageBox.Show("Knjiga mora imeti vsaj en izvod.");
-                    return;
-            }
-
-            var b = new Book()
-            {
-                Title = f.BookTitleTB.Text,
-                Description = f.BookDescriptionTB.Text,
-                Authors = newAuthors,
-                BookCopies = newBookCopies,
-                Section = f.BookSectionCB.SelectedItem as Section
-            };
-
-            if (await DatabaseManager.AddBook(b))
-            {
-                MessageBox.Show("Knjiga uspešno dodana");
-                return;
-            }
-
-            MessageBox.Show("Napaka!");
-        }
-
-        public async void UpdateBook()
-        {
-            switch (ValidateBook())
-            {
-                case BookValidationResult.MissingTitleOrDescription:
-                    MessageBox.Show("Naslov in opis ne more biti prazna.");
-                    return;
-
-                case BookValidationResult.NoAuthors:
-                    MessageBox.Show("Knjiga imora imeti vsaj enega avtorja.");
-                    return;
-
-                case BookValidationResult.NoBookCopies:
-                    MessageBox.Show("Knjiga mora imeti vsaj en izvod.");
-                    return;
-            }
-
-            var b = new Book()
-            {
-                ID = CurrentBook.ID,
-                Title = f.BookTitleTB.Text,
-                Description = f.BookDescriptionTB.Text,
-                Authors = newAuthors,
-                BookCopies = newBookCopies,
-                Section = f.BookSectionCB.SelectedItem as Section
-            };
-
-            if (await DatabaseManager.UpdateBook(b))
-            {
-                MessageBox.Show("Spremembe uspešno shranjene.");
-                return;
-            }
-
-            MessageBox.Show("Napaka pri shranjevanju sprememb.");
-        }
-
-        public async void DeleteBook()
-        {
-            if (await DatabaseManager.DeleteBook(CurrentBook))
-            {
-                MessageBox.Show("Brisanje knjige uspešno.");
-                CurrentBook = null;
-                return;
-            }
-
-            MessageBox.Show("Napaka pri brisanju knjige.");
-        }
-
         public void RemoveBookCopy()
         {
             if (SelectedBookCopy == null) return;
-            CurrentBook.BookCopies.Remove(SelectedBookCopy);
-            f.BookCopyLW.Items.Remove(f.BookCopyLW.SelectedItems[0]);
-            SelectedBookCopy = null;
+            int i = newBookCopies.IndexOf(SelectedBookCopy);
+            newBookCopies.RemoveAt(i);
+            f.BookCopyLW.Items.RemoveAt(i);
         }
 
-        public void SelectAuthor()
+        public async void UpdateBookCopy()
         {
-            var a = f.AuthorSelectionCB.SelectedItem;
-            if (a == null) return;
+            if (!IsBookCopyEditMode)
+            {
+                IsBookCopyEditMode = true;
+                return;
+            }
 
-            newAuthors.Add(a as Author);
-            f.AuthorsBookLB.Items.Add(a);
+            var code = f.BookCopyCodeTB.Text;
+
+            if (code == "")
+            {
+                MessageBox.Show("Izvod mora imeti inventarno številko.");
+                return;
+            }
+
+            if (f.PublishersCB.SelectedItem == null)
+            {
+                MessageBox.Show("Izvod mora imeti založnika.");
+                return;
+            }
+
+            if (f.BookCopyAcquisitionCB.SelectedItem == null)
+            {
+                MessageBox.Show("Izberite način pridobitve izvoda.");
+                return;
+            }
+
+            if (!await DatabaseManager.IsCodeUnique(code) || newBookCopies.Exists(b => b.Code == code))
+            {
+                MessageBox.Show("Inventarna številka že obstaja");
+                return;
+            }
+
+
+            SelectedBookCopy.Code = f.BookCopyCodeTB.Text;
+            SelectedBookCopy.AcquisitionDate = f.BookCopyAcquisitionDTP.Value;
+            SelectedBookCopy.Publisher = (f.PublishersCB.SelectedItem as Publisher);
+            SelectedBookCopy.AcquisitionType = f.BookCopyAcquisitionCB.SelectedIndex;
+            SelectedBookCopy.Year = Convert.ToInt32(f.BookCopyYearNUD.Value);
+
+            DisplayBookCopy(SelectedBookCopy);
         }
+
 
         private BookValidationResult ValidateBook()
         {
@@ -392,14 +619,21 @@ namespace Books.TabControllers
             get => isAuthorEditMode;
             set
             {
+                if (SelectedAuthor == null)
+                {
+                    Helper.ToggleCommonControls(f.AuthorInfoGB.Controls, true);
+                    isAuthorEditMode = false;
+                    f.DeleteAuthorButton.Enabled = false;
+                    return;
+                }
+
                 isAuthorEditMode = value;
 
-                bool b = value || SelectedSection == null;
+                Helper.ToggleCommonControls(f.AuthorInfoGB.Controls, value);
 
-                f.AuthorNameTB.Enabled = b;
-                f.AuthorDescriptionTB.Enabled = b;
                 f.CancelAuthorEditButton.Text = value ? "Prekliči" : "Počisti";
-                if (SelectedAuthor != null) f.AddAuthorButton.Text = value ? "Potrdi" : "Uredi";
+                f.AddAuthorButton.Text = value ? "Potrdi" : "Uredi";
+                f.DeleteAuthorButton.Enabled = value;
             }
         }
 
@@ -460,6 +694,21 @@ namespace Books.TabControllers
             MessageBox.Show("Napaka pri sharnjevanju sprememb.");
         }
 
+        public async void DeleteAuthor()
+        {
+            if (!IsAuthorEditMode) return;
+            var a = MessageBox.Show("Dejanja ni mogoče razveljaviti.\nAli želite nadaljevati?", "Brisanje avtorja.", MessageBoxButtons.YesNo);
+            if (a != DialogResult.OK) return;
+
+            if (await DatabaseManager.DeleteAuthor(SelectedAuthor))
+            {
+                MessageBox.Show("Avtor uspoešno izbrisan.");
+                SelectedAuthor = null;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri brisanju avtorja.");
+        }
 
         private bool ValidateAuthor()
         {
@@ -476,8 +725,12 @@ namespace Books.TabControllers
             get => selectedSection;
             set
             {
+                if (value.Books == null) Task.Run(async () => value = await DatabaseManager.GetSectionWithChildren(value)).Wait();
+
                 selectedSection = value;
+
                 IsSectionEditMode = false;
+
                 if (value != null)
                 {
                     f.SectionNameTB.Text = value.Name;
@@ -499,15 +752,19 @@ namespace Books.TabControllers
             get => isSectionEditMode;
             set
             {
+                if (SelectedSection == null)
+                {
+                    Helper.ToggleCommonControls(f.SectionInfoGB.Controls, true);
+                    isSectionEditMode = false;
+                    f.DeleteSectionButton.Enabled = false;
+                    return;
+                }
+
                 isSectionEditMode = value;
 
-                bool b = value || SelectedSection == null;
-
-                f.SectionNameTB.Enabled = b;
-                f.SectionDescriptionTB.Enabled = b;
-
                 f.CancelSectionEditButton.Text = value ? "Prekliči" : "Počisti";
-                if (SelectedSection != null) f.AddSectionButton.Text = value ? "Potrdi" : "Uredi";
+                f.AddSectionButton.Text = value ? "Potrdi" : "Uredi";
+                f.DeleteSectionButton.Enabled = value;
             }
         }
 
@@ -554,17 +811,36 @@ namespace Books.TabControllers
             {
                 ID = SelectedSection.ID,
                 Name = f.SectionNameTB.Text,
-                Description = f.SectionDescriptionTB.Text
+                Description = f.SectionDescriptionTB.Text,
+                Books = SelectedSection.Books
             };
 
             if (await DatabaseManager.UpdateSection(s))
             {
                 MessageBox.Show("Spremembe uspešno shranjene.");
+                SelectedSection = s;
                 SectionsUpdated.Invoke();
                 return;
             }
 
             MessageBox.Show("Napaka pri shranjevanju sprememb.");
+        }
+
+        public async void DeleteSection()
+        {
+            if (!IsSectionEditMode) return;
+
+            var a = MessageBox.Show("To bo izbrisalo tudi vse knjige v žanru.\nDejanja ni mogoče razveljaviti.\nŽelite nadaljevati.", "Brisanje žanra", MessageBoxButtons.YesNo);
+            if (a != DialogResult.Yes) return;
+
+            if (await DatabaseManager.DeleteSection(SelectedSection))
+            {
+                MessageBox.Show("Žanr uspešno izbrisan");
+                SelectedSection = null;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri brisanju žanra.");
         }
 
         #endregion
@@ -578,20 +854,39 @@ namespace Books.TabControllers
             set
             {
                 selectedPublisher = value;
-                if (value == null)
-                {
-                    f.PublisherNameTB.Text = "";
-                }
-                else
-                {
-                    f.PublisherNameTB.Text = value.Name;
-                }
+                IsPublisherEditMode = false;
+
+                f.PublisherNameTB.Text = value == null ? "" : value.Name;
             }
         }
 
-        public async void AddPubliser()
+        private bool isPublisherEditMode;
+        public bool IsPublisherEditMode
         {
-            if(f.PublisherNameTB.Text == "")
+            get => isPublisherEditMode;
+            set
+            {
+                if (SelectedPublisher == null)
+                {
+                    Helper.ToggleCommonControls(f.PublisherInfoGB.Controls, true);
+                    isPublisherEditMode = false;
+                    f.DeletePublisherButton.Enabled = false;
+                    return;
+                }
+
+                isPublisherEditMode = value;
+
+                Helper.ToggleCommonControls(f.PublisherInfoGB.Controls, value);
+
+                f.AddPublisherButton.Text = value ? "Potrdi" : "Dodaj";
+                f.CancelPublisherEditButton.Text = value ? "Prekliči" : "Počisti";
+                f.DeletePublisherButton.Enabled = value;
+            }
+        }
+
+        public async void AddPublisher()
+        {
+            if (f.PublisherNameTB.Text == "")
             {
                 MessageBox.Show("Ime založnika ne sme biti prazno.");
                 return;
@@ -602,10 +897,11 @@ namespace Books.TabControllers
                 Name = f.PublisherNameTB.Text
             };
 
-            if(await DatabaseManager.AddPublisher(p))
+            if (await DatabaseManager.AddPublisher(p))
             {
                 MessageBox.Show("Založba uspešno shranjena.");
                 SelectedPublisher = p;
+                PublishersUpdated.Invoke();
                 return;
             }
 
@@ -630,6 +926,7 @@ namespace Books.TabControllers
             {
                 MessageBox.Show("Spremembe uspešno shranjene.");
                 SelectedPublisher = p;
+                PublishersUpdated.Invoke();
                 return;
             }
 
