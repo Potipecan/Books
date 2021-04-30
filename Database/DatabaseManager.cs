@@ -45,7 +45,7 @@ namespace Database
                     typeof(BookCopy),
                     typeof(Publisher),
                     typeof(Librarian),
-                    typeof(BookRent),
+                    typeof(BookLoan),
                     typeof(BookRentRecord),
                     typeof(AuthorBook),
                     typeof(Section)
@@ -146,7 +146,7 @@ namespace Database
             return await conn.InsertAsync(bookcopy) == 1;
         }
 
-        public static async Task<bool> AddBookRent(BookRent bookrent)
+        public static async Task<bool> AddBookRent(BookLoan bookrent)
         {
             if (bookrent.BookCopy == null || bookrent.User == null) return false;
             return await conn.InsertAsync(bookrent) == 1;
@@ -385,7 +385,7 @@ namespace Database
 
         #endregion
 
-        public static async Task ReturnBook(BookRent bookrent)
+        public static async Task ReturnBook(BookLoan bookrent)
         {
             var r = new BookRentRecord()
             {
@@ -400,7 +400,7 @@ namespace Database
             await conn.InsertAsync(r);
         }
 
-        public static async Task ReturnBooks(List<BookRent> bookrents)
+        public static async Task ReturnBooks(List<BookLoan> bookrents)
         {
             var rs = new List<BookRentRecord>();
 
@@ -429,7 +429,7 @@ namespace Database
             return res;
         }
 
-        public static async Task LoanBooks(List<BookRent> bookrents)
+        public static async Task LoanBooks(List<BookLoan> bookrents)
         {
             await conn.InsertAllAsync(bookrents);
         }

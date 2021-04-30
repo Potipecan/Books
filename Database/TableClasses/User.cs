@@ -29,7 +29,7 @@ namespace Database.TableClasses
         public string Notes { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
-        public List<BookRent> BookRents { get; set; }
+        public List<BookLoan> BookRents { get; set; }
 
     }
 }

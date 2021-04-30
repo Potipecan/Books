@@ -29,7 +29,7 @@ namespace Books.TabControllers
             cancelBookQuerySource = new CancellationTokenSource();
             cancelBookQuery = cancelBookQuerySource.Token;
 
-            newBookLoans = new List<BookRent>();
+            newBookLoans = new List<BookLoan>();
 
             cachedDeadline = DateTime.Now;
 
@@ -103,7 +103,7 @@ namespace Books.TabControllers
             }
         }
 
-        private void FillBookRents(List<BookRent> rents)
+        private void FillBookRents(List<BookLoan> rents)
         {
             foreach (var r in rents)
             {
@@ -203,7 +203,7 @@ namespace Books.TabControllers
         {
             if (f.BookRentsLW.SelectedItems.Count < 1) return;
 
-            var returns = new List<BookRent>();
+            var returns = new List<BookLoan>();
             foreach (int i in f.BookRentsLW.SelectedIndices)
             {
                 returns.Add(SelectedUser.BookRents[i]);
@@ -233,7 +233,7 @@ namespace Books.TabControllers
 
         #region book loaning tab
 
-        private List<BookRent> newBookLoans;
+        private List<BookLoan> newBookLoans;
 
         private int oldDeadlineMode;
 
@@ -277,7 +277,7 @@ namespace Books.TabControllers
         {
             if (SelectedBookCopy != null && SelectedUser != null)
             {
-                var l = new BookRent()
+                var l = new BookLoan()
                 {
                     BookCopyID = SelectedBookCopy.ID,
                     UserID = SelectedUser.ID,

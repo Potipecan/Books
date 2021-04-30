@@ -90,7 +90,7 @@
     <Compile Include="TableClasses\AuthorBook.cs" />
     <Compile Include="TableClasses\Book.cs" />
     <Compile Include="TableClasses\BookCopy.cs" />
-    <Compile Include="TableClasses\BookRent.cs" />
+    <Compile Include="TableClasses\BookLoan.cs" />
     <Compile Include="TableClasses\BookRentRecord.cs" />
     <Compile Include="TableClasses\Librarian.cs" />
     <Compile Include="TableClasses\Publisher.cs" />

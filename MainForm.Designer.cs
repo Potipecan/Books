@@ -200,6 +200,7 @@ namespace Books
             this.LibrarianNewPassTB = new System.Windows.Forms.TextBox();
             this.ChangeLibrarianDataButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.CancelBookLoanEditButton = new System.Windows.Forms.Button();
             this.MainTabControl.SuspendLayout();
             this.SearchTab.SuspendLayout();
             this.BookSearchGroupBox.SuspendLayout();
@@ -1317,6 +1318,7 @@ namespace Books
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.CancelBookLoanEditButton);
             this.groupBox1.Controls.Add(this.ConfirmBookLoanButton);
             this.groupBox1.Controls.Add(this.DeadlineDateTimePicker);
             this.groupBox1.Controls.Add(this.RemoveBookLoanButton);
@@ -1352,7 +1354,7 @@ namespace Books
             // 
             // RemoveBookLoanButton
             // 
-            this.RemoveBookLoanButton.Location = new System.Drawing.Point(105, 144);
+            this.RemoveBookLoanButton.Location = new System.Drawing.Point(211, 144);
             this.RemoveBookLoanButton.Name = "RemoveBookLoanButton";
             this.RemoveBookLoanButton.Size = new System.Drawing.Size(94, 31);
             this.RemoveBookLoanButton.TabIndex = 5;
@@ -1379,7 +1381,7 @@ namespace Books
             // 
             this.AddBookLoanButton.Location = new System.Drawing.Point(9, 144);
             this.AddBookLoanButton.Name = "AddBookLoanButton";
-            this.AddBookLoanButton.Size = new System.Drawing.Size(90, 31);
+            this.AddBookLoanButton.Size = new System.Drawing.Size(100, 31);
             this.AddBookLoanButton.TabIndex = 3;
             this.AddBookLoanButton.Text = "Dodaj";
             this.AddBookLoanButton.UseVisualStyleBackColor = true;
@@ -1973,6 +1975,15 @@ namespace Books
             this.ChangeLibrarianDataButton.UseVisualStyleBackColor = true;
             this.ChangeLibrarianDataButton.Click += new System.EventHandler(this.ChangeLibrarianDataButton_Click);
             // 
+            // CancelBookLoanEditButton
+            // 
+            this.CancelBookLoanEditButton.Location = new System.Drawing.Point(115, 144);
+            this.CancelBookLoanEditButton.Name = "CancelBookLoanEditButton";
+            this.CancelBookLoanEditButton.Size = new System.Drawing.Size(90, 31);
+            this.CancelBookLoanEditButton.TabIndex = 8;
+            this.CancelBookLoanEditButton.Text = "Počisti";
+            this.CancelBookLoanEditButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2202,6 +2213,7 @@ namespace Books
         public System.Windows.Forms.ListView PublishersLW;
         public System.Windows.Forms.GroupBox UserGB;
         public System.Windows.Forms.Button DeleteUserButton;
+        public System.Windows.Forms.Button CancelBookLoanEditButton;
     }
 }
 
