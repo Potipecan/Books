@@ -19,52 +19,6 @@ namespace Books.TabControllers
         private CancellationTokenSource cancelBookQuerySource;
         private CancellationToken cancelBookQuery;
 
-        private bool isUserEditMode;
-        public bool IsUserEditMode
-        {
-            get => isUserEditMode; set
-            {
-                isUserEditMode = value;
-                if (value)
-                {
-                    f.EditUserButton.Text = "Potrdi";
-                    f.CancelEditButton.Show();
-                }
-                else
-                {
-                    f.EditUserButton.Text = "Uredi";
-                    f.CancelEditButton.Hide();
-                }
-
-                f.UserNameTB.Enabled = value;
-                f.UserSurnameTB.Enabled = value;
-                f.UserPhoneTB.Enabled = value;
-                f.UserAddressTB.Enabled = value;
-                f.UserEmailTB.Enabled = value;
-                f.UserNotesTB.Enabled = value;
-            }
-        }
-
-        private User selectedUser;
-        private User SelectedUser
-        {
-            get => selectedUser; set
-            {
-                isUserEditMode = false;
-                if (value != null)
-                {
-                    selectedUser = value;
-                    f.UserNameTB.Text = value.Name;
-                    f.UserSurnameTB.Text = value.Surname;
-                    f.UserPhoneTB.Text = value.Phone;
-                    f.UserAddressTB.Text = value.Address;
-                    f.UserEmailTB.Text = value.Email;
-                    f.UserNotesTB.Text = value.Notes;
-
-                    if (value.BookRents != null) FillBookRents(value.BookRents);
-                }
-            }
-        }
 
         public UserTabController(MainForm form)
         {
@@ -95,6 +49,60 @@ namespace Books.TabControllers
 
         #region user info tab
 
+        private User selectedUser;
+        public User SelectedUser
+        {
+            get => selectedUser; set
+            {
+                if (value != null)
+                {
+                    f.UserNameTB.Text = value.Name;
+                    f.UserSurnameTB.Text = value.Surname;
+                    f.UserPhoneTB.Text = value.Phone;
+                    f.UserAddressTB.Text = value.Address;
+                    f.UserEmailTB.Text = value.Email;
+                    f.UserNotesTB.Text = value.Notes;
+
+                    if (value.BookRents == null)
+                        Task.Run(async () => value = await DatabaseManager.GetUser(value)).Wait();
+                    FillBookRents(value.BookRents);
+                }
+                else
+                {
+                    foreach (Control c in f.UserGB.Controls) if (c.GetType() == typeof(TextBox)) (c as TextBox).Text = "";
+                    f.BookRentsLW.Items.Clear();
+                }
+
+                f.DeleteUserButton.Visible = value != null;
+
+                selectedUser = value;
+                IsUserEditMode = false;
+            }
+        }
+
+        private bool isUserEditMode;
+        public bool IsUserEditMode
+        {
+            get => isUserEditMode; set
+            {
+                if (SelectedUser == null)
+                {
+                    Helper.ToggleCommonControls(f.UserGB.Controls, true);
+                    isUserEditMode = false;
+                    f.DeleteUserButton.Enabled = false;
+                    return;
+                }
+
+                isUserEditMode = value;
+
+                Helper.ToggleCommonControls(f.UserGB.Controls, value);
+
+                f.AddUserButton.Text = value ? "Potrdi" : "Uredi";
+                f.CancelUserEditButton.Text = value ? "Prekliči" : "Počisti";
+                f.DeleteUserButton.Enabled = value;
+            }
+        }
+
         private void FillBookRents(List<BookRent> rents)
         {
             foreach (var r in rents)
@@ -111,8 +119,48 @@ namespace Books.TabControllers
             }
         }
 
-        public async void ConfirmUserEdit()
+        public async void AddUser()
         {
+            if(ValidateUser() != UserValidationResult.OK)
+            {
+                MessageBox.Show("Izpolnite vsa potrebna polja.");
+                return;
+            }
+
+            var u = new User()
+            {
+                Name = f.UserNameTB.Text,
+                Surname = f.UserSurnameTB.Text,
+                Phone = f.UserPhoneTB.Text,
+                Address = f.UserAddressTB.Text,
+                Email = f.UserEmailTB.Text,
+                Notes = f.UserNotesTB.Text
+            };
+
+            if(await DatabaseManager.AddUser(u))
+            {
+                MessageBox.Show("Uporabnik uspešno dodan.");
+                SelectedUser = u;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri dodajanju uporabnika.");
+        }
+
+        public async void EditUser()
+        {
+            if (!IsUserEditMode)
+            {
+                IsUserEditMode = true;
+                return;
+            }
+
+            if(ValidateUser() != UserValidationResult.OK)
+            {
+                MessageBox.Show("Izpolnite vsa potrebna polja.");
+                return;
+            }
+
             var u = new User()
             {
                 ID = SelectedUser.ID,
@@ -128,13 +176,27 @@ namespace Books.TabControllers
             {
                 MessageBox.Show("Spremembe uspešno shranjene.");
                 SelectedUser = u;
+                return;
             }
+
             else MessageBox.Show("Napaka!");
         }
 
-        public void InitiateUserEdit()
+        public async void DeleteUser()
         {
-            if (SelectedUser != null) IsUserEditMode = true;
+            if (!IsUserEditMode) return;
+
+            var a = MessageBox.Show("Izbris uporabnika bo izbrisal tudi vse podatke, povezane z njim.\nDejanja ni mogoče razveljaviti.", "Brisanje uporabnika.", MessageBoxButtons.YesNo);
+            if (a != DialogResult.Yes) return;
+
+            if(await DatabaseManager.DeleteUser(SelectedUser))
+            {
+                MessageBox.Show("Brisanje uporabnika uspešno.");
+                SelectedUser = null;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri brisanju uporabnika.");
         }
 
         public async void ReturnBooks()
@@ -150,6 +212,21 @@ namespace Books.TabControllers
             await DatabaseManager.ReturnBooks(returns);
 
             SelectedUser = await DatabaseManager.GetUser(SelectedUser);
+        }
+
+        private UserValidationResult ValidateUser()
+        {
+            if (f.UserNameTB.Text == "" || f.UserSurnameTB.Text == "" || f.UserAddressTB.Text == "" || f.UserPhoneTB.Text == "")
+            {
+                return UserValidationResult.MissingInfo;
+            }
+            return UserValidationResult.OK;
+        }
+
+        private enum UserValidationResult
+        {
+            OK = 0,
+            MissingInfo = 1,
         }
 
         #endregion
@@ -176,18 +253,13 @@ namespace Books.TabControllers
             get => selectedBookCopy;
             set
             {
+                if (value != null && value.Book == null) Task.Run(async () => value = await DatabaseManager.GetBookCopy(value)).Wait();
+
                 selectedBookCopy = value;
-                if (value != null)
-                {
-                    f.BookTitleLabel.Text = value.Book.Title;
-                }
-                else
-                {
-                    f.BookTitleLabel.Text = "/";
-                }
+
+                f.BookTitleLabel.Text = value != null ? value.Book.Title : "/";
 
                 f.AddBookLoanButton.Enabled = value != null;
-
             }
         }
 
@@ -253,19 +325,19 @@ namespace Books.TabControllers
             }
 
         }
-        
+
         public void ConfirmBookLoan()
         {
             string booklist = "";
 
-            foreach(var b in newBookLoans)
+            foreach (var b in newBookLoans)
             {
                 booklist += $"{b.BookCopy.Book.Title}\n";
             }
 
             var a = MessageBox.Show($"Posodili boste naslednje knjige: \n{booklist}", "Posoja knjig", MessageBoxButtons.OKCancel);
 
-            if(a == DialogResult.OK)
+            if (a == DialogResult.OK)
             {
                 Task.Run(async () => await DatabaseManager.LoanBooks(newBookLoans)).Wait();
             }

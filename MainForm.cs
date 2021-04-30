@@ -62,14 +62,21 @@ namespace Books
 
         private void EditUserButton_Click(object sender, EventArgs e)
         {
-            if (utc.IsUserEditMode) utc.ConfirmUserEdit();
-            else utc.InitiateUserEdit();
+            if (utc.SelectedUser != null) utc.EditUser();
+            else utc.AddUser();
         }
 
         private void CancelEditButton_Click(object sender, EventArgs e)
         {
-            utc.IsUserEditMode = false;
+            if (utc.IsUserEditMode) utc.IsUserEditMode = false;
+            else utc.SelectedUser = null;
         }
+
+        private void DeleteUserButton_Click(object sender, EventArgs e)
+        {
+            utc.DeleteUser();
+        }
+
 
         private void ReturnBookOneMemberButton_Click(object sender, EventArgs e)
         {

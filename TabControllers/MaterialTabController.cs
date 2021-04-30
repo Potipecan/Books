@@ -45,8 +45,14 @@ namespace Books.TabControllers
             PublishersUpdated += OnPublishersUpdated;
             OnPublishersUpdated();
 
+            SelectedBook = null;
+            SelectedAuthor = null;
+            SelectedSection = null;
+            SelectedPublisher = null;
+
             #region quick tests
             Debug.WriteLine(((AcquisitionType)0).ToString());
+            Task.Run(async () => Debug.WriteLine($"Next Code: {await DatabaseManager.GetNextBookCopyCode()}"));
             #endregion
 
         }
@@ -291,7 +297,7 @@ namespace Books.TabControllers
             {
                 if (SelectedBookCopy == null)
                 {
-                    Helper.ToggleCommonControls(f.BookCopyGB.Controls, false);
+                    Helper.ToggleCommonControls(f.BookCopyGB.Controls, true);
                     isBookCopyEditMode = false;
                     f.RemoveBookCopyButton.Enabled = false;
                     return;
@@ -386,7 +392,11 @@ namespace Books.TabControllers
 
         public async void UpdateBook()
         {
-            if (!IsBookEditMode) return;
+            if (!IsBookEditMode)
+            {
+                IsBookEditMode = true;
+                return;
+            }
 
             switch (ValidateBook())
             {
@@ -725,14 +735,10 @@ namespace Books.TabControllers
             get => selectedSection;
             set
             {
-                if (value.Books == null) Task.Run(async () => value = await DatabaseManager.GetSectionWithChildren(value)).Wait();
-
-                selectedSection = value;
-
-                IsSectionEditMode = false;
-
                 if (value != null)
                 {
+                    if (value.Books == null) Task.Run(async () => value = await DatabaseManager.GetSectionWithChildren(value)).Wait();
+
                     f.SectionNameTB.Text = value.Name;
                     f.SectionDescriptionTB.Text = value.Description;
                     f.AddSectionButton.Text = "Uredi";
@@ -743,6 +749,10 @@ namespace Books.TabControllers
                     f.SectionDescriptionTB.Text = "";
                     f.AddSectionButton.Text = "Dodaj";
                 }
+
+                selectedSection = value;
+
+                IsSectionEditMode = false;
             }
         }
 

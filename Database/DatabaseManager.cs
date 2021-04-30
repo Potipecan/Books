@@ -242,7 +242,7 @@ namespace Database
             {
                 await conn.DeleteAsync(section, true);
             }
-            catch(SQLiteException sqlex)
+            catch (SQLiteException sqlex)
             {
                 Debug.Fail(sqlex.Message);
                 return false;
@@ -254,7 +254,16 @@ namespace Database
 
         #region Get functions
 
-        public static async Task <Section> GetSectionWithChildren(Section section)
+        public static async Task<string> GetNextBookCopyCode(int extra = 0)
+        {
+            string sql = "SELECT seq FROM sqlite_sequence WHERE name = 'book_copies';";
+
+            int seq = await conn.ExecuteScalarAsync<int>(sql);
+
+            return $"{(seq + extra + 1):D6}";
+        }
+
+        public static async Task<Section> GetSectionWithChildren(Section section)
         {
             return await conn.GetWithChildrenAsync<Section>(section.ID, true);
         }
@@ -326,6 +335,11 @@ namespace Database
 
             if (b.Count > 0) return b[0];
             return null;
+        }
+
+        public static async Task<BookCopy> GetBookCopy(BookCopy bookcopy)
+        {
+            return await conn.GetWithChildrenAsync<BookCopy>(bookcopy.ID));
         }
 
         public static async Task<List<Author>> GetAuthors(string name = "")

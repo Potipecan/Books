@@ -73,7 +73,9 @@ namespace Books
             this.AddAuthorBookCB = new System.Windows.Forms.Button();
             this.AuthorSelectionCB = new System.Windows.Forms.ComboBox();
             this.AuthorsPage = new System.Windows.Forms.TabPage();
+            this.AuthorPageLW = new System.Windows.Forms.ListView();
             this.AuthorInfoGB = new System.Windows.Forms.GroupBox();
+            this.DeleteAuthorButton = new System.Windows.Forms.Button();
             this.CancelAuthorEditButton = new System.Windows.Forms.Button();
             this.AddAuthorButton = new System.Windows.Forms.Button();
             this.AuthorDescriptionTB = new System.Windows.Forms.TextBox();
@@ -81,7 +83,9 @@ namespace Books
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.SectionsPage = new System.Windows.Forms.TabPage();
+            this.SectionsLW = new System.Windows.Forms.ListView();
             this.SectionInfoGB = new System.Windows.Forms.GroupBox();
+            this.DeleteSectionButton = new System.Windows.Forms.Button();
             this.CancelSectionEditButton = new System.Windows.Forms.Button();
             this.AddSectionButton = new System.Windows.Forms.Button();
             this.SectionDescriptionTB = new System.Windows.Forms.TextBox();
@@ -89,7 +93,9 @@ namespace Books
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.PublishersPage = new System.Windows.Forms.TabPage();
+            this.PublishersLW = new System.Windows.Forms.ListView();
             this.PublisherInfoGB = new System.Windows.Forms.GroupBox();
+            this.DeletePublisherButton = new System.Windows.Forms.Button();
             this.CancelPublisherEditButton = new System.Windows.Forms.Button();
             this.AddPublisherButton = new System.Windows.Forms.Button();
             this.PublisherNameTB = new System.Windows.Forms.TextBox();
@@ -106,16 +112,17 @@ namespace Books
             this.PublisherColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LoanDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DeadlineColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.UserGB = new System.Windows.Forms.GroupBox();
+            this.DeleteUserButton = new System.Windows.Forms.Button();
             this.ShowArchiveUserButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.UserNotesTB = new System.Windows.Forms.TextBox();
-            this.CancelEditButton = new System.Windows.Forms.Button();
+            this.CancelUserEditButton = new System.Windows.Forms.Button();
             this.SurnameOneMemberLabel = new System.Windows.Forms.Label();
             this.UserSurnameTB = new System.Windows.Forms.TextBox();
             this.UserAddressTB = new System.Windows.Forms.TextBox();
             this.UserPhoneTB = new System.Windows.Forms.TextBox();
-            this.EditUserButton = new System.Windows.Forms.Button();
+            this.AddUserButton = new System.Windows.Forms.Button();
             this.PhoneOneMemberLabel = new System.Windows.Forms.Label();
             this.AddressOneMemberLabel = new System.Windows.Forms.Label();
             this.NameOneMemberLabel = new System.Windows.Forms.Label();
@@ -193,9 +200,6 @@ namespace Books
             this.LibrarianNewPassTB = new System.Windows.Forms.TextBox();
             this.ChangeLibrarianDataButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.DeleteAuthorButton = new System.Windows.Forms.Button();
-            this.DeleteSectionButton = new System.Windows.Forms.Button();
-            this.DeletePublisherButton = new System.Windows.Forms.Button();
             this.MainTabControl.SuspendLayout();
             this.SearchTab.SuspendLayout();
             this.BookSearchGroupBox.SuspendLayout();
@@ -215,7 +219,7 @@ namespace Books
             this.UserTabControl.SuspendLayout();
             this.UserInfoTabPage.SuspendLayout();
             this.BorrowedBookOneMemberGroupBox.SuspendLayout();
-            this.MemberGroupBox.SuspendLayout();
+            this.UserGB.SuspendLayout();
             this.UserBookLoanTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.InsertMemberTabPage.SuspendLayout();
@@ -241,6 +245,7 @@ namespace Books
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
             this.MainTabControl.Size = new System.Drawing.Size(1087, 548);
+            this.MainTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.MainTabControl.TabIndex = 0;
             // 
             // SearchTab
@@ -355,6 +360,9 @@ namespace Books
             // 
             // BookCopyGB
             // 
+            this.BookCopyGB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BookCopyGB.Controls.Add(this.RemoveBookCopyButton);
             this.BookCopyGB.Controls.Add(this.CancelBookCopyEditButton);
             this.BookCopyGB.Controls.Add(this.label26);
@@ -368,9 +376,9 @@ namespace Books
             this.BookCopyGB.Controls.Add(this.AddBookCopyButton);
             this.BookCopyGB.Controls.Add(this.BookCopyLW);
             this.BookCopyGB.Controls.Add(this.PublishersCB);
-            this.BookCopyGB.Location = new System.Drawing.Point(521, 6);
+            this.BookCopyGB.Location = new System.Drawing.Point(521, 0);
             this.BookCopyGB.Name = "BookCopyGB";
-            this.BookCopyGB.Size = new System.Drawing.Size(543, 473);
+            this.BookCopyGB.Size = new System.Drawing.Size(545, 480);
             this.BookCopyGB.TabIndex = 1;
             this.BookCopyGB.TabStop = false;
             this.BookCopyGB.Text = "Izvodi";
@@ -497,11 +505,11 @@ namespace Books
             this.BookCopyLW.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BookCopyLW.FullRowSelect = true;
             this.BookCopyLW.HideSelection = false;
-            this.BookCopyLW.Location = new System.Drawing.Point(3, 170);
+            this.BookCopyLW.Location = new System.Drawing.Point(3, 177);
             this.BookCopyLW.MultiSelect = false;
             this.BookCopyLW.Name = "BookCopyLW";
             this.BookCopyLW.ShowItemToolTips = true;
-            this.BookCopyLW.Size = new System.Drawing.Size(537, 300);
+            this.BookCopyLW.Size = new System.Drawing.Size(539, 300);
             this.BookCopyLW.TabIndex = 0;
             this.BookCopyLW.UseCompatibleStateImageBehavior = false;
             this.BookCopyLW.View = System.Windows.Forms.View.Details;
@@ -542,6 +550,8 @@ namespace Books
             // 
             // BookGB
             // 
+            this.BookGB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.BookGB.Controls.Add(this.DeleteBookButton);
             this.BookGB.Controls.Add(this.CancelBookEditButton);
             this.BookGB.Controls.Add(this.AddBookButton);
@@ -555,9 +565,9 @@ namespace Books
             this.BookGB.Controls.Add(this.BookTitleTB);
             this.BookGB.Controls.Add(this.AddAuthorBookCB);
             this.BookGB.Controls.Add(this.AuthorSelectionCB);
-            this.BookGB.Location = new System.Drawing.Point(6, 6);
+            this.BookGB.Location = new System.Drawing.Point(3, 0);
             this.BookGB.Name = "BookGB";
-            this.BookGB.Size = new System.Drawing.Size(509, 474);
+            this.BookGB.Size = new System.Drawing.Size(515, 477);
             this.BookGB.TabIndex = 0;
             this.BookGB.TabStop = false;
             this.BookGB.Text = "Knjiga";
@@ -681,6 +691,7 @@ namespace Books
             // 
             // AuthorsPage
             // 
+            this.AuthorsPage.Controls.Add(this.AuthorPageLW);
             this.AuthorsPage.Controls.Add(this.AuthorInfoGB);
             this.AuthorsPage.Location = new System.Drawing.Point(4, 25);
             this.AuthorsPage.Name = "AuthorsPage";
@@ -689,6 +700,18 @@ namespace Books
             this.AuthorsPage.TabIndex = 1;
             this.AuthorsPage.Text = "Avtorji";
             this.AuthorsPage.UseVisualStyleBackColor = true;
+            // 
+            // AuthorPageLW
+            // 
+            this.AuthorPageLW.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AuthorPageLW.HideSelection = false;
+            this.AuthorPageLW.Location = new System.Drawing.Point(415, 3);
+            this.AuthorPageLW.MultiSelect = false;
+            this.AuthorPageLW.Name = "AuthorPageLW";
+            this.AuthorPageLW.Size = new System.Drawing.Size(647, 480);
+            this.AuthorPageLW.TabIndex = 1;
+            this.AuthorPageLW.UseCompatibleStateImageBehavior = false;
+            this.AuthorPageLW.View = System.Windows.Forms.View.Details;
             // 
             // AuthorInfoGB
             // 
@@ -699,11 +722,22 @@ namespace Books
             this.AuthorInfoGB.Controls.Add(this.AuthorNameTB);
             this.AuthorInfoGB.Controls.Add(this.label28);
             this.AuthorInfoGB.Controls.Add(this.label27);
-            this.AuthorInfoGB.Location = new System.Drawing.Point(12, 10);
+            this.AuthorInfoGB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AuthorInfoGB.Location = new System.Drawing.Point(3, 3);
             this.AuthorInfoGB.Name = "AuthorInfoGB";
-            this.AuthorInfoGB.Size = new System.Drawing.Size(403, 464);
+            this.AuthorInfoGB.Size = new System.Drawing.Size(403, 480);
             this.AuthorInfoGB.TabIndex = 0;
             this.AuthorInfoGB.TabStop = false;
+            // 
+            // DeleteAuthorButton
+            // 
+            this.DeleteAuthorButton.Location = new System.Drawing.Point(297, 176);
+            this.DeleteAuthorButton.Name = "DeleteAuthorButton";
+            this.DeleteAuthorButton.Size = new System.Drawing.Size(89, 34);
+            this.DeleteAuthorButton.TabIndex = 6;
+            this.DeleteAuthorButton.Text = "Izbriši";
+            this.DeleteAuthorButton.UseVisualStyleBackColor = true;
+            this.DeleteAuthorButton.Click += new System.EventHandler(this.DeleteAuthorButton_Click);
             // 
             // CancelAuthorEditButton
             // 
@@ -760,6 +794,7 @@ namespace Books
             // 
             // SectionsPage
             // 
+            this.SectionsPage.Controls.Add(this.SectionsLW);
             this.SectionsPage.Controls.Add(this.SectionInfoGB);
             this.SectionsPage.Location = new System.Drawing.Point(4, 25);
             this.SectionsPage.Name = "SectionsPage";
@@ -768,6 +803,18 @@ namespace Books
             this.SectionsPage.TabIndex = 2;
             this.SectionsPage.Text = "Žanri";
             this.SectionsPage.UseVisualStyleBackColor = true;
+            // 
+            // SectionsLW
+            // 
+            this.SectionsLW.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SectionsLW.HideSelection = false;
+            this.SectionsLW.Location = new System.Drawing.Point(415, 3);
+            this.SectionsLW.MultiSelect = false;
+            this.SectionsLW.Name = "SectionsLW";
+            this.SectionsLW.Size = new System.Drawing.Size(647, 480);
+            this.SectionsLW.TabIndex = 2;
+            this.SectionsLW.UseCompatibleStateImageBehavior = false;
+            this.SectionsLW.View = System.Windows.Forms.View.Details;
             // 
             // SectionInfoGB
             // 
@@ -778,11 +825,21 @@ namespace Books
             this.SectionInfoGB.Controls.Add(this.SectionNameTB);
             this.SectionInfoGB.Controls.Add(this.label29);
             this.SectionInfoGB.Controls.Add(this.label30);
-            this.SectionInfoGB.Location = new System.Drawing.Point(6, 16);
+            this.SectionInfoGB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SectionInfoGB.Location = new System.Drawing.Point(3, 3);
             this.SectionInfoGB.Name = "SectionInfoGB";
-            this.SectionInfoGB.Size = new System.Drawing.Size(403, 464);
+            this.SectionInfoGB.Size = new System.Drawing.Size(403, 480);
             this.SectionInfoGB.TabIndex = 1;
             this.SectionInfoGB.TabStop = false;
+            // 
+            // DeleteSectionButton
+            // 
+            this.DeleteSectionButton.Location = new System.Drawing.Point(297, 176);
+            this.DeleteSectionButton.Name = "DeleteSectionButton";
+            this.DeleteSectionButton.Size = new System.Drawing.Size(89, 34);
+            this.DeleteSectionButton.TabIndex = 7;
+            this.DeleteSectionButton.Text = "Izbriši";
+            this.DeleteSectionButton.UseVisualStyleBackColor = true;
             // 
             // CancelSectionEditButton
             // 
@@ -839,6 +896,7 @@ namespace Books
             // 
             // PublishersPage
             // 
+            this.PublishersPage.Controls.Add(this.PublishersLW);
             this.PublishersPage.Controls.Add(this.PublisherInfoGB);
             this.PublishersPage.Location = new System.Drawing.Point(4, 25);
             this.PublishersPage.Name = "PublishersPage";
@@ -848,6 +906,18 @@ namespace Books
             this.PublishersPage.Text = "Založbe";
             this.PublishersPage.UseVisualStyleBackColor = true;
             // 
+            // PublishersLW
+            // 
+            this.PublishersLW.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PublishersLW.HideSelection = false;
+            this.PublishersLW.Location = new System.Drawing.Point(415, 3);
+            this.PublishersLW.MultiSelect = false;
+            this.PublishersLW.Name = "PublishersLW";
+            this.PublishersLW.Size = new System.Drawing.Size(647, 480);
+            this.PublishersLW.TabIndex = 3;
+            this.PublishersLW.UseCompatibleStateImageBehavior = false;
+            this.PublishersLW.View = System.Windows.Forms.View.Details;
+            // 
             // PublisherInfoGB
             // 
             this.PublisherInfoGB.Controls.Add(this.DeletePublisherButton);
@@ -855,11 +925,21 @@ namespace Books
             this.PublisherInfoGB.Controls.Add(this.AddPublisherButton);
             this.PublisherInfoGB.Controls.Add(this.PublisherNameTB);
             this.PublisherInfoGB.Controls.Add(this.label32);
-            this.PublisherInfoGB.Location = new System.Drawing.Point(6, 6);
+            this.PublisherInfoGB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PublisherInfoGB.Location = new System.Drawing.Point(3, 3);
             this.PublisherInfoGB.Name = "PublisherInfoGB";
-            this.PublisherInfoGB.Size = new System.Drawing.Size(403, 464);
+            this.PublisherInfoGB.Size = new System.Drawing.Size(403, 480);
             this.PublisherInfoGB.TabIndex = 2;
             this.PublisherInfoGB.TabStop = false;
+            // 
+            // DeletePublisherButton
+            // 
+            this.DeletePublisherButton.Location = new System.Drawing.Point(297, 176);
+            this.DeletePublisherButton.Name = "DeletePublisherButton";
+            this.DeletePublisherButton.Size = new System.Drawing.Size(89, 34);
+            this.DeletePublisherButton.TabIndex = 7;
+            this.DeletePublisherButton.Text = "Izbriši";
+            this.DeletePublisherButton.UseVisualStyleBackColor = true;
             // 
             // CancelPublisherEditButton
             // 
@@ -922,7 +1002,7 @@ namespace Books
             // UserInfoTabPage
             // 
             this.UserInfoTabPage.Controls.Add(this.BorrowedBookOneMemberGroupBox);
-            this.UserInfoTabPage.Controls.Add(this.MemberGroupBox);
+            this.UserInfoTabPage.Controls.Add(this.UserGB);
             this.UserInfoTabPage.Location = new System.Drawing.Point(4, 25);
             this.UserInfoTabPage.Name = "UserInfoTabPage";
             this.UserInfoTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -1008,32 +1088,44 @@ namespace Books
             this.DeadlineColumnHeader.Text = "Rok vrnitve";
             this.DeadlineColumnHeader.Width = 96;
             // 
-            // MemberGroupBox
+            // UserGB
             // 
-            this.MemberGroupBox.Controls.Add(this.ShowArchiveUserButton);
-            this.MemberGroupBox.Controls.Add(this.label2);
-            this.MemberGroupBox.Controls.Add(this.UserNotesTB);
-            this.MemberGroupBox.Controls.Add(this.CancelEditButton);
-            this.MemberGroupBox.Controls.Add(this.SurnameOneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.UserSurnameTB);
-            this.MemberGroupBox.Controls.Add(this.UserAddressTB);
-            this.MemberGroupBox.Controls.Add(this.UserPhoneTB);
-            this.MemberGroupBox.Controls.Add(this.EditUserButton);
-            this.MemberGroupBox.Controls.Add(this.PhoneOneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.AddressOneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.NameOneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.MailOneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.OneMemberLabel);
-            this.MemberGroupBox.Controls.Add(this.UserEmailTB);
-            this.MemberGroupBox.Controls.Add(this.UserNameTB);
-            this.MemberGroupBox.Location = new System.Drawing.Point(6, 5);
-            this.MemberGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MemberGroupBox.Size = new System.Drawing.Size(334, 465);
-            this.MemberGroupBox.TabIndex = 5;
-            this.MemberGroupBox.TabStop = false;
-            this.MemberGroupBox.Text = "Član";
+            this.UserGB.Controls.Add(this.DeleteUserButton);
+            this.UserGB.Controls.Add(this.ShowArchiveUserButton);
+            this.UserGB.Controls.Add(this.label2);
+            this.UserGB.Controls.Add(this.UserNotesTB);
+            this.UserGB.Controls.Add(this.CancelUserEditButton);
+            this.UserGB.Controls.Add(this.SurnameOneMemberLabel);
+            this.UserGB.Controls.Add(this.UserSurnameTB);
+            this.UserGB.Controls.Add(this.UserAddressTB);
+            this.UserGB.Controls.Add(this.UserPhoneTB);
+            this.UserGB.Controls.Add(this.AddUserButton);
+            this.UserGB.Controls.Add(this.PhoneOneMemberLabel);
+            this.UserGB.Controls.Add(this.AddressOneMemberLabel);
+            this.UserGB.Controls.Add(this.NameOneMemberLabel);
+            this.UserGB.Controls.Add(this.MailOneMemberLabel);
+            this.UserGB.Controls.Add(this.OneMemberLabel);
+            this.UserGB.Controls.Add(this.UserEmailTB);
+            this.UserGB.Controls.Add(this.UserNameTB);
+            this.UserGB.Location = new System.Drawing.Point(6, 5);
+            this.UserGB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserGB.Name = "UserGB";
+            this.UserGB.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserGB.Size = new System.Drawing.Size(334, 465);
+            this.UserGB.TabIndex = 5;
+            this.UserGB.TabStop = false;
+            this.UserGB.Text = "Član";
+            // 
+            // DeleteUserButton
+            // 
+            this.DeleteUserButton.Location = new System.Drawing.Point(206, 328);
+            this.DeleteUserButton.Name = "DeleteUserButton";
+            this.DeleteUserButton.Size = new System.Drawing.Size(93, 29);
+            this.DeleteUserButton.TabIndex = 23;
+            this.DeleteUserButton.Text = "Izbriši";
+            this.DeleteUserButton.UseVisualStyleBackColor = true;
+            this.DeleteUserButton.Visible = false;
+            this.DeleteUserButton.Click += new System.EventHandler(this.DeleteUserButton_Click);
             // 
             // ShowArchiveUserButton
             // 
@@ -1048,43 +1140,43 @@ namespace Books
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 265);
+            this.label2.Location = new System.Drawing.Point(29, 199);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
+            this.label2.Size = new System.Drawing.Size(66, 17);
             this.label2.TabIndex = 22;
-            this.label2.Text = "Opombe";
+            this.label2.Text = "Opombe:";
             // 
             // UserNotesTB
             // 
-            this.UserNotesTB.Location = new System.Drawing.Point(102, 262);
+            this.UserNotesTB.Location = new System.Drawing.Point(101, 196);
             this.UserNotesTB.Multiline = true;
             this.UserNotesTB.Name = "UserNotesTB";
             this.UserNotesTB.Size = new System.Drawing.Size(227, 107);
             this.UserNotesTB.TabIndex = 21;
             // 
-            // CancelEditButton
+            // CancelUserEditButton
             // 
-            this.CancelEditButton.Location = new System.Drawing.Point(236, 374);
-            this.CancelEditButton.Name = "CancelEditButton";
-            this.CancelEditButton.Size = new System.Drawing.Size(93, 29);
-            this.CancelEditButton.TabIndex = 20;
-            this.CancelEditButton.Text = "Prekliči";
-            this.CancelEditButton.UseVisualStyleBackColor = true;
-            this.CancelEditButton.Visible = false;
+            this.CancelUserEditButton.Location = new System.Drawing.Point(107, 328);
+            this.CancelUserEditButton.Name = "CancelUserEditButton";
+            this.CancelUserEditButton.Size = new System.Drawing.Size(93, 29);
+            this.CancelUserEditButton.TabIndex = 20;
+            this.CancelUserEditButton.Text = "Prekliči";
+            this.CancelUserEditButton.UseVisualStyleBackColor = true;
+            this.CancelUserEditButton.Visible = false;
             // 
             // SurnameOneMemberLabel
             // 
             this.SurnameOneMemberLabel.AutoSize = true;
-            this.SurnameOneMemberLabel.Location = new System.Drawing.Point(5, 122);
+            this.SurnameOneMemberLabel.Location = new System.Drawing.Point(37, 94);
             this.SurnameOneMemberLabel.Name = "SurnameOneMemberLabel";
-            this.SurnameOneMemberLabel.Size = new System.Drawing.Size(54, 17);
+            this.SurnameOneMemberLabel.Size = new System.Drawing.Size(58, 17);
             this.SurnameOneMemberLabel.TabIndex = 19;
-            this.SurnameOneMemberLabel.Text = "Priimek";
+            this.SurnameOneMemberLabel.Text = "Priimek:";
             // 
             // UserSurnameTB
             // 
             this.UserSurnameTB.Enabled = false;
-            this.UserSurnameTB.Location = new System.Drawing.Point(102, 118);
+            this.UserSurnameTB.Location = new System.Drawing.Point(101, 91);
             this.UserSurnameTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserSurnameTB.Name = "UserSurnameTB";
             this.UserSurnameTB.Size = new System.Drawing.Size(227, 22);
@@ -1093,7 +1185,7 @@ namespace Books
             // UserAddressTB
             // 
             this.UserAddressTB.Enabled = false;
-            this.UserAddressTB.Location = new System.Drawing.Point(102, 190);
+            this.UserAddressTB.Location = new System.Drawing.Point(101, 143);
             this.UserAddressTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserAddressTB.Name = "UserAddressTB";
             this.UserAddressTB.Size = new System.Drawing.Size(227, 22);
@@ -1102,57 +1194,57 @@ namespace Books
             // UserPhoneTB
             // 
             this.UserPhoneTB.Enabled = false;
-            this.UserPhoneTB.Location = new System.Drawing.Point(102, 154);
+            this.UserPhoneTB.Location = new System.Drawing.Point(101, 117);
             this.UserPhoneTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserPhoneTB.Name = "UserPhoneTB";
             this.UserPhoneTB.Size = new System.Drawing.Size(227, 22);
             this.UserPhoneTB.TabIndex = 16;
             // 
-            // EditUserButton
+            // AddUserButton
             // 
-            this.EditUserButton.Location = new System.Drawing.Point(100, 374);
-            this.EditUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.EditUserButton.Name = "EditUserButton";
-            this.EditUserButton.Size = new System.Drawing.Size(93, 29);
-            this.EditUserButton.TabIndex = 11;
-            this.EditUserButton.Text = "Spremeni";
-            this.EditUserButton.UseVisualStyleBackColor = true;
+            this.AddUserButton.Location = new System.Drawing.Point(8, 328);
+            this.AddUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AddUserButton.Name = "AddUserButton";
+            this.AddUserButton.Size = new System.Drawing.Size(93, 29);
+            this.AddUserButton.TabIndex = 11;
+            this.AddUserButton.Text = "Spremeni";
+            this.AddUserButton.UseVisualStyleBackColor = true;
             // 
             // PhoneOneMemberLabel
             // 
             this.PhoneOneMemberLabel.AutoSize = true;
-            this.PhoneOneMemberLabel.Location = new System.Drawing.Point(5, 159);
+            this.PhoneOneMemberLabel.Location = new System.Drawing.Point(35, 120);
             this.PhoneOneMemberLabel.Name = "PhoneOneMemberLabel";
-            this.PhoneOneMemberLabel.Size = new System.Drawing.Size(56, 17);
+            this.PhoneOneMemberLabel.Size = new System.Drawing.Size(60, 17);
             this.PhoneOneMemberLabel.TabIndex = 9;
-            this.PhoneOneMemberLabel.Text = "Telefon";
+            this.PhoneOneMemberLabel.Text = "Telefon:";
             // 
             // AddressOneMemberLabel
             // 
             this.AddressOneMemberLabel.AutoSize = true;
-            this.AddressOneMemberLabel.Location = new System.Drawing.Point(5, 195);
+            this.AddressOneMemberLabel.Location = new System.Drawing.Point(40, 146);
             this.AddressOneMemberLabel.Name = "AddressOneMemberLabel";
-            this.AddressOneMemberLabel.Size = new System.Drawing.Size(51, 17);
+            this.AddressOneMemberLabel.Size = new System.Drawing.Size(55, 17);
             this.AddressOneMemberLabel.TabIndex = 8;
-            this.AddressOneMemberLabel.Text = "Naslov";
+            this.AddressOneMemberLabel.Text = "Naslov:";
             // 
             // NameOneMemberLabel
             // 
             this.NameOneMemberLabel.AutoSize = true;
-            this.NameOneMemberLabel.Location = new System.Drawing.Point(5, 78);
+            this.NameOneMemberLabel.Location = new System.Drawing.Point(61, 68);
             this.NameOneMemberLabel.Name = "NameOneMemberLabel";
-            this.NameOneMemberLabel.Size = new System.Drawing.Size(30, 17);
+            this.NameOneMemberLabel.Size = new System.Drawing.Size(34, 17);
             this.NameOneMemberLabel.TabIndex = 6;
-            this.NameOneMemberLabel.Text = "Ime";
+            this.NameOneMemberLabel.Text = "Ime:";
             // 
             // MailOneMemberLabel
             // 
             this.MailOneMemberLabel.AutoSize = true;
-            this.MailOneMemberLabel.Location = new System.Drawing.Point(5, 231);
+            this.MailOneMemberLabel.Location = new System.Drawing.Point(28, 172);
             this.MailOneMemberLabel.Name = "MailOneMemberLabel";
-            this.MailOneMemberLabel.Size = new System.Drawing.Size(63, 17);
+            this.MailOneMemberLabel.Size = new System.Drawing.Size(67, 17);
             this.MailOneMemberLabel.TabIndex = 7;
-            this.MailOneMemberLabel.Text = "E-naslov";
+            this.MailOneMemberLabel.Text = "E-naslov:";
             // 
             // OneMemberLabel
             // 
@@ -1167,7 +1259,7 @@ namespace Books
             // UserEmailTB
             // 
             this.UserEmailTB.Enabled = false;
-            this.UserEmailTB.Location = new System.Drawing.Point(102, 226);
+            this.UserEmailTB.Location = new System.Drawing.Point(101, 169);
             this.UserEmailTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserEmailTB.Name = "UserEmailTB";
             this.UserEmailTB.Size = new System.Drawing.Size(227, 22);
@@ -1176,10 +1268,10 @@ namespace Books
             // UserNameTB
             // 
             this.UserNameTB.Enabled = false;
-            this.UserNameTB.Location = new System.Drawing.Point(102, 78);
+            this.UserNameTB.Location = new System.Drawing.Point(101, 65);
             this.UserNameTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserNameTB.Name = "UserNameTB";
-            this.UserNameTB.Size = new System.Drawing.Size(229, 22);
+            this.UserNameTB.Size = new System.Drawing.Size(227, 22);
             this.UserNameTB.TabIndex = 0;
             // 
             // UserBookLoanTabPage
@@ -1881,44 +1973,16 @@ namespace Books
             this.ChangeLibrarianDataButton.UseVisualStyleBackColor = true;
             this.ChangeLibrarianDataButton.Click += new System.EventHandler(this.ChangeLibrarianDataButton_Click);
             // 
-            // DeleteAuthorButton
-            // 
-            this.DeleteAuthorButton.Location = new System.Drawing.Point(297, 176);
-            this.DeleteAuthorButton.Name = "DeleteAuthorButton";
-            this.DeleteAuthorButton.Size = new System.Drawing.Size(89, 34);
-            this.DeleteAuthorButton.TabIndex = 6;
-            this.DeleteAuthorButton.Text = "Izbriši";
-            this.DeleteAuthorButton.UseVisualStyleBackColor = true;
-            this.DeleteAuthorButton.Click += new System.EventHandler(this.DeleteAuthorButton_Click);
-            // 
-            // DeleteSectionButton
-            // 
-            this.DeleteSectionButton.Location = new System.Drawing.Point(297, 176);
-            this.DeleteSectionButton.Name = "DeleteSectionButton";
-            this.DeleteSectionButton.Size = new System.Drawing.Size(89, 34);
-            this.DeleteSectionButton.TabIndex = 7;
-            this.DeleteSectionButton.Text = "Izbriši";
-            this.DeleteSectionButton.UseVisualStyleBackColor = true;
-            // 
-            // DeletePublisherButton
-            // 
-            this.DeletePublisherButton.Location = new System.Drawing.Point(297, 176);
-            this.DeletePublisherButton.Name = "DeletePublisherButton";
-            this.DeletePublisherButton.Size = new System.Drawing.Size(89, 34);
-            this.DeletePublisherButton.TabIndex = 7;
-            this.DeletePublisherButton.Text = "Izbriši";
-            this.DeletePublisherButton.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1087, 548);
             this.Controls.Add(this.MainTabControl);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
+            this.Text = "Knjižnica";
             this.MainTabControl.ResumeLayout(false);
             this.SearchTab.ResumeLayout(false);
             this.BookSearchGroupBox.ResumeLayout(false);
@@ -1944,8 +2008,8 @@ namespace Books
             this.UserTabControl.ResumeLayout(false);
             this.UserInfoTabPage.ResumeLayout(false);
             this.BorrowedBookOneMemberGroupBox.ResumeLayout(false);
-            this.MemberGroupBox.ResumeLayout(false);
-            this.MemberGroupBox.PerformLayout();
+            this.UserGB.ResumeLayout(false);
+            this.UserGB.PerformLayout();
             this.UserBookLoanTabPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1990,7 +2054,6 @@ namespace Books
         private System.Windows.Forms.ColumnHeader PublisherColumnHeader;
         private System.Windows.Forms.ColumnHeader LoanDateColumnHeader;
         private System.Windows.Forms.ColumnHeader DeadlineColumnHeader;
-        private System.Windows.Forms.GroupBox MemberGroupBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label SurnameOneMemberLabel;
         private System.Windows.Forms.Label PhoneOneMemberLabel;
@@ -2006,11 +2069,11 @@ namespace Books
         public System.Windows.Forms.Button ShowArchiveUserButton;
         public System.Windows.Forms.ListView BookRentsLW;
         public System.Windows.Forms.TextBox UserNotesTB;
-        public System.Windows.Forms.Button CancelEditButton;
+        public System.Windows.Forms.Button CancelUserEditButton;
         public System.Windows.Forms.TextBox UserSurnameTB;
         public System.Windows.Forms.TextBox UserAddressTB;
         public System.Windows.Forms.TextBox UserPhoneTB;
-        public System.Windows.Forms.Button EditUserButton;
+        public System.Windows.Forms.Button AddUserButton;
         public System.Windows.Forms.TextBox UserEmailTB;
         public System.Windows.Forms.TextBox UserNameTB;
         public System.Windows.Forms.TabControl MainTabControl;
@@ -2134,6 +2197,11 @@ namespace Books
         public System.Windows.Forms.GroupBox AuthorInfoGB;
         public System.Windows.Forms.GroupBox SectionInfoGB;
         public System.Windows.Forms.GroupBox PublisherInfoGB;
+        public System.Windows.Forms.ListView AuthorPageLW;
+        public System.Windows.Forms.ListView SectionsLW;
+        public System.Windows.Forms.ListView PublishersLW;
+        public System.Windows.Forms.GroupBox UserGB;
+        public System.Windows.Forms.Button DeleteUserButton;
     }
 }
 
