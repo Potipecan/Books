@@ -60,15 +60,15 @@ namespace Books
 
         #region User details
 
-        private void EditUserButton_Click(object sender, EventArgs e)
+        private void AddUserButton_Click(object sender, EventArgs e)
         {
             if (utc.SelectedUser != null) utc.EditUser();
             else utc.AddUser();
         }
 
-        private void CancelEditButton_Click(object sender, EventArgs e)
+        private void CancelUserEditButton_Click(object sender, EventArgs e)
         {
-            if (utc.IsUserEditMode) utc.IsUserEditMode = false;
+            if (utc.IsUserEditMode) utc.SelectedUser = utc.SelectedUser;
             else utc.SelectedUser = null;
         }
 
@@ -90,7 +90,7 @@ namespace Books
 
         private void LoanBookCodeTB_TextChanged(object sender, EventArgs e)
         {
-            utc.BookQuery();
+            BookCopyQueryTimer.Start();
         }
 
         private void DeadlineSelectionCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -245,5 +245,16 @@ namespace Books
 
         #endregion
 
+        private void BookCopyQueryTimer_Tick(object sender, EventArgs e)
+        {
+            BookCopyQueryTimer.Stop();
+            utc.BookQuery();
+        }
+
+        private void AddBookLoanButton_Click(object sender, EventArgs e)
+        {
+            if (utc.SelectedBookLoan == null) utc.AddBookLoan();
+            else utc.
+        }
     }
 }

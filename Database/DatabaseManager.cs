@@ -339,7 +339,7 @@ namespace Database
 
         public static async Task<BookCopy> GetBookCopy(BookCopy bookcopy)
         {
-            return await conn.GetWithChildrenAsync<BookCopy>(bookcopy.ID));
+            return await conn.GetWithChildrenAsync<BookCopy>(bookcopy.ID, true);
         }
 
         public static async Task<List<Author>> GetAuthors(string name = "")
@@ -366,7 +366,7 @@ namespace Database
 
         public static async Task<User> GetUser(User user)
         {
-            return await conn.GetWithChildrenAsync<User>(user, true);
+            return await conn.GetWithChildrenAsync<User>(user.ID, true);
         }
 
         public static async Task<List<Section>> GetSections()
