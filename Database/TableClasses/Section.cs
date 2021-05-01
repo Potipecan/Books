@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,13 @@ namespace Database.TableClasses
         public string Name { get; set; }
         [Column("description")]
         public string Description { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Book> Books { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

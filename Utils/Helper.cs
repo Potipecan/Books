@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.Control;
 
 namespace Utils
 {
@@ -56,6 +58,23 @@ namespace Utils
                 }
                 return sb.ToString();
             }
+        }
+
+        public static void ToggleCommonControls(ControlCollection controls, bool enabled)
+        {
+            foreach (Control c in controls)
+            {
+                switch (c.GetType().Name)
+                {
+                    case "TextBox":
+                        (c as TextBox).ReadOnly = !enabled;
+                        break;
+                    case "ComboBox":
+                        (c as ComboBox).Enabled = enabled;
+                        break;
+                }
+            }
+
         }
     }
 }

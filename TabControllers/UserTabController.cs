@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using Utils;
 using Database;
 using Database.TableClasses;
-
+using System.Diagnostics;
 
 namespace Books.TabControllers
 {
@@ -16,71 +16,19 @@ namespace Books.TabControllers
     {
         private MainForm f;
 
-        private CancellationTokenSource cancelBookQuerySource;
-        private CancellationToken cancelBookQuery;
-
-        private bool isUserEditMode;
-        public bool IsUserEditMode
-        {
-            get => isUserEditMode; set
-            {
-                isUserEditMode = value;
-                if (value)
-                {
-                    f.EditUserButton.Text = "Potrdi";
-                    f.CancelEditButton.Show();
-                }
-                else
-                {
-                    f.EditUserButton.Text = "Uredi";
-                    f.CancelEditButton.Hide();
-                }
-
-                f.UserNameTB.Enabled = value;
-                f.UserSurnameTB.Enabled = value;
-                f.UserPhoneTB.Enabled = value;
-                f.UserAddressTB.Enabled = value;
-                f.UserEmailTB.Enabled = value;
-                f.UserNotesTB.Enabled = value;
-            }
-        }
-
-        private User selectedUser;
-        private User SelectedUser
-        {
-            get => selectedUser; set
-            {
-                isUserEditMode = false;
-                if (value != null)
-                {
-                    selectedUser = value;
-                    f.UserNameTB.Text = value.Name;
-                    f.UserSurnameTB.Text = value.Surname;
-                    f.UserPhoneTB.Text = value.Phone;
-                    f.UserAddressTB.Text = value.Address;
-                    f.UserEmailTB.Text = value.Email;
-                    f.UserNotesTB.Text = value.Notes;
-
-                    if (value.BookRents != null) FillBookRents(value.BookRents);
-                }
-            }
-        }
-
         public UserTabController(MainForm form)
         {
             f = form;
 
-            IsUserEditMode = false;
+            SelectedUser = null;
 
-            cancelBookQuerySource = new CancellationTokenSource();
-            cancelBookQuery = cancelBookQuerySource.Token;
-
-            newBookLoans = new List<BookRent>();
+            newBookLoans = new List<BookLoan>();
 
             cachedDeadline = DateTime.Now;
 
-            f.DeadlineSelectionCB.SelectedIndex = 1;
-            oldDeadlineMode = 1;
+            f.DeadlineSelectionCB.SelectedIndex = 4;
+            oldDeadlineMode = 4;
+
         }
 
         public async Task GoHere(User user)
@@ -95,7 +43,66 @@ namespace Books.TabControllers
 
         #region user info tab
 
-        private void FillBookRents(List<BookRent> rents)
+        private User selectedUser;
+        public User SelectedUser
+        {
+            get => selectedUser;
+            set
+            {
+                if (value != null)
+                {
+                    f.UserNameTB.Text = value.Name;
+                    f.UserSurnameTB.Text = value.Surname;
+                    f.UserPhoneTB.Text = value.Phone;
+                    f.UserAddressTB.Text = value.Address;
+                    f.UserEmailTB.Text = value.Email;
+                    f.UserNotesTB.Text = value.Notes;
+
+                    f.AddUserButton.Text = "Uredi";
+
+                    if (value.BookRents == null) Task.Run(async () => value = await DatabaseManager.GetUser(value)).Wait();
+                    FillBookRents(value.BookRents);
+                }
+                else
+                {
+                    foreach (Control c in f.UserGB.Controls) if (c.GetType() == typeof(TextBox)) (c as TextBox).Text = "";
+                    f.BookRentsLW.Items.Clear();
+                    f.AddUserButton.Text = "Dodaj";
+                }
+
+                f.DeleteUserButton.Visible = value != null;
+                f.CancelUserEditButton.Text = "Počisti";
+
+                selectedUser = value;
+                IsUserEditMode = false;
+            }
+        }
+
+        private bool isUserEditMode;
+        public bool IsUserEditMode
+        {
+            get => isUserEditMode;
+            set
+            {
+                if (SelectedUser == null)
+                {
+                    Helper.ToggleCommonControls(f.UserGB.Controls, true);
+                    isUserEditMode = false;
+                    f.DeleteUserButton.Enabled = false;
+                    return;
+                }
+
+                isUserEditMode = value;
+
+                Helper.ToggleCommonControls(f.UserGB.Controls, value);
+
+                f.AddUserButton.Text = value ? "Potrdi" : "Uredi";
+                f.CancelUserEditButton.Text = value ? "Prekliči" : "Počisti";
+                f.DeleteUserButton.Enabled = value;
+            }
+        }
+
+        private void FillBookRents(List<BookLoan> rents)
         {
             foreach (var r in rents)
             {
@@ -111,8 +118,48 @@ namespace Books.TabControllers
             }
         }
 
-        public async void ConfirmUserEdit()
+        public async void AddUser()
         {
+            if (ValidateUser() != UserValidationResult.OK)
+            {
+                MessageBox.Show("Izpolnite vsa potrebna polja.");
+                return;
+            }
+
+            var u = new User()
+            {
+                Name = f.UserNameTB.Text,
+                Surname = f.UserSurnameTB.Text,
+                Phone = f.UserPhoneTB.Text,
+                Address = f.UserAddressTB.Text,
+                Email = f.UserEmailTB.Text,
+                Notes = f.UserNotesTB.Text
+            };
+
+            if (await DatabaseManager.AddUser(u))
+            {
+                MessageBox.Show("Uporabnik uspešno dodan.");
+                SelectedUser = u;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri dodajanju uporabnika.");
+        }
+
+        public async void EditUser()
+        {
+            if (!IsUserEditMode)
+            {
+                IsUserEditMode = true;
+                return;
+            }
+
+            if (ValidateUser() != UserValidationResult.OK)
+            {
+                MessageBox.Show("Izpolnite vsa potrebna polja.");
+                return;
+            }
+
             var u = new User()
             {
                 ID = SelectedUser.ID,
@@ -128,20 +175,34 @@ namespace Books.TabControllers
             {
                 MessageBox.Show("Spremembe uspešno shranjene.");
                 SelectedUser = u;
+                return;
             }
+
             else MessageBox.Show("Napaka!");
         }
 
-        public void InitiateUserEdit()
+        public async void DeleteUser()
         {
-            if (SelectedUser != null) IsUserEditMode = true;
+            if (!IsUserEditMode) return;
+
+            var a = MessageBox.Show("Izbris uporabnika bo izbrisal tudi vse podatke, povezane z njim.\nDejanja ni mogoče razveljaviti.", "Brisanje uporabnika.", MessageBoxButtons.YesNo);
+            if (a != DialogResult.Yes) return;
+
+            if (await DatabaseManager.DeleteUser(SelectedUser))
+            {
+                MessageBox.Show("Brisanje uporabnika uspešno.");
+                SelectedUser = null;
+                return;
+            }
+
+            MessageBox.Show("Napaka pri brisanju uporabnika.");
         }
 
         public async void ReturnBooks()
         {
             if (f.BookRentsLW.SelectedItems.Count < 1) return;
 
-            var returns = new List<BookRent>();
+            var returns = new List<BookLoan>();
             foreach (int i in f.BookRentsLW.SelectedIndices)
             {
                 returns.Add(SelectedUser.BookRents[i]);
@@ -152,11 +213,26 @@ namespace Books.TabControllers
             SelectedUser = await DatabaseManager.GetUser(SelectedUser);
         }
 
+        private UserValidationResult ValidateUser()
+        {
+            if (f.UserNameTB.Text == "" || f.UserSurnameTB.Text == "" || f.UserAddressTB.Text == "" || f.UserPhoneTB.Text == "")
+            {
+                return UserValidationResult.MissingInfo;
+            }
+            return UserValidationResult.OK;
+        }
+
+        private enum UserValidationResult
+        {
+            OK = 0,
+            MissingInfo = 1,
+        }
+
         #endregion
 
         #region book loaning tab
 
-        private List<BookRent> newBookLoans;
+        private List<BookLoan> newBookLoans;
 
         private int oldDeadlineMode;
 
@@ -176,51 +252,129 @@ namespace Books.TabControllers
             get => selectedBookCopy;
             set
             {
+                if (value != null && value.Book == null) Task.Run(async () => value = await DatabaseManager.GetBookCopy(value)).Wait();
+
                 selectedBookCopy = value;
-                if (value != null)
-                {
-                    f.BookTitleLabel.Text = value.Book.Title;
-                }
-                else
-                {
-                    f.BookTitleLabel.Text = "/";
-                }
+
+                f.BookTitleLabel.Text = value != null ? value.Book.Title : "/";
 
                 f.AddBookLoanButton.Enabled = value != null;
-
             }
         }
 
-        public void BookQuery()
+        private BookLoan selectedBookLoan;
+        public BookLoan SelectedBookLoan
         {
-            cancelBookQuerySource.Cancel();
-            Task.Run(async () =>
+            get => selectedBookLoan;
+            set
             {
-                Thread.Sleep(500);
-                SelectedBookCopy = await DatabaseManager.GetBookCopy(f.LoanBookCodeTB.Text);
-            }, cancelBookQuery);
+                selectedBookLoan = value;
+
+                IsBookLoanEditMode = false;
+
+                if (value != null)
+                {
+                    SelectedBookCopy = value.BookCopy;
+
+                    int s = 0;
+
+                    if (Deadline == Helper.AddBusinessDays(value.RentDate, 5)) s = 1;
+                    else if (Deadline == Helper.AddBusinessDays(value.RentDate, 10)) s = 2;
+                    else if (Deadline == Helper.AddBusinessDays(value.RentDate, 15)) s = 3;
+                    else if (Deadline == Helper.AddBusinessDays(value.RentDate, 20)) s = 4;
+                    else if (Deadline == value.RentDate.AddYears(1)) s = 5;
+
+                    f.DeadlineSelectionCB.SelectedIndex = s;
+                    Deadline = value.DeadLine;
+
+                }
+                else
+                {
+                    SelectedBookCopy = null;
+                    f.DeadlineSelectionCB.SelectedIndex = 4;
+                }
+
+                f.AddBookLoanButton.Text = value != null ? "Uredi" : "Dodaj";
+                f.CancelBookLoanEditButton.Text = "Počisti";
+                f.RemoveBookLoanButton.Visible = value != null;
+            }
+        }
+
+        private bool isBookLoanEditMode;
+        public bool IsBookLoanEditMode
+        {
+            get => isBookLoanEditMode;
+            set
+            {
+                if (SelectedBookLoan == null)
+                {
+                    Helper.ToggleCommonControls(f.BookLoanGB.Controls, true);
+                    isBookLoanEditMode = false;
+                    f.RemoveBookLoanButton.Enabled = false;
+                    f.LoanBookCodeTB.ReadOnly = false;
+                    return;
+                }
+
+                isBookLoanEditMode = value;
+
+                f.LoanBookCodeTB.ReadOnly = true;
+
+                Helper.ToggleCommonControls(f.BookLoanGB.Controls, value);
+
+                f.AddBookLoanButton.Text = value ? "Potrdi" : "Uredi";
+                f.CancelBookLoanEditButton.Text = value ? "Prekliči" : "Počisti";
+                f.RemoveBookLoanButton.Enabled = value;
+            }
+        }
+
+        public async void BookQuery()
+        {
+            var bc = await DatabaseManager.GetBookCopy(f.LoanBookCodeTB.Text);
+            if (bc != SelectedBookCopy) SelectedBookCopy = bc;
         }
 
         public void AddBookLoan()
         {
-            if (SelectedBookCopy != null && SelectedUser != null)
+            if (SelectedUser == null)
             {
-                var l = new BookRent()
-                {
-                    BookCopyID = SelectedBookCopy.ID,
-                    UserID = SelectedUser.ID,
-                    RentDate = DateTime.Now,
-                    DeadLine = Deadline,
-                };
-
-                newBookLoans.Add(l);
-                f.AddedBookLoansLW.Items.Add(new ListViewItem(new string[]
-                {
-                    SelectedBookCopy.Code,
-                    SelectedBookCopy.Book.Title,
-                    l.DeadLine.ToShortDateString()
-                }));
+                MessageBox.Show("Uporabnik ni izbran.");
+                return;
             }
+
+            if (SelectedBookCopy == null)
+            {
+                MessageBox.Show("Izvod ni izbran.");
+                return;
+            }
+
+            var l = new BookLoan()
+            {
+                BookCopyID = SelectedBookCopy.ID,
+                BookCopy = SelectedBookCopy,
+                UserID = SelectedUser.ID,
+                User = SelectedUser,
+                RentDate = DateTime.Now,
+                DeadLine = Deadline,
+            };
+
+            newBookLoans.Add(l);
+            f.AddedBookLoansLW.Items.Add(new ListViewItem(new string[]
+            {
+                    l.BookCopy.Code,
+                    l.BookCopy.Book.Title,
+                    l.DeadLine.ToShortDateString()
+            }));
+        }
+
+        public void EditBookLoan()
+        {
+            if (!IsBookLoanEditMode)
+            {
+                IsBookLoanEditMode = true;
+                return;
+            }
+
+            //SelectedBookLoan 
         }
 
         public void DeadlineSelectionChanged()
@@ -253,19 +407,19 @@ namespace Books.TabControllers
             }
 
         }
-        
+
         public void ConfirmBookLoan()
         {
             string booklist = "";
 
-            foreach(var b in newBookLoans)
+            foreach (var b in newBookLoans)
             {
                 booklist += $"{b.BookCopy.Book.Title}\n";
             }
 
             var a = MessageBox.Show($"Posodili boste naslednje knjige: \n{booklist}", "Posoja knjig", MessageBoxButtons.OKCancel);
 
-            if(a == DialogResult.OK)
+            if (a == DialogResult.OK)
             {
                 Task.Run(async () => await DatabaseManager.LoanBooks(newBookLoans)).Wait();
             }

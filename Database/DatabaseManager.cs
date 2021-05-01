@@ -9,6 +9,7 @@ using System.IO;
 using System.Diagnostics;
 using SQLiteNetExtensionsAsync.Extensions;
 using Utils;
+using System.Linq.Expressions;
 
 namespace Database
 {
@@ -33,21 +34,22 @@ namespace Database
             Debug.WriteLine(_path);
 
             conn = new SQLiteAsyncConnection(_path, Constants.Flags);
-            //Initialize();
 
             Task.Run(async () =>
             {
-                await conn.CreateTableAsync<User>();
-                await conn.CreateTableAsync<Book>();
-                await conn.CreateTableAsync<Author>();
-                await conn.CreateTableAsync<BookCopy>();
-                await conn.CreateTableAsync<Publisher>();
-                await conn.CreateTableAsync<Librarian>();
-                await conn.CreateTableAsync<BookRent>();
-                await conn.CreateTableAsync<BookRentRecord>();
-                await conn.CreateTableAsync<AuthorBook>();
-                await conn.CreateTableAsync<Section>();
-
+                await conn.CreateTablesAsync(
+                    CreateFlags.None,
+                    typeof(User),
+                    typeof(Book),
+                    typeof(Author),
+                    typeof(BookCopy),
+                    typeof(Publisher),
+                    typeof(Librarian),
+                    typeof(BookLoan),
+                    typeof(BookRentRecord),
+                    typeof(AuthorBook),
+                    typeof(Section)
+                    );
 
                 Initialize();
             });
@@ -144,7 +146,7 @@ namespace Database
             return await conn.InsertAsync(bookcopy) == 1;
         }
 
-        public static async Task<bool> AddBookRent(BookRent bookrent)
+        public static async Task<bool> AddBookRent(BookLoan bookrent)
         {
             if (bookrent.BookCopy == null || bookrent.User == null) return false;
             return await conn.InsertAsync(bookrent) == 1;
@@ -158,6 +160,11 @@ namespace Database
         #endregion
 
         #region Update functions
+
+        public static async Task<bool> UpdateSection(Section section)
+        {
+            return await conn.UpdateAsync(section) == 1;
+        }
 
         public static async Task<bool> UpdateAuthor(Author author)
         {
@@ -206,7 +213,15 @@ namespace Database
 
         public static async Task<bool> DeleteAuthor(Author author)
         {
-            await conn.DeleteAsync(author, true);
+            try
+            {
+                await conn.DeleteAsync(author, true);
+            }
+            catch (SQLiteException sqlex)
+            {
+                Debug.Fail(sqlex.Message);
+                return false;
+            }
             return true;
         }
 
@@ -221,9 +236,54 @@ namespace Database
             return await conn.DeleteAsync(bookcopy) == 1;
         }
 
+        public static async Task<bool> DeleteSection(Section section)
+        {
+            try
+            {
+                await conn.DeleteAsync(section, true);
+            }
+            catch (SQLiteException sqlex)
+            {
+                Debug.Fail(sqlex.Message);
+                return false;
+            }
+            return true;
+        }
+
         #endregion
 
         #region Get functions
+
+        public static async Task<string> GetNextBookCopyCode(int extra = 0)
+        {
+            string sql = "SELECT seq FROM sqlite_sequence WHERE name = 'book_copies';";
+
+            int seq = await conn.ExecuteScalarAsync<int>(sql);
+
+            return $"{(seq + extra + 1):D6}";
+        }
+
+        public static async Task<Section> GetSectionWithChildren(Section section)
+        {
+            return await conn.GetWithChildrenAsync<Section>(section.ID, true);
+        }
+
+        public static async Task<List<Publisher>> GetPublishers(string name = "")
+        {
+            bool search = name != "";
+            name = name.Replace(" ", "").ToLower();
+
+            var l = await conn.Table<Publisher>().Where(p => search || p.Name.Replace(" ", "").ToLower().Contains(name)).ToListAsync();
+
+            return l;
+        }
+
+        public static async Task<bool> IsCodeUnique(string code)
+        {
+            int i = await conn.ExecuteScalarAsync<int>($"SELECT count(*) FROM book_copies WHERE code LIKE '%{code}%';");
+
+            return i == 0;
+        }
 
         /// <summary>
         /// Retrieves a list of books by section and author.
@@ -250,8 +310,8 @@ namespace Database
         /// <returns>A list of books with connected properties.</returns>
         public static async Task<List<Book>> GetBooks(string title)
         {
-            title = title.ToLower();
-            return await conn.GetAllWithChildrenAsync<Book>(b => b.Title.ToLower().Contains(title));
+            title = title.ToLower().Replace(" ", "");
+            return await conn.GetAllWithChildrenAsync<Book>(b => b.Title.ToLower().Replace(" ", "").Contains(title), true);
         }
 
         /// <summary>
@@ -261,7 +321,7 @@ namespace Database
         /// <returns>A book object with all its connected properties.</returns>
         public static async Task<Book> GetBook(Book book)
         {
-            return await conn.GetWithChildrenAsync<Book>(book);
+            return await conn.GetWithChildrenAsync<Book>(book.ID, true);
         }
 
         /// <summary>
@@ -275,6 +335,11 @@ namespace Database
 
             if (b.Count > 0) return b[0];
             return null;
+        }
+
+        public static async Task<BookCopy> GetBookCopy(BookCopy bookcopy)
+        {
+            return await conn.GetWithChildrenAsync<BookCopy>(bookcopy.ID, true);
         }
 
         public static async Task<List<Author>> GetAuthors(string name = "")
@@ -301,7 +366,7 @@ namespace Database
 
         public static async Task<User> GetUser(User user)
         {
-            return await conn.GetWithChildrenAsync<User>(user, true);
+            return await conn.GetWithChildrenAsync<User>(user.ID, true);
         }
 
         public static async Task<List<Section>> GetSections()
@@ -309,9 +374,18 @@ namespace Database
             return await conn.Table<Section>().ToListAsync();
         }
 
+        public static async Task<List<BookCopy>> GetBookCopies(string code)
+        {
+            var res = new List<BookCopy>();
+
+            res = await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code.Contains(code), true);
+
+            return res;
+        }
+
         #endregion
 
-        public static async Task ReturnBook(BookRent bookrent)
+        public static async Task ReturnBook(BookLoan bookrent)
         {
             var r = new BookRentRecord()
             {
@@ -326,7 +400,7 @@ namespace Database
             await conn.InsertAsync(r);
         }
 
-        public static async Task ReturnBooks(List<BookRent> bookrents)
+        public static async Task ReturnBooks(List<BookLoan> bookrents)
         {
             var rs = new List<BookRentRecord>();
 
@@ -355,7 +429,7 @@ namespace Database
             return res;
         }
 
-        public static async Task LoanBooks(List<BookRent> bookrents)
+        public static async Task LoanBooks(List<BookLoan> bookrents)
         {
             await conn.InsertAllAsync(bookrents);
         }

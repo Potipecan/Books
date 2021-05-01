@@ -15,8 +15,6 @@ namespace Database.TableClasses
     {
         [PrimaryKey, AutoIncrement, Column("id")]
         public int ID { get; set; }
-        [Column("code"), Unique, NotNull]
-        public string Code { get; set; }
         [Column("title"), NotNull]
         public string Title { get; set; }
         [Column("description"), NotNull]
