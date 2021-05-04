@@ -108,6 +108,12 @@ namespace Database
                 await conn.InsertAsync(l);
             }
 
+            //Standardize book copy codes
+
+            //var c = await conn.Table<BookCopy>().ToListAsync();
+            //c.ForEach(bc => bc.Code = $"{bc.ID:D6}");
+            //await conn.UpdateAllAsync(c);
+
         }
 
         #endregion
@@ -128,8 +134,6 @@ namespace Database
 
         public static async Task<bool> AddBook(Book book)
         {
-            if (book.BookCopies.Count < 1 || book.Section == null || book.Authors.Count < 1) return false;
-
             await conn.InsertWithChildrenAsync(book, true);
             return true;
         }
@@ -178,9 +182,7 @@ namespace Database
 
         public static async Task<bool> UpdateBook(Book book)
         {
-            if (book.Authors.Count < 1 || book.BookCopies.Count < 1 || book.Section == null) return false;
-
-            await conn.UpdateWithChildrenAsync(book);
+            await conn.UpdateAsync(book);
 
             return true;
         }
@@ -198,6 +200,12 @@ namespace Database
         #endregion
 
         #region Deletion functions
+
+        public static async Task<bool> DeleteBookCopy(BookCopy bc)
+        {
+            await conn.DeleteAsync(bc, true);
+            return true;
+        }
 
         public static async Task<bool> DeleteUser(User user)
         {
@@ -229,11 +237,6 @@ namespace Database
         {
             await conn.DeleteAsync(publisher, true);
             return true;
-        }
-
-        public static async Task<bool> DeleteBookCopy(BookCopy bookcopy)
-        {
-            return await conn.DeleteAsync(bookcopy) == 1;
         }
 
         public static async Task<bool> DeleteSection(Section section)
@@ -329,9 +332,9 @@ namespace Database
         /// </summary>
         /// <param name="code">Code search parameter.</param>
         /// <returns>A book copy that matches the search parameters with all its connected properties.</returns>
-        public static async Task<BookCopy> GetBookCopy(string code)
+        public static async Task<BookCopy> GetBookCopy(string code, bool availableOnly = false)
         {
-            var b = (await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code == code, true));
+            var b = await conn.GetAllWithChildrenAsync<BookCopy>(bc => bc.Code == code && (!availableOnly || (BookCopyState)bc.State == BookCopyState.Available), true);
 
             if (b.Count > 0) return b[0];
             return null;
@@ -374,6 +377,11 @@ namespace Database
             return await conn.Table<Section>().ToListAsync();
         }
 
+        public static async Task<List<Section>> GetSections(string name)
+        {
+            return await conn.Table<Section>().Where(s => s.Name.ToLower().Replace(" ", "").Contains(name)).ToListAsync();
+        }
+
         public static async Task<List<BookCopy>> GetBookCopies(string code)
         {
             var res = new List<BookCopy>();
@@ -383,10 +391,20 @@ namespace Database
             return res;
         }
 
+        public static async Task<BookLoan> GetBookLoan(BookLoan bookloan)
+        {
+            return await conn.GetWithChildrenAsync<BookLoan>(bookloan.ID, true);
+        }
+
         #endregion
 
         public static async Task ReturnBook(BookLoan bookrent)
         {
+            var bc = bookrent.BookCopy;
+            if (bc == null) bc = await GetBookCopy(new BookCopy() { ID = bookrent.BookCopyID });
+
+            bc.State = (int)BookCopyState.Available;
+
             var r = new BookRentRecord()
             {
                 BookCopyID = bookrent.BookCopyID,
@@ -398,11 +416,14 @@ namespace Database
 
             await conn.DeleteAsync(bookrent);
             await conn.InsertAsync(r);
+
+            await conn.UpdateAsync(bc);
         }
 
         public static async Task ReturnBooks(List<BookLoan> bookrents)
         {
             var rs = new List<BookRentRecord>();
+            var bc = new List<BookCopy>();
 
             foreach (var bookrent in bookrents)
             {
@@ -414,7 +435,12 @@ namespace Database
                     RetrunDate = DateTime.Now,
                     UserID = bookrent.UserID,
                 });
+
+                bookrent.BookCopy.State = (int)BookCopyState.Available;
+                bc.Add(bookrent.BookCopy);
             }
+
+            await conn.UpdateAllAsync(bc);
 
             await conn.DeleteAllAsync(bookrents);
             await conn.InsertAllAsync(rs);
@@ -431,7 +457,19 @@ namespace Database
 
         public static async Task LoanBooks(List<BookLoan> bookrents)
         {
-            await conn.InsertAllAsync(bookrents);
+            bookrents.ForEach(b => b.BookCopy.State = (int)BookCopyState.Borrowed);
+            await conn.InsertOrReplaceAllWithChildrenAsync(bookrents, true);
+        }
+
+        public static async Task ExtendDeadlines(IEnumerable<BookLoan> loans)
+        {
+            foreach(var l in loans)
+            {
+                l.DeadlineMode = 6;
+                l.DeadLine = Helper.AddBusinessDays(l.DeadLine, 5);
+            }
+
+            await conn.UpdateAllAsync(loans);
         }
     }
 }

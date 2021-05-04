@@ -45,6 +45,7 @@ namespace Books.TabControllers
         {
             f = form;
             Admin = admin;
+            IsEditMode = false;
         }
 
         #region Info edit
@@ -57,14 +58,11 @@ namespace Books.TabControllers
             {
                 isEditMode = value;
 
-
-                f.CancelLibrarianChangeButton.Visible = value;
-
-                f.LibrarianInfoGB.Enabled = value;
-                f.LibrarianPasswordChangeGB.Enabled = value;
+                Helper.ToggleCommonControls(f.LibrarianInfoGB.Controls, value);
+                Helper.ToggleCommonControls(f.LibrarianPasswordChangeGB.Controls, value);
 
                 f.ChangeLibrarianDataButton.Text = value ? "Potrdi spremembe" : "Spremeni";
-                f.CancelLibrarianChangeButton.Enabled = value;
+                f.CancelLibrarianChangeButton.Text = value ? "Prekliči" : "Odjava";
             }
         }
 
@@ -170,6 +168,14 @@ namespace Books.TabControllers
                 }
             }
             else MessageBox.Show("Vaše geslo je napačno.");
+        }
+
+        internal void LogOut()
+        {
+            var a = MessageBox.Show("Ste prepričani", "Odjava", MessageBoxButtons.YesNo);
+            if (a != DialogResult.Yes) return;
+
+            Admin = null;
         }
 
 

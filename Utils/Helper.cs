@@ -72,6 +72,12 @@ namespace Utils
                     case "ComboBox":
                         (c as ComboBox).Enabled = enabled;
                         break;
+                    case "NumericUpDown":
+                        (c as NumericUpDown).Enabled = enabled;
+                        break;
+                    case "DateTimePicker":
+                        (c as DateTimePicker).Enabled = enabled;
+                        break;
                 }
             }
 

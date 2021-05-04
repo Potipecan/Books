@@ -17,17 +17,17 @@ namespace Database.TableClasses
         public DateTime RentDate { get; set; }
         [Column("deadline"), NotNull]
         public DateTime DeadLine { get; set; }
-        [Column("is_extended"), NotNull]
-        public bool IsExtended { get; set; } = false;
+        [Column("deadline_mode")]
+        public int DeadlineMode { get; set; } = 0;
 
         [Column("book_copy_id"), NotNull, ForeignKey(typeof(BookCopy))]
         public int BookCopyID { get; set; }
-        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public BookCopy BookCopy { get; set; }
 
         [Column("user_id"), ForeignKey(typeof(User))]
         public int UserID { get; set; }
-        [ManyToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public User User { get; set; }
     }
 }

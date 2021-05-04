@@ -25,7 +25,7 @@ namespace Database.TableClasses
         [ManyToOne]
         public Section Section { get; set; }
 
-        [OneToMany(CascadeOperations = CascadeOperation.CascadeInsert)]
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<BookCopy> BookCopies { get; set; }
 
         [ManyToMany(typeof(AuthorBook))]

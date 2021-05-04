@@ -77,7 +77,6 @@ namespace Books
             utc.DeleteUser();
         }
 
-
         private void ReturnBookOneMemberButton_Click(object sender, EventArgs e)
         {
             utc.ReturnBooks();
@@ -86,7 +85,6 @@ namespace Books
         #endregion
 
         #region Book loans
-
 
         private void LoanBookCodeTB_TextChanged(object sender, EventArgs e)
         {
@@ -100,10 +98,25 @@ namespace Books
 
         private void ConfirmBookLoanButton_Click(object sender, EventArgs e)
         {
-            utc.ConfirmBookLoan();
+            utc.ConfirmBookLoans();
         }
 
+        private void BookCopyQueryTimer_Tick(object sender, EventArgs e)
+        {
+            BookCopyQueryTimer.Stop();
+            utc.BookQuery();
+        }
 
+        private void AddBookLoanButton_Click(object sender, EventArgs e)
+        {
+            if (utc.SelectedBookLoan == null) utc.AddBookLoan();
+            else utc.EditBookLoan();
+        }
+
+        private void ExtendBookLoanButton_Click(object sender, EventArgs e)
+        {
+            utc.ExtendBooks();
+        }
 
         #endregion
 
@@ -218,6 +231,16 @@ namespace Books
             mtc.DeleteAuthor();
         }
 
+        private void DeleteSectionButton_Click(object sender, EventArgs e)
+        {
+            mtc.DeleteSection();
+        }
+
+        private void CancelPublisherEditButton_Click(object sender, EventArgs e)
+        {
+            if (mtc.IsPublisherEditMode) mtc.SelectedPublisher = mtc.SelectedPublisher;
+            else mtc.SelectedPublisher = null;
+        }
 
         #endregion
 
@@ -234,7 +257,8 @@ namespace Books
 
         private void CancelLibrarianChangeButton_Click(object sender, EventArgs e)
         {
-            settc.Admin = settc.Admin;
+            if (settc.IsEditMode) settc.Admin = settc.Admin;
+            else settc.LogOut();
         }
 
         private async void ConfirmAddLibrarianButton_Click(object sender, EventArgs e)
@@ -245,16 +269,5 @@ namespace Books
 
         #endregion
 
-        private void BookCopyQueryTimer_Tick(object sender, EventArgs e)
-        {
-            BookCopyQueryTimer.Stop();
-            utc.BookQuery();
-        }
-
-        private void AddBookLoanButton_Click(object sender, EventArgs e)
-        {
-            if (utc.SelectedBookLoan == null) utc.AddBookLoan();
-            else utc.
-        }
     }
 }

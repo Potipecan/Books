@@ -11,7 +11,7 @@ namespace Database.TableClasses
     [Table("publishers")]
     public class Publisher
     {
-        [Column("id"), PrimaryKey, NotNull]
+        [Column("id"), PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         [Column("name")]
         public string Name { get; set; }
