@@ -110,7 +110,6 @@ namespace Books
             this.DeadlineColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UserGB = new System.Windows.Forms.GroupBox();
             this.DeleteUserButton = new System.Windows.Forms.Button();
-            this.ShowArchiveUserButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.UserNotesTB = new System.Windows.Forms.TextBox();
             this.CancelUserEditButton = new System.Windows.Forms.Button();
@@ -1021,7 +1020,6 @@ namespace Books
             // UserGB
             // 
             this.UserGB.Controls.Add(this.DeleteUserButton);
-            this.UserGB.Controls.Add(this.ShowArchiveUserButton);
             this.UserGB.Controls.Add(this.label2);
             this.UserGB.Controls.Add(this.UserNotesTB);
             this.UserGB.Controls.Add(this.CancelUserEditButton);
@@ -1056,16 +1054,6 @@ namespace Books
             this.DeleteUserButton.UseVisualStyleBackColor = true;
             this.DeleteUserButton.Visible = false;
             this.DeleteUserButton.Click += new System.EventHandler(this.DeleteUserButton_Click);
-            // 
-            // ShowArchiveUserButton
-            // 
-            this.ShowArchiveUserButton.Location = new System.Drawing.Point(8, 421);
-            this.ShowArchiveUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ShowArchiveUserButton.Name = "ShowArchiveUserButton";
-            this.ShowArchiveUserButton.Size = new System.Drawing.Size(140, 31);
-            this.ShowArchiveUserButton.TabIndex = 9;
-            this.ShowArchiveUserButton.Text = "Izpiši arhiv";
-            this.ShowArchiveUserButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -1847,7 +1835,6 @@ namespace Books
         public System.Windows.Forms.ListView SearchResultLW;
         public System.Windows.Forms.ComboBox SearchBookComboBox;
         public System.Windows.Forms.TextBox SearchTB;
-        public System.Windows.Forms.Button ShowArchiveUserButton;
         public System.Windows.Forms.ListView BorrowedBooksLW;
         public System.Windows.Forms.TextBox UserNotesTB;
         public System.Windows.Forms.Button CancelUserEditButton;

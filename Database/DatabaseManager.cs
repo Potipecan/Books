@@ -51,11 +51,16 @@ namespace Database
                     typeof(Section)
                     );
 
-                Initialize();
+                //Initialize();
             });
         }
 
         #region Administration
+
+        public static async Task<int> CountLibrarians()
+        {
+            return await conn.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM librarians;");
+        }
 
         public static async Task<Librarian> LibrarianLogin(string email, string password)
         {
