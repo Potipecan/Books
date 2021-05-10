@@ -57,12 +57,25 @@ namespace Books.TabControllers
                 ["Email"] = 100,
             };
 
+            var publisherpreset = new Dictionary<string, int>()
+            {
+                ["Ime"] = 300
+            };
+
+            var sectionpreset = new Dictionary<string, int>()
+            {
+                ["Naziv"] = 150,
+                ["Opis"] = 300
+            };
+
             Presets = new List<ListViewPreset>()
             {
                 new ListViewPreset(authorspreset),
                 new ListViewPreset(bookcopypreset),
                 new ListViewPreset(bookpreset),
-                new ListViewPreset(userpreset)
+                new ListViewPreset(userpreset),
+                new ListViewPreset(publisherpreset),
+                new ListViewPreset(sectionpreset)
             };
             #endregion
 
@@ -88,6 +101,12 @@ namespace Books.TabControllers
                 case 3: // član
                     await SearchUser();
                     break;
+                case 4:
+                    await SearchPublisher();
+                    break;
+                case 5:
+                    await SearchSection();
+                    break;
             }
 
         }
@@ -109,6 +128,12 @@ namespace Books.TabControllers
                 case 3: // član
                     f.GoToUserPage(o as User);
                     break;
+                case 4:
+                    f.GoToMaterialsPage(o as Publisher);
+                    break;
+                case 5:
+                    f.GoToMaterialsPage(o as Section);
+                    break;
             }
 
         }
@@ -117,7 +142,7 @@ namespace Books.TabControllers
 
         private async Task SearchAuthor()
         {
-            var authors = await DatabaseManager.GetAuthors(f.SearchTextBox.Text);
+            var authors = await DatabaseManager.GetAuthors(f.SearchTB.Text);
 
             foreach (var a in authors)
             {
@@ -134,7 +159,7 @@ namespace Books.TabControllers
 
         private async Task SearchBookCopy()
         {
-            var bookcopies = await DatabaseManager.GetBookCopies(f.SearchTextBox.Text);
+            var bookcopies = await DatabaseManager.GetBookCopies(f.SearchTB.Text);
             bookcopies.ForEach(bc =>
             {
                 var n = new string[]
@@ -152,7 +177,7 @@ namespace Books.TabControllers
 
         private async Task SearchBook()
         {
-            var books = await DatabaseManager.GetBooks(f.SearchTextBox.Text);
+            var books = await DatabaseManager.GetBooks(f.SearchTB.Text);
 
             foreach (var b in books)
             {
@@ -178,7 +203,7 @@ namespace Books.TabControllers
 
         private async Task SearchUser()
         {
-            var users = await DatabaseManager.GetUsers(f.SearchTextBox.Text);
+            var users = await DatabaseManager.GetUsers(f.SearchTB.Text);
 
             foreach (var u in users)
             {
@@ -192,6 +217,34 @@ namespace Books.TabControllers
                 f.SearchResultLW.Items.Add(row);
 
                 SearchResults.Add(u);
+            }
+        }
+
+        private async Task SearchPublisher()
+        {
+            var publishers = await DatabaseManager.GetPublishers(f.SearchTB.Text);
+
+            foreach(var p in publishers)
+            {
+                var row = new ListViewItem(new string[] { p.Name });
+                f.SearchResultLW.Items.Add(row);
+                SearchResults.Add(p);
+            }
+        }
+
+        private async Task SearchSection()
+        {
+            var sections = await DatabaseManager.GetSections(f.SearchTB.Text);
+
+            foreach(var s in sections)
+            {
+                var row = new ListViewItem(new string[]
+                {
+                    s.Name,
+                    s.Description
+                });
+                f.SearchResultLW.Items.Add(row);
+                SearchResults.Add(s);
             }
         }
 

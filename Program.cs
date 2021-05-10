@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Books.SubWindows;
+using Database;
 
 namespace Books
 {
@@ -17,6 +18,15 @@ namespace Books
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            int c = 0;
+
+            Task.Run(async () =>
+            {
+                c = await DatabaseManager.CountLibrarians();
+            }).Wait();
+
+            if (c <= 0) Application.Run(new FirstUserRegistration());
+
             Application.Run(new LoginForm());
         }
     }

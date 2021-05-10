@@ -49,6 +49,8 @@ namespace Books.TabControllers
             get => selectedUser;
             set
             {
+                f.BorrowedBooksLW.Items.Clear();
+
                 if (value != null)
                 {
                     f.UserNameTB.Text = value.Name;
@@ -60,13 +62,12 @@ namespace Books.TabControllers
 
                     f.AddUserButton.Text = "Uredi";
 
-                    if (value.BookRents == null) Task.Run(async () => value = await DatabaseManager.GetUser(value)).Wait();
-                    FillBookRents(value.BookRents);
+                    if (value.BookLoans == null) Task.Run(async () => value = await DatabaseManager.GetUser(value)).Wait();
+                    FillBookRents(value.BookLoans);
                 }
                 else
                 {
                     foreach (Control c in f.UserGB.Controls) if (c.GetType() == typeof(TextBox)) (c as TextBox).Text = "";
-                    f.BookRentsLW.Items.Clear();
                     f.AddUserButton.Text = "Dodaj";
                 }
 
@@ -114,7 +115,7 @@ namespace Books.TabControllers
                     r.DeadLine.ToShortDateString()
                 });
 
-                f.BookRentsLW.Items.Add(row);
+                f.BorrowedBooksLW.Items.Add(row);
             }
         }
 
@@ -200,15 +201,31 @@ namespace Books.TabControllers
 
         public async void ReturnBooks()
         {
-            if (f.BookRentsLW.SelectedItems.Count < 1) return;
+            if (f.BorrowedBooksLW.SelectedItems.Count < 1) return;
 
             var returns = new List<BookLoan>();
-            foreach (int i in f.BookRentsLW.SelectedIndices)
+            foreach (int i in f.BorrowedBooksLW.SelectedIndices)
             {
-                returns.Add(SelectedUser.BookRents[i]);
+                returns.Add(SelectedUser.BookLoans[i]);
             }
 
             await DatabaseManager.ReturnBooks(returns);
+
+            SelectedUser = await DatabaseManager.GetUser(SelectedUser);
+        }
+
+        public async void ExtendBooks()
+        {
+            if (f.BorrowedBooksLW.SelectedItems.Count < 1) return;
+
+            var returns = new List<BookLoan>();
+            foreach (int i in f.BorrowedBooksLW.SelectedIndices)
+            {
+                var item = SelectedUser.BookLoans[i];
+                if (((DeadlineMode)item.DeadlineMode) != DeadlineMode.Extended) returns.Add(item);
+            }
+
+            await DatabaseManager.ExtendDeadlines(returns);
 
             SelectedUser = await DatabaseManager.GetUser(SelectedUser);
         }
@@ -257,7 +274,7 @@ namespace Books.TabControllers
                 selectedBookCopy = value;
 
                 f.BookTitleLabel.Text = value != null ? value.Book.Title : "/";
-
+                f.LoanBookCodeTB.Text = value != null ? value.Code : "";
                 f.AddBookLoanButton.Enabled = value != null;
             }
         }
@@ -276,15 +293,9 @@ namespace Books.TabControllers
                 {
                     SelectedBookCopy = value.BookCopy;
 
-                    int s = 0;
+                    var dm = (DeadlineMode)value.DeadlineMode;
+                    if (dm != DeadlineMode.Extended) f.DeadlineSelectionCB.SelectedIndex = (int)dm;
 
-                    if (Deadline == Helper.AddBusinessDays(value.RentDate, 5)) s = 1;
-                    else if (Deadline == Helper.AddBusinessDays(value.RentDate, 10)) s = 2;
-                    else if (Deadline == Helper.AddBusinessDays(value.RentDate, 15)) s = 3;
-                    else if (Deadline == Helper.AddBusinessDays(value.RentDate, 20)) s = 4;
-                    else if (Deadline == value.RentDate.AddYears(1)) s = 5;
-
-                    f.DeadlineSelectionCB.SelectedIndex = s;
                     Deadline = value.DeadLine;
 
                 }
@@ -329,8 +340,8 @@ namespace Books.TabControllers
 
         public async void BookQuery()
         {
-            var bc = await DatabaseManager.GetBookCopy(f.LoanBookCodeTB.Text);
-            if (bc != SelectedBookCopy) SelectedBookCopy = bc;
+            var bc = await DatabaseManager.GetBookCopy(f.LoanBookCodeTB.Text, true);
+            if (bc != SelectedBookCopy && !newBookLoans.Exists(bl => bc.ID == bl.BookCopy.ID)) SelectedBookCopy = bc;
         }
 
         public void AddBookLoan()
@@ -355,15 +366,12 @@ namespace Books.TabControllers
                 User = SelectedUser,
                 RentDate = DateTime.Now,
                 DeadLine = Deadline,
+                DeadlineMode = f.DeadlineSelectionCB.SelectedIndex
             };
 
-            newBookLoans.Add(l);
-            f.AddedBookLoansLW.Items.Add(new ListViewItem(new string[]
-            {
-                    l.BookCopy.Code,
-                    l.BookCopy.Book.Title,
-                    l.DeadLine.ToShortDateString()
-            }));
+            SelectedBookCopy = null;
+            AddBookLoanToList(l);
+            BookQuery();
         }
 
         public void EditBookLoan()
@@ -374,7 +382,54 @@ namespace Books.TabControllers
                 return;
             }
 
-            //SelectedBookLoan 
+            if (SelectedUser == null)
+            {
+                MessageBox.Show("Uporabnik ni izbran.");
+                return;
+            }
+
+            if (SelectedBookCopy == null)
+            {
+                MessageBox.Show("Izvod ni izbran.");
+                return;
+            }
+
+            SelectedBookLoan.DeadLine = Deadline;
+            SelectedBookLoan.DeadlineMode = f.DeadlineSelectionCB.SelectedIndex;
+            SelectedBookLoan.RentDate = DateTime.Now;
+
+            AddBookLoanToList(SelectedBookLoan);
+            SelectedBookCopy = null;
+        }
+
+        private async void AddBookLoanToList(BookLoan loan)
+        {
+            int i = newBookLoans.IndexOf(loan);
+
+            if (loan.BookCopy == null || loan.BookCopy.Book == null)
+            {
+                if (loan.ID > 0) loan = await DatabaseManager.GetBookLoan(loan);
+                else loan.BookCopy = await DatabaseManager.GetBookCopy(new BookCopy() { ID = loan.BookCopyID });
+            }
+
+            var n = new ListViewItem(
+               new string[]
+               {
+                    loan.BookCopy.Code,
+                    loan.BookCopy.Book.Title,
+                    loan.DeadLine.ToShortDateString()
+               });
+
+            if (i >= 0)
+            {
+                f.AddedBookLoansLW.Items.RemoveAt(i);
+                f.AddedBookLoansLW.Items.Insert(i, n);
+            }
+            else
+            {
+                newBookLoans.Add(loan);
+                f.AddedBookLoansLW.Items.Add(n);
+            }
         }
 
         public void DeadlineSelectionChanged()
@@ -408,7 +463,7 @@ namespace Books.TabControllers
 
         }
 
-        public void ConfirmBookLoan()
+        public async void ConfirmBookLoans()
         {
             string booklist = "";
 
@@ -418,14 +473,26 @@ namespace Books.TabControllers
             }
 
             var a = MessageBox.Show($"Posodili boste naslednje knjige: \n{booklist}", "Posoja knjig", MessageBoxButtons.OKCancel);
+            if (a != DialogResult.OK) return;
 
-            if (a == DialogResult.OK)
-            {
-                Task.Run(async () => await DatabaseManager.LoanBooks(newBookLoans)).Wait();
-            }
+            await DatabaseManager.LoanBooks(newBookLoans);
+
+            newBookLoans.Clear();
+            f.AddedBookLoansLW.Items.Clear();
+            SelectedUser = await DatabaseManager.GetUser(SelectedUser);
+        }
+
+        private enum DeadlineMode
+        {
+            Custom = 0,
+            OneWorkWeek = 1,
+            TwoWorkWeeks = 2,
+            ThreeWorkWeeks = 3,
+            FourWorkWeeks = 4,
+            OneYear = 5,
+            Extended = 6
         }
 
         #endregion
-
     }
 }

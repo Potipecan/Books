@@ -51,8 +51,6 @@ namespace Books.TabControllers
             SelectedPublisher = null;
 
             #region quick tests
-            Debug.WriteLine(((AcquisitionType)0).ToString());
-            Task.Run(async () => Debug.WriteLine($"Next Code: {await DatabaseManager.GetNextBookCopyCode()}"));
             #endregion
 
         }
@@ -77,48 +75,35 @@ namespace Books.TabControllers
         {
             SelectedSection = section;
             f.MainTabControl.SelectedTab = f.BookTab;
-            f.MaterialTabControl.SelectedTab = f.SectionsPage;
+            f.MaterialTabControl.SelectedTab = f.AuthorsPage;
         }
 
         public void GoHere(Publisher publisher)
         {
             SelectedPublisher = publisher;
             f.MainTabControl.SelectedTab = f.BookTab;
-            f.MaterialTabControl.SelectedTab = f.PublishersPage;
+            f.MaterialTabControl.SelectedTab = f.AuthorsPage;
         }
 
         #endregion
 
         #region Signal bindings
 
-        private void OnSectionsUpdated()
+        private async void OnSectionsUpdated()
         {
-            Task.Run(async () =>
-            {
-                Sections = await DatabaseManager.GetSections();
-            }).Wait();
+            Sections = await DatabaseManager.GetSections();
         }
 
-        private void OnAuthorsUpdated()
+        private async void OnAuthorsUpdated()
         {
-            var authors = new List<Author>();
-            var t = f.AuthorSelectionCB.Text;
-            Task.Run(async () =>
-            {
-                authors = await DatabaseManager.GetAuthors(t);
-            }).Wait();
+            var authors = await DatabaseManager.GetAuthors(f.AuthorSelectionCB.Text);
             f.AuthorSelectionCB.Items.Clear();
             foreach (var a in authors) f.AuthorSelectionCB.Items.Add(a);
         }
 
-        private void OnPublishersUpdated()
+        private async void OnPublishersUpdated()
         {
-            var publishers = new List<Publisher>();
-            var t = f.PublishersCB.Text;
-            Task.Run(async () =>
-            {
-                Publishers = await DatabaseManager.GetPublishers(t);
-            }).Wait();
+            Publishers = await DatabaseManager.GetPublishers(f.PublishersCB.Text);
         }
 
         #endregion
@@ -158,13 +143,13 @@ namespace Books.TabControllers
                 publishers = value;
 
                 int id = -1;
-                if (f.PublishersCB.SelectedIndex >= 0) id = (f.PublishersCB.SelectedItem as Section).ID;
+                if (f.PublishersCB.SelectedIndex >= 0) id = (f.PublishersCB.SelectedItem as Publisher).ID;
 
                 f.PublishersCB.Items.Clear();
                 foreach (var v in value)
                 {
                     f.PublishersCB.Items.Add(v);
-                    if (v.ID == id) id = Sections.Count - 1;
+                    if (v.ID == id) id = Publishers.Count - 1;
                 }
 
                 f.PublishersCB.SelectedIndex = id;
@@ -192,8 +177,9 @@ namespace Books.TabControllers
                     f.BookSectionCB.SelectedIndex = Sections.FindIndex(s => s.ID == value.SectionID);
 
                     f.AuthorsBookLB.Items.Clear();
-                    foreach (var a in value.Authors) f.AuthorsBookLB.Items.Add(a.Name);
+                    foreach (var a in value.Authors) f.AuthorsBookLB.Items.Add(a);
 
+                    newBookCopies.Clear();
                     f.BookCopyLW.Items.Clear();
                     foreach (var bc in value.BookCopies) DisplayBookCopy(bc);
 
@@ -272,7 +258,7 @@ namespace Books.TabControllers
 
                 if (value != null)
                 {
-                    f.BookCopyCodeTB.Text = value.Code;
+                    f.BookCopyCodeLabel.Text = value.Code;
                     f.PublishersCB.SelectedIndex = Publishers.FindIndex(p => p.ID == value.PublisherID);
                     f.BookCopyAcquisitionCB.SelectedIndex = value.AcquisitionType;
                     f.BookCopyAcquisitionDTP.Value = value.AcquisitionDate;
@@ -280,11 +266,12 @@ namespace Books.TabControllers
                 }
                 else
                 {
-                    f.BookCopyCodeTB.Text = "";
+                    f.BookCopyCodeLabel.Text = "/";
                     f.PublishersCB.SelectedIndex = -1;
                     f.BookCopyAcquisitionCB.SelectedIndex = -1;
                     f.BookCopyAcquisitionDTP.Value = DateTime.Now;
                     f.BookCopyYearNUD.Value = DateTime.Now.Year;
+                    f.BookCopyLW.SelectedItems.Clear();
                 }
             }
         }
@@ -295,9 +282,9 @@ namespace Books.TabControllers
             get => isBookCopyEditMode;
             set
             {
-                if (SelectedBookCopy == null)
+                if (SelectedBookCopy == null || SelectedBook == null)
                 {
-                    Helper.ToggleCommonControls(f.BookCopyGB.Controls, true);
+                    Helper.ToggleCommonControls(f.BookCopyGB.Controls, SelectedBook != null);
                     isBookCopyEditMode = false;
                     f.RemoveBookCopyButton.Enabled = false;
                     return;
@@ -336,6 +323,7 @@ namespace Books.TabControllers
             {
                 copy.Code,
                 copy.Publisher.Name,
+                $"{copy.Year}",
                 $"{(AcquisitionType)copy.AcquisitionType}",
                 copy.AcquisitionDate.ToShortDateString()
             };
@@ -384,6 +372,7 @@ namespace Books.TabControllers
             if (await DatabaseManager.AddBook(b))
             {
                 MessageBox.Show("Knjiga uspešno dodana");
+                SelectedBook = b;
                 return;
             }
 
@@ -420,7 +409,8 @@ namespace Books.TabControllers
                 Description = f.BookDescriptionTB.Text,
                 Authors = newAuthors,
                 BookCopies = newBookCopies,
-                Section = f.BookSectionCB.SelectedItem as Section
+                Section = f.BookSectionCB.SelectedItem as Section,
+                SectionID = (f.BookSectionCB.SelectedItem as Section).ID
             };
 
             if (await DatabaseManager.UpdateBook(b))
@@ -461,8 +451,6 @@ namespace Books.TabControllers
             f.AuthorsBookLB.Items.Add(a);
         }
 
-
-
         public void BookCopySelectionChanged()
         {
             if (f.BookCopyLW.SelectedItems.Count < 1) SelectedBookCopy = null;
@@ -471,11 +459,9 @@ namespace Books.TabControllers
 
         public async void AddBookCopy()
         {
-            var code = f.BookCopyCodeTB.Text;
-
-            if (code == "")
+            if(SelectedBook == null)
             {
-                MessageBox.Show("Izvod mora imeti inventarno številko.");
+                MessageBox.Show("Knjiga mora biti izbrana.");
                 return;
             }
 
@@ -491,31 +477,37 @@ namespace Books.TabControllers
                 return;
             }
 
-            if (!await DatabaseManager.IsCodeUnique(code) || newBookCopies.Exists(b => b.Code == code))
-            {
-                MessageBox.Show("Inventarna številka že obstaja");
-                return;
-            }
-
             var bc = new BookCopy()
             {
-                Code = f.BookCopyCodeTB.Text,
+                BookID = SelectedBook.ID,
+                Book = SelectedBook,
                 AcquisitionDate = f.BookCopyAcquisitionDTP.Value,
+                PublisherID = (f.PublishersCB.SelectedItem as Publisher).ID,
                 Publisher = (f.PublishersCB.SelectedItem as Publisher),
                 AcquisitionType = f.BookCopyAcquisitionCB.SelectedIndex,
                 Year = Convert.ToInt32(f.BookCopyYearNUD.Value)
             };
 
-            SelectedBookCopy = null;
-            DisplayBookCopy(bc);
+            if(await DatabaseManager.AddBookCopy(bc))
+            {
+                SelectedBookCopy = null;
+                DisplayBookCopy(bc);
+                return;
+            }
+            MessageBox.Show("Napaka pri dodajanju izvoda.");
         }
 
-        public void RemoveBookCopy()
+        public async void RemoveBookCopy()
         {
             if (SelectedBookCopy == null) return;
-            int i = newBookCopies.IndexOf(SelectedBookCopy);
-            newBookCopies.RemoveAt(i);
-            f.BookCopyLW.Items.RemoveAt(i);
+
+            if (await DatabaseManager.DeleteBookCopy(SelectedBookCopy))
+            {
+                int i = newBookCopies.IndexOf(SelectedBookCopy);
+                newBookCopies.RemoveAt(i);
+                f.BookCopyLW.Items.RemoveAt(i);
+                SelectedBookCopy = null;
+            }
         }
 
         public async void UpdateBookCopy()
@@ -526,14 +518,6 @@ namespace Books.TabControllers
                 return;
             }
 
-            var code = f.BookCopyCodeTB.Text;
-
-            if (code == "")
-            {
-                MessageBox.Show("Izvod mora imeti inventarno številko.");
-                return;
-            }
-
             if (f.PublishersCB.SelectedItem == null)
             {
                 MessageBox.Show("Izvod mora imeti založnika.");
@@ -546,30 +530,24 @@ namespace Books.TabControllers
                 return;
             }
 
-            if (!await DatabaseManager.IsCodeUnique(code) || newBookCopies.Exists(b => b.Code == code))
-            {
-                MessageBox.Show("Inventarna številka že obstaja");
-                return;
-            }
-
-
-            SelectedBookCopy.Code = f.BookCopyCodeTB.Text;
             SelectedBookCopy.AcquisitionDate = f.BookCopyAcquisitionDTP.Value;
+            SelectedBookCopy.PublisherID = (f.PublishersCB.SelectedItem as Publisher).ID;
             SelectedBookCopy.Publisher = (f.PublishersCB.SelectedItem as Publisher);
             SelectedBookCopy.AcquisitionType = f.BookCopyAcquisitionCB.SelectedIndex;
             SelectedBookCopy.Year = Convert.ToInt32(f.BookCopyYearNUD.Value);
 
-            DisplayBookCopy(SelectedBookCopy);
+            if(await DatabaseManager.UpdateBookCopy(SelectedBookCopy))
+            {
+                DisplayBookCopy(SelectedBookCopy);
+                return;
+            }
+            MessageBox.Show("Napaka pri shranjevanju sprememb.");
         }
-
 
         private BookValidationResult ValidateBook()
         {
             if (f.BookTitleTB.Text == "" || f.BookDescriptionTB.Text == "")
                 return BookValidationResult.MissingTitleOrDescription;
-
-            if (newBookCopies.Count < 1)
-                return BookValidationResult.NoBookCopies;
 
             if (newAuthors.Count < 1)
                 return BookValidationResult.NoAuthors;
@@ -620,6 +598,8 @@ namespace Books.TabControllers
                     f.AuthorDescriptionTB.Text = "";
                     f.AddAuthorButton.Text = "Dodaj";
                 }
+
+                f.DeleteAuthorButton.Visible = value != null;
             }
         }
 
@@ -737,7 +717,7 @@ namespace Books.TabControllers
             {
                 if (value != null)
                 {
-                    if (value.Books == null) Task.Run(async () => value = await DatabaseManager.GetSectionWithChildren(value)).Wait();
+                    //if (value.Books == null) Task.Run(async () => value = await DatabaseManager.GetSectionWithChildren(value)).Wait();
 
                     f.SectionNameTB.Text = value.Name;
                     f.SectionDescriptionTB.Text = value.Description;
@@ -749,6 +729,7 @@ namespace Books.TabControllers
                     f.SectionDescriptionTB.Text = "";
                     f.AddSectionButton.Text = "Dodaj";
                 }
+                f.DeleteSectionButton.Visible = value != null;
 
                 selectedSection = value;
 
@@ -771,6 +752,8 @@ namespace Books.TabControllers
                 }
 
                 isSectionEditMode = value;
+                Helper.ToggleCommonControls(f.SectionInfoGB.Controls, value);
+
 
                 f.CancelSectionEditButton.Text = value ? "Prekliči" : "Počisti";
                 f.AddSectionButton.Text = value ? "Potrdi" : "Uredi";
@@ -865,6 +848,7 @@ namespace Books.TabControllers
             {
                 selectedPublisher = value;
                 IsPublisherEditMode = false;
+                f.DeletePublisherButton.Visible = value != null;
 
                 f.PublisherNameTB.Text = value == null ? "" : value.Name;
             }
@@ -920,6 +904,12 @@ namespace Books.TabControllers
 
         public async void EditPublisher()
         {
+            if (!IsPublisherEditMode)
+            {
+                IsPublisherEditMode = true;
+                return;
+            }
+
             if (f.PublisherNameTB.Text == "")
             {
                 MessageBox.Show("Ime založnika ne sme biti prazno.");

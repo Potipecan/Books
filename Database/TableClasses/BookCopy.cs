@@ -21,6 +21,8 @@ namespace Database.TableClasses
         public int AcquisitionType { get; set; }
         [Column("acquisition_date"), NotNull]
         public DateTime AcquisitionDate { get; set; }
+        [Column("state"), NotNull]
+        public int State { get; set; } = (int)BookCopyState.Available;
 
         [Column("publisher_id"), ForeignKey(typeof(Publisher))]
         public int PublisherID { get; set; }
@@ -31,5 +33,20 @@ namespace Database.TableClasses
         public int BookID { get; set; }
         [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public Book Book { get; set; }
+
+        public BookCopy() { }
+        public BookCopy(BookCopy bookcopy)
+        {
+            ID = bookcopy.ID;
+            //Code = bookcopy.Code;
+            Year = bookcopy.Year;
+            AcquisitionType = bookcopy.AcquisitionType;
+            AcquisitionDate = bookcopy.AcquisitionDate;
+            State = bookcopy.State;
+            PublisherID = bookcopy.PublisherID;
+            Publisher = bookcopy.Publisher;
+            BookID = bookcopy.BookID;
+            Book = bookcopy.Book;
+        }
     }
 }
