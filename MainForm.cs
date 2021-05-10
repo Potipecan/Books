@@ -254,7 +254,7 @@ namespace Books
         private void AddBookLoanButton_Click(object sender, EventArgs e)
         {
             if (utc.SelectedBookLoan == null) utc.AddBookLoan();
-            else utc.
+            //else utc.
         }
     }
 }
