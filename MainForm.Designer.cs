@@ -41,6 +41,7 @@ namespace Books
             this.MaterialTabControl = new System.Windows.Forms.TabControl();
             this.BooksPage = new System.Windows.Forms.TabPage();
             this.BookCopyGB = new System.Windows.Forms.GroupBox();
+            this.BookCopyCodeLabel = new System.Windows.Forms.Label();
             this.RemoveBookCopyButton = new System.Windows.Forms.Button();
             this.CancelBookCopyEditButton = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
@@ -183,7 +184,6 @@ namespace Books
             this.ChangeLibrarianDataButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.BookCopyQueryTimer = new System.Windows.Forms.Timer(this.components);
-            this.BookCopyCodeLabel = new System.Windows.Forms.Label();
             this.MainTabControl.SuspendLayout();
             this.SearchTab.SuspendLayout();
             this.BookSearchGroupBox.SuspendLayout();
@@ -362,6 +362,15 @@ namespace Books
             this.BookCopyGB.TabStop = false;
             this.BookCopyGB.Text = "Izvodi";
             // 
+            // BookCopyCodeLabel
+            // 
+            this.BookCopyCodeLabel.AutoSize = true;
+            this.BookCopyCodeLabel.Location = new System.Drawing.Point(96, 29);
+            this.BookCopyCodeLabel.Name = "BookCopyCodeLabel";
+            this.BookCopyCodeLabel.Size = new System.Drawing.Size(12, 17);
+            this.BookCopyCodeLabel.TabIndex = 22;
+            this.BookCopyCodeLabel.Text = "/";
+            // 
             // RemoveBookCopyButton
             // 
             this.RemoveBookCopyButton.Location = new System.Drawing.Point(256, 133);
@@ -490,7 +499,7 @@ namespace Books
             // columnHeader8
             // 
             this.columnHeader8.Text = "Inv. št.";
-            this.columnHeader8.Width = 113;
+            this.columnHeader8.Width = 67;
             // 
             // columnHeader9
             // 
@@ -500,12 +509,12 @@ namespace Books
             // columnHeader10
             // 
             this.columnHeader10.Text = "Leto izida";
-            this.columnHeader10.Width = 150;
+            this.columnHeader10.Width = 81;
             // 
             // columnHeader11
             // 
             this.columnHeader11.Text = "Pridobitev";
-            this.columnHeader11.Width = 124;
+            this.columnHeader11.Width = 97;
             // 
             // columnHeader12
             // 
@@ -1762,15 +1771,6 @@ namespace Books
             // 
             this.BookCopyQueryTimer.Interval = 500;
             this.BookCopyQueryTimer.Tick += new System.EventHandler(this.BookCopyQueryTimer_Tick);
-            // 
-            // BookCopyCodeLabel
-            // 
-            this.BookCopyCodeLabel.AutoSize = true;
-            this.BookCopyCodeLabel.Location = new System.Drawing.Point(96, 29);
-            this.BookCopyCodeLabel.Name = "BookCopyCodeLabel";
-            this.BookCopyCodeLabel.Size = new System.Drawing.Size(12, 17);
-            this.BookCopyCodeLabel.TabIndex = 22;
-            this.BookCopyCodeLabel.Text = "/";
             // 
             // MainForm
             // 

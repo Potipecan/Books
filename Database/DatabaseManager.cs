@@ -146,6 +146,7 @@ namespace Database
         public static async Task<bool> AddBookCopy(BookCopy bookcopy)
         {
             if (bookcopy.Book == null) return false;
+            bookcopy.Code = $"{await GetNextBookCopyID() + 1:D6}";
 
             return await conn.InsertAsync(bookcopy) == 1;
         }
@@ -257,13 +258,13 @@ namespace Database
 
         #region Get functions
 
-        public static async Task<string> GetNextBookCopyCode(int extra = 0)
+        public static async Task<int> GetNextBookCopyID(int extra = 0)
         {
             string sql = "SELECT seq FROM sqlite_sequence WHERE name = 'book_copies';";
 
             int seq = await conn.ExecuteScalarAsync<int>(sql);
 
-            return $"{(seq + extra + 1):D6}";
+            return seq;
         }
 
         public static async Task<Section> GetSectionWithChildren(Section section)

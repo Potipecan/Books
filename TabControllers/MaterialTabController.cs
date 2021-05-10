@@ -51,8 +51,6 @@ namespace Books.TabControllers
             SelectedPublisher = null;
 
             #region quick tests
-            Debug.WriteLine(((AcquisitionType)0).ToString());
-            Task.Run(async () => Debug.WriteLine($"Next Code: {await DatabaseManager.GetNextBookCopyCode()}"));
             #endregion
 
         }
@@ -260,7 +258,6 @@ namespace Books.TabControllers
 
                 if (value != null)
                 {
-                    value = new BookCopy(value);
                     f.BookCopyCodeLabel.Text = value.Code;
                     f.PublishersCB.SelectedIndex = Publishers.FindIndex(p => p.ID == value.PublisherID);
                     f.BookCopyAcquisitionCB.SelectedIndex = value.AcquisitionType;
